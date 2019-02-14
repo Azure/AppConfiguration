@@ -1,8 +1,8 @@
-# App Configuration Hubs
+# Azure App Configuration
 
-App Configuration Hubs is an Azure service that allows users to manage configuration within the cloud. Users can create app configuration hubs to store key-value settings and consume stored settings from within applications, deployment pipelines, release processes, microservices, and other Azure resources.
+Azure App Configuration Hubs is an Azure service that allows users to manage configuration within the cloud. Users can create App Configuration stores to store key-value settings and consume stored settings from within applications, deployment pipelines, release processes, microservices, and other Azure resources.
 
-You can use this repo to ask questions or share feedback about the App Configuration Hubs service.
+You can use this repo to ask questions or share feedback about the Azure App Configuration service.
 
 Documentation: https://aka.ms/azconfig
 
