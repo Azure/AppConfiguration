@@ -4,7 +4,7 @@ Azure App Configuration is an Azure service that allows users to manage configur
 
 You can use this repo to ask questions or share feedback about the Azure App Configuration service.
 
-Documentation: https://aka.ms/azconfig
+Documentation: https://aka.ms/AzureAppConfiguration
 
 ## REST API Reference
 
