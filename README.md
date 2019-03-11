@@ -6,6 +6,8 @@ You can use this repo to ask questions or share feedback about the Azure App Con
 
 Documentation: https://aka.ms/AzureAppConfiguration
 
+Slack: https://aka.ms/azconfig/slack
+
 ## REST API Reference
 
 The following reference pages are available to describe the Azure App Configuration API surface in detail.
