@@ -15,6 +15,8 @@ Here are some of the benefits of using this library:
   * Filters
   * Action Attributes
 
+**API Reference**: https://go.microsoft.com/fwlink/?linkid=2091700
+
 ### Feature Flags
 Feature flags are composed of two parts, a name and a list of feature-filters that are used to turn the feature on.
 
@@ -178,7 +180,9 @@ public IActionResult Index()
 
 The `Index` MVC action above requires "FeatureY" to be enabled before it can execute. 
 
-When an MVC controller or action is blocked because none of the features it specifies are enabled, then the registered `IDisabledFeatureHandler` is triggered. The default `IDisabledFeatureHandler` returns a 404 status code to the client with no response body. This behavior can be overridden when registering the feature management services.
+### Disabled Action Handling
+
+When an MVC controller or action is blocked because none of the features it specifies are enabled, a registered `IDisabledFeatureHandler` will be invoked. By default, a minimalistic handler is registered which returns HTTP 404. This can be overridden using the `IFeatureManagmentBuilder` when registering feature flags.
 
 ```
 public interface IDisabledFeatureHandler
@@ -241,10 +245,6 @@ app.UseForFeature(featureName, appBuilder =>
 });
 ```
 
-### Disabled Action Handling
-
-When an MVC action requires to be enabled and the feature is not enabled, a registered `IDisabledFeatureHandler` will be invoked. By default, a minimalistic handler is registered which returns HTTP 404. This can be overridden using the `IFeatureManagmentBuilder` when registering feature flags.
-
 ## Implementing a Feature Filter
 
 Creating a feature filter provides a way to enable features based on criteria that you define. To implement a feature filter, the `IFeatureFilter` interface must be implemented. `IFeatureFilter` has a single method named `Evaluate`. When a feature specifies that it can be enabled for a feature filter, the `Evaluate` method is called. If `Evaluate` returns `true` it means the feature should be enabled.
@@ -287,6 +287,20 @@ Some feature filters require parameters to decide whether a feature should be tu
       }
   }
 ```
+
+### Filter Alias Attribute
+
+When a feature filter is registered to be used for a feature flag, the alias used in configuration is the name of the feature filter type with the _filter_ suffix, if any, removed. For example `MyCriteriaFilter` would be referred to as _MyCriteria_ in configuration.
+
+  "MyFeature": {
+    "EnabledFor": [
+      {
+        "Name": "MyCriteria"
+      }
+    ]
+  }
+
+This can be overridden through the use of the `FilterAliasAttribute`. A feature filter can be decorated with this attribute to declare the name that should be used in configuration to reference this feature filter within a feature flag.
 
 ### Using HttpContext
 
