@@ -2,7 +2,7 @@
 
 Azure App Configuration is an Azure service that allows users to manage configuration within the cloud. Users can create App Configuration stores to store key-value settings and consume stored settings from within applications, deployment pipelines, release processes, microservices, and other Azure resources.
 
-You can use this repo to ask questions or share feedback about the Azure App Configuration service.
+You can open [issues](https://github.com/Azure/AppConfiguration/issues?utf8=%E2%9C%93&q=is%3Aissue) to ask questions or share feedback about the Azure App Configuration service. If you have a suggestion or a request for a feature, please share your idea with us at [Azure Feedback](https://feedback.azure.com/forums/920545-azure-app-configuration) so others can vote.
 
 Documentation: https://aka.ms/AzureAppConfiguration
 
