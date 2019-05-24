@@ -112,13 +112,13 @@ public class Startup
   public void ConfigureServices(IServiceCollection services)
   {
       services.AddFeatureManagement()
-              .AddFeatureFilter<BrowserFilter>()
-              .AddFeatureFilter<SuperUserFilter>();
+              .AddFeatureFilter<PercentageFilter>()
+              .AddFeatureFilter<TimeWindowFilter>();
   }
 }
 ```
 
-This tells the feature manager to use the "FeatureManagement" section from the configuration for feature flag settings. It also registers two feature filters named `BrowserFilter` and `SuperUserFilter`. When filters are referenced in feature flag settings (appsettings.json) the _Filter_ part of the type name can be omitted.
+This tells the feature manager to use the "FeatureManagement" section from the configuration for feature flag settings. It also registers two feature filters named `PercentageFilter` and `TimeWindowFilter`. When filters are referenced in feature flag settings (appsettings.json) the _Filter_ part of the type name can be omitted.
 
 
 **Advanced:** If the root of the configuration is provided, the feature manager will first look for a configuration section with the name of the feature, and will then fall back to the "FeatureManagement" section automatically.
