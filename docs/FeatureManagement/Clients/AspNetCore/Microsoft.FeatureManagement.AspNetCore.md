@@ -337,7 +337,7 @@ Each of the built-in feature filters have their own parameters. Here is the list
 
 #### Microsoft.Percentage
 
-This filter provides the capability to enable a feature based on a random percentage. If used within ASP.NET Core the `IFeatureManagerSnapshot` can be used to keep the evaluation consistent across a request.
+This filter provides the capability to enable a feature based on a random percentage.
 
 ```
     "EnhancedPipeline": {
