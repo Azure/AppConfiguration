@@ -342,7 +342,7 @@ Each of the built-in feature filters have their own parameters. Here is the list
 
 #### Microsoft.Percentage
 
-This filter provides the capability to enable a feature based on a random percentage.
+This filter provides the capability to enable a feature based on a set percentage.
 
 ```
     "EnhancedPipeline": {
