@@ -196,9 +196,14 @@ public interface IDisabledFeaturesHandler
 In MVC views `<feature>` tags can be used to conditionally render content based on whether a feature is enabled or not.
 
 ```
-<feature name="FeatureX">
+<feature name=@nameof(MyFeatureFlags.FeatureX)>
   <p>This can only be seen if 'FeatureX' is enabled.</p>
 </feature>
+```
+
+The `<feature>` tag requires a tag helper to work. This can be done by adding the feature management tag helper to the _ViewImports.cshtml file.
+```
+@addTagHelper *, Microsoft.FeatureManagement.AspNetCore
 ```
 
 ### MVC Filters
