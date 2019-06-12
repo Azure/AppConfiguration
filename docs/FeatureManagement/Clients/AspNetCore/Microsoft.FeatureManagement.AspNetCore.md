@@ -185,9 +185,9 @@ The `Index` MVC action above requires "FeatureY" to be enabled before it can exe
 When an MVC controller or action is blocked because none of the features it specifies are enabled, a registered `IDisabledFeaturesHandler` will be invoked. By default, a minimalistic handler is registered which returns HTTP 404. This can be overridden using the `IFeatureManagementBuilder` when registering feature flags.
 
 ```
-public interface IDisabledFeatureHandler
+public interface IDisabledFeaturesHandler
 {
-    Task HandleDisabledFeature(string featureName, ActionExecutingContext context);
+    Task HandleDisabledFeature(IEnumerable<string> features, ActionExecutingContext context);
 }
 ```
 
