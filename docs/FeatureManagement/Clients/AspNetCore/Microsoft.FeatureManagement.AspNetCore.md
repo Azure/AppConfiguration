@@ -120,7 +120,7 @@ public class Startup
 }
 ```
 
-This tells the feature manager to use the "FeatureManagement" section from the configuration for feature flag settings. It also registers two feature filters named `PercentageFilter` and `TimeWindowFilter`. When filters are referenced in feature flag settings (appsettings.json) the _Filter_ part of the type name can be omitted.
+This tells the feature manager to use the "FeatureManagement" section from the configuration for feature flag settings. It also registers two built-in feature filters named `PercentageFilter` and `TimeWindowFilter`. When filters are referenced in feature flag settings (appsettings.json) the _Filter_ part of the type name can be omitted.
 
 
 **Advanced:** If the root of the configuration is provided, the feature manager will first look for a configuration section with the name of the feature, and will then fall back to the "FeatureManagement" section automatically.
@@ -182,12 +182,12 @@ The `Index` MVC action above requires "FeatureY" to be enabled before it can exe
 
 ### Disabled Action Handling
 
-When an MVC controller or action is blocked because none of the features it specifies are enabled, a registered `IDisabledFeatureHandler` will be invoked. By default, a minimalistic handler is registered which returns HTTP 404. This can be overridden using the `IFeatureManagmentBuilder` when registering feature flags.
+When an MVC controller or action is blocked because none of the features it specifies are enabled, a registered `IDisabledFeaturesHandler` will be invoked. By default, a minimalistic handler is registered which returns HTTP 404. This can be overridden using the `IFeatureManagementBuilder` when registering feature flags.
 
 ```
-public interface IDisabledFeatureHandler
+public interface IDisabledFeaturesHandler
 {
-    Task HandleDisabledFeature(string featureName, ActionExecutingContext context);
+    Task HandleDisabledFeature(IEnumerable<string> features, ActionExecutingContext context);
 }
 ```
 
@@ -196,9 +196,14 @@ public interface IDisabledFeatureHandler
 In MVC views `<feature>` tags can be used to conditionally render content based on whether a feature is enabled or not.
 
 ```
-<feature name="FeatureX">
+<feature name=@nameof(MyFeatureFlags.FeatureX)>
   <p>This can only be seen if 'FeatureX' is enabled.</p>
 </feature>
+```
+
+The `<feature>` tag requires a tag helper to work. This can be done by adding the feature management tag helper to the _ViewImports.cshtml file.
+```
+@addTagHelper *, Microsoft.FeatureManagement.AspNetCore
 ```
 
 ### MVC Filters
@@ -337,7 +342,7 @@ Each of the built-in feature filters have their own parameters. Here is the list
 
 #### Microsoft.Percentage
 
-This filter provides the capability to enable a feature based on a random percentage.
+This filter provides the capability to enable a feature based on a set percentage.
 
 ```
     "EnhancedPipeline": {
