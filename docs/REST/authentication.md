@@ -293,16 +293,17 @@ static class HttpContentExtensions
 ```java
 public class ConfigHttpClient {
 
-    public CloseableHttpResponse execute(HttpUriRequest request, Date date, String credential, String secret) {
-        Map<String, String> authHeaders = sign(request, date, credential, secret);
+    public CloseableHttpResponse execute(HttpUriRequest request, String credential, String secret)
+            throws ClientProtocolException, IOException, UnsupportedOperationException, URISyntaxException {
+        Map<String, String> authHeaders = sign(request, credential, secret);
         authHeaders.forEach(request::setHeader);
 
         return httpClient.execute(request);
     }
 
-    private static Map<String, String> sign(HttpUriRequest request, Date date, String credential,
-            String secret) {
-        String requestTime = GMT_DATE_FORMAT.format(date);
+    private static Map<String, String> sign(HttpUriRequest request, String credential,
+            String secret) throws URISyntaxException, UnsupportedOperationException, IOException {
+        String requestTime = GMT_DATE_FORMAT.format(new Date());
 
         String contentHash = buildContentHash(request);
 
@@ -317,7 +318,6 @@ public class ConfigHttpClient {
         String host = new URIBuilder(request.getRequestLine().getUri()).getHost();
         String toSign = String.format("%s\n%s\n%s;%s;%s", methodName, requestPath, requestTime, host, contentHash);
 
-        // Signature
         byte[] decodedKey = Base64.getDecoder().decode(secret);
         String signature = Base64.getEncoder().encodeToString(new HmacUtils(HMAC_SHA_256, decodedKey).hmac(toSign));
 
@@ -335,7 +335,7 @@ public class ConfigHttpClient {
         return headers;
     }
 
-    private static String buildContentHash(HttpUriRequest request) {
+    private static String buildContentHash(HttpUriRequest request) throws UnsupportedOperationException, IOException {
         String content = "";
         if (request instanceof HttpEntityEnclosingRequest) {
             try {
@@ -343,15 +343,10 @@ public class ConfigHttpClient {
                 IOUtils.copy(((HttpEntityEnclosingRequest) request).getEntity().getContent(), writer,
                         StandardCharsets.UTF_8);
 
-                return writer.toString();
+                content = writer.toString();
             }
             finally {
-                try {
-                    ((HttpEntityEnclosingRequest) request).getEntity().getContent().close();
-                }
-                catch (IOException e) {
-                    LOGGER.trace("Failed to close the input stream.", e);
-                }
+                ((HttpEntityEnclosingRequest) request).getEntity().getContent().close();
             }
         }
 
@@ -359,4 +354,3 @@ public class ConfigHttpClient {
         return Base64.getEncoder().encodeToString(digest);
     }
 }
-```
