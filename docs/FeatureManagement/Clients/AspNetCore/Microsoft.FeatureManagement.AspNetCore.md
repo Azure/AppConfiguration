@@ -93,7 +93,6 @@ The following snippet demonstrates an alternative way to define a feature that c
 To make it easier to reference these feature flags in code, we recommend to define feature flag variables like below.
 
     // Define feature flags in an enum
-    [FeatureFlag]
     public enum MyFeatureFlags
     {
         FeatureT,
