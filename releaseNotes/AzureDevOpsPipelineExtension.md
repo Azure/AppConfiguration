@@ -3,9 +3,9 @@
 The Azure App Configuration extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task&ssr=false#overview). The version of the Azure App Configuration task being used will print to the console when the task is executed: ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
 ### v1.6.4 - June, 19 2019
-* Improve [homepage documentation](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task):
-  * Add the link the the release note.
-  * Add a example of how to consume fetched key-value.
+* Improved [homepage documentation](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task):
+  * Added a link the the release notes.
+  * Added an example of how to consume fetched key-values.
 
 ### v1.6.3 - June, 03 2019
 * Support auto-populated `App Configuration name` dropdown from a textbox.
