@@ -4,7 +4,7 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ### v1.6.4 - June, 19 2019
 * Improved [homepage documentation](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task):
-  * Added a link the the release notes.
+  * Added a link the release notes.
   * Added an example of how to consume fetched key-values.
 
 ### v1.6.3 - June, 03 2019
