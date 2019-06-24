@@ -5,4 +5,5 @@
 * Renamed 'Microsoft.FeatureManagment.FeatureAttribute' to 'Microsoft.FeatureManagment.Mvc.FeatureGateAttribute'.
 * Enhanced FeatureGateAttribute to allow specifying whether 'any' or 'all' features need to be enabled.
 * Enhanced feature tag helper to allow for multiple features, any/all requirement, and negated logic.
-* Added AddSessionManager to IFeatureManagementBuilder.
+* Added `IFeatureManagementBuilder.AddSessionManager` to enhance discoverability for providing a custom feature session manager.
+  * Previous approach was `IServiceCollection.AddSingleton<ISessionManager>(MySessionManager)`
