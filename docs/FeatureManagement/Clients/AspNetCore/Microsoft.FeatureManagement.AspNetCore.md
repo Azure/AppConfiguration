@@ -160,7 +160,7 @@ public class HomeController : Controller
 MVC controller and actions can require that a given feature, or one of any list of features, be enabled in order to execute. This can be done through the `FeatureAttribute`. 
 
 ```
-[Feature(MyFeatureFlags.FeatureX)]
+[FeatureGate(MyFeatureFlags.FeatureX)]
 public class HomeController : Controller
 {
     ...
@@ -170,7 +170,7 @@ public class HomeController : Controller
 The `HomeController` above requires "FeatureX" to be enabled before any action it contains can be executed. 
 
 ```
-[Feature(MyFeatureFlags.FeatureY)]
+[FeatureGate(MyFeatureFlags.FeatureY)]
 public IActionResult Index()
 {
     return View();
