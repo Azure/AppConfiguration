@@ -293,13 +293,13 @@ static class HttpContentExtensions
 ```java
 public CloseableHttpResponse execute(HttpUriRequest request, String credential, String secret)
         throws IOException, URISyntaxException {
-    Map<String, String> authHeaders = sign(request, credential, secret);
+    Map<String, String> authHeaders = generateHeader(request, credential, secret);
     authHeaders.forEach(request::setHeader);
 
     return httpClient.execute(request);
 }
 
-private static Map<String, String> sign(HttpUriRequest request, String credential, String secret) 
+private static Map<String, String> generateHeader(HttpUriRequest request, String credential, String secret) 
         throws URISyntaxException, IOException {
     String requestTime = GMT_DATE_FORMAT.format(new Date());
 
