@@ -290,3 +290,62 @@ static class HttpContentExtensions
     }
 }
 ```
+### Java
+```java
+public CloseableHttpResponse execute(HttpUriRequest request, String credential, String secret)
+        throws IOException, URISyntaxException {
+    Map<String, String> authHeaders = generateHeader(request, credential, secret);
+    authHeaders.forEach(request::setHeader);
+
+    return httpClient.execute(request);
+}
+
+private static Map<String, String> generateHeader(HttpUriRequest request, String credential, String secret) 
+        throws URISyntaxException, IOException {
+    String requestTime = GMT_DATE_FORMAT.format(new Date());
+
+    String contentHash = buildContentHash(request);
+    // SignedHeaders
+    String signedHeaders = "x-ms-date;host;x-ms-content-sha256";
+
+    // Signature
+    String methodName = request.getRequestLine().getMethod().toUpperCase();
+    URIBuilder uri = new URIBuilder(request.getRequestLine().getUri());
+    String scheme = uri.getScheme() + "://";
+    String requestPath = uri.toString().substring(scheme.length()).substring(uri.getHost().length());
+    String host = new URIBuilder(request.getRequestLine().getUri()).getHost();
+    String toSign = String.format("%s\n%s\n%s;%s;%s", methodName, requestPath, requestTime, host, contentHash);
+
+    byte[] decodedKey = Base64.getDecoder().decode(secret);
+    String signature = Base64.getEncoder().encodeToString(new HmacUtils(HMAC_SHA_256, decodedKey).hmac(toSign));
+
+    // Compose headers
+    Map<String, String> headers = new HashMap<>();
+    headers.put("x-ms-date", requestTime);
+    headers.put("x-ms-content-sha256", contentHash);
+
+    String authorization = String.format("HMAC-SHA256 Credential=%s, SignedHeaders=%s, Signature=%s",
+            credential, signedHeaders, signature);
+    headers.put("Authorization", authorization);
+
+    return headers;
+}
+
+private static String buildContentHash(HttpUriRequest request) throws IOException {
+    String content = "";
+    if (request instanceof HttpEntityEnclosingRequest) {
+        try {
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(((HttpEntityEnclosingRequest) request).getEntity().getContent(), writer,
+                    StandardCharsets.UTF_8);
+
+            content = writer.toString();
+        }
+        finally {
+            ((HttpEntityEnclosingRequest) request).getEntity().getContent().close();
+        }
+    }
+
+    byte[] digest = new DigestUtils(SHA_256).digest(content);
+    return Base64.getEncoder().encodeToString(digest);
+}
