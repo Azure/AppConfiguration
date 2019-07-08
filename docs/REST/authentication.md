@@ -292,7 +292,7 @@ static class HttpContentExtensions
 ```
 ### Java
 ```java
-public CloseableHttpResponse execute(HttpUriRequest request, String credential, String secret)
+public CloseableHttpResponse signRequest(HttpUriRequest request, String credential, String secret)
         throws IOException, URISyntaxException {
     Map<String, String> authHeaders = generateHeader(request, credential, secret);
     authHeaders.forEach(request::setHeader);
@@ -353,42 +353,57 @@ private static String buildContentHash(HttpUriRequest request) throws IOExceptio
 ### Golang
 ```golang
 import (
-    "crypto/hmac"
-    "crypto/sha256"
-    "encoding/base64"
-    "fmt"
-    "io/ioutil"
-    "net/http"
-    "strings"
-    "time"
+	"bytes"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"io/ioutil"
+	"net/http"
+	"strings"
+	"time"
 )
 
-func getContentHashBase64(content string) string {
-    hasher := sha256.New()
-    hasher.Write([]byte(content))
-    return base64.StdEncoding.EncodeToString(hasher.Sum(nil))
+//SignRequest Setup the auth header for accessing Azure AppConfiguration service
+func SignRequest(id string, secret string, req *http.Request) error {
+	method := req.Method
+	host := req.URL.Host
+	pathAndQuery := req.URL.Path
+	if req.URL.RawQuery != "" {
+		pathAndQuery = pathAndQuery + "?" + req.URL.RawQuery
+	}
+
+	content, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		return err
+	}
+	req.Body = ioutil.NopCloser(bytes.NewBuffer(content))
+
+	key, err := base64.StdEncoding.DecodeString(secret)
+	if err != nil {
+		return err
+	}
+
+	timestamp := time.Now().UTC().Format(http.TimeFormat)
+	contentHash := getContentHashBase64(content)
+	stringToSign := fmt.Sprintf("%s\n%s\n%s;%s;%s", strings.ToUpper(method), pathAndQuery, timestamp, host, contentHash)
+	signature := getHmac(stringToSign, key)
+
+	req.Header.Set("x-ms-content-sha256", contentHash)
+	req.Header.Set("x-ms-date", timestamp)
+	req.Header.Set("Authorization", "HMAC-SHA256 Credential="+id+", SignedHeaders=x-ms-date;host;x-ms-content-sha256, Signature="+signature)
+
+	return nil
 }
 
-func signRequest(content string, key []byte) string {
-    hmac := hmac.New(sha256.New, key)
-    hmac.Write([]byte(content))
-    return base64.StdEncoding.EncodeToString(hmac.Sum(nil))
+func getContentHashBase64(content []byte) string {
+	hasher := sha256.New()
+	hasher.Write(content)
+	return base64.StdEncoding.EncodeToString(hasher.Sum(nil))
 }
 
-// Setup the auth header for accessing Azure AppConfiguration service
-func PrepareAuthHeader(verb string, host string, pathAndQuery string, body string, id string, secret string, req *http.Request) {
-    key, err := base64.StdEncoding.DecodeString(secret)
-    if err != nil {
-        fmt.Printf("err = %s \n", err)
-    }
-
-    timestamp := time.Now().UTC().Format(http.TimeFormat)
-    contentHash := getContentHashBase64(body)
-    signature := signRequest(fmt.Sprintf("%s\n%s\n%s;%s;%s", strings.ToUpper(verb), pathAndQuery, timestamp, host, contentHash), key)
-
-    req.Header.Set("x-ms-content-sha256", contentHash)
-    req.Header.Set("x-ms-date", timestamp)
-    req.Header.Set("Authorization", "HMAC-SHA256 Credential="+id+", SignedHeaders=x-ms-date;host;x-ms-content-sha256, Signature="+signature)
-    req.Header.Set("Content-Type", "application/vnd.microsoft.appconfig.kv+json")
+func getHmac(content string, key []byte) string {
+	hmac := hmac.New(sha256.New, key)
+	hmac.Write([]byte(content))
+	return base64.StdEncoding.EncodeToString(hmac.Sum(nil))
 }
 ```
