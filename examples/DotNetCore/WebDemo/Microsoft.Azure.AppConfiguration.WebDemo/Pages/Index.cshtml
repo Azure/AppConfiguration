@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+}
+
+@section InlineStyles {
+    .center {
+        font-size: @(Model.Settings.FontSize)px;
+    }
+
+    body {
+        background-color: @Model.Settings.BackgroundColor;
+    }
+}
+
+<div class="center" id="messageBox">
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        var joinedMessages = "@(Model.Settings.Messages)";
+
+        var messages = joinedMessages.split(';');
+
+        displayMessages(messages, @(Model.Settings.RefreshRate));
+
+    </script>
+}
