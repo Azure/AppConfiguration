@@ -16,7 +16,7 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //
+                //
             // We add a Settings model to the service container, which takes its values from the applications configuration.
             services.Configure<Settings>(Configuration.GetSection("WebDemo:Settings"));
 
@@ -34,6 +34,10 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            //
+            // Use Azure App Configuration to allow requests to trigger refresh of the configuration
+            app.UseAzureAppConfiguration();
 
             app.UseStaticFiles();
 

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using System;
 
 namespace Microsoft.Azure.AppConfiguration.WebDemo
 {
@@ -25,7 +24,7 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
 
                     config.AddAzureAppConfiguration(options => {
 
-                        options.ConnectWithManagedIdentity("https://demo-app.azconfig.io")
+                        options.ConnectWithManagedIdentity(settings["AzureAppConfigurationEndpoint"])
                                .Use(keyFilter: "WebDemo:*")
                                .ConfigureRefresh((refreshOptions) =>
                                {
