@@ -16,7 +16,7 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
 
         public void ConfigureServices(IServiceCollection services)
         {
-                //
+            //
             // We add a Settings model to the service container, which takes its values from the applications configuration.
             services.Configure<Settings>(Configuration.GetSection("WebDemo:Settings"));
 
