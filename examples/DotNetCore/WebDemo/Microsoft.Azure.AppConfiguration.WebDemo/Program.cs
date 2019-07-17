@@ -28,13 +28,13 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
                         config.AddAzureAppConfiguration(options =>
                         {
 
-                            options.ConnectWithManagedIdentity(settings["AzureAppConfigurationEndpoint"])
+                            options.ConnectWithManagedIdentity(appConfigurationEndpoint)
                                    .Use(keyFilter: "WebDemo:*")
                                    .ConfigureRefresh((refreshOptions) =>
                                    {
-                                   //
-                                   // Indicates that all settings should be refreshed when the given key has changed.
-                                   refreshOptions.Register(key: "WebDemo:Sentinel", label: LabelFilter.Null, refreshAll: true);
+                                       //
+                                       // Indicates that all settings should be refreshed when the given key has changed.
+                                       refreshOptions.Register(key: "WebDemo:Sentinel", label: LabelFilter.Null, refreshAll: true);
                                    });
                         });
 
