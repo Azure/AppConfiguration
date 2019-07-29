@@ -1,0 +1,15 @@
+﻿using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Logging;
+
+namespace WebJobHelloWorld
+{
+    public class Functions
+    {
+        public static void ProcessQueueMessage(
+            [QueueTrigger("%QueueName%")] string message, // Get queue name from config
+            ILogger logger)
+        {
+            logger.LogInformation(message);
+        }
+    }
+}
