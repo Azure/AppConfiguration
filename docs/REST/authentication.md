@@ -24,7 +24,7 @@ Provide each request with all HTTP headers required for Authentication. The mini
 Host: example.azconfig.io
 Date: Fri, 11 May 2018 18:48:36 GMT
 x-ms-content-sha256: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2, SignedHeaders=Host;x-ms-date;x-ms-content-sha256, Signature=jMXmttaxBJ0NmLlFKLZUkI8jdFu/8yqcTYzbkI3DGdU=
+Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2&SignedHeaders=Host;x-ms-date;x-ms-content-sha256&Signature=jMXmttaxBJ0NmLlFKLZUkI8jdFu/8yqcTYzbkI3DGdU=
 ```
 #
 #
@@ -32,7 +32,7 @@ Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2, SignedHeaders=Host;x-ms-
 #
 **Syntax:**
 
-``Authorization``: **HMAC-SHA256** ```Credential```=\<value\>, ```SignedHeaders```=\<value\>, ```Signature```=\<value\>
+``Authorization``: **HMAC-SHA256** ```Credential```=\<value\>&```SignedHeaders```=\<value\>&```Signature```=\<value\>
 #
 #
 |  Argument | Description  |
@@ -211,7 +211,7 @@ function signRequest(host,
         return [
             { name: "x-ms-date", value: utcNow },
             { name: "x-ms-content-sha256", value: contentHash },
-            { name: "Authorization", value: "HMAC-SHA256 Credential=" + credential + ", SignedHeaders=" + signedHeaders + ", Signature=" + signature }
+            { name: "Authorization", value: "HMAC-SHA256 Credential=" + credential + "&SignedHeaders=" + signedHeaders + "&Signature=" + signature }
         ];
 }
 ```
@@ -264,7 +264,7 @@ static class HttpRequestMessageExtensions
         // Add headers
         request.Headers.Date = utcNow;
         request.Headers.Add("x-ms-content-sha256", contentHash);
-        request.Headers.Authorization = new AuthenticationHeaderValue("HMAC-SHA256", $"Credential={credential}, SignedHeaders={signedHeaders}, Signature={signature}");
+        request.Headers.Authorization = new AuthenticationHeaderValue("HMAC-SHA256", $"Credential={credential}&SignedHeaders={signedHeaders}&Signature={signature}");
 
         return request;
     }
