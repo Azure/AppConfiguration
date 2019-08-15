@@ -1,5 +1,8 @@
 ## Microsoft Extensions Azure App Configuration
 
+### 2.0.0-preview-009470001-1371 - August 06, 2019
+* Fixed a bug which caused some application frameworks which use a custom synchronization context, like ASP.NET, to hang when building the configuration provider.
+
 ### v2.0.0-preview-009200001-1437 - July 10, 2019
 * Replaced watch feature with on-demand refresh mechanism to address the following fundamental design flaws.
     * Watch could not be invoked on-demand.
