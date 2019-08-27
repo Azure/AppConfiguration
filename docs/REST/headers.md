@@ -7,7 +7,7 @@ The following table describes common request headers used in Azure App Configura
 
 | Header | Description | Example |
 | -- | -- | -- |
-| **Authorization** | Used to [authenticate](./authentication) a request to the service. See [section 14.8](https://tools.ietf.org/html/rfc2616#section-14.8) | `Authorization: HMAC-SHA256 Credential=<Credential>, SignedHeaders=Host;x-ms-date;x-ms-content-sha256, Signature=<Signature>` |
+| **Authorization** | Used to [authenticate](./authentication) a request to the service. See [section 14.8](https://tools.ietf.org/html/rfc2616#section-14.8) | `Authorization: HMAC-SHA256 Credential=<Credential>&SignedHeaders=Host;x-ms-date;x-ms-content-sha256&Signature=<Signature>` |
 | **Accept** | Informs the server what media type the client will accept in an HTTP response. See [section 14.1](https://tools.ietf.org/html/rfc2616#section-14.1) | `Accept: application/vnd.microsoft.appconfig.kv+json;` |
 | **Accept-Datetime** | Requests the server to return its content as a representation of its prior state. The value of this header is the requested datetime of that state. See [RFC 7089](https://tools.ietf.org/html/rfc7089#section-2.1.1) | `Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT` |
 | **Content-Type** | Contains the media-type of the content within the HTTP request body. See [section 14.17](https://tools.ietf.org/html/rfc2616#section-14.17) | `Content-Type: application/vnd.microsoft.appconfig.kv+json; charset=utf-8;` |
