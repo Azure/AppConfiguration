@@ -67,10 +67,19 @@
             string display = string.Empty;
             StringBuilder sb = new StringBuilder();
 
-            while (!token.IsCancellationRequested)
+            do
             {
+                if (!sb.ToString().Equals(display))
+                {
+                    display = sb.ToString();
+
+                    Console.Clear();
+                    Console.Write(display);
+                }
+                sb.Clear();
+
                 // Trigger an async refresh for registered configuration settings without wait
-                _refresher.Refresh();
+                await _refresher.Refresh();
 
                 sb.AppendLine($"{Configuration["AppName"]} has been configured to run in {Configuration["Language"]}");
                 sb.AppendLine();
@@ -79,18 +88,8 @@
                 sb.AppendLine();
 
                 sb.AppendLine("Press any key to exit...");
-                await Task.Delay(1000);
-
-                if (!sb.ToString().Equals(display))
-                {
-                    display = sb.ToString();
-
-                    Console.Clear();
-                    Console.Write(display);
-                }
-
-                sb.Clear();
-            }
+                await Task.Delay(1000);                
+            } while (!token.IsCancellationRequested);
         }
     }
 }
