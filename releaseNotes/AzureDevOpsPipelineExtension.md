@@ -3,8 +3,8 @@
 The Azure App Configuration extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task&ssr=false#overview). The version of the Azure App Configuration task being used will print to the console when the task is executed: ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
 ### v1.6.7 - September, 04 2019
-  * Update data plane request authentication header to use new token separator.
-  * Update data plane reqeust url to include api version.
+  * Updated to use the authorization header syntax that is compliant with the REST API spec.
+  * Included API version for all requests sent to Azure App Configuration.
 
 ### v1.6.6 - June, 24 2019
 * Improved [homepage documentation](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task):
