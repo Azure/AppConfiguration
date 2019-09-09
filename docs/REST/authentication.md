@@ -15,7 +15,7 @@ Provide each request with all HTTP headers required for Authentication. The mini
 | **Host** | Internet host and port number. See section  [3.2.2](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.2) |
 | **Date** | Date and Time at which the request was originated. It can not be more than 15 min off from current GMT. The value is an HTTP-date, as described in section [3.3.1](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1)
 | **x-ms-date** | Same as ```Date``` above. It can be used instead when the agent can't directly access ```Date``` request header or a proxy modifies it. If ```x-ms-date``` and ```Date``` are both provided, ```x-ms-date``` takes precedence. |
-| **x-ms-content-sha256** | base64 encoded SHA256 hash of the request body. It must be provided even of there is no body. ```base64_encode(SHA256(body))```|
+| **x-ms-content-sha256** | base64 encoded SHA256 hash of the request body. It must be provided even if there is no body. ```base64_encode(SHA256(body))```|
 | **Authorization** | Authentication information required by **HMAC-SHA256** scheme. Format and details are explained below. |
 
 
