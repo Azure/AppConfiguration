@@ -36,35 +36,30 @@ namespace WebJobHelloWorld
         {
             //
             // This application attempts to connect to Azure App Configuration to retrieve Azure Blob Storage name, and Queue Name for the Azure Web Job.
-            // If these are present in appsettings.json or in environment variables, it reads those instead.
-            var localConfigBuilder = new ConfigurationBuilder();
-            localConfigBuilder.AddJsonFile("appsettings.json")
+            // It attempts to read these value from appsettings.json, environment variables and Azure App Configuration (in that order, with newer value overriding older ones).
+            var configBuilder = new ConfigurationBuilder();
+            configBuilder.AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
 
-            var localConfiguration = localConfigBuilder.Build();
-
-            //
-            // If "WebJob" settings are present in local configuration, use that.
-            if (!string.IsNullOrEmpty(localConfiguration["AzureWebJobsStorage"]) && !string.IsNullOrEmpty(localConfiguration["QueueName"]))
+            var config = configBuilder.Build();
+            if (!string.IsNullOrEmpty(config["ConnectionString"]))
             {
-                configBuilder = localConfigBuilder;
-                return;
+                configBuilder.AddAzureAppConfiguration(options =>
+                {
+                    options.Connect(config["ConnectionString"])
+                        .Use("WebJob:*")
+                        .TrimKeyPrefix("WebJob:");
+                });
             }
 
-            if (string.IsNullOrEmpty(localConfiguration["ConnectionString"]))
+            if (string.IsNullOrEmpty(config["AzureWebJobsStorage"]))
             {
-                Console.WriteLine("'ConnectionString' is null. Cannot connecto Azure App Config to retrieve necessary parameters for AzureWebJob.");
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("AzureWebJobsStorage not found.");
             }
-
-            //
-            // Load config from Azure App Config.
-            configBuilder.AddAzureAppConfiguration(options =>
+            else if (string.IsNullOrEmpty(config["QueueName"]))
             {
-                options.Connect(localConfiguration["ConnectionString"])
-                    .Use("WebJob:*")
-                    .TrimKeyPrefix("WebJob:");
-            });
+                throw new ArgumentNullException("QueueName not found.");
+            }
         }
     }
 }

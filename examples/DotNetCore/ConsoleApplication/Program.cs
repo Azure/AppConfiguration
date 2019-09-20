@@ -69,16 +69,9 @@
 
             do
             {
-                if (!sb.ToString().Equals(display))
-                {
-                    display = sb.ToString();
-
-                    Console.Clear();
-                    Console.Write(display);
-                }
                 sb.Clear();
 
-                // Trigger an async refresh for registered configuration settings without wait
+                // Trigger and wait for an async refresh for registered configuration settings
                 await _refresher.Refresh();
 
                 sb.AppendLine($"{Configuration["AppName"]} has been configured to run in {Configuration["Language"]}");
@@ -88,6 +81,12 @@
                 sb.AppendLine();
 
                 sb.AppendLine("Press any key to exit...");
+
+                display = sb.ToString();
+
+                Console.Clear();
+                Console.Write(display);
+                
                 await Task.Delay(1000);                
             } while (!token.IsCancellationRequested);
         }
