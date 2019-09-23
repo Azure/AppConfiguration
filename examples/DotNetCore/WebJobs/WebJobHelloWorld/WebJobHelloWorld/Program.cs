@@ -36,20 +36,22 @@ namespace WebJobHelloWorld
         {
             //
             // This application attempts to connect to Azure App Configuration to retrieve Azure Blob Storage name, and Queue Name for the Azure Web Job.
-            // It attempts to read these value from appsettings.json, environment variables and Azure App Configuration (in that order, with newer value overriding older ones).
+            // It reads the ConnectionString for the App Configuration Service from appsettings.json and from environment variables.
             configBuilder.AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
 
             var config = configBuilder.Build();
-            if (!string.IsNullOrEmpty(config["ConnectionString"]))
+            if (string.IsNullOrEmpty(config["ConnectionString"]))
             {
-                configBuilder.AddAzureAppConfiguration(options =>
-                {
-                    options.Connect(config["ConnectionString"])
-                        .Use("WebJob:*")
-                        .TrimKeyPrefix("WebJob:");
-                });
+                throw new ArgumentNullException("Azure App Configuration Connection string not found in appsettings.json or environment variables");
             }
+
+            configBuilder.AddAzureAppConfiguration(options =>
+            {
+                options.Connect(config["ConnectionString"])
+                    .Use("WebJob:*")
+                    .TrimKeyPrefix("WebJob:");
+            });
 
             config = configBuilder.Build();
 

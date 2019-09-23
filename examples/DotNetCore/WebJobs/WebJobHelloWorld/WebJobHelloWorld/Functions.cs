@@ -9,6 +9,10 @@ namespace WebJobHelloWorld
             [QueueTrigger("%QueueName%")] string message, // Get queue name from config
             ILogger logger)
         {
+            //
+            // Insert code to process the message here.
+            // 
+
             logger.LogInformation(message);
         }
     }
