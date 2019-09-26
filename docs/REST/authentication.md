@@ -407,3 +407,82 @@ func getHmac(content string, key []byte) string {
 	return base64.StdEncoding.EncodeToString(hmac.Sum(nil))
 }
 ```
+### Python
+```python
+
+import base64
+import hashlib
+import hmac
+from datetime import datetime
+import six
+
+def sign_request(method, url, body, connection_string):
+    verb = method.upper()
+    host, credential, secret = __parse_connection_string(connection_string)
+
+    # Get the path and query from url, which looks like https://host/path/query
+    query_url = str(url[len(host) + 8:])
+
+    utc_now = str(datetime.utcnow().strftime("%b, %d %Y %H:%M:%S ")) + "GMT"
+
+    if six.PY2:
+        content_digest = hashlib.sha256(bytes(body)).digest()
+    else:
+        content_digest = hashlib.sha256(bytes(body, 'utf-8')).digest()
+
+    content_hash = base64.b64encode(content_digest).decode('utf-8')
+
+    # Signed Headers
+    signed_headers = "x-ms-date;host;x-ms-content-sha256"  # Semicolon separated header names
+
+    # String-To-Sign
+    string_to_sign = 
+        verb + '\n' + \
+        query_url + '\n' + \
+        utc_now + ';' + host + ';' + content_hash  # Semicolon separated SignedHeaders values
+
+    # Decode secret
+    if six.PY2:
+        decoded_secret = base64.b64decode(secret)
+        digest = hmac.new(decoded_secret, bytes(
+            string_to_sign), hashlib.sha256).digest()
+    else:
+        decoded_secret = base64.b64decode(secret, validate=True)
+        digest = hmac.new(decoded_secret, bytes(
+            string_to_sign, 'utf-8'), hashlib.sha256).digest()
+
+    # Signature
+    signature = base64.b64encode(digest).decode('utf-8')
+
+    # Result request headers
+    return {
+        "x-ms-date": utc_now,
+        "x-ms-content-sha256": content_hash,
+        "Authorization": "HMAC-SHA256 Credential=" + credential + "&SignedHeaders=" + signed_headers + "&Signature=" + signature
+    }
+
+def __parse_connection_string(connection_string):
+    # connection_string looks like Endpoint=https://xxxxx;Id=xxxxx;Secret=xxxx
+    segments = connection_string.split(';')
+    if len(segments) != 3:
+        raise ValueError('Invalid connection string.')
+
+    endpoint = ''
+    id_ = ''
+    secret = ''
+    for segment in segments:
+        segment = segment.strip()
+        if segment.startswith('Endpoint'):
+            endpoint = str(segment[17:])
+        elif segment.startswith('Id'):
+            id_ = str(segment[3:])
+        elif segment.startswith('Secret'):
+            secret = str(segment[7:])
+        else:
+            raise ValueError('Invalid connection string.')
+
+    if not endpoint or not id_ or not secret:
+        raise ValueError('Invalid connection string.')
+
+    return endpoint, id_, secret
+```
