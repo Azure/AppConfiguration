@@ -437,10 +437,9 @@ def sign_request(host,
     signed_headers = "x-ms-date;host;x-ms-content-sha256"  # Semicolon separated header names
 
     # String-To-Sign
-    string_to_sign = 
-        verb + '\n' + \
-        url + '\n' + \
-        utc_now + ';' + host + ';' + content_hash  # Semicolon separated SignedHeaders values
+    string_to_sign = verb + '\n' + \
+                    url + '\n' + \
+                    utc_now + ';' + host + ';' + content_hash  # Semicolon separated SignedHeaders values
 
     # Decode secret
     if six.PY2:
