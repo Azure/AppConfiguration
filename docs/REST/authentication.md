@@ -461,3 +461,72 @@ def sign_request(host,
         "Authorization": "HMAC-SHA256 Credential=" + credential + "&SignedHeaders=" + signed_headers + "&Signature=" + signature
     }
 ```
+### PowerShell
+```PowerShell
+function Compute-SHA256Hash(
+    [string] $content
+)
+{
+    $sha256 = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        return [Convert]::ToBase64String($sha256.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
+    }
+    finally {
+        $sha256.Dispose()
+    }
+}
+
+function Compute-HMACSHA256Hash(
+    [string] $secret,      # base64 encoded
+    [string] $content
+)
+{
+    $hmac = [System.Security.Cryptography.HMACSHA256]::new([Convert]::FromBase64String($secret))
+    try {
+        return [Convert]::ToBase64String($hmac.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
+    }
+    finally {
+        $hmac.Dispose()
+    }
+}
+
+function Sign-Request(
+    [System.Uri] $uri,
+    [string] $method,      # GET, PUT, POST, DELETE
+    [string] $body,        # request body
+    [string] $credential,  # access key id
+    [string] $secret       # access key value (base64 encoded)
+)
+{  
+    $verb = $method.ToUpperInvariant()
+    $utcNow = (Get-Date).ToUniversalTime().ToString("R", [Globalization.DateTimeFormatInfo]::InvariantInfo)
+    $contentHash = Compute-SHA256Hash $body
+
+    $signedHeaders = "x-ms-date;host;x-ms-content-sha256";  # Semicolon separated header names
+
+    $stringToSign = $verb + "`n" +
+                    $uri.PathAndQuery + "`n" +
+                    $utcNow + ";" + $uri.Authority + ";" + $contentHash  # Semicolon separated signedHeaders values
+
+    $signature = Compute-HMACSHA256Hash $secret $stringToSign
+ 
+    # Return request headers
+    return @{
+        "x-ms-date" = $utcNow;
+        "x-ms-content-sha256" = $contentHash;
+        "Authorization" = "HMAC-SHA256 Credential=" + $credential + "&SignedHeaders=" + $signedHeaders + "&Signature=" + $signature
+    }
+}
+
+# Stop if any error occurs
+$ErrorActionPreference = "Stop"
+
+$uri = [System.Uri]::new("http://example.azconfig.io/kv")
+$verb = "GET"
+$body = $null
+$credential = "<Credential>"
+$secret = "<Secret>"
+
+$headers = Sign-Request $uri $verb $body $credential $secret
+Invoke-RestMethod -Uri $uri -Headers $headers
+```
