@@ -464,8 +464,9 @@ def sign_request(host,
 ### PowerShell
 ```PowerShell
 function Sign-Request(
-    [System.Uri] $uri,
+    [string] $serverHost,
     [string] $method,      # GET, PUT, POST, DELETE
+    [string] $url,         # path+query
     [string] $body,        # request body
     [string] $credential,  # access key id
     [string] $secret       # access key value (base64 encoded)
@@ -478,8 +479,8 @@ function Sign-Request(
     $signedHeaders = "x-ms-date;host;x-ms-content-sha256";  # Semicolon separated header names
 
     $stringToSign = $verb + "`n" +
-                    $uri.PathAndQuery + "`n" +
-                    $utcNow + ";" + $uri.Authority + ";" + $contentHash  # Semicolon separated signedHeaders values
+                    $url + "`n" +
+                    $utcNow + ";" + $serverHost + ";" + $contentHash  # Semicolon separated signedHeaders values
 
     $signature = Compute-HMACSHA256Hash $secret $stringToSign
  
@@ -527,6 +528,6 @@ $body = $null
 $credential = "<Credential>"
 $secret = "<Secret>"
 
-$headers = Sign-Request $uri $method $body $credential $secret
+$headers = Sign-Request $uri.Authority $method $uri.PathAndQuery $body $credential $secret
 Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
 ```
