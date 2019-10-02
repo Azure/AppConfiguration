@@ -223,7 +223,7 @@ using (var client = new HttpClient())
 {
     var request = new HttpRequestMessage()
     {
-        RequestUri = new Uri("http://example.azconfig.io/kv"),
+        RequestUri = new Uri("https://{config store name}.azconfig.io/kv"),
         Method = HttpMethod.Get
     };
 
@@ -463,33 +463,6 @@ def sign_request(host,
 ```
 ### PowerShell
 ```PowerShell
-function Compute-SHA256Hash(
-    [string] $content
-)
-{
-    $sha256 = [System.Security.Cryptography.SHA256]::Create()
-    try {
-        return [Convert]::ToBase64String($sha256.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
-    }
-    finally {
-        $sha256.Dispose()
-    }
-}
-
-function Compute-HMACSHA256Hash(
-    [string] $secret,      # base64 encoded
-    [string] $content
-)
-{
-    $hmac = [System.Security.Cryptography.HMACSHA256]::new([Convert]::FromBase64String($secret))
-    try {
-        return [Convert]::ToBase64String($hmac.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
-    }
-    finally {
-        $hmac.Dispose()
-    }
-}
-
 function Sign-Request(
     [System.Uri] $uri,
     [string] $method,      # GET, PUT, POST, DELETE
@@ -518,15 +491,42 @@ function Sign-Request(
     }
 }
 
+function Compute-SHA256Hash(
+    [string] $content
+)
+{
+    $sha256 = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        return [Convert]::ToBase64String($sha256.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
+    }
+    finally {
+        $sha256.Dispose()
+    }
+}
+
+function Compute-HMACSHA256Hash(
+    [string] $secret,      # base64 encoded
+    [string] $content
+)
+{
+    $hmac = [System.Security.Cryptography.HMACSHA256]::new([Convert]::FromBase64String($secret))
+    try {
+        return [Convert]::ToBase64String($hmac.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
+    }
+    finally {
+        $hmac.Dispose()
+    }
+}
+
 # Stop if any error occurs
 $ErrorActionPreference = "Stop"
 
-$uri = [System.Uri]::new("http://example.azconfig.io/kv")
-$verb = "GET"
+$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv")
+$method = "GET"
 $body = $null
 $credential = "<Credential>"
 $secret = "<Secret>"
 
-$headers = Sign-Request $uri $verb $body $credential $secret
-Invoke-RestMethod -Uri $uri -Headers $headers
+$headers = Sign-Request $uri $method $body $credential $secret
+Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
 ```
