@@ -1,5 +1,16 @@
 ## Microsoft Extensions Azure App Configuration
 
+### 2.0.0-preview-010050001-38 - October 03, 2019
+* Added support for resolving Azure KeyVault references retrieved from configuration store.
+* Fixed the following bugs in the implementation of on-demand refresh mechanism.
+    * Configuration was updated on each refresh invocation if refreshAll is enabled for a key that does not exist.
+    * Key-values registered for refresh that were not included in `Use` might not always get loaded in the initial configuration load.
+    * Key-values registered for refresh that were not included in `Use` might be loaded more than once if the client invoked `Use` more than once.
+* Improved handling of fatal errors that can cause the application to be stuck in a crash loop as orchestrators attempt to restart the application. This helps avoid overloading the server with requests.
+* Improved error message when using `ConnectWithManagedIdentity` when the required access to a configuration store is not set up.
+* Updated retry strategy for server failures to use exponential backoff with jitter.
+* Removed reference to the package `Microsoft.FeatureManagement.AspNetCore`.
+
 ### 2.0.0-preview-009470001-1371 - August 06, 2019
 * Fixed a bug which caused some application frameworks which use a custom synchronization context, like ASP.NET, to hang when building the configuration provider.
 
