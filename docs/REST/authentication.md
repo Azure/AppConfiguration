@@ -464,7 +464,7 @@ def sign_request(host,
 ### PowerShell
 ```PowerShell
 function Sign-Request(
-    [string] $serverHost,
+    [string] $hostname,
     [string] $method,      # GET, PUT, POST, DELETE
     [string] $url,         # path+query
     [string] $body,        # request body
@@ -480,7 +480,7 @@ function Sign-Request(
 
     $stringToSign = $verb + "`n" +
                     $url + "`n" +
-                    $utcNow + ";" + $serverHost + ";" + $contentHash  # Semicolon separated signedHeaders values
+                    $utcNow + ";" + $hostname + ";" + $contentHash  # Semicolon separated signedHeaders values
 
     $signature = Compute-HMACSHA256Hash $secret $stringToSign
  
