@@ -2,13 +2,12 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 2.0.0-preview-010050001-38 - October 03, 2019
-* Added support for Azure Key Vault references.
-* Fixed the following issues when using `ConfigureRefresh' for dynamic configuration
+* Added support for [Azure Key Vault references](https://docs.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core).
+* Fixed the following issues when using `ConfigureRefresh' for dynamic configuration.
     * Configuration is no longer updated on each refresh invocation if `refreshAll` is `true` for a key that does not exist.
     * Key-values registered for refresh that were not included in `Use` might not always get loaded in the initial configuration load.
     * Key-values registered for refresh that were not included in `Use` might be loaded more than once if the client invoked `Use` more than once.
 * Improved error message when using `ConnectWithManagedIdentity` when the required access to an App Configuration store is not set up properly.
-* Updated retry strategy for server failures to use exponential backoff with jitter.
 
 ### 2.0.0-preview-009470001-1371 - August 06, 2019
 * Fixed a bug which caused some application frameworks which use a custom synchronization context, like ASP.NET, to hang when building the configuration provider.
