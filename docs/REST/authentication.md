@@ -531,3 +531,42 @@ $secret = "<Secret>"
 $headers = Sign-Request $uri.Authority $method $uri.PathAndQuery $body $credential $secret
 Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
 ```
+### Bash
+```Bash
+#!/bin/bash
+
+sign_request () {
+    local host="$1"
+    local method="$2"      # GET, PUT, POST, DELETE
+    local url="$3"         # path+query
+    local body="$4"        # request body
+    local credential="$5"  # access key id
+    local secret="$6"      # access key value (base64 encoded)
+
+    local verb="${method^^}"
+    local utc_now="$(date -u '+%a, %d %b %Y %H:%M:%S GMT')"
+    local content_hash="$(printf "$body" | openssl sha256 -binary | base64)"
+
+    local signed_headers="x-ms-date;host;x-ms-content-sha256"  # Semicolon separated header names
+    local string_to_sign="$verb\n$url\n$utc_now;$host;$content_hash"  # Semicolon separated signed_headers values
+
+    local decoded_secret="$(printf "$secret" | base64 -d)"
+    local signature="$(printf "$string_to_sign" | openssl sha256 -hmac "$decoded_secret" -binary | base64)"
+
+    # Output request headers
+    printf '%s\n' \
+           "x-ms-date: $utc_now" \
+           "x-ms-content-sha256: $content_hash" \
+           "Authorization: HMAC-SHA256 Credential=$credential&SignedHeaders=$signed_headers&Signature=$signature"
+}
+
+host="{config store name}.azconfig.io"
+method="GET"
+url="/kv"
+body=""
+credential="<Credential>"
+secret="<Secret>"
+
+mapfile -t headers <<< $(sign_request "$host" "$method" "$url" "$body" "$credential" "$secret")
+curl -X "$method" -d "$body" "${headers[@]/#/-H}" "https://$host$url"
+```
