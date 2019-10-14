@@ -8,6 +8,10 @@ Documentation: https://aka.ms/AzureAppConfiguration
 
 Slack: https://aka.ms/azconfig/slack
 
+## Announcements
+Subscribe to the following repo to be notified of announcements and updates about Azure App Configuration.
+  * [Azure/AppConfiguration-Announcements](https://github.com/Azure/AppConfiguration-Announcements)
+
 ## REST API Reference
 
 The following reference pages are available to describe the Azure App Configuration API surface in detail.

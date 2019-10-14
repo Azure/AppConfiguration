@@ -15,7 +15,7 @@ Provide each request with all HTTP headers required for Authentication. The mini
 | **Host** | Internet host and port number. See section  [3.2.2](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.2) |
 | **Date** | Date and Time at which the request was originated. It can not be more than 15 min off from current GMT. The value is an HTTP-date, as described in section [3.3.1](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1)
 | **x-ms-date** | Same as ```Date``` above. It can be used instead when the agent can't directly access ```Date``` request header or a proxy modifies it. If ```x-ms-date``` and ```Date``` are both provided, ```x-ms-date``` takes precedence. |
-| **x-ms-content-sha256** | base64 encoded SHA256 hash of the request body. It must be provided even of there is no body. ```base64_encode(SHA256(body))```|
+| **x-ms-content-sha256** | base64 encoded SHA256 hash of the request body. It must be provided even if there is no body. ```base64_encode(SHA256(body))```|
 | **Authorization** | Authentication information required by **HMAC-SHA256** scheme. Format and details are explained below. |
 
 
@@ -24,7 +24,7 @@ Provide each request with all HTTP headers required for Authentication. The mini
 Host: example.azconfig.io
 Date: Fri, 11 May 2018 18:48:36 GMT
 x-ms-content-sha256: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2, SignedHeaders=Host;x-ms-date;x-ms-content-sha256, Signature=jMXmttaxBJ0NmLlFKLZUkI8jdFu/8yqcTYzbkI3DGdU=
+Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2&SignedHeaders=Host;x-ms-date;x-ms-content-sha256&Signature=jMXmttaxBJ0NmLlFKLZUkI8jdFu/8yqcTYzbkI3DGdU=
 ```
 #
 #
@@ -32,7 +32,7 @@ Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2, SignedHeaders=Host;x-ms-
 #
 **Syntax:**
 
-``Authorization``: **HMAC-SHA256** ```Credential```=\<value\>, ```SignedHeaders```=\<value\>, ```Signature```=\<value\>
+``Authorization``: **HMAC-SHA256** ```Credential```=\<value\>&```SignedHeaders```=\<value\>&```Signature```=\<value\>
 #
 #
 |  Argument | Description  |
@@ -211,7 +211,7 @@ function signRequest(host,
         return [
             { name: "x-ms-date", value: utcNow },
             { name: "x-ms-content-sha256", value: contentHash },
-            { name: "Authorization", value: "HMAC-SHA256 Credential=" + credential + ", SignedHeaders=" + signedHeaders + ", Signature=" + signature }
+            { name: "Authorization", value: "HMAC-SHA256 Credential=" + credential + "&SignedHeaders=" + signedHeaders + "&Signature=" + signature }
         ];
 }
 ```
@@ -223,7 +223,7 @@ using (var client = new HttpClient())
 {
     var request = new HttpRequestMessage()
     {
-        RequestUri = new Uri("http://example.azconfig.io/kv"),
+        RequestUri = new Uri("https://{config store name}.azconfig.io/kv"),
         Method = HttpMethod.Get
     };
 
@@ -264,7 +264,7 @@ static class HttpRequestMessageExtensions
         // Add headers
         request.Headers.Date = utcNow;
         request.Headers.Add("x-ms-content-sha256", contentHash);
-        request.Headers.Authorization = new AuthenticationHeaderValue("HMAC-SHA256", $"Credential={credential}, SignedHeaders={signedHeaders}, Signature={signature}");
+        request.Headers.Authorization = new AuthenticationHeaderValue("HMAC-SHA256", $"Credential={credential}&SignedHeaders={signedHeaders}&Signature={signature}");
 
         return request;
     }
@@ -406,4 +406,128 @@ func getHmac(content string, key []byte) string {
 	hmac.Write([]byte(content))
 	return base64.StdEncoding.EncodeToString(hmac.Sum(nil))
 }
+```
+### Python
+```python
+
+import base64
+import hashlib
+import hmac
+from datetime import datetime
+import six
+
+def sign_request(host,
+                method,     # GET, PUT, POST, DELETE
+                url,        # Path + Query
+                body,       # Request body 
+                credential, # Access Key ID
+                secret):    # Access Key Value
+    verb = method.upper()
+
+    utc_now = str(datetime.utcnow().strftime("%b, %d %Y %H:%M:%S ")) + "GMT"
+
+    if six.PY2:
+        content_digest = hashlib.sha256(bytes(body)).digest()
+    else:
+        content_digest = hashlib.sha256(bytes(body, 'utf-8')).digest()
+
+    content_hash = base64.b64encode(content_digest).decode('utf-8')
+
+    # Signed Headers
+    signed_headers = "x-ms-date;host;x-ms-content-sha256"  # Semicolon separated header names
+
+    # String-To-Sign
+    string_to_sign = verb + '\n' + \
+                    url + '\n' + \
+                    utc_now + ';' + host + ';' + content_hash  # Semicolon separated SignedHeaders values
+
+    # Decode secret
+    if six.PY2:
+        decoded_secret = base64.b64decode(secret)
+        digest = hmac.new(decoded_secret, bytes(
+            string_to_sign), hashlib.sha256).digest()
+    else:
+        decoded_secret = base64.b64decode(secret, validate=True)
+        digest = hmac.new(decoded_secret, bytes(
+            string_to_sign, 'utf-8'), hashlib.sha256).digest()
+
+    # Signature
+    signature = base64.b64encode(digest).decode('utf-8')
+
+    # Result request headers
+    return {
+        "x-ms-date": utc_now,
+        "x-ms-content-sha256": content_hash,
+        "Authorization": "HMAC-SHA256 Credential=" + credential + "&SignedHeaders=" + signed_headers + "&Signature=" + signature
+    }
+```
+### PowerShell
+```PowerShell
+function Sign-Request(
+    [string] $hostname,
+    [string] $method,      # GET, PUT, POST, DELETE
+    [string] $url,         # path+query
+    [string] $body,        # request body
+    [string] $credential,  # access key id
+    [string] $secret       # access key value (base64 encoded)
+)
+{  
+    $verb = $method.ToUpperInvariant()
+    $utcNow = (Get-Date).ToUniversalTime().ToString("R", [Globalization.DateTimeFormatInfo]::InvariantInfo)
+    $contentHash = Compute-SHA256Hash $body
+
+    $signedHeaders = "x-ms-date;host;x-ms-content-sha256";  # Semicolon separated header names
+
+    $stringToSign = $verb + "`n" +
+                    $url + "`n" +
+                    $utcNow + ";" + $hostname + ";" + $contentHash  # Semicolon separated signedHeaders values
+
+    $signature = Compute-HMACSHA256Hash $secret $stringToSign
+ 
+    # Return request headers
+    return @{
+        "x-ms-date" = $utcNow;
+        "x-ms-content-sha256" = $contentHash;
+        "Authorization" = "HMAC-SHA256 Credential=" + $credential + "&SignedHeaders=" + $signedHeaders + "&Signature=" + $signature
+    }
+}
+
+function Compute-SHA256Hash(
+    [string] $content
+)
+{
+    $sha256 = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        return [Convert]::ToBase64String($sha256.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
+    }
+    finally {
+        $sha256.Dispose()
+    }
+}
+
+function Compute-HMACSHA256Hash(
+    [string] $secret,      # base64 encoded
+    [string] $content
+)
+{
+    $hmac = [System.Security.Cryptography.HMACSHA256]::new([Convert]::FromBase64String($secret))
+    try {
+        return [Convert]::ToBase64String($hmac.ComputeHash([Text.Encoding]::ASCII.GetBytes($content)))
+    }
+    finally {
+        $hmac.Dispose()
+    }
+}
+
+# Stop if any error occurs
+$ErrorActionPreference = "Stop"
+
+$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv")
+$method = "GET"
+$body = $null
+$credential = "<Credential>"
+$secret = "<Secret>"
+
+$headers = Sign-Request $uri.Authority $method $uri.PathAndQuery $body $credential $secret
+Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
 ```

@@ -12,7 +12,7 @@ For all operations ``label`` is an optional parameter. If ommited it implies **a
 #
 #
 *Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication) section.
+All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
 
 #
 #
