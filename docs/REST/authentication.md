@@ -367,9 +367,9 @@ import (
 func SignRequest(id string, secret string, req *http.Request) error {
 	method := req.Method
 	host := req.URL.Host
-	pathAndQuery := req.URL.Path
-	if req.URL.RawQuery != "" {
-		pathAndQuery = pathAndQuery + "?" + req.URL.RawQuery
+	pathAndQuery := req.URL.EscapedPath()
+	if req.URL.Query().Encode() != "" {
+		pathAndQuery = pathAndQuery + "?" + req.URL.Query().Encode()
 	}
 
 	content, err := ioutil.ReadAll(req.Body)
