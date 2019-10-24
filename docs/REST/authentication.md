@@ -543,7 +543,7 @@ sign_request () {
     local credential="$5"  # access key id
     local secret="$6"      # access key value (base64 encoded)
 
-    local verb="${method^^}"
+    local verb=$(printf "$method" | tr '[:lower:]' '[:upper:]')
     local utc_now="$(date -u '+%a, %d %b %Y %H:%M:%S GMT')"
     local content_hash="$(printf "$body" | openssl sha256 -binary | base64)"
 
@@ -567,6 +567,10 @@ body=""
 credential="<Credential>"
 secret="<Secret>"
 
-mapfile -t headers <<< $(sign_request "$host" "$method" "$url" "$body" "$credential" "$secret")
-curl -X "$method" -d "$body" "${headers[@]/#/-H}" "https://$host$url"
+headers=$(sign_request "$host" "$method" "$url" "$body" "$credential" "$secret")
+
+while IFS= read -r line; do
+    header_args+=("-H$line")
+done <<< "$headers"
+curl -X "$method" -d "$body" "${header_args[@]}" "https://$host$url"
 ```
