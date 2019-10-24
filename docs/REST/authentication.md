@@ -223,7 +223,7 @@ using (var client = new HttpClient())
 {
     var request = new HttpRequestMessage()
     {
-        RequestUri = new Uri("https://{config store name}.azconfig.io/kv"),
+        RequestUri = new Uri("https://{config store name}.azconfig.io/kv?api-version=1"),
         Method = HttpMethod.Get
     };
 
@@ -522,7 +522,7 @@ function Compute-HMACSHA256Hash(
 # Stop if any error occurs
 $ErrorActionPreference = "Stop"
 
-$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv")
+$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv?api-version=1")
 $method = "GET"
 $body = $null
 $credential = "<Credential>"
@@ -562,7 +562,7 @@ sign_request () {
 
 host="{config store name}.azconfig.io"
 method="GET"
-url="/kv"
+url="/kv?api-version=1"
 body=""
 credential="<Credential>"
 secret="<Secret>"
