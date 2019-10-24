@@ -532,6 +532,10 @@ $headers = Sign-Request $uri.Authority $method $uri.PathAndQuery $body $credenti
 Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
 ```
 ### Bash
+*Prerequisites*:
+- [coreutils](https://www.gnu.org/software/coreutils/)
+- [curl](https://curl.haxx.se/)
+- [OpenSSL](https://www.openssl.org/)
 ```Bash
 #!/bin/bash
 
