@@ -14,7 +14,7 @@ Key-Value is a resource identified by unique combination of ``key`` + ``label``.
 #
 #
 *Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication) section.
+All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
 
 #
 #

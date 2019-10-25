@@ -11,7 +11,7 @@ If present, ``label`` must be an explcit label value (**not** a wildcard). For a
 #
 #
 *Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication) section.
+All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
 
 #
 #
