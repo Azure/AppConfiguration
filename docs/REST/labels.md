@@ -17,7 +17,7 @@ For all operations ``name`` is an optional filter parameter. If ommited it impli
 #
 #
 *Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication) section.
+All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
 
 #
 #
