@@ -1,4 +1,5 @@
 # Key-Value Revisions - REST API Reference
+api-version: 1.0
 #
 **Defines chronological/historical representation of key-value resource(s).**
 Revisions eventually expire (default 7 days)
@@ -11,15 +12,16 @@ For all operations ``label`` is an optional parameter. If ommited it implies **a
 
 #
 #
-*Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+**Prerequisites**: 
+- All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+- All HTTP requests must provide explicit ``api-version``. See the [versioning](./versioning.md) section.
 
 #
 #
 ## List Revisions
 #
 ```
-GET /revisions?label=* HTTP/1.1
+GET /revisions?label=*&api-version={api-version} HTTP/1.1
 ```
 **Responses:**
 ```
@@ -54,14 +56,14 @@ Accept-Ranges: items
 The result is paginated if the number of items returned exceeds the response limit. Follow the optional ``Link`` response header and use ``rel="next"`` for navigation. 
 Alternatively the content provides a next link in form of the ``@nextLink`` property.
 ```
-GET /revisions HTTP/1.1
+GET /revisions?api-version={api-version} HTTP/1.1
 ```
 **Response:**
 ```
 HTTP/1.1 OK
 Content-Type: application/vnd.microsoft.appconfig.kvs+json; charset=utf-8
 Accept-Ranges: items
-Link: </revisions?after={token}>; rel="next"
+Link: <{relative uri}>; rel="next"
 ```
 ```
 {
@@ -79,7 +81,7 @@ Link: </revisions?after={token}>; rel="next"
 Use ``Range`` request header. The response will contain ``Content-Range`` header. 
 If the server can't satisfy the requested range it will respond with HTTP ``416`` (RangeNotSatisfiable)
 ```
-GET /revisions HTTP/1.1
+GET /revisions?api-version={api-version} HTTP/1.1
 Range: items=0-2
 ```
 **Response**
@@ -98,7 +100,7 @@ A combination of ```key``` and ```label``` filtering is supported.
 Use the optional ```key``` and ```label``` query string parameters. 
 
 ```
-GET /revisions?key={key}&label={label}
+GET /revisions?key={key}&label={label}&api-version={api-version}
 ```
 
 **Supported filters**
@@ -157,12 +159,12 @@ GET /revisions
 
 - Items where key name starts with **abc**
 ```
-GET /revisions?key=**abc***
+GET /revisions?key=abc*&api-version={api-version}
 ```
 
 - Items where key name is either **abc** or **xyz** and labels contain **prod**
 ```
-GET /revisions?key=**abc,xyz**&label=\***prod**\*
+GET /revisions?key=abc,xyz&label=*prod*&api-version={api-version}
 ```
 
 #
@@ -172,7 +174,7 @@ GET /revisions?key=**abc,xyz**&label=\***prod**\*
 #
 Use the optional ``$select`` query string parameter and provide comma separated list of requested fields. If the ``$select`` parameter is ommited, the response contains the default set.
 ```
-GET /revisions?$select=value,label,last_modified HTTP/1.1
+GET /revisions?$select=value,label,last_modified&api-version={api-version} HTTP/1.1
 ```
 
 #
@@ -182,7 +184,7 @@ GET /revisions?$select=value,label,last_modified HTTP/1.1
 #
 Obtain a representation of the result as it was at a past time. See section [2.1.1](https://tools.ietf.org/html/rfc7089#section-2.1)
 ```
-GET /revisions HTTP/1.1
+GET /revisions?api-version={api-version} HTTP/1.1
 Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT
 ```
 
@@ -191,7 +193,7 @@ Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT
 HTTP/1.1 200 OK
 Content-Type: application/vnd.microsoft.appconfig.revs+json"
 Memento-Datetime: Sat, 12 May 2018 02:10:00 GMT
-Link: </revisions>; rel="original"
+Link: <{relative uri}>; rel="original"
 ```
 ```
 {

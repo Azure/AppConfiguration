@@ -1,4 +1,5 @@
 # Labels - REST API Reference
+api-version: 1.0
 #
 **Represents Label resource**.
 
@@ -16,15 +17,15 @@ For all operations ``name`` is an optional filter parameter. If ommited it impli
 
 #
 #
-*Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
-
+**Prerequisites**: 
+- All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+- All HTTP requests must provide explicit ``api-version``. See the [versioning](./versioning.md) section.
 #
 #
 ## List Labels
 #
 ```
-GET /labels HTTP/1.1
+GET /labels?api-version={api-version} HTTP/1.1
 ```
 **Responses:**
 ```
@@ -50,16 +51,16 @@ Content-Type: application/vnd.microsoft.appconfig.labelset+json; charset=utf-8"
 ## Pagination
 #
 The result is paginated if the number of items returned exceeds the response limit. Follow the optional ``Link`` response headers and use ``rel="next"`` for navigation. 
-Alternatively the content provides a next link in form of the ``@nextLink`` property.
+Alternatively the content provides a next link in form of the ``@nextLink`` property. The next link contains ``api-version`` parameter.
 ```
-GET /labels HTTP/1.1
+GET /labels?api-version={api-version} HTTP/1.1
 ```
 **Response:**
 ```
 HTTP/1.1 OK
 Content-Type: application/vnd.microsoft.appconfig.labelset+json; charset=utf-8
 Accept-Ranges: items
-Link: </labels?after={token}>; rel="next"
+Link: <{relative uri}>; rel="next"
 ```
 ```
 {
@@ -77,7 +78,7 @@ Link: </labels?after={token}>; rel="next"
 Filtering by ```name``` is supported. 
 
 ```
-GET /labels?name={label-name}
+GET /labels?name={label-name}&api-version={api-version}
 ```
 
 **Supported filters**
@@ -121,17 +122,27 @@ Content-Type: application/problem+json; charset=utf-8
 
 - All
 ```
-GET /labels
+GET /labels?api-version={api-version}
 ```
 
 - Label name starts with **abc**
 ```
-GET  /labels?name=**abc***
+GET  /labels?name=abc*&api-version={api-version}
+```
+
+- Label name ends with **abc**
+```
+GET  /labels?name=*abc&api-version={api-version}
+```
+
+- Label name contains **abc**
+```
+GET  /labels?name=*abc*&api-version={api-version}
 ```
 
 - Label name is either **abc** or **xyz**
 ```
-GET /labels?name=**abc,xyz**
+GET /labels?name=abc,xyz&api-version={api-version}
 ```
 
 #
@@ -141,7 +152,7 @@ GET /labels?name=**abc,xyz**
 #
 Use the optional ``$select`` query string parameter and provide comma separated list of requested fields. If the ``$select`` parameter is ommited, the response contains the default set.
 ```
-GET /labels?$select=name HTTP/1.1
+GET /labels?$select=name&api-version={api-version} HTTP/1.1
 ```
 
 #
@@ -151,7 +162,7 @@ GET /labels?$select=name HTTP/1.1
 #
 Obtain a representation of the result as it was at a past time. See section [2.1.1](https://tools.ietf.org/html/rfc7089#section-2.1)
 ```
-GET /labels HTTP/1.1
+GET /labels&api-version={api-version} HTTP/1.1
 Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT
 ```
 
@@ -160,7 +171,7 @@ Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT
 HTTP/1.1 200 OK
 Content-Type: application/vnd.microsoft.appconfig.labelset+json"
 Memento-Datetime: Sat, 12 May 2018 02:10:00 GMT
-Link: </labels>; rel="original"
+Link: <{relative uri}>; rel="original"
 ```
 ```
 {
