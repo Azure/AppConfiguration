@@ -92,7 +92,7 @@ _String-To-Sign=_
 string-To-Sign=
             "GET" + '\n' +                                                                                      // VERB
             "/kv?fields=*" + '\n' +                                                                             // path_and_query
-            "Fri, 11 May 2018 18:48:36 GMT;example.azconfig.io;47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="    // signed_headers_values
+            "Fri, 11 May 2018 18:48:36 GMT;{myconfig}.azconfig.io;47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="    // signed_headers_values
 ```
 
 #
