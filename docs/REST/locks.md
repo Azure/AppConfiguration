@@ -1,4 +1,5 @@
 # Lock Key-Value - REST API Reference
+api-version: 1.0
 #
 **Provides lock/unlock semantics for the key-value resource.**
 
@@ -10,17 +11,18 @@ If present, ``label`` must be an explcit label value (**not** a wildcard). For a
 
 #
 #
-*Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+**Prerequisites**: 
+- All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+- All HTTP requests must provide explicit ``api-version``. See the [versioning](./versioning.md) section.
 
 #
 #
 ## Lock Key-Value
 #
-**Required:** ``{key}``
+**Required:** ``{key}``, ``{api-version}``  
 *Optional:* ``label``
 ```
-PUT /locks/{key}?label={label} HTTP/1.1
+PUT /locks/{key}?label={label}&api-version={api-version} HTTP/1.1
 ```
 **Responses:**
 ```
@@ -52,10 +54,10 @@ HTTP/1.1 404 Not Found
 #
 ## Unlock Key-Value
 #
-**Required:** ``{key}``
+**Required:** ``{key}``, ``{api-version}``  
 *Optional:* ``label``
 ```
-DELETE /locks/{key}?label={label} HTTP/1.1
+DELETE /locks/{key}?label={label}?api-version={api-version} HTTP/1.1
 ```
 **Responses:**
 ```
@@ -90,11 +92,11 @@ If ``If-Match`` or ``If-None-Match`` are omitted, the operation will be uncondit
 
 **Apply operation only if the current key-value representation matches the specified ``etag``**
 ```
-PUT|DELETE /locks/{key}?label={label} HTTP/1.1
+PUT|DELETE /locks/{key}?label={label}&api-version={api-version} HTTP/1.1
 If-Match: "4f6dd610dd5e4deebc7fbaef685fb903"
 ```
 **Apply operation only if the current key-value representation exists, but doesn't match the specified ``etag``**
 ```
-PUT|DELETE /kv/{key}?label={label} HTTP/1.1
+PUT|DELETE /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 If-None-Match: "4f6dd610dd5e4deebc7fbaef685fb903"
 ```

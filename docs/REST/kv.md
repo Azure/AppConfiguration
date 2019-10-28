@@ -1,4 +1,5 @@
 ﻿# Key-Value - REST API Reference
+api-version: 1.0
 #
 **Identity:**
 
@@ -13,8 +14,9 @@ Key-Value is a resource identified by unique combination of ``key`` + ``label``.
 
 #
 #
-*Prerequisites*: 
-All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+**Prerequisites:** 
+- All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+- All HTTP requests must provide explicit ``api-version``. See the [versioning](./versioning.md) section.
 
 #
 #
@@ -39,10 +41,10 @@ All HTTP requests must be authenticated. See the [authentication](./authenticati
 #
 ## Get Key-Value
 #
-**Required:** ``{key}``
+**Required:** ``{key}``, ``{api-version}``  
 *Optional:* ``label`` - If ommited it implies a key-value without a label
 ```
-GET /kv/{key}?label={label}
+GET /kv/{key}?label={label}&api-version={api-version}
 ```
 **Responses:**
 ```
@@ -81,7 +83,7 @@ To improve client caching, use ``If-Match`` or ``If-None-Match`` request headers
 
 **Get only if the current representation doesn't match the specified ``etag``**
 ```
-GET /kv/{key} HTTP/1.1
+GET /kv/{key}?api-version={api-version} HTTP/1.1
 Accept: application/vnd.microsoft.appconfig.kv+json;
 If-None-Match: "{etag}"
 ```
@@ -105,7 +107,7 @@ See **Filtering** for additional options
 *Optional:* ``label`` - if not specified it implies **any** label.
 
 ```
-GET /kv?label=* HTTP/1.1
+GET /kv?label=*&api-version={api-version} HTTP/1.1
 ```
 
 **Response:**
@@ -120,15 +122,15 @@ Content-Type: application/vnd.microsoft.appconfig.kvset+json; charset=utf-8
 ## Pagination
 #
 The result is paginated if the number of items returned exceeds the response limit. Follow the optional ``Link`` response headers and use ``rel="next"`` for navigation. 
-Alternatively the content provides a next link in form of the ``@nextLink`` property.
+Alternatively the content provides a next link in form of the ``@nextLink`` property. The linked uri includes ``api-version`` argument.
 ```
-GET /kv HTTP/1.1
+GET /kv?api-version={api-version} HTTP/1.1
 ```
 **Response:**
 ```
 HTTP/1.1 200 OK
 Content-Type: application/vnd.microsoft.appconfig.kvs+json; charset=utf-8
-Link: </kv?after={token}>; rel="next"
+Link: <{relative uri}>; rel="next"
 ```
 ```
 {
@@ -149,7 +151,7 @@ A combination of ```key``` and ```label``` filtering is supported.
 Use the optional ```key``` and ```label``` query string parameters. 
 
 ```
-GET /kv?key={key}&label={label}
+GET /kv?key={key}&label={label}&api-version={api-version}
 ```
 
 **Supported filters**
@@ -202,17 +204,17 @@ Content-Type: application/problem+json; charset=utf-8
 
 - All
 ```
-GET /kv
+GET /kv?api-version={api-version}
 ```
 
 - Key name starts with **abc** and include all labels
 ```
-GET /kv?key=**abc***
+GET /kv?key=*abc&label=*&api-version={api-version}
 ```
 
 - Key name is either **abc** or **xyz** and include all labels that contain **prod**
 ```
-GET /kv?key=**abc,xyz**&label=\***prod**\*
+GET /kv?key=abc,xyz&label=*prod*&api-version={api-version}
 ```
 
 #
@@ -222,7 +224,7 @@ GET /kv?key=**abc,xyz**&label=\***prod**\*
 #
 Use the optional ``$select`` query string parameter and provide comma separated list of requested fields. If the ``$select`` parameter is ommited, the response contains the default set.
 ```
-GET /kv?$select=key,value HTTP/1.1
+GET /kv?$select=key,value&api-version={api-version} HTTP/1.1
 ```
 
 #
@@ -232,7 +234,7 @@ GET /kv?$select=key,value HTTP/1.1
 #
 Obtain a representation of the result as it was at a past time. See section [2.1.1](https://tools.ietf.org/html/rfc7089#section-2.1). Pagination is still supported as defined above.
 ```
-GET /kv HTTP/1.1
+GET /kv?api-version={api-version} HTTP/1.1
 Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT
 ```
 
@@ -241,7 +243,7 @@ Accept-Datetime: Sat, 12 May 2018 02:10:00 GMT
 HTTP/1.1 200 OK
 Content-Type: application/vnd.microsoft.appconfig.kvset+json"
 Memento-Datetime: Sat, 12 May 2018 02:10:00 GMT
-Link: </kv>; rel="original"
+Link: <{relative uri}>; rel="original"
 ```
 ```
 {
@@ -259,7 +261,7 @@ Link: </kv>; rel="original"
 **Required:** ``{key}`` 
 *Optional:* ``label`` - if not specified or label=%00 it implies KV without label.
 ```
-PUT /kv/{key}?label={label} HTTP/1.1
+PUT /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 Content-Type: application/vnd.microsoft.appconfig.kv+json
 ```
 ```sh
@@ -319,25 +321,25 @@ If ``If-Match`` or ``If-None-Match`` are omitted, the operation will be uncondit
 
 **Update only if the current representation matches the specified ``etag``**
 ```
-PUT /kv/{key}?label={label} HTTP/1.1
+PUT /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 Content-Type: application/vnd.microsoft.appconfig.kv+json
 If-Match: "4f6dd610dd5e4deebc7fbaef685fb903"
 ```
 **Update only if the current representation doesn't match the specified ``etag``**
 ```
-PUT /kv/{key}?label={label} HTTP/1.1
+PUT /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 Content-Type: application/vnd.microsoft.appconfig.kv+json;
 If-None-Match: "4f6dd610dd5e4deebc7fbaef685fb903"
 ```
 **Update if any representation exist**
 ```
-PUT /kv/{key}?label={label} HTTP/1.1
+PUT /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 Content-Type: application/vnd.microsoft.appconfig.kv+json;
 If-Match: "*"
 ```
 **Add only if representation doesn't exist**
 ```
-PUT /kv/{key}?label={label} HTTP/1.1
+PUT /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 Content-Type: application/vnd.microsoft.appconfig.kv+json
 If-None-Match: "*"
 ```
@@ -360,10 +362,10 @@ HTTP/1.1 412 PreconditionFailed
 #
 # Delete
 #
-**Required:** ``{key}``
+**Required:** ``{key}``, ``{api-version}``  
 *Optional:* ``{label}`` - if not specified or label=%00 it implies KV without label.
 ```
-DELETE /kv/{key}?label={label} HTTP/1.1
+DELETE /kv/{key}?label={label}&api-version={api-version} HTTP/1.1
 ```
 
 **Response:**
