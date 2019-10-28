@@ -28,6 +28,7 @@ The following reference pages are available to describe the Azure App Configurat
   * [Consistency Model](./docs/REST/consistency.md)
   * [Common Headers](./docs/REST/headers.md)
   * [Throttling](./docs/REST/throttling.md)
+  * [Versioning](./docs/REST/versioning.md)
 
 ## Contributing
 
