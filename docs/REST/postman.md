@@ -12,21 +12,17 @@ To test the REST API using [Postman](https://www.getpostman.com/), requests need
     // TODO: Replace the following placeholders with your access key
     var credential = "<Credential>"; // Id
     var secret = "<Secret>"; // Value
-    
-    var sdk = require('postman-collection');
-    var url = new sdk.Url(request.url);
-    
-    // request.data is an empty object for GET requests.
-    var isBodyEmpty = JSON.stringify(request.data) === "{}";
-    
+
+    var isBodyEmpty = pm.request.body === null || pm.request.body === undefined || pm.request.body.isEmpty();
+
     var headers = signRequest(
-        url.getHost(),
-        request.method,
-        url.getPathWithQuery(),
-        isBodyEmpty ? undefined : request.data,
+        pm.request.url.getHost(),
+        pm.request.method,
+        pm.request.url.getPathWithQuery(),
+        isBodyEmpty ? undefined : pm.request.body.toString(),
         credential,
         secret);
-    
+
     // Add headers to the request
     headers.forEach(header => {
         pm.request.headers.upsert({key: header.name, value: header.value});
