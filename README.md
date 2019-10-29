@@ -30,6 +30,10 @@ The following reference pages are available to describe the Azure App Configurat
   * [Throttling](./docs/REST/throttling.md)
   * [Versioning](./docs/REST/versioning.md)
 
+**Testing**
+  * [Fiddler](./docs/REST/fiddler.md)
+  * [Postman](./docs/REST/postman.md)
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
