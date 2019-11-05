@@ -1,6 +1,12 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 2.1.0-preview-010380001-1099 - November 04, 2019
+* Added reference to the package `Azure.Data.AppConfiguration`.
+* Removed reference to the package `System.Interactive.Async`.
+* Updated namespace for `AddAzureAppConfiguration` extension method from `Microsoft.Extensions.Configuration.AzureAppConfiguration` to `Microsoft.Extensions.Configuration`.
+* Added additional validation for the offline cache file path to throw an exception when the input path value would cause the offline cache export operation to silently fail in the background.
+
 ### 2.0.0-preview-010050001-38 - October 03, 2019
 * Added support for [Azure Key Vault references](https://docs.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core).
 * Fixed the following issues when using `ConfigureRefresh` for dynamic configuration.
