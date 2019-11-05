@@ -554,8 +554,8 @@ sign_request () {
     local signed_headers="x-ms-date;host;x-ms-content-sha256"  # Semicolon separated header names
     local string_to_sign="$verb\n$url\n$utc_now;$host;$content_hash"  # Semicolon separated signed_headers values
 
-    local decoded_secret="$(printf "$secret" | base64 -d)"
-    local signature="$(printf "$string_to_sign" | openssl sha256 -hmac "$decoded_secret" -binary | base64)"
+    local decoded_secret="$(printf "$secret" | base64 -d | hexdump -v -e '/1 "%02x"')"
+    local signature="$(printf "$string_to_sign" | openssl sha256 -mac HMAC -macopt hexkey:"$decoded_secret" -binary | base64)"
 
     # Output request headers
     printf '%s\n' \
