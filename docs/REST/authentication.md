@@ -223,7 +223,7 @@ using (var client = new HttpClient())
 {
     var request = new HttpRequestMessage()
     {
-        RequestUri = new Uri("https://{config store name}.azconfig.io/kv"),
+        RequestUri = new Uri("https://{config store name}.azconfig.io/kv?api-version=1.0"),
         Method = HttpMethod.Get
     };
 
@@ -522,7 +522,7 @@ function Compute-HMACSHA256Hash(
 # Stop if any error occurs
 $ErrorActionPreference = "Stop"
 
-$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv")
+$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv?api-version=1.0")
 $method = "GET"
 $body = $null
 $credential = "<Credential>"
@@ -530,4 +530,57 @@ $secret = "<Secret>"
 
 $headers = Sign-Request $uri.Authority $method $uri.PathAndQuery $body $credential $secret
 Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
+```
+### Bash
+*Prerequisites*:
+
+| Prerequisite | Command | Versions Tested |
+| ------------ | ------- | --------------- |
+| [Bash](https://www.gnu.org/software/bash/) | bash | 3.5.27, 4.4.23 |
+| [coreutils](https://www.gnu.org/software/coreutils/) | tr | 8.28 |
+| [curl](https://curl.haxx.se/) | curl | 7.55.1, 7.58.0 |
+| [OpenSSL](https://www.openssl.org/) | openssl | 1.1.0g, 1.1.1a |
+| [util-linux](https://github.com/karelzak/util-linux/) | hexdump | 2.14.1, 2.31.1 |
+
+```Bash
+#!/bin/bash
+
+sign_request () {
+    local host="$1"
+    local method="$2"      # GET, PUT, POST, DELETE
+    local url="$3"         # path+query
+    local body="$4"        # request body
+    local credential="$5"  # access key id
+    local secret="$6"      # access key value (base64 encoded)
+
+    local verb=$(printf "$method" | tr '[:lower:]' '[:upper:]')
+    local utc_now="$(date -u '+%a, %d %b %Y %H:%M:%S GMT')"
+    local content_hash="$(printf "$body" | openssl sha256 -binary | base64)"
+
+    local signed_headers="x-ms-date;host;x-ms-content-sha256"  # Semicolon separated header names
+    local string_to_sign="$verb\n$url\n$utc_now;$host;$content_hash"  # Semicolon separated signed_headers values
+
+    local decoded_secret="$(printf "$secret" | base64 -d | hexdump -v -e '/1 "%02x"')"
+    local signature="$(printf "$string_to_sign" | openssl sha256 -mac HMAC -macopt hexkey:"$decoded_secret" -binary | base64)"
+
+    # Output request headers
+    printf '%s\n' \
+           "x-ms-date: $utc_now" \
+           "x-ms-content-sha256: $content_hash" \
+           "Authorization: HMAC-SHA256 Credential=$credential&SignedHeaders=$signed_headers&Signature=$signature"
+}
+
+host="{config store name}.azconfig.io"
+method="GET"
+url="/kv?api-version=1.0"
+body=""
+credential="<Credential>"
+secret="<Secret>"
+
+headers=$(sign_request "$host" "$method" "$url" "$body" "$credential" "$secret")
+
+while IFS= read -r line; do
+    header_args+=("-H$line")
+done <<< "$headers"
+curl -X "$method" -d "$body" "${header_args[@]}" "https://$host$url"
 ```
