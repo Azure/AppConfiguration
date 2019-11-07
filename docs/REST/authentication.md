@@ -533,9 +533,15 @@ Invoke-RestMethod -Uri $uri -Method $method -Headers $headers -Body $body
 ```
 ### Bash
 *Prerequisites*:
-- [coreutils](https://www.gnu.org/software/coreutils/)
-- [curl](https://curl.haxx.se/)
-- [OpenSSL](https://www.openssl.org/)
+
+| Prerequisite | Command | Versions Tested |
+| ------------ | ------- | --------------- |
+| [Bash](https://www.gnu.org/software/bash/) | bash | 3.5.27, 4.4.23 |
+| [coreutils](https://www.gnu.org/software/coreutils/) | tr | 8.28 |
+| [curl](https://curl.haxx.se/) | curl | 7.55.1, 7.58.0 |
+| [OpenSSL](https://www.openssl.org/) | openssl | 1.1.0g, 1.1.1a |
+| [util-linux](https://github.com/karelzak/util-linux/) | hexdump | 2.14.1, 2.31.1 |
+
 ```Bash
 #!/bin/bash
 
