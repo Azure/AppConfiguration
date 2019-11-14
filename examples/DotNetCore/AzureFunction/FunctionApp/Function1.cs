@@ -12,7 +12,28 @@ namespace FunctionApp
 {
     public static class Function1
     {
-        static readonly MyConfig _myConfig = new MyConfig();
+        // Use the static modifier to create a singleton instance of Configuraion. This avoids
+        // reloading of configuration for every Azure Function call.
+        // The configuration will be cached and can be refreshed based on customization.
+        private static IConfiguration Configuration { set; get; }
+        private static IConfigurationRefresher ConfigurationRefresher { set; get; }
+
+        static Function1()
+        {
+            ConfigurationBuilder builder = new ConfigurationBuilder();
+            builder.AddAzureAppConfiguration(options =>
+            {
+                options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
+                       // Configure to reload all configuration if the 'Sentinel' key is modified and
+                       // set cache expiration time window to 1 minute.
+                       .ConfigureRefresh(refreshOptions =>
+                            refreshOptions.Register("Sentinel", refreshAll: true)
+                                          .SetCacheExpiration(TimeSpan.FromSeconds(60))
+                );
+                ConfigurationRefresher = options.GetRefresher();
+            });
+            Configuration = builder.Build();
+        }
 
         [FunctionName("Function1")]
         public static async Task<IActionResult> Run(
@@ -21,38 +42,17 @@ namespace FunctionApp
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            // Configuration will be refreshed if the cache is expired and the 'Sentinel' key is modified.
+            // Signal to refresh the configuration if the 'Sentinel' key is modified. This will be no-op
+            // if the cache expiration time window is not reached.
             // Remove the 'await' operator if the configuration is preferred to be refreshed without blocking.
-            await _myConfig.ConfigurationRefresher.Refresh();
+            await ConfigurationRefresher.Refresh();
 
             string keyName = "TestApp:Settings:Message";
-            string message = _myConfig.Configuration[keyName];
+            string message = Configuration[keyName];
             
             return message != null
                 ? (ActionResult)new OkObjectResult(message)
-                : new BadRequestObjectResult($"Please pass a message from App Configuration with key name '{keyName}'");
-        }
-    }
-
-    class MyConfig
-    {
-        public IConfiguration Configuration { set; get; }
-        public IConfigurationRefresher ConfigurationRefresher { set; get; }
-
-        public MyConfig()
-        {
-            ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.AddAzureAppConfiguration(options =>
-            {
-                options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
-                       // Reload all configuration if the 'Sentinel' key is modified and set cache expiration to 1 minute.
-                       .ConfigureRefresh(refreshOptions =>
-                            refreshOptions.Register("Sentinel", refreshAll: true)
-                                          .SetCacheExpiration(TimeSpan.FromSeconds(60))
-                );
-                ConfigurationRefresher = options.GetRefresher();
-            });
-            Configuration = builder.Build();
+                : new BadRequestObjectResult($"Please create a key-value with the key '{keyName}' in App Configuration.");
         }
     }
 }
