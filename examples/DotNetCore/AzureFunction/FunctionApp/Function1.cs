@@ -12,7 +12,7 @@ namespace FunctionApp
 {
     public static class Function1
     {
-        // Use the static modifier to create a singleton instance of Configuraion. This avoids
+        // Use the static modifier to create a singleton instance of Configuration. This avoids
         // reloading of configuration for every Azure Function call.
         // The configuration will be cached and can be refreshed based on customization.
         private static IConfiguration Configuration { set; get; }
