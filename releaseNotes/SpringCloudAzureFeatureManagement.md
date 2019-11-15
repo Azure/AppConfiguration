@@ -17,12 +17,6 @@
 * Adds Support for Request based Feature Flags
 * Adds FeatureGates, Disabled Action Handling, and Routing away from disabled features
 
-## spring-cloud-azure-feature-management-web
-
-
-
-
-
 <!-- LINKS -->
 [docs]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management
