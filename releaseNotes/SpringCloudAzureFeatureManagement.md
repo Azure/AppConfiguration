@@ -1,12 +1,12 @@
-# spring-cloud-azure-feature-management & spring-cloud-azure-feature-management-web
+# spring-cloud-azure-feature-management
+[Source code][source_code] | [Package (Maven)][package] | [Samples][samples] | [Product documentation][docs]
 
-[Source code][source_code] | [Package (Maven)][package] | [Samples][samples]
-[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web]
-[Product documentation][docs]
+# spring-cloud-azure-feature-management-web
+[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
 ## 1.1.0.M5 - October 28, 2019
 
-* Updated error Message when filter not found.
+* Updated error message when filter is not found.
 * Fixed bug where null values could be passed in as a feature.
 
 ## 1.1.0.M4 - August 27, 2019
