@@ -2,11 +2,11 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 3.0.0-preview-010550001-251 - November 22, 2019
-* Added the following method to connect to the configuration store using Azure Active Directory.
+* Added the following method to connect to App Configuration store using Azure Active Directory. This allows authentication using any of [these](https://docs.microsoft.com/en-us/dotnet/api/azure.core.tokencredential) derived types of `TokenCredential`and require the identity to be assigned to the `App Configuration Data Reader` role on the App Configuration store.
    ````csharp
    public AzureAppConfigurationOptions Connect(Uri endpoint, TokenCredential credential)
    ````
-* Removed the `ConnectWithManagedIdentity` method to connect to the configuration store using system-assigned managed identity. This now requires adding a reference to the package [`Azure.Identity`](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/identity/Azure.Identity) and updating the code to use the `Connect` method.
+* Removed the `ConnectWithManagedIdentity` method to connect to the App Configuration store using system-assigned managed identity. This now requires the managed identity to be assigned to the `App Configuration Data Reader` role, adding a reference to the package [`Azure.Identity`](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/identity/Azure.Identity) and updating the code to use the `Connect` method.
 
    #### Before
    ````csharp
@@ -22,15 +22,7 @@
       options.Connect(endpoint, new ManagedIdentityCredential());
    }).Build();
    ````
-* Removed the following extension method to add Azure App Configuration to your application.
-   ````csharp
-   public static IConfigurationBuilder AddAzureAppConfiguration(
-               this IConfigurationBuilder configurationBuilder,
-               AzureAppConfigurationOptions options,
-               bool optional = false)
-   ````
-* Removed the `ConnectionString` property from `AzureAppConfigurationOptions`.
-* Renamed the `Use` method in `AzureAppConfigurationOptions` to `Select` and removed the `preferredDateTime` parameter.
+* Renamed the `Use` method in `AzureAppConfigurationOptions` to `Select` to improve the understanding that the input to the method takes a key filter and is not limited to the name of a specific key. Also removed the `preferredDateTime` parameter.
 
    #### Before
    ````csharp
@@ -40,6 +32,14 @@
    ````csharp
    public AzureAppConfigurationOptions Select(string keyFilter, string labelFilter = LabelFilter.Null)
    ````
+* Removed the following extension method to add Azure App Configuration to your application.
+   ````csharp
+   public static IConfigurationBuilder AddAzureAppConfiguration(
+               this IConfigurationBuilder configurationBuilder,
+               AzureAppConfigurationOptions options,
+               bool optional = false)
+   ````
+* Removed the `ConnectionString` property from `AzureAppConfigurationOptions`.
 
 ### 2.1.0-preview-010380001-1099 - November 04, 2019
 * Updated code to use [`Azure.Data.AppConfiguration`](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/appconfiguration/Azure.Data.AppConfiguration) to improve compatibility with SDKs from other Azure services.
