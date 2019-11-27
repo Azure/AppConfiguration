@@ -1,6 +1,6 @@
 ﻿# Fiddler Configuration - REST API Reference
 #
-To test the REST API using [Fiddler](https://www.telerik.com/fiddler), requests need to include the headers required for [authentication](./authentication.md). Here's how to configure Fiddler for testing the REST API, generating the authentication headers automatically:
+To test the REST API using [Fiddler](https://www.telerik.com/fiddler), requests need to include the headers required for [authentication](./authentication/hmac.md). Here's how to configure Fiddler for testing the REST API, generating the authentication headers automatically:
 
 1. Ensure that TLS 1.2 is an allowed protocol
 

@@ -24,7 +24,8 @@ The following reference pages are available to describe the Azure App Configurat
   * [Revisions](./docs/REST/revisions.md)
 
 **Protocol**
-  * [Authentication](./docs/REST/authentication.md)
+  * [Authentication](./docs/REST/authentication/index.md)
+  * [Authorization](./docs/REST/authorization/index.md)
   * [Consistency Model](./docs/REST/consistency.md)
   * [Common Headers](./docs/REST/headers.md)
   * [Throttling](./docs/REST/throttling.md)

@@ -13,7 +13,7 @@ For all operations ``label`` is an optional parameter. If ommited it implies **a
 #
 #
 **Prerequisites**: 
-- All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+- All HTTP requests must be authenticated. See the [authentication](./authentication/index.md) section.
 - All HTTP requests must provide explicit ``api-version``. See the [versioning](./versioning.md) section.
 
 #
