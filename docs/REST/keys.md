@@ -18,7 +18,7 @@ For all operations ``name`` is an optional filter parameter. If ommited it impli
 #
 #
 **Prerequisites**:
-- All HTTP requests must be authenticated. See the [authentication](./authentication.md) section.
+- All HTTP requests must be authenticated. See the [authentication](./authentication/index.md) section.
 - All HTTP requests must provide explicit ``api-version``. See the [versioning](./versioning.md) section.
 
 #

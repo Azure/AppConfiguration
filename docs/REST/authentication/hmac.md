@@ -1,6 +1,6 @@
-﻿# Authentication - REST API Reference
+# HMAC Authentication - REST API Reference
 #
-All HTTP requests must be authenticated using the **HMAC-SHA256** authentication scheme and transmitted over TLS. 
+HTTP requests may be authenticated using the **HMAC-SHA256** authentication scheme. These requests must be transmitted over TLS. 
 
 *Prerequisites*: 
 - **Credential** - \<Access Key ID\>
@@ -92,7 +92,7 @@ _String-To-Sign=_
 string-To-Sign=
             "GET" + '\n' +                                                                                      // VERB
             "/kv?fields=*" + '\n' +                                                                             // path_and_query
-            "Fri, 11 May 2018 18:48:36 GMT;{myconfig}.azconfig.io;47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="    // signed_headers_values
+            "Fri, 11 May 2018 18:48:36 GMT;example.azconfig.io;47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="    // signed_headers_values
 ```
 
 #
@@ -103,7 +103,7 @@ string-To-Sign=
 
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256
+WWW-Authenticate: HMAC-SHA256, Bearer
 ```
 **Reason:** Authorization request header with HMAC-SHA256 scheme is not provided.
 **Solution:** Provide valid ```Authorization``` HTTP request header
@@ -112,7 +112,7 @@ WWW-Authenticate: HMAC-SHA256
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="The access token has expired"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="The access token has expired", Bearer
 ```
 **Reason:** ```Date``` or ```x-ms-date``` request header is more than 15 minutes off from the current GMT time.
 **Solution:** Provide correct date and time
@@ -121,7 +121,7 @@ WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="The acces
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid access token date"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid access token date", Bearer
 ```
 **Reason:** Missing or invalid ```Date``` or ```x-ms-date``` request header
 #
@@ -129,7 +129,7 @@ WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid a
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="[Credential][SignedHeaders][Signature] is required"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="[Credential][SignedHeaders][Signature] is required", Bearer
 ```
 **Reason:** Missing a required parameter from ```Authorization``` request header
 #
@@ -137,7 +137,7 @@ WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="[Credenti
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid Credential"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid Credential", Bearer
 ```
 **Reason:** Provided [```Host```]/[Access Key ID] is not found.
 **Solution:** Check the ```Credential``` parameter of the ```Authorization``` request header and make sure it is a valid Access Key ID. Make sure the ```Host``` header points to the registered account.
@@ -146,7 +146,7 @@ WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid C
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid Signature"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid Signature", Bearer
 ```
 **Reason:** The ```Signature``` provided doesn't match what the server expects.
 **Solution:** Make sure the ```String-To-Sign``` is correct. Make sure the ```Secret``` is correct and properly used (base64 decoded prior to using). See **Examples** section.
@@ -155,7 +155,7 @@ WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Invalid S
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Signed request header 'xxx' is not provided"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Signed request header 'xxx' is not provided", Bearer
 ```
 **Reason:** Missing request header required by ```SignedHeaders``` parameter in ```Authorization``` header.
 **Solution:** Provide the required header with correct value.
@@ -164,7 +164,7 @@ WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="Signed re
 #
 ```sh
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="XXX is required as a signed header"
+WWW-Authenticate: HMAC-SHA256 error="invalid_token" error_description="XXX is required as a signed header", Bearer
 ```
 **Reason:** Missing parameter in ```SignedHeaders```.
 **Solution:** Check **Signed Headers** minimum requirements.
