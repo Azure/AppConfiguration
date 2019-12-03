@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using Azure.Identity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.Azure.AppConfiguration.WebDemo
 {
@@ -8,40 +10,46 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostingContext, config) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //
-                    // This example uses the Microsoft.Extensions.Configuration.AzureAppConfiguration NuGet package:
-                    // Loads settings from Azure App Configuration.
-                    // Sets up the provider to listen for changes triggered by a sentinel value.
-                    // Establishes the connection to Azure App Configuration via Managed Identity for Azure Services.
-                    var settings = config.Build();
-
-                    string appConfigurationEndpoint = settings["AzureAppConfigurationEndpoint"];
-                    if (!string.IsNullOrEmpty(appConfigurationEndpoint))
+                    webBuilder.ConfigureAppConfiguration(builder =>
                     {
-                        config.AddAzureAppConfiguration(options =>
+                        //
+                        // This example uses the Microsoft.Azure.AppConfiguration.AspNetCore NuGet package:
+                        // - Establishes the connection to Azure App Configuration using DefaultAzureCredential.
+                        // - Loads configuration from Azure App Configuration.
+                        // - Sets up dynamic configuration refresh triggered by a sentinel key.
+
+                        // Prerequisite
+                        // - An Azure App Configuration store is created
+                        // - The application identity is granted "App Configuration Data Reader" role in the App Configuration store
+                        // - "AzureAppConfigurationEndpoint" is set to the App Configuration endpoint in either appsettings.json or environment
+                        // - The "WebDemo" section in the appsettings.json is imported to the App Configuration store
+                        // - A sentinel key "WebDemo:Sentinel" is created in App Configuration to signal the refresh of configuration
+
+                        var settings = builder.Build();
+                        string appConfigurationEndpoint = settings["AzureAppConfigurationEndpoint"];
+                        if (!string.IsNullOrEmpty(appConfigurationEndpoint))
                         {
+                            builder.AddAzureAppConfiguration(options =>
+                            {
+                                options.Connect(new Uri(appConfigurationEndpoint), new global::Azure.Identity.DefaultAzureCredential())
+                                       .Select(keyFilter: "WebDemo:*")
+                                       .ConfigureRefresh((refreshOptions) =>
+                                       {
+                                           // Indicates that all configuration should be refreshed when the given key has changed.
+                                           refreshOptions.Register(key: "WebDemo:Sentinel", refreshAll: true);
+                                       });
+                            });
+                        }
+                    });
 
-                            options.ConnectWithManagedIdentity(appConfigurationEndpoint)
-                                   .Use(keyFilter: "WebDemo:*")
-                                   .ConfigureRefresh((refreshOptions) =>
-                                   {
-                                       //
-                                       // Indicates that all settings should be refreshed when the given key has changed.
-                                       refreshOptions.Register(key: "WebDemo:Sentinel", label: LabelFilter.Null, refreshAll: true);
-                                   });
-                        });
-
-                        settings = config.Build();
-                    }
-                })
-                .UseStartup<Startup>()
-                .Build();
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

@@ -1,15 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <IsPackable>false</IsPackable>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>4523ded9-c6ce-4f01-a57f-410fb9cc9c55</UserSecretsId>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="2.0.0-preview-009200001-7" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="3.0.0-preview-010560002-1165" />
+    <PackageReference Include="Azure.Identity" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.json">
