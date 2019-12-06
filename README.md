@@ -32,8 +32,8 @@ The following reference pages are available to describe the Azure App Configurat
   * [Versioning](./docs/REST/versioning.md)
 
 **Development**
-  * [Fiddler](./docs/REST/fiddler.md)
-  * [Postman](./docs/REST/postman.md)
+  * [Fiddler](./docs/Development/fiddler.md)
+  * [Postman](./docs/Development/postman.md)
 
 ## Client Libraries
 
