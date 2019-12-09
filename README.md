@@ -24,42 +24,49 @@ The following reference pages are available to describe the Azure App Configurat
   * [Revisions](./docs/REST/revisions.md)
 
 **Protocol**
-  * [Authentication](./docs/REST/authentication.md)
+  * [Authentication](./docs/REST/authentication/index.md)
+  * [Authorization](./docs/REST/authorization/index.md)
   * [Consistency Model](./docs/REST/consistency.md)
   * [Common Headers](./docs/REST/headers.md)
   * [Throttling](./docs/REST/throttling.md)
   * [Versioning](./docs/REST/versioning.md)
 
 **Development**
-  * [Fiddler](./docs/REST/fiddler.md)
-  * [Postman](./docs/REST/postman.md)
+  * [Fiddler](./docs/Development/fiddler.md)
+  * [Postman](./docs/Development/postman.md)
 
 ## Client Libraries
 
-### Configuration Providers
+#### Configuration Providers
 
-Module | Platform | Version | Sample | Release Notes
------- | -------- | ------- | ------ | -------------
-Microsoft.Extensions.Configuration.AzureAppConfiguration | .Net Standard | [![NuGet](https://img.shields.io/nuget/v/Microsoft.Extensions.Configuration.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore/) | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftAzureAppConfigurationAspNetCore.md)
-Microsoft.Azure.AppConfiguration.AspNetCore | ASP&#46;NET Core | [![NuGet](https://img.shields.io/nuget/v/Microsoft.Azure.AppConfiguration.AspNetCore.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore/) | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftExtensionsConfigurationAzureAppConfiguration.md)
-[Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration](https://github.com/aspnet/MicrosoftConfigurationBuilders/tree/master/src/AzureAppConfig) | .NET Framework | [![NuGet](https://img.shields.io/nuget/v/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) |  | 
-[spring-cloud-azure-appconfiguration-config](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-confige) | Spring Boot | [![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/spring-cloud-azure-appconfiguration-config.svg?color=blue)](https://search.maven.org/search?q=a:spring-cloud-azure-appconfiguration-config) | [Sample](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/azure-appconfiguration-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/SpringCloudAzureAppConfigurationConfig.md)
+Load key-values in App Configuration to your application's existing configuration system with ease.
 
-### Feature Management Libraries
+Module | Platform | Sample | Release Notes
+------ | -------- | ------ | -------------
+Microsoft.Extensions.Configuration.AzureAppConfiguration<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Extensions.Configuration.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore/) | .Net Standard | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftAzureAppConfigurationAspNetCore.md)
+Microsoft.Azure.AppConfiguration.AspNetCore<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Azure.AppConfiguration.AspNetCore.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore/) | ASP&#46;NET Core | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftExtensionsConfigurationAzureAppConfiguration.md)
+[Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration](https://github.com/aspnet/MicrosoftConfigurationBuilders/tree/master/src/AzureAppConfig)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) | .NET Framework |  |
+[spring-cloud-azure-appconfiguration-config](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config)<br/>[![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/spring-cloud-azure-appconfiguration-config.svg?color=blue)](https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config) | Spring Boot | [Sample](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/azure-appconfiguration-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/SpringCloudAzureAppConfigurationConfig.md)
 
-Module | Platform | Version | Sample | Release Notes
------- | -------- | ------- | ------ | -------------
-[Microsoft.FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet) | .Net Standard | [![NuGet](https://img.shields.io/nuget/v/Microsoft.FeatureManagement.svg?color=blue)](https://www.nuget.org/packages/Microsoft.FeatureManagement) | [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/tree/dev/examples) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/Microsoft.Featuremanagement.md)
-[Microsoft.FeatureManagement.AspNetCore](https://github.com/microsoft/FeatureManagement-Dotnet) | ASP&#46;NET Core | [![NuGet](https://img.shields.io/nuget/v/Microsoft.FeatureManagement.AspNetCore.svg?color=blue)](https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore) | [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/tree/dev/examples) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/Microsoft.Featuremanagement.md)
-[spring-cloud-azure-feature-management](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management) | Spring Boot | [![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/spring-cloud-azure-feature-management.svg?color=blue)](https://search.maven.org/search?q=a:spring-cloud-azure-feature-management) | [Sample](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/SpringCloudAzureFeatureManagement.md)
-[spring-cloud-azure-feature-management-web](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management-web) | Spring Boot | [![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/spring-cloud-azure-feature-management-web.svg?color=blue)](https://search.maven.org/search?q=a:spring-cloud-azure-feature-management-web) | [Sample](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-web-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/SpringCloudAzureFeatureManagement.md)
+#### Feature Management Libraries
 
-### SDKs
+Use feature flags in your application and leverage App Configuration for dynamic feature management.
 
-Module | Version | Sample
+Module | Platform | Sample | Release Notes
+------ | -------- | ------ | -------------
+[Microsoft.FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.FeatureManagement.svg?color=blue)](https://www.nuget.org/packages/Microsoft.FeatureManagement)| .Net Standard | [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/Microsoft.Featuremanagement.md)
+[Microsoft.FeatureManagement.AspNetCore](https://github.com/microsoft/FeatureManagement-Dotnet)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.FeatureManagement.AspNetCore.svg?color=blue)](https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore) | ASP&#46;NET Core | [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/Microsoft.Featuremanagement.md)
+[spring-cloud-azure-feature-management](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management)<br/>[![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/spring-cloud-azure-feature-management.svg?color=blue)](https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-feature-management) | Spring Boot | [Sample](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/SpringCloudAzureFeatureManagement.md)
+[spring-cloud-azure-feature-management-web](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management-web)<br/>[![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/spring-cloud-azure-feature-management-web.svg?color=blue)](https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-feature-management-web) | Spring Boot | [Sample](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-web-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/SpringCloudAzureFeatureManagement.md)
+
+#### SDKs
+
+Create, read, update and delete key-values in App Configuration programmatically.
+
+Module | Latest Version | Sample
 -------|--- | ---
 [azure-sdk-for-net](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/appconfiguration/Azure.Data.AppConfiguration) | [![NuGet](https://img.shields.io/nuget/v/Azure.Data.AppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Azure.Data.AppConfiguration/) | [Sample](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/appconfiguration/Azure.Data.AppConfiguration/samples)
-[azure-sdk-for-java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-data-appconfiguration) | [![Maven Central](https://img.shields.io/maven-central/v/com.azure/azure-data-appconfiguration.svg?color=blue)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-cloud-starter-azure-appconfiguration-config%22) | [Sample](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-data-appconfiguration/src/samples)
+[azure-sdk-for-java](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-data-appconfiguration) | [![Maven Central](https://img.shields.io/maven-central/v/com.azure/azure-data-appconfiguration.svg?color=blue)](https://search.maven.org/artifact/com.azure/azure-data-appconfiguration) | [Sample](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-data-appconfiguration/src/samples)
 [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/appconfiguration) | [![npm](https://img.shields.io/npm/v/@azure/app-configuration.svg?color=blue)](https://www.npmjs.com/package/@azure/app-configuration) | [Sample](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/appconfiguration/app-configuration/samples)
 [azure-sdk-for-python](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/appconfiguration) | [![pypi](https://img.shields.io/pypi/v/azure-appconfiguration.svg?color=blue)](https://pypi.org/project/azure-appconfiguration/) | [Sample](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/appconfiguration/azure-appconfiguration/samples)
 
