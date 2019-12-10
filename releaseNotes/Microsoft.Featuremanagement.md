@@ -59,6 +59,10 @@ As an example, `IContextualFeatureFilter<IAccountContext>` requires a context th
 
 With the introduction of `IContextualFeatureFilter` there are now two types of feature filters including `IFeatureFilter`. The two types of feature filters both inherit `IFeatureFilterMetadata`. `IFeatureFilterMetadata` is a marker interface and does not actually provide any feature filtering capabilities. It is used as the new parameter type for `IFeatureManagementBuilder.AddFeatureFilter`.
 
+**Performance Improvement**
+
+A cache for feature settings has been added which respects the reload token of the .NET Core configuration system. If a configuration provider is used that does not properly trigger the reload token of the .NET Core configuration system, `FeatureManager` will not be able to pickup changes.
+
 ### Breaking Changes
 * `IFeatureManager.IsEnabled` is now asynchronous
   * `IsEnabled` was renamed to `IsEnabledAsync`.
