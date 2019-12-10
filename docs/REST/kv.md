@@ -163,7 +163,7 @@ GET /kv?key={key}&label={label}&api-version={api-version}
 |```key=abc*```|Matches keys names that start with **abc**|
 |```key=*abc```|Matches keys names that end with **abc**|
 |```key=*abc*```|Matches keys names that contain **abc**|
-|```key=abc,xyz```|Matche keys names **abc** or **xyz** (limited to 5 CSV)|
+|```key=abc,xyz```|Matches keys names **abc** or **xyz** (limited to 5 CSV)|
 
 |Label||
 |--|--|
