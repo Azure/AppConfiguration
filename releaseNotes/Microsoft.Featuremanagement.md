@@ -1,10 +1,8 @@
-# Microsoft.FeatureManagement and Microsoft.FeatureManagement.AspNetCore
+# Microsoft.FeatureManagement
+[Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-## NuGet Packages
-
-[Microsoft.FeatureManagement](https://www.nuget.org/packages/Microsoft.FeatureManagement)
-
-[Microsoft.FeatureManagement.AspNetCore](https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore)
+# Microsoft.FeatureManagement.AspNetCore
+[Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
 ## 2.0.0-preview-010610001-1263 - Nov 27, 2019
 
@@ -79,3 +77,13 @@ With the introduction of `IContextualFeatureFilter` there are now two types of f
 * Enhanced feature tag helper to allow for multiple features, any/all requirement, and negated logic.
 * Added `IFeatureManagementBuilder.AddSessionManager` to enhance discoverability for providing a custom feature session manager.
   * Previous approach was `IServiceCollection.AddSingleton<ISessionManager>(MySessionManager)`
+
+<!-- LINKS -->
+[docs]: https://github.com/microsoft/FeatureManagement-Dotnet
+[package]: https://www.nuget.org/packages/Microsoft.FeatureManagement
+[samples]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples/ConsoleApp
+[source_code]: https://github.com/microsoft/FeatureManagement-Dotnet
+
+[package_web]: https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore
+[samples_web]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples/FeatureFlagDemo
+[source_code_web]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/src/Microsoft.FeatureManagement.AspNetCore
