@@ -61,7 +61,7 @@ With the introduction of `IContextualFeatureFilter` there are now two types of f
 
 **Feature Settings Cache**
 
-Caching has been added to respect the reload token of the .NET Core configuration system. If a configuration provider is used that does not properly trigger the reload token of the .NET Core configuration system, `FeatureManager` will not be able to pickup changes.
+A cache for feature settings has been added which respects the reload token of the .NET Core configuration system. If a configuration provider is used that does not properly trigger the reload token of the .NET Core configuration system, `FeatureManager` will not be able to pickup changes.
 
 ### Breaking Changes
 * `IFeatureManager.IsEnabled` is now asynchronous
