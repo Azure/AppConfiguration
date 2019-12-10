@@ -1,5 +1,11 @@
 # Microsoft.FeatureManagement and Microsoft.FeatureManagement.AspNetCore
 
+## NuGet Packages
+
+[Microsoft.FeatureManagement](https://www.nuget.org/packages/Microsoft.FeatureManagement)
+
+[Microsoft.FeatureManagement.AspNetCore](https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore)
+
 ## 2.0.0-preview-010610001-1263 - Nov 27, 2019
 
 ### Async Feature Filters
