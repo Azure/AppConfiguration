@@ -8,8 +8,7 @@
 
 ## 1.1.0.M6 - December 09, 2019
 
-* Added support for '.' in key values from files.
-* Fix bug where file expected featureSet not feature-set
+* Fix bug where feature flag names were unable to have '.' when read from a configuration file, but valid when read from Azure.
 
 ## 1.1.0.M5 - October 28, 2019
 
