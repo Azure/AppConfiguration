@@ -8,7 +8,7 @@
 
 ## 1.1.0.M6 - December 09, 2019
 
-* Fix bug where feature flag names were unable to have '.' when read from a configuration file, but valid when read from Azure.
+* Fixed a bug where feature flag names were unable to contain dots (.) when they are read from a configuration file.
 
 ## 1.1.0.M5 - October 28, 2019
 
