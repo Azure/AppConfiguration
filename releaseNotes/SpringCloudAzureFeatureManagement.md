@@ -1,8 +1,14 @@
 # spring-cloud-azure-feature-management
+
 [Source code][source_code] | [Package (Maven)][package] | [Samples][samples] | [Product documentation][docs]
 
 # spring-cloud-azure-feature-management-web
+
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
+
+## 1.1.0.M6 - December 09, 2019
+
+* Fixed a bug where feature flag names were unable to contain dots (.) when they are read from a configuration file.
 
 ## 1.1.0.M5 - October 28, 2019
 
