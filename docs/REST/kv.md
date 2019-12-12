@@ -209,7 +209,7 @@ GET /kv?api-version={api-version}
 
 - Key name starts with **abc** and include all labels
 ```
-GET /kv?key=*abc&label=*&api-version={api-version}
+GET /kv?key=abc*&label=*&api-version={api-version}
 ```
 
 - Key name is either **abc** or **xyz** and include all labels that contain **prod**
