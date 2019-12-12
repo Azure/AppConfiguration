@@ -38,7 +38,7 @@ namespace Microsoft.Azure.AppConfiguration.WebDemo
                         {
                             builder.AddAzureAppConfiguration(options =>
                             {
-                                options.Connect(new Uri(appConfigurationEndpoint), new global::Azure.Identity.DefaultAzureCredential())
+                                options.Connect(new Uri(appConfigurationEndpoint), new DefaultAzureCredential())
                                        .Select(keyFilter: "WebDemo:*")
                                        .ConfigureRefresh((refreshOptions) =>
                                        {
