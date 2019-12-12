@@ -7,7 +7,8 @@
 * Updated managed identity support for both system-assigned managed identity and user-assigned managed identity.
 
   **Before**
-The managed identity is assigned *Contributor* role to the App Configuration instance.
+
+  The managed identity is assigned *Contributor* role to the App Configuration instance.
 
   **After**
 
