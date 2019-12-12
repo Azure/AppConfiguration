@@ -4,19 +4,27 @@
 
 ## 1.1.0.M6 - December 09, 2019
 
-* Updated support for AAD. System Assigned identity previously required; config store name, and the Contributor role. Now it requires; config store config store name, [client id][client_id], and the App Configuration Data Reader role.
+* Updated managed identity support for both system-assigned managed identity and user-assigned managed identity.
 
-```properties
-spring.cloud.azure.appconfiguration.managed-identity.client-id=[client id]
-spring.cloud.azure.appconfiguration.stores[0].name=[config store name]
-```
+    **Before**
 
-* Updated support for AAD. User Assigned identity previously required; config store name, client id, object id, and the Contributor role. Now it required; config store name, client id, and the App Configuration Data Reader role.
-* Added the following Provider to allow users to provide any [Azure TokenCredentials][token_credentials] to the provider for authenticating with App Configuration & Key Vault. When a `TokenCredentialProvider` `@Bean` is made it will be used for authentication.
+  * The managed identity is assigned Contributor role to the App Configuration instance.
 
-**Note:** Null is valid value to be returned if only one of the authentication methods needs to be used.
+    **After**
 
-**Note 2:** When using TokenCredentialProvider `spring.cloud.azure.appconfiguration.stores[0].name` still needs to be specified in a configuration file.
+  * The system-assigned managed identity also requires the client-id to be set in addition to the config store name, for example,
+
+    ```properties
+    spring.cloud.azure.appconfiguration.managed-identity.client-id=[client id]
+    spring.cloud.azure.appconfiguration.stores[0].name=[config store name]
+    ```
+
+  * The managed identity should be assigned App Configuration Data Reader role to the App Configuration instance.
+
+* Added support of generic Azure Active Directory (AAD) authentication. Users can use any of the Azure TokenCredentials from the [Azure Identity client library][token_credentials] to access the App Configuration and Key Vault.
+
+  1. Set `spring.cloud.azure.appconfiguration.stores[0].name` to your App Configuration store name.
+  1. Add a `@Bean` of `TokenCredentialProvider` to your application. For example, the following code snippet used the UsernamePasswordCredential for the authorization with both the App Configuration and Key Vault.
 
 ```java
 public class MyCredentials implements TokenCredentialProvider {
@@ -42,7 +50,7 @@ public class MyCredentials implements TokenCredentialProvider {
 }
 ```
 
-* An error is now thrown when more than 1 authentication method is provided.
+* To prevent unintentional results, an IllegalArgumentException exception will be thrown if both `spring.cloud.azure.appconfiguration.stores[0].name` and `spring.cloud.azure.appconfiguration.stores[0].connection-string` are provided.
 * Adds support for providing Token Credentials to the provider using the TokenCredentialProvider.
 * Fix Bug where disabled feature filters would be processed incorrectly resulting in the feature filters still running.
 
