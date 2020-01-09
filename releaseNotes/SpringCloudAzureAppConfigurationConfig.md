@@ -2,6 +2,25 @@
 
 [Source code][source_code] | [Package (Maven)][package] | [Product documentation][docs] | [Samples][samples]
 
+## 1.2.0 - January 13, 2020
+
+* A number of configuration parameters have renamed/replaced/removed. See [starter](https://github.com/microsoft/spring-cloud-azure/blob/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config/README.md) for more info.
+
+```properties
+spring.cloud.azure.appconfiguration.watch.delay -> spring.cloud.azure.appconfiguration.cache.expiration
+
+# Endpoint Requires URI value
+spring.cloud.azure.appconfiguration.stores[0].name -> spring.cloud.azure.appconfiguration.stores[0].endpoint
+```
+
+* AzureCloudConfigWatch is now named AzureCloudConfigRefresh. Also AzureCloudConfigRefresh is always created and can be access via dependency injection to allow control over refreshes outside of ServletRequestHandledEvents.
+* System Assigned Credential no longer needs client id set.
+* TokenCredentialProvider has been split into two file AppConfigCredentialProvider and KeyVaultCredentialProvider.
+* AzureCloudConfigRefresh is now non-blocking Async using Reactor.
+* Bug fix, multiple refreshes no longer occur when a system that is watching multiple stores where two or more stores are updated before the local values are updated.
+* Bug fix, Sentinels are update before refresh completes, resulting in a failed refresh not being reattempted.
+* A new [sample](https://github.com/microsoft/spring-cloud-azure/blob/master/spring-cloud-azure-samples/azure-appconfiguration-conversion-sample-initial/README.md) has been added showing how to convert an application to use App Configuration with Key Vault References. There is also a [completed](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/azure-appconfiguration-conversion-sample-complete) version to show how the code should now look.
+
 ## 1.1.0.M6 - December 09, 2019
 
 * Updated managed identity support for both system-assigned managed identity and user-assigned managed identity.

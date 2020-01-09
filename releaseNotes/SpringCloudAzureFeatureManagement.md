@@ -6,6 +6,33 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
+## 1.2.0 - January 13, 2020
+
+* Feature Management config files now match the DotNet format.
+
+```yaml
+FeatureManagement:
+  Beta: true
+  DarkTheme:
+    EnabledFor:
+      -
+        Name: Random
+        Parameters:
+          chance: "50"
+  BetaAB:
+    EnabledFor:
+      -
+        Name: Random
+        Parameters:
+          chance: "50"
+      -
+        Name: ClientFilter
+        Parameters:
+          clientIp: 10.0.0.1
+```
+
+* The isEnabled method is now non-blocking Async and has been renamed to isEnabledAsync.
+
 ## 1.1.0.M6 - December 09, 2019
 
 * Fixed a bug where feature flag names were unable to contain dots (.) when they are read from a configuration file.
