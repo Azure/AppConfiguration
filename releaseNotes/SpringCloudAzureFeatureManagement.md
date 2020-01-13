@@ -8,10 +8,10 @@
 
 ## 1.2.0 - January 13, 2020
 
-* Feature Management config files now match the DotNet format.
+* Simplified Feature Management config file format.
 
 ```yaml
-FeatureManagement:
+feature-management:
   Beta: true
   DarkTheme:
     EnabledFor:
@@ -31,7 +31,7 @@ FeatureManagement:
           clientIp: 10.0.0.1
 ```
 
-* The isEnabled method is now non-blocking Async and has been renamed to isEnabledAsync.
+* The isEnabled method is now non-blocking Async and has been renamed to isEnabledAsync using Reactor.
 
 ## 1.1.0.M6 - December 09, 2019
 
