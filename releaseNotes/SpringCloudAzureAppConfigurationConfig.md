@@ -8,8 +8,7 @@
 
 ### Configuration
 
-* 4 configuration parameters have renamed/replaced/removed. See [starter](https://github.com/microsoft/spring-cloud-azure/blob/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config/README.md) for updated descriptions.
-* The properties below are removed as the timer-based configuration watch has been deprecated. 
+* The properties below are removed as the timer-based configuration watch has been deprecated and previous AAD authentication has been replaced with the Azure Java SDK.
 
 ```properties
 spring.cloud.azure.appconfiguration.watch.enabled
@@ -17,9 +16,9 @@ spring.cloud.azure.appconfiguration.managed-identity.object-id
 ```
 
 * The configuration is refreshed based on application activities.
-  * The configuration is cached and the default cache expiration time is 30 seconds. The configuration won't be refreshed until the cache expiration time window is reached. This value can be modified, for example,
-  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application.
-  * In a non-web application, the user needs to call AzureCloudConfigRefresh's refreshConfigurations method to signal configuration refresh at places where application activities occur.
+  * The configuration is cached and the default cache expiration time is 30 seconds. The configuration won't be refreshed until the cache expiration time window is reached. This value can be modified, see example below.
+  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application. This is done by listening for ServletRequestHandledEvents.
+  * In a non-web application, the user needs to call AzureCloudConfigRefresh's `refreshConfigurations` method to signal configuration refresh at places where application activities occur. AzureCloudConfigRefresh can be accessed via dependency injection. Web based applications can also use this method, though both methods will still only update when the cache has expired. `refreshConfigurations` will return a `Future<Boolean>`, the resulting Boolean can be checked to see if a refresh event was triggered. **Note:** This does not mean the updated has been completed, only that a request was made to have the configurations updated.
 
 ```properties
 spring.cloud.azure.appconfiguration.cache-expiration = 60
@@ -28,7 +27,7 @@ spring.cloud.azure.appconfiguration.cache-expiration = 60
 * For clarity the name configuration has been changed to endpoint. Instead of my-configstore-name use `https://my-configstore-name.azconfig.io`
 
 ```properties
-spring.cloud.azure.appconfiguration.stores[0].name -> spring.cloud.azure.appconfiguration.stores[0].endpoint
+spring.cloud.azure.appconfiguration.stores[0].endpoint= https://my-configstore-name.azconfig.io
 ```
 
 ### Authentication
@@ -59,8 +58,6 @@ public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCrede
 
 ### Refresh
 
-* AzureCloudConfigRefresh can be accessed via dependency injection to allow control over refreshes outside of ServletRequestHandledEvents. The refresh will only update after the cache expires based on the configured value.
-* AzureCloudConfigRefresh is now non-blocking Async using Reactor.
 * Bug fix, configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
 * Bug fix, failed configuration refresh may not be reattempted.
 
