@@ -9,32 +9,57 @@
 ### Configuration
 
 * 4 configuration parameters have renamed/replaced/removed. See [starter](https://github.com/microsoft/spring-cloud-azure/blob/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config/README.md) for updated descriptions.
+* The properties below are removed as the timer-based configuration watch has been deprecated. 
 
 ```properties
-# The following configurations have been removed
 spring.cloud.azure.appconfiguration.watch.enabled
 spring.cloud.azure.appconfiguration.managed-identity.object-id
+```
 
-# The following property has been renamed
-spring.cloud.azure.appconfiguration.watch.delay -> spring.cloud.azure.appconfiguration.cache.expiration
+* The configuration is refreshed based on application activities.
+  * The configuration is cached and the default cache expiration time is 30 seconds. The configuration won't be refreshed until the cache expiration time window is reached. This value can be modified, for example,
+  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application.
+  * In a non-web application, the user needs to call AzureCloudConfigRefresh's refreshConfigurations method to signal configuration refresh at places where application activities occur.
 
-# Endpoint Requires URI value
+```properties
+spring.cloud.azure.appconfiguration.cache-expiration = 60
+```
+
+* For clarity the name configuration has been changed to endpoint. Instead of my-configstore-name use `https://my-configstore-name.azconfig.io`
+
+```properties
 spring.cloud.azure.appconfiguration.stores[0].name -> spring.cloud.azure.appconfiguration.stores[0].endpoint
 ```
 
-* Watch enabled has been removed. To control the refresh rate the cache expiration configuration can be used. By default 30s.
-* Managed Identity doesn't need an object id any more.
-* Watch delay was renamed to cache expiration to reflect new use.
-* For clarity the name configuration has been changed to endpoint. Instead of my-configstore-name use `https://my-configstore-name.azconfig.io`
-
 ### Authentication
 
-* TokenCredentialProvider has been split into two file AppConfigCredentialProvider and KeyVaultCredentialProvider.
+* A new authentication method has been added allowing users to provide there own credentials. Users can create a AppConfigCredentialProvider and KeyVaultCredentialProvider @Bean to provide credentials to App Configuration for connection to Azure App Configuration and Azure Key Vault respectively. Both objects define a method that is given a uri value and returns a [TokenCredential][token_credentials].
+
+```java
+public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCredentialProvider {
+
+    @Override
+    public TokenCredential credentialForAppConfig(String uri) {
+            return buildCredential();
+    }
+
+    @Override
+    public TokenCredential credentialForKeyVault(String uri) {
+            return buildCredential();
+    }
+
+    TokenCredential buildCredential() {
+            return new DefaultAzureCredentialBuilder().build();
+    }
+
+}
+```
+
 * Bug fix, system-assigned managed identity no longer needs client id to be set.
 
 ### Refresh
 
-* AzureCloudConfigRefresh can be access via dependency injection to allow control over refreshes outside of ServletRequestHandledEvents. The refresh will only update after the cache expires based on the configured value.
+* AzureCloudConfigRefresh can be accessed via dependency injection to allow control over refreshes outside of ServletRequestHandledEvents. The refresh will only update after the cache expires based on the configured value.
 * AzureCloudConfigRefresh is now non-blocking Async using Reactor.
 * Bug fix, configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
 * Bug fix, failed configuration refresh may not be reattempted.
