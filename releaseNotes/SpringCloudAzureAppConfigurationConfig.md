@@ -8,11 +8,10 @@
 
 ### Configuration
 
-* The properties below are removed as the timer-based configuration watch has been deprecated and previous AAD authentication has been replaced with the Azure Java SDK.
+* The property below has been removed as the timer-based configuration watch has been deprecated.
 
 ```properties
 spring.cloud.azure.appconfiguration.watch.enabled
-spring.cloud.azure.appconfiguration.managed-identity.object-id
 ```
 
 * The configuration is refreshed based on application activities.
@@ -24,13 +23,22 @@ spring.cloud.azure.appconfiguration.managed-identity.object-id
 spring.cloud.azure.appconfiguration.cache-expiration = 60
 ```
 
+* Bug fix, configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
+* Bug fix, failed configuration refresh may not be reattempted.
+
+### Authentication
+
+* The property below has been removed as the previous AAD authentication has been replaced with the Azure Java SDK.
+
+```properties
+spring.cloud.azure.appconfiguration.managed-identity.object-id
+```
+
 * For clarity the name configuration has been changed to endpoint. Instead of my-configstore-name use `https://my-configstore-name.azconfig.io`
 
 ```properties
 spring.cloud.azure.appconfiguration.stores[0].endpoint= https://my-configstore-name.azconfig.io
 ```
-
-### Authentication
 
 * A new authentication method has been added allowing users to provide there own credentials. Users can create a AppConfigCredentialProvider and KeyVaultCredentialProvider @Bean to provide credentials to App Configuration for connection to Azure App Configuration and Azure Key Vault respectively. Both objects define a method that is given a uri value and returns a [TokenCredential][token_credentials].
 
@@ -55,11 +63,6 @@ public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCrede
 ```
 
 * Bug fix, system-assigned managed identity no longer needs client id to be set.
-
-### Refresh
-
-* Bug fix, configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
-* Bug fix, failed configuration refresh may not be reattempted.
 
 ### Samples
 
