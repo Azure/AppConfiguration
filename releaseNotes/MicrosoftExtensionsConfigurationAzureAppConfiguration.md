@@ -2,9 +2,13 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 3.0.0-preview-011100001-1152 - January 16, 2020
-* Updated `Azure.Data.AppConfiguration` reference to `1.0.0`. See the [release notes](https://github.com/Azure/azure-sdk-for-net/blob/94fdb6ba5719daa4d8d63b226c61064b2f52c085/sdk/appconfiguration/Azure.Data.AppConfiguration/CHANGELOG.md) for more information on the changes. Also simplified the code for passing key and label filters when using `Select` to specify the configuration settings to retrieve from Azure App Configuration.
+* Updated `Azure.Data.AppConfiguration` reference to `1.0.0`. See the [release notes](https://github.com/Azure/azure-sdk-for-net/blob/94fdb6ba5719daa4d8d63b226c61064b2f52c085/sdk/appconfiguration/Azure.Data.AppConfiguration/CHANGELOG.md) for more information on the changes.
 * Replaced `Newtonsoft.Json` with `System.Text.Json` to improve performance and increase compatibility with ASP.NET Core 3.0 and SDKs from other Azure services. See [this blog post](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/) for more information.
-* Replaced `Microsoft.Azure.KeyVault` with `Azure.Security.KeyVault.Secrets` to resolve key vault references. This now requires updating the code to use the `ConfigureKeyVault` method instead of `UseAzureKeyVault` and passing the options initializer that registers the `SecretClient` instances for the key vaults using `Register` method, or sets the `TokenCredential` to use to resolve the key vault reference using `SetCredential` method, or both.
+* Updated `Microsoft.Azure.KeyVault` with its successor [Azure.Security.KeyVault.Secrets](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/keyvault/Azure.Security.KeyVault.Secrets/README.md) to resolve key vault references.
+* Replaced the `UseAzureKeyVault` method used to configure Key Vault references with `ConfigureKeyVault` method.
+    * A `TokenCredential` can be provided to be used for authentication with referenced Key Vaults.
+    * One or more instances of `SecretClient` can be registered to override the provided `TokenCredential`, if any, for individual Key Vaults.
+    * The configuration provider no longer uses any *default identity* to try to resolve Key Vault references. A `TokenCredential` or `SecretClient` must be configured using `ConfigureKeyVault` to successfully resolve a reference.
 
    #### Example 1 : Before
    ````csharp
