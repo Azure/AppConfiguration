@@ -11,7 +11,7 @@
 * The property below has been removed as the timer-based configuration watch has been deprecated.
 
 ```properties
-spring.cloud.azure.appconfiguration.watch.enabled
+  spring.cloud.azure.appconfiguration.watch.enabled
 ```
 
 * The configuration is refreshed based on application activities.
@@ -20,49 +20,56 @@ spring.cloud.azure.appconfiguration.watch.enabled
   * In a non-web application, the user needs to call AzureCloudConfigRefresh's `refreshConfigurations` method to signal configuration refresh at places where application activities occur. AzureCloudConfigRefresh can be accessed via dependency injection. Web based applications can also use this method, though both methods will still only update when the cache has expired. `refreshConfigurations` will return a `Future<Boolean>`, the resulting Boolean can be checked to see if a refresh event was triggered. **Note:** This does not mean the updated has been completed, only that a request was made to have the configurations updated.
 
 ```properties
-spring.cloud.azure.appconfiguration.cache-expiration = 60
+  spring.cloud.azure.appconfiguration.cache-expiration = 60
 ```
 
-* Bug fix, configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
-* Bug fix, failed configuration refresh may not be reattempted.
+* Fixed the bug that configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
+* Fixed the bug that failed configuration refresh may not be reattempted.
 
 ### Authentication
 
-* The property below has been removed as the previous AAD authentication has been replaced with the Azure Java SDK.
+* The property below has been removed as the object ID is not needed for managed identity authentication.
 
 ```properties
-spring.cloud.azure.appconfiguration.managed-identity.object-id
+  spring.cloud.azure.appconfiguration.managed-identity.object-id
 ```
 
-* For clarity the name configuration has been changed to endpoint. Instead of my-configstore-name use `https://my-configstore-name.azconfig.io`
+* With the generic AAD support by the App Configuration, the property name has been renamed to endpoint.
+
+#### Before
 
 ```properties
-spring.cloud.azure.appconfiguration.stores[0].endpoint= https://my-configstore-name.azconfig.io
+  spring.cloud.azure.appconfiguration.stores[0].name={my-configstore-name}
 ```
 
-* A new authentication method has been added allowing users to provide there own credentials. Users can create a AppConfigCredentialProvider and KeyVaultCredentialProvider @Bean to provide credentials to App Configuration for connection to Azure App Configuration and Azure Key Vault respectively. Both objects define a method that is given a uri value and returns a [TokenCredential][token_credentials].
+#### After
+
+```properties
+  spring.cloud.azure.appconfiguration.stores[0].endpoint= https://{my-configstore-name}.azconfig.io
+```
+
+* Users can now implement `AppConfigCredentialProvider` and/or `KeyBaultCredentialProvider` to use any of the `TokenCredential` authentication types that are supported by [Azure Identity][token_credentials] to authenticate with App Configuration or Key Vault respectively. Please see [Starter](https://github.com/mrm9084/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config) for more details.
 
 ```java
-public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCredentialProvider {
+  public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCredentialProvider {
 
-    @Override
-    public TokenCredential credentialForAppConfig(String uri) {
-            return buildCredential();
-    }
+      @Override
+      public TokenCredential credentialForAppConfig(String uri) {
+              return buildCredential();
+      }
 
-    @Override
-    public TokenCredential credentialForKeyVault(String uri) {
-            return buildCredential();
-    }
+      @Override
+      public TokenCredential credentialForKeyVault(String uri) {
+              return buildCredential();
+      }
 
-    TokenCredential buildCredential() {
-            return new DefaultAzureCredentialBuilder().build();
-    }
-
+      TokenCredential buildCredential() {
+              return new DefaultAzureCredentialBuilder().build();
+      }
 }
 ```
 
-* Bug fix, system-assigned managed identity no longer needs client id to be set.
+* Fixed the bug that system-assigned managed identity no longer needs client id to be set.
 
 ### Samples
 

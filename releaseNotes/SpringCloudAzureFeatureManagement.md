@@ -8,29 +8,6 @@
 
 ## 1.1.1/1.2.1 - January 13, 2020
 
-* Simplified Feature Management config file format.
-
-```yaml
-feature-management:
-  Beta: true
-  DarkTheme:
-    EnabledFor:
-      -
-        Name: Random
-        Parameters:
-          chance: "50"
-  BetaAB:
-    EnabledFor:
-      -
-        Name: Random
-        Parameters:
-          chance: "50"
-      -
-        Name: ClientFilter
-        Parameters:
-          clientIp: 10.0.0.1
-```
-
 * The `isEnabled` method is now non-blocking Async and has been renamed to `isEnabledAsync using Reactor.
 
 ## 1.1.0.M6 - December 09, 2019
