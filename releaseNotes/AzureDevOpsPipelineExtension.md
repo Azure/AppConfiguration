@@ -2,7 +2,7 @@
 
 The Azure App Configuration extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task&ssr=false#overview). The version of the Azure App Configuration task being used will print to the console when the task is executed: ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
-### v2.0.1 - January, 21 2020
+### v2.0.9 - January, 21 2020
   * **Breaking change**: supported [Azure Active Directory authentication](https://github.com/Azure/AppConfiguration/blob/master/docs/REST/authorization/aad.md) of fetching key-values from App Configuration instance.
     * Change Service Connections'(Service Principals) role assignment to `Azure App Configuration Data Owner` or `Azure App Configuration Data Reader` role to grant pipeline Service Connection access to App Configuration access.
 
