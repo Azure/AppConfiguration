@@ -21,7 +21,7 @@
   spring.cloud.azure.appconfiguration.cache-expiration = 60
   ```
   
-  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application. This is done by listening for ServletRequestHandledEvents.
+  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application. This is done by listening for servlet requests.
 
 * Fixed the bug that configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
 * Fixed the bug that failed configuration refresh may not be reattempted.
@@ -36,13 +36,13 @@
 
 * With the generic AAD support by the App Configuration, the property name has been renamed to endpoint.
 
-#### Before
+  **Before**
 
   ```properties
   spring.cloud.azure.appconfiguration.stores[0].name={my-configstore-name}
   ```
 
-#### After
+  **After**
 
   ```properties
   spring.cloud.azure.appconfiguration.stores[0].endpoint= https://{my-configstore-name}.azconfig.io
