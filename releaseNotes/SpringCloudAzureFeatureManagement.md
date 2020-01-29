@@ -8,7 +8,7 @@
 
 ## 1.1.1/1.2.1 - January 13, 2020
 
-* The `isEnabled` method is now non-blocking Async and has been renamed to `isEnabledAsync using Reactor.
+* The `isEnabled` method is now non-blocking Async and has been renamed to `isEnabledAsync` using Reactor.
 
 ## 1.1.0.M6 - December 09, 2019
 

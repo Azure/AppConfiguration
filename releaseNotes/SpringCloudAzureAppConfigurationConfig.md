@@ -23,8 +23,6 @@
   
   * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application. This is done by listening for ServletRequestHandledEvents.
 
- 
-
 * Fixed the bug that configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
 * Fixed the bug that failed configuration refresh may not be reattempted.
 
@@ -51,7 +49,7 @@
   ```
 
 * Users can now implement `AppConfigCredentialProvider` and/or `KeyBaultCredentialProvider` to use any of the `TokenCredential` access types that are supported by [Azure Identity][token_credentials] to authenticate with App Configuration or Key Vault respectively. Please see [Starter](https://github.com/mrm9084/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config) for more details.
-* Fixed the bug that system-assigned managed identity no longer needs client id to be set.
+* System-assigned managed identity does not needs client id to be set.
 
 ### Samples
 
