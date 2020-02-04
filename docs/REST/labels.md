@@ -88,8 +88,6 @@ GET /labels?name={label-name}&api-version={api-version}
 |```name``` is omitted or ```name=*```|Matches **any** label|
 |```name=abc```|Matches a label named  **abc**|
 |```name=abc*```|Matches label names that start with **abc**|
-|```name=*abc```|Matches label names that end with **abc**|
-|```name=*abc*```|Matches label names that contains **abc**|
 |```name=abc,xyz```|Matches label names **abc** or **xyz** (limited to 5 CSV)|
 
 
@@ -128,16 +126,6 @@ GET /labels?api-version={api-version}
 - Label name starts with **abc**
 ```
 GET  /labels?name=abc*&api-version={api-version}
-```
-
-- Label name ends with **abc**
-```
-GET  /labels?name=*abc&api-version={api-version}
-```
-
-- Label name contains **abc**
-```
-GET  /labels?name=*abc*&api-version={api-version}
 ```
 
 - Label name is either **abc** or **xyz**
