@@ -89,8 +89,6 @@ GET /keys?name={key-name}&api-version={api-version}
 |```name``` is omitted or ```name=*```|Matches **any** key|
 |```name=abc```|Matches a key named  **abc**|
 |```name=abc*```|Matches key names that start with **abc**|
-|```name=*abc```|Matches key names that end with **abc**|
-|```name=*abc*```|Matches key names that contains **abc**|
 |```name=abc,xyz```|Matches key names **abc** or **xyz** (limited to 5 CSV)|
 
 ***Reserved characters***
@@ -128,16 +126,6 @@ GET /keys?api-version={api-version}
 - Key name starts with **abc**
 ```
 GET  /keys?name=abc*&api-version={api-version}
-```
-
-- Key name ends with **abc**
-```
-GET  /keys?name=*abc&api-version={api-version}
-```
-
-- Key name contains **abc**
-```
-GET  /keys?name=*abc*&api-version={api-version}
 ```
 
 - Key name is either **abc** or **xyz**
