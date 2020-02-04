@@ -161,8 +161,6 @@ GET /kv?key={key}&label={label}&api-version={api-version}
 |```key``` is omitted or ```key=*```|Matches **any** key|
 |```key=abc```|Matches a key named **abc**|
 |```key=abc*```|Matches keys names that start with **abc**|
-|```key=*abc```|Matches keys names that end with **abc**|
-|```key=*abc*```|Matches keys names that contain **abc**|
 |```key=abc,xyz```|Matches keys names **abc** or **xyz** (limited to 5 CSV)|
 
 |Label||
@@ -171,8 +169,6 @@ GET /kv?key={key}&label={label}&api-version={api-version}
 |```label=%00```|Matches KV without label|
 |```label=prod```|Matches the label **prod**|
 |```label=prod*```|Matches labels that start with **prod**|
-|```label=*prod```|Matches labels that end with **prod**|
-|```label=*prod*```|Matches labels that contain **prod**|
 |```label=prod,test```|Matches labels **prod** or **test** (limited to 5 CSV)|
 
 ***Reserved characters***
@@ -212,9 +208,9 @@ GET /kv?api-version={api-version}
 GET /kv?key=abc*&label=*&api-version={api-version}
 ```
 
-- Key name is either **abc** or **xyz** and include all labels that contain **prod**
+- Key name starts with **abc** and label equals **v1** or **v2**
 ```
-GET /kv?key=abc,xyz&label=*prod*&api-version={api-version}
+GET /kv?key=abc*&label=v1,v2&api-version={api-version}
 ```
 
 #
