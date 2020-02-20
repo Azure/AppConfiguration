@@ -1,6 +1,15 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 3.0.0 - February 19, 2020
+* Added the following method to allow users to override `ConfigurationClientOptions`. These can be used to update the default retry options or configure a proxy for connecting to Azure App Configuration.
+
+   ````csharp
+   public AzureAppConfigurationOptions ConfigureClientOptions(Action<ConfigurationClientOptions> options)
+   ````
+* Added `IConfigurationRefresher.TryRefreshAsync` method to make it easier to trigger configuration refresh without crashing the application due to transient errors. Also, renamed the `Refresh` method to `RefreshAsync`.
+* Reduced the number of retry attempts made for failed requests on initial configuration load from 12 to 2. This prevents manual refresh from blocking the application for long periods of time.
+
 ### 3.0.0-preview-011100001-1152 - January 16, 2020
 * Updated `Azure.Data.AppConfiguration` reference to `1.0.0`. See the [release notes](https://github.com/Azure/azure-sdk-for-net/blob/94fdb6ba5719daa4d8d63b226c61064b2f52c085/sdk/appconfiguration/Azure.Data.AppConfiguration/CHANGELOG.md) for more information on the changes.
 * Replaced `Newtonsoft.Json` with `System.Text.Json` to improve performance and increase compatibility with ASP.NET Core 3.0 and SDKs from other Azure services. See [this blog post](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/) for more information.
