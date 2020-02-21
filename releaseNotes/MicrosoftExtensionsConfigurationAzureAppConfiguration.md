@@ -1,6 +1,16 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 3.0.0 - February 19, 2020
+* Added the following method to allow users to override `ConfigurationClientOptions`. This enables customization on the underlying App Configuration client that includes modifying retry options and configuring proxy settings. [#106](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/106)
+
+   ````csharp
+   public AzureAppConfigurationOptions ConfigureClientOptions(Action<ConfigurationClientOptions> options)
+   ````
+* Added `IConfigurationRefresher.TryRefreshAsync` method, which will not throw exceptions on transient errors during configuration refresh. [#113](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/113)
+* Renamed the `IConfigurationRefresher.Refresh` method to `IConfigurationRefresher.RefreshAsync`.
+* Reduced maximum number of retries when querying App Configuration to prevent blocking the application for long periods of time during refresh. [#255](https://github.com/Azure/AppConfiguration/issues/255)
+
 ### 3.0.0-preview-011100001-1152 - January 16, 2020
 * Updated `Azure.Data.AppConfiguration` reference to `1.0.0`. See the [release notes](https://github.com/Azure/azure-sdk-for-net/blob/94fdb6ba5719daa4d8d63b226c61064b2f52c085/sdk/appconfiguration/Azure.Data.AppConfiguration/CHANGELOG.md) for more information on the changes.
 * Replaced `Newtonsoft.Json` with `System.Text.Json` to improve performance and increase compatibility with ASP.NET Core 3.0 and SDKs from other Azure services. See [this blog post](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/) for more information.
