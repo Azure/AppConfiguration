@@ -9,7 +9,7 @@
    ````
 * Added `IConfigurationRefresher.TryRefreshAsync` method, which will not throw exceptions on transient errors during configuration refresh. [#113](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/113)
 * Renamed the `IConfigurationRefresher.Refresh` method to `IConfigurationRefresher.RefreshAsync`.
-* Reduced maximum number of retries when querying App Configuration to prevent blocking the application for long periods of time during refresh. [#255](https://github.com/Azure/AppConfiguration/issues/255)
+* Reduced maximum number of retries when querying App Configuration to prevent blocking the application for long periods of time during startup or configuration refresh. [#255](https://github.com/Azure/AppConfiguration/issues/255)
 
 ### 3.0.0-preview-011100001-1152 - January 16, 2020
 * Updated `Azure.Data.AppConfiguration` reference to `1.0.0`. See the [release notes](https://github.com/Azure/azure-sdk-for-net/blob/94fdb6ba5719daa4d8d63b226c61064b2f52c085/sdk/appconfiguration/Azure.Data.AppConfiguration/CHANGELOG.md) for more information on the changes.
