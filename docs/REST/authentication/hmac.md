@@ -23,8 +23,8 @@ Provide each request with all HTTP headers required for Authentication. The mini
 ```
 Host: {myconfig}.azconfig.io
 Date: Fri, 11 May 2018 18:48:36 GMT
-x-ms-content-sha256: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-Authorization: HMAC-SHA256 Credential=a4016f0fa8fb0ef2&SignedHeaders=Host;x-ms-date;x-ms-content-sha256&Signature=jMXmttaxBJ0NmLlFKLZUkI8jdFu/8yqcTYzbkI3DGdU=
+x-ms-content-sha256: {SHA256 hash of the request body}
+Authorization: HMAC-SHA256 Credential={Access Key ID}&SignedHeaders=x-ms-date;host;x-ms-content-sha256&Signature={Signature}
 ```
 #
 #
@@ -56,12 +56,13 @@ Semicolon separated HTTP request header names required to sign the request. Thes
 
 **Required HTTP request headers**:
 
-```Host```;```x-ms-content-sha256```;```x-ms-date```[or ```Date```]
+```x-ms-date```[or ```Date```];```host```;```x-ms-content-sha256```
 
 Any other HTTP request headers can also be added to the signing. Just append them to the ```SignedHeaders``` argument.
 
 **Example:** 
-Host;x-ms-content-sha256;x-ms-date;```Content-Type```;```Accept```
+
+x-ms-date;host;x-ms-content-sha256;```Content-Type```;```Accept```
 
 #
 #
@@ -90,9 +91,9 @@ _String-To-Sign=_
 **Example:**
 ```js
 string-To-Sign=
-            "GET" + '\n' +                                                                                      // VERB
-            "/kv?fields=*" + '\n' +                                                                             // path_and_query
-            "Fri, 11 May 2018 18:48:36 GMT;example.azconfig.io;47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="    // signed_headers_values
+            "GET" + '\n' +                                                                                  // VERB
+            "/kv?fields=*&api-version=1.0" + '\n' +                                                         // path_and_query
+            "Fri, 11 May 2018 18:48:36 GMT;{myconfig}.azconfig.io;{value of ms-content-sha256 header}"      // signed_headers_values
 ```
 
 #
@@ -522,7 +523,7 @@ function Compute-HMACSHA256Hash(
 # Stop if any error occurs
 $ErrorActionPreference = "Stop"
 
-$uri = [System.Uri]::new("https://{config store name}.azconfig.io/kv?api-version=1.0")
+$uri = [System.Uri]::new("https://{myconfig}.azconfig.io/kv?api-version=1.0")
 $method = "GET"
 $body = $null
 $credential = "<Credential>"

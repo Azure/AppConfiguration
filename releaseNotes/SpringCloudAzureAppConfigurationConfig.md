@@ -2,6 +2,17 @@
 
 [Source code][source_code] | [Package (Maven)][package] | [Product documentation][docs] | [Samples][samples]
 
+# spring-cloud-azure-feature-management-web
+
+[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
+
+## 1.1.2/1.2.2 - February 24, 2020
+
+* AppConfigurationRefresh's refreshConfigurations() can be called to check if the configurations are not up to date and if the cache has expired trigger a refresh event.
+* A new authentication method has been added. AppConfigurationCredentialProvider and KeyVaultCredentialProvider can be used to pass TokenCredentials to the provider to use when connecting with App Configuration and Key Vault. This method also allows for different authentication methods/credentials to be used when connecting with multiple App Configuration stores or Key Vaults.
+* The fail-fast configuration has been updated to be per store. On startup with fail-fast set to false if an error happens on that store it will be skipped, and will be ignored during refresh. Also now during refresh all stores being refreshed need to be updated successfully. If not successful a new refresh attempt will be made when the cache-expiration date passes.
+* spring-cloud-azure-appconfiguration-config has been split into two packages; spring-cloud-azure-appconfiguraiton-config and spring-cloud-azure-appconfiguration-config-web. The web provider take on the spring-web dependency used for automated refresh. In the spring-cloud-azure-appconfiguration-config provider refresh needs to be manually triggered.
+
 ## 1.1.1/1.2.1 - January 13, 2020
 
 * Added Support for Spring Boot 2.2.x Hoxton with version 1.2.1. Spring Boot 2.1.x Greenwich is still supported with 1.1.1.
@@ -10,59 +21,46 @@
 
 * The property below has been removed as the timer-based configuration watch has been deprecated.
 
-```properties
-spring.cloud.azure.appconfiguration.watch.enabled
-```
+  ```properties
+  spring.cloud.azure.appconfiguration.watch.enabled
+  ```
 
 * The configuration is refreshed based on application activities.
   * The configuration is cached and the default cache expiration time is 30 seconds. The configuration won't be refreshed until the cache expiration time window is reached. This value can be modified, see example below.
-  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application. This is done by listening for ServletRequestHandledEvents.
-  * In a non-web application, the user needs to call AzureCloudConfigRefresh's `refreshConfigurations` method to signal configuration refresh at places where application activities occur. AzureCloudConfigRefresh can be accessed via dependency injection. Web based applications can also use this method, though both methods will still only update when the cache has expired. `refreshConfigurations` will return a `Future<Boolean>`, the resulting Boolean can be checked to see if a refresh event was triggered. **Note:** This does not mean the updated has been completed, only that a request was made to have the configurations updated.
 
-```properties
-spring.cloud.azure.appconfiguration.cache-expiration = 60
-```
+   ```properties
+  spring.cloud.azure.appconfiguration.cache-expiration = 60
+  ```
+  
+  * In a web application, this library will signal configuration refresh automatically as long as there are incoming requests to the application. This is done by listening for servlet requests.
 
-* Bug fix, configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
-* Bug fix, failed configuration refresh may not be reattempted.
+* Fixed the bug that configuration refresh occurred multiple times unnecessarily when an application loads configuration from more than one App Configuration store.
+* Fixed the bug that failed configuration refresh may not be reattempted.
 
 ### Authentication
 
-* The property below has been removed as the previous AAD authentication has been replaced with the Azure Java SDK.
+* The property below has been removed as the object ID is not needed for managed identity authentication.
 
-```properties
-spring.cloud.azure.appconfiguration.managed-identity.object-id
-```
+  ```properties
+  spring.cloud.azure.appconfiguration.managed-identity.object-id
+  ```
 
-* For clarity the name configuration has been changed to endpoint. Instead of my-configstore-name use `https://my-configstore-name.azconfig.io`
+* With the generic AAD support by the App Configuration, the property name has been renamed to endpoint.
 
-```properties
-spring.cloud.azure.appconfiguration.stores[0].endpoint= https://my-configstore-name.azconfig.io
-```
+  **Before**
 
-* A new authentication method has been added allowing users to provide there own credentials. Users can create a AppConfigCredentialProvider and KeyVaultCredentialProvider @Bean to provide credentials to App Configuration for connection to Azure App Configuration and Azure Key Vault respectively. Both objects define a method that is given a uri value and returns a [TokenCredential][token_credentials].
+  ```properties
+  spring.cloud.azure.appconfiguration.stores[0].name={my-configstore-name}
+  ```
 
-```java
-public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCredentialProvider {
+  **After**
 
-    @Override
-    public TokenCredential credentialForAppConfig(String uri) {
-            return buildCredential();
-    }
+  ```properties
+  spring.cloud.azure.appconfiguration.stores[0].endpoint= https://{my-configstore-name}.azconfig.io
+  ```
 
-    @Override
-    public TokenCredential credentialForKeyVault(String uri) {
-            return buildCredential();
-    }
-
-    TokenCredential buildCredential() {
-            return new DefaultAzureCredentialBuilder().build();
-    }
-
-}
-```
-
-* Bug fix, system-assigned managed identity no longer needs client id to be set.
+* Users can now implement `AppConfigCredentialProvider` and/or `KeyBaultCredentialProvider` to use any of the `TokenCredential` access types that are supported by [Azure Identity][token_credentials] to authenticate with App Configuration or Key Vault respectively. Please see [Starter](https://github.com/mrm9084/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config) for more details.
+* System-assigned managed identity does not needs client id to be set.
 
 ### Samples
 
@@ -105,3 +103,6 @@ public class MyCredentials implements AppConfigCredentialProvider, KeyVaultCrede
 [samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples
 [source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config
 [token_credentials]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+
+[package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config-web
+[source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config-web

@@ -55,3 +55,10 @@ WWW-Authenticate: HMAC-SHA256, Bearer error="invalid_token", error_description="
 ```
 **Reason:** The AAD token is not valid.
 **Solution:** Acquire an AAD token from the AAD Authority and ensure the proper audience is used.
+
+```sh
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: HMAC-SHA256, Bearer error="invalid_token", error_description="The access token is from the wrong issuer. It must match the AD tenant associated with the subscription, to which the configuration store belongs. If you just transferred your subscription and see this error message, please try back later."
+```
+**Reason:** The AAD token is not valid.
+**Solution:** Acquire an AAD token from the AAD Authority and ensure the AAD Tenant is the one associated with the subscription, to which the configuration store belongs. This error may appear if the principal belongs to more than one AAD tenant.

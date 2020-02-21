@@ -6,30 +6,28 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
-## 1.2.0 - January 13, 2020
+## 1.1.2/1.2.2 - February 24, 2020
 
-* Simplified Feature Management config file format.
+* `FeatureManager` now has method `getAllFeatureNames` which will return the names of all loaded Feature Flags.
+* Simplified Feature Management config file format. Example:
 
 ```yaml
 feature-management:
-  Beta: true
-  DarkTheme:
-    EnabledFor:
+  feature-t: false
+  feature-u:
+    enabled-for:
       -
-        Name: Random
-        Parameters:
-          chance: "50"
-  BetaAB:
-    EnabledFor:
+        name: Random
+  feature-v:
+    enabled-for:
       -
-        Name: Random
-        Parameters:
-          chance: "50"
-      -
-        Name: ClientFilter
-        Parameters:
-          clientIp: 10.0.0.1
+        name: TimeWindow
+        parameters:
+          start: "Wed, 01 May 2019 13:59:59 GMT"
+          end: "Mon, 01 July 2019 00:00:00 GMT"
 ```
+
+## 1.1.1/1.2.1 - January 13, 2020
 
 * The `isEnabled` method is now non-blocking Async and has been renamed to `isEnabledAsync` using Reactor.
 
