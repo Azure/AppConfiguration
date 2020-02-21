@@ -30,7 +30,7 @@ namespace FunctionApp
             // Signal to refresh the feature flags from Azure App Configuration.
             // This will be a no-op if the cache expiration time window is not reached.
             // Remove the 'await' operator if it's preferred to refresh without blocking.
-            await _configurationRefresher.Refresh();
+            await _configurationRefresher.TryRefreshAsync();
 
             string featureName = "Beta";
             bool featureEnalbed = await _featureManagerSnapshot.IsEnabledAsync(featureName);
