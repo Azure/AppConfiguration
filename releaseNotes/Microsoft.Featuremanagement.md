@@ -4,6 +4,41 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.0.0 - Feb 26, 2020
+
+### Enumerating Feature Names
+
+The `IFeatureManager` interface now exposes a way to enumerate all feature names that are registered in the system. This enables work flows where the states of all known features need to be evaluated.
+
+```
+IFeatureManager fm;
+
+await foreach (string featureName in fm.GetFeatureNamesAsync())
+{
+  await IsEnabledAsync(featureName);
+}
+```
+
+**Important:** Using the [`await foreach`](https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/generate-consume-asynchronous-stream#convert-to-async-streams) syntax requires using [version 8.0 or above of C#](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version).
+
+### Missing Feature Filters
+
+When the feature manager tries to evaluate the state of a feature that depends on a missing feature filter it will now throw a `FeatureManagementException` with the error `MissingFeatureFilter`.
+
+The new fail-fast behavior can be disabled via feature management options if the old behavior to ignore missing feature filters is desired.
+
+```
+services.Configure<FeatureManagementOptions>(options =>
+{
+    options.IgnoreMissingFeatureFilters = true;
+});
+```
+
+### Breaking Changes
+
+* FeatureManager now throws a `FeatureManagementException` with error `AmbiguousFeatureFilter`, instead of `InvalidOperationException`, if a feature makes an ambiguous reference to two or more feature filters.
+* `Task<bool> ISessionManager.TryGetAsync(string featureName, out bool enabled)` has been changed to `Task<bool?> ISessionManager.GetAsync(string featureName)` to enable async implementations.
+
 ## 2.0.0-preview-010610001-1263 - Nov 27, 2019
 
 ### Async Feature Filters
