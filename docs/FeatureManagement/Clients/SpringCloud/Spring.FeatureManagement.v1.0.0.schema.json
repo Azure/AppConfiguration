@@ -1,9 +1,9 @@
 {
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://azconfig.io/schemas/FeatureManagement/v1.0.0/SpringFeatureFlag.json",
+    "$id": "http://azconfig.io/schemas/FeatureManagement/SpringCloud/v1.0.0/SpringFeatureFlag.json",
     "type": "object",
-    "title": "An Spring Cloud Azure App Configuration Feature Declaration",
+    "title": "A Spring Cloud Azure App Configuration Feature Management Configuration",
     "required": [
         "feature-management"
     ],
@@ -34,7 +34,7 @@
                                     "enabled-for": {
                                         "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor",
                                         "type": "array",
-                                        "title": "The declaration of conditions used to dynamically enable features.",
+                                        "title": "A list of feature filters that can be used to enable the feature conditionally.",
                                         "default": null,
                                         "items": {
                                             "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor/items",
@@ -48,8 +48,8 @@
                                                 "name": {
                                                     "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor/items/properties/Name",
                                                     "type": "string",
-                                                    "title": "Client Filter Name",
-                                                    "description": "The name used to refer to and require a client filter.",
+                                                    "title": "Feature Filter Name",
+                                                    "description": "The name used to refer to and require a feature filter.",
                                                     "default": "",
                                                     "examples": [
                                                         "percentageFilter"
@@ -60,15 +60,15 @@
                                                     "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor/items/properties/Parameters",
                                                     "type": "object",
                                                     "title": "Any properties that are passed into the filter",
-                                                    "description": "A client filter can require any set of parameters of any type.",
+                                                    "description": "A feature filter can require any set of parameters of any type.",
                                                     "properties": {
                                                         "type": "object",
                                                         "patternProperties": {
                                                             ".*": {
                                                                 "$id": "#/properties/feature-management/properties/FeatureV/properties/.*/items/properties/Parameters/properties/.*",
                                                                 "type": "object",
-                                                                "title": "Client Filter Parameters",
-                                                                "description": "Custom parameter for the given client filter.",
+                                                                "title": "Feature Filter Parameters",
+                                                                "description": "Custom parameter for the given feature filter.",
                                                                 "default": "",
                                                                 "pattern": "^(.*)$"
                                                             }

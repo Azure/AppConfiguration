@@ -8,7 +8,7 @@
 
 ## 1.1.2/1.2.2 - February 25, 2020
 
-* `FeatureManager` now has method `getAllFeatureNames` which will return the names of all loaded Feature Flags.
+* `FeatureManager` now has a method `getAllFeatureNames` which will return the names of all loaded Feature Flags.
 * Simplified Feature Management config schema format, there is now a schema file under docs/FeatureManagement/Clients/SpringCloud. Example:
 
 ```yaml
