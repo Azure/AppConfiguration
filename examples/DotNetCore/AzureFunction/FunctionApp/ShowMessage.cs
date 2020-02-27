@@ -29,7 +29,7 @@ namespace FunctionApp
 
             // Signal to refresh the configuration if the registered key(s) is modified.
             // This will be a no-op if the cache expiration time window is not reached.
-            // The configuration is refreshed asynchronously.
+            // The configuration is refreshed asynchronously without blocking the execustion of the current function.
             _ = _configurationRefresher.TryRefreshAsync();
 
             string message = _settings.Message;

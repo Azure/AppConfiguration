@@ -22,9 +22,9 @@ namespace FunctionApp
                 options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
                        // Load all keys that start with `TestApp:`
                        .Select("TestApp:*")
-                       // Configure to reload configuration if the registered key is modified
+                       // Configure to reload configuration if the registered 'Sentinel' key is modified
                        .ConfigureRefresh(refreshOptions =>
-                            refreshOptions.Register("TestApp:Settings:Message", refreshAll: true)
+                            refreshOptions.Register("TestApp:Settings:Sentinel", refreshAll: true)
                         )
                        // Indicate to load feature flags
                        .UseFeatureFlags();
