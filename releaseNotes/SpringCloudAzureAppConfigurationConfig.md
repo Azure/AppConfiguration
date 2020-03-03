@@ -8,14 +8,15 @@
 
 ## 1.1.2/1.2.2 - February 25, 2020
 
-* Credentials for authentication can now be provided in code via ```AppConfigurationCredentialProvider``` and ```KeyVaultCredentialProvider```. These new types are used to pass ```TokenCredentials``` to the provider when connecting to Azure App Configuration and Key Vault. This method also allows for different authentication methods/credentials to be used when connecting with multiple App Configuration stores or Key Vaults.
-* The ```spring.cloud.azure.appconfiguration.stores[0].fail-fast``` setting has been updated to be per store. When fail-fast is set to false for an App Configuration instance, any failures that occur during its initial load or subsequent refreshes will be ignored.
-  * Previously this setting controlled the error handling for all configuration stores, now this setting allows for different error handling to be configured per configuration store.
-  * The error handling specified by fail-fast is now limited to when settings are loaded on startup. This setting has no affect on configuration refresh.
-  * Failed refreshes will be automatically retried, if not completely successful.
-* spring-cloud-azure-appconfiguration-config has been split into two packages; spring-cloud-azure-appconfiguration-config and spring-cloud-azure-appconfiguration-config-web. The web provider take on the spring-web dependency used for automated refresh. In the spring-cloud-azure-appconfiguration-config provider, refresh needs to be manually triggered.
+* Credentials for authentication can now be provided in code via ```AppConfigurationCredentialProvider``` and ```KeyVaultCredentialProvider```.
+  * This method allows for different authentication methods/credentials to be used when connecting with multiple App Configuration instances or Key Vaults.
+* The ```spring.cloud.azure.appconfiguration.stores[0].fail-fast``` setting has been updated to be per store.
+  * Previously this setting controlled the error handling for all App Configuration instances, now this setting allows for different error handling to be configured per App Configuration instance.
+  * The error handling specified by fail-fast is now limited to when settings are loaded on application startup. This setting does not affect error handling for configuration refresh. However, if there is an error loading from the App Configuration instance on startup, it will not be included in refresh attempts.
+* Failed refreshes will now be automatically retried, if not completely successful.
+* spring-cloud-azure-appconfiguration-config has been split into two packages: spring-cloud-azure-appconfiguration-config and spring-cloud-azure-appconfiguration-config-web. The web provider take on the spring-web dependency used for automated refresh. In the spring-cloud-azure-appconfiguration-config provider, refresh needs to be manually triggered.
   * To continue using automated refresh, the "spring-cloud-azure-appconfiguration-config" dependency should be updated to "spring-cloud-azure-appconfiguration-config-web".
-* ```AppConfigurationRefresh```'s ```refreshConfigurations()``` can be called to check if the settings in each configuration store are up to date and, if the cache has expired, trigger a refresh event.
+* ```AppConfigurationRefresh```'s ```refreshConfigurations()``` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
 
 ## 1.1.1/1.2.1 - January 13, 2020
 
