@@ -17,7 +17,7 @@
             Configure();
 
             var cts = new CancellationTokenSource();
-            Run(cts.Token);
+            _ = Run(cts.Token);
 
             // Finish on key press
             Console.ReadKey();
@@ -46,8 +46,7 @@
             builder.AddAzureAppConfiguration(options =>
             {
                 options.Connect(configuration["ConnectionString"])
-                       .Use("AppName")
-                       .Use("Settings:BackgroundColor")
+                       .Select("*")
                        .ConfigureRefresh(refresh =>
                        {
                            refresh.Register("AppName")
@@ -72,7 +71,7 @@
                 sb.Clear();
 
                 // Trigger and wait for an async refresh for registered configuration settings
-                await _refresher.Refresh();
+                await _refresher.TryRefreshAsync();
 
                 sb.AppendLine($"{Configuration["AppName"]} has been configured to run in {Configuration["Language"]}");
                 sb.AppendLine();
