@@ -1,0 +1,89 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://azconfig.io/schemas/FeatureManagement/SpringCloud/v1.0.0/FeatureManagement.json",
+    "type": "object",
+    "title": "A Spring Cloud Azure App Configuration Feature Management Configuration",
+    "required": [
+        "feature-management"
+    ],
+    "properties": {
+        "feature-management": {
+            "$id": "#/properties/feature-management",
+            "type": "object",
+            "title": "The Feature Management Schema",
+            "properties": {
+                "patternProperties": {
+                    ".*": {
+                        "anyOf": [
+                            {
+                                "type": "boolean",
+                                "title": "On/Off Feature Flag",
+                                "description": "A feature flag that always returns the same value.",
+                                "examples": [
+                                    true,
+                                    false
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "title": "Conditional Feature Flag",
+                                "description": "A feature flag which value is dynamic based on a set of feature filters",
+                                "default": null,
+                                "properties": {
+                                    "enabled-for": {
+                                        "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor",
+                                        "type": "array",
+                                        "title": "A list of feature filters that can be used to enable the feature conditionally.",
+                                        "default": null,
+                                        "items": {
+                                            "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor/items",
+                                            "type": "object",
+                                            "title": "The filter information associated with the conditional.",
+                                            "required": [
+                                                "name",
+                                                "parameters"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor/items/properties/Name",
+                                                    "type": "string",
+                                                    "title": "Feature Filter Name",
+                                                    "description": "The name used to refer to and require a feature filter.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "percentageFilter"
+                                                    ],
+                                                    "pattern": "^(.*)$"
+                                                },
+                                                "parameters": {
+                                                    "$id": "#/properties/feature-management/properties/.*/properties/EnabledFor/items/properties/Parameters",
+                                                    "type": "object",
+                                                    "title": "Any properties that are passed into the filter",
+                                                    "description": "A feature filter can require any set of parameters of any type.",
+                                                    "properties": {
+                                                        "type": "object",
+                                                        "patternProperties": {
+                                                            ".*": {
+                                                                "$id": "#/properties/feature-management/properties/FeatureV/properties/.*/items/properties/Parameters/properties/.*",
+                                                                "type": "object",
+                                                                "title": "Feature Filter Parameters",
+                                                                "description": "Custom parameter for the given feature filter.",
+                                                                "default": "",
+                                                                "pattern": "^(.*)$"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

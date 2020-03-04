@@ -2,6 +2,22 @@
 
 [Source code][source_code] | [Package (Maven)][package] | [Product documentation][docs] | [Samples][samples]
 
+# spring-cloud-azure-appconfiguration-config-web
+
+[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
+
+## 1.1.2/1.2.2 - February 25, 2020
+
+* Credentials for authentication can now be provided in code via ```AppConfigurationCredentialProvider``` and ```KeyVaultCredentialProvider```.
+  * This method allows for different authentication methods/credentials to be used when connecting with multiple App Configuration instances or Key Vaults.
+* The ```spring.cloud.azure.appconfiguration.stores[0].fail-fast``` setting has been updated to be per store.
+  * Previously this setting controlled the error handling for all App Configuration instances, now this setting allows for different error handling to be configured per App Configuration instance.
+  * The error handling specified by fail-fast is now limited to when settings are loaded on application startup. This setting does not affect error handling for configuration refresh. However, if there is an error loading from the App Configuration instance on startup and fail-fast is false for that instance, it will not be included in refresh attempts.
+* Failed refreshes will now be automatically retried, if not completely successful.
+* spring-cloud-azure-appconfiguration-config has been split into two packages: spring-cloud-azure-appconfiguration-config and spring-cloud-azure-appconfiguration-config-web. The web provider take on the spring-web dependency used for automated refresh. In the spring-cloud-azure-appconfiguration-config provider, refresh needs to be manually triggered.
+  * To continue using automated refresh, the "spring-cloud-azure-appconfiguration-config" dependency should be updated to "spring-cloud-azure-appconfiguration-config-web".
+* ```AppConfigurationRefresh```'s ```refreshConfigurations()``` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
+
 ## 1.1.1/1.2.1 - January 13, 2020
 
 * Added Support for Spring Boot 2.2.x Hoxton with version 1.2.1. Spring Boot 2.1.x Greenwich is still supported with 1.1.1.
@@ -92,3 +108,6 @@
 [samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples
 [source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config
 [token_credentials]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+
+[package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config-web
+[source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config-web
