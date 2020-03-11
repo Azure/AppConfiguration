@@ -5,8 +5,12 @@ Configuration stores have limits on the requests that they may serve. Any reques
 Throttling is divided into different quota policies:
 
 **TotalRequests** - total amount of requests/sec
-**TotalWrites** - total amount of write requests/second
+		
+**WriteRequests** - total amount of write and delete requests/second
+
 **Bandwidth** - outbound data in bytes
+
+**Storage** - total storage size of user data in bytes
 
 
 ## Handling Throttled Responses
@@ -21,8 +25,8 @@ Content-Type: application/problem+json; charset=utf-8
 ```sh
 {
   "type": "https://azconfig.io/errors/too-many-requests",
-  "title": "The amount of requests sent to the server have surpassed the assigned quota",
-  "policy": "TotalRequests" | "TotalWrites" | "Bandwidth",
+  "title": "Resource utilization has surpassed the assigned quota",
+  "policy": "TotalRequests" | "WriteRequests" | "Bandwidth" | "Storage",
   "status": 429
 }
 ```
