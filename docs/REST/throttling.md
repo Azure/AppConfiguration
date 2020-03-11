@@ -6,7 +6,7 @@ Throttling is divided into different quota policies:
 
 **TotalRequests** - total amount of requests/sec
 		
-**WriteRequests** - total amount of write and delete requests/second
+**WriteRequests** - total amount of write requests/second
 
 **Bandwidth** - outbound data in bytes
 
