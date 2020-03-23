@@ -6,7 +6,7 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ### v2.0.10 - March, 21 2020
 * Added support for trimming key prefixes before setting as pipeline variables.
-* Added support for resolving Key Vault references and set as pipeline secrets.
+* Added support for resolving Key Vault references and setting as pipeline secrets.
 ### v2.0.9 - January, 21 2020
 * **Breaking change**: With the support of Role-Based Access Control (RBAC) by the App Configuration service, the permission of this pipeline task can be granted with more granular and specific access control.
 
