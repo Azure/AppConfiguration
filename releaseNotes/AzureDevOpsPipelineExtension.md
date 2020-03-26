@@ -4,9 +4,15 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v2.0.11 - March, 24 2020
+* Updated [homepage documentation](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task):
+  * Added `FAQ` section.
+  * Removed `Preview` tag.
+
 ### v2.0.10 - March, 21 2020
 * Added support for trimming key prefixes before setting as pipeline variables.
 * Added support for resolving Key Vault references and setting as pipeline secrets.
+
 ### v2.0.9 - January, 21 2020
 * **Breaking change**: With the support of Role-Based Access Control (RBAC) by the App Configuration service, the permission of this pipeline task can be granted with more granular and specific access control.
 
@@ -29,13 +35,13 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
   * Added an example of how to consume fetched key-values.
 
 ### v1.6.3 - June, 03 2019
-* Supported auto-populated `App Configuration name` dropdown from a textbox.
+* Added support for auto-populated `App Configuration name` dropdown from a textbox.
 * Reset environment variables with invalid keys now prints a masked value, `****`, instead of the actual value of the key-value.
 
 ### v1.4.48 - May, 06 2019
 * Initial version.
 * Added Azure App Configuration Extension to [Azure DevOps Marketplace](https://marketplace.visualstudio.com/).
 * Integrated with pipeline framework control `Azure subscription` so that user could use existing `Connection Endpoint` to auth with Azure App Configuration instance.
-* Supported `Key filter` and `Label` to query matched key-values.
+* Added support for `Key filter` and `Label` to query matched key-values.
 
 
