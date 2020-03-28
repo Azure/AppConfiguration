@@ -4,18 +4,16 @@ Configuration stores have limits on the requests that they may serve. Any reques
 
 Throttling is divided into different quota policies:
 
-**TotalRequests** - total amount of requests/sec
-		
-**WriteRequests** - total amount of write requests/second
+**Total Requests** - total number of requests
 
-**Bandwidth** - outbound data in bytes
+**Total Bandwidth** - outbound data in bytes
 
 **Storage** - total storage size of user data in bytes
 
-
+ 
 ## Handling Throttled Responses
 
-When the rate limit for a given request type has been reached, the configuration store will respond to further requests of that type with a _429_ status code. The _429_ response will contain a _retry-after-ms_ header providing the client with a suggested wait time (in milliseconds) to allow the request quota to replinish.
+When the rate limit for a given quota has been reached, the server will respond to further requests of that type with a _429_ status code. The _429_ response will contain a _retry-after-ms_ header providing the client with a suggested wait time (in milliseconds) to allow the request quota to replinish.
 
 ```
 HTTP/1.1 429 (Too Many Requests)
@@ -26,12 +24,12 @@ Content-Type: application/problem+json; charset=utf-8
 {
   "type": "https://azconfig.io/errors/too-many-requests",
   "title": "Resource utilization has surpassed the assigned quota",
-  "policy": "TotalRequests" | "WriteRequests" | "Bandwidth" | "Storage",
+  "policy": "Total Requests",
   "status": 429
 }
 ```
 
-In the above example, the client has exceeded its allowed requests per second and is advised to slow down and wait 10 milliseconds before attempting any further requests. Clients should consider progressive backoff as well.
+In the above example, the client has exceeded its allowed quota and is advised to slow down and wait 10 milliseconds before attempting any further requests. Clients should consider progressive backoff as well.
 
 
 # Other Retry
