@@ -1,6 +1,14 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 3.0.1 - April 02, 2020
+* Improved refresh for feature flags to reduce the number of calls made to App Configuration if no change is detected.
+* Fixed the issue that caused `TryRefreshAsync` to throw an `Azure.Identity.AuthenticationFailedException` when the `TokenCredential` used to fetch a key vault reference failed to authenticate.
+* Fixed the following issues when `optional` parameter is set to `true` in the method `AddAzureAppConfiguration`
+    * An exception might be thrown if the configuration store could not be accessed.
+    * `RefreshAsync` might ignore exceptions if configuration fails to load after a change is detected in a key with `refreshAll: true`.
+    * `TryRefreshAsync` would throw a `NullReferenceException` if the initial attempt to load the configuration in `IConfiguration.Build` failed.
+
 ### 3.0.0 - February 19, 2020
 * Added the following method to allow users to override `ConfigurationClientOptions`. This enables customization on the underlying App Configuration client that includes modifying retry options and configuring proxy settings. [#106](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/106)
 
@@ -133,7 +141,7 @@
 * Improved durability on Watch, so that transient network errors do not cause the process to detach.
 * Added additional retries on network error when using `ConnectWithManagedIdentity`.
 * Enabled Correlation-Context for request-tracing.
-    * ***Request-Tracing can be disabled by setting the environment variable `AZURE_APP_CONFIGURATION_TRACING_DISABLED` to `True` or `1`***
+    * Request-Tracing can be disabled by setting the environment variable `AZURE_APP_CONFIGURATION_TRACING_DISABLED` to `True` or `1`
     * Added tracing options for the following:
         * Hosting platform.
         * Differentiating Initialization and Watch requests.
