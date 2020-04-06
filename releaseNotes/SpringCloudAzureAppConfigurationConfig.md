@@ -6,6 +6,13 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 1.1.3/1.2.3 - April 06, 2020
+
+* Fixed the bug that caused the configurations to refresh extra times when the config store didn't use feature flags.
+* Updated to version 1.3.0 of the Azure Core library fixing compatibility with some other Azure libraries.
+* Fixed the bug where the number of labels that could be used was maxed at 5.
+* Reduced the number of requests made when using multiple labels.
+
 ## 1.1.2/1.2.2 - February 25, 2020
 
 * Credentials for authentication can now be provided in code via ```AppConfigurationCredentialProvider``` and ```KeyVaultCredentialProvider```.
