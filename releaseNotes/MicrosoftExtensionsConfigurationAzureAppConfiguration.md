@@ -2,12 +2,26 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 3.0.1 - April 02, 2020
-* Improved refresh for feature flags to reduce the number of calls made to App Configuration if no change is detected.
-* Fixed the issue that caused `TryRefreshAsync` to throw an `Azure.Identity.AuthenticationFailedException` when the `TokenCredential` used to fetch a key vault reference failed to authenticate.
+* Improved refresh for feature flags to reduce the number of calls made to App Configuration if no change is detected. [#138](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/138)
+* Fixed the issue that caused `TryRefreshAsync` to throw an `Azure.Identity.AuthenticationFailedException` when the `TokenCredential` used to fetch a key vault reference failed to authenticate. [#149](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/149)
 * Fixed the following issues when `optional` parameter is set to `true` in the method `AddAzureAppConfiguration`
-    * An exception might be thrown if the configuration store could not be accessed.
+    * An exception might be thrown if the configuration store could not be accessed. [#136](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/136)
     * `RefreshAsync` might ignore exceptions if configuration fails to load after a change is detected in a key with `refreshAll: true`.
     * `TryRefreshAsync` would throw a `NullReferenceException` if the initial attempt to load the configuration in `IConfiguration.Build` failed.
+* Added support to auto-recover from failures during initial configuration load when the `optional` parameter is set to `true` in the method `AddAzureAppConfiguration`. This can be accomplished by invoking the `TryRefreshAsync` or `RefreshAsync` method that detects the missing configuration and attempts to load the initial configuration again. [#145](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/145)
+
+   ```` csharp
+   IConfigurationRefresher refresher;
+   IConfigurationBuilder configBuilder = new ConfigurationBuilder();
+   IConfiguration configuration = configBuilder.AddAzureAppConfiguration(options => {
+      options.Connect(endpoint, new DefaultAzureCredential());
+      options.ConfigureRefresh(refresh => refresh.Register("some_key"));
+      refresher = options.GetRefresher();
+   }, optional: true);
+   
+   // When the initial configuration fails to load, this attemps to auto-recover the configuration and returns the result
+   bool isRefreshSuccessful = await refresher.TryRefreshAsync();
+   ````
 
 ### 3.0.0 - February 19, 2020
 * Added the following method to allow users to override `ConfigurationClientOptions`. This enables customization on the underlying App Configuration client that includes modifying retry options and configuring proxy settings. [#106](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/106)
