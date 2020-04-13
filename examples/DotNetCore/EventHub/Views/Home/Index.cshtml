@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section InlineStyles {
+    .center {
+        font-size: @(ViewData["FontSize"])px;
+        color: @ViewData["FontColor"];
+    }
+
+    body {
+        background-color: @ViewData["BackgroundColor"];
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome one and all</h1>
+    @foreach (var message in ViewData["Messages"].ToString().Split(';'))
+    {
+        <p>@(message)</p>
+    }
+</div>

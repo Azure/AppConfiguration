@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppConfigEventHub", "AppConfigEventHub.csproj", "{F12563A0-B8C6-45BD-BF2E-76F804C67703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleAppConfigEventHub", "SimpleAppConfigEventHub.csproj", "{6BC71013-48DE-4737-971A-AA73C1C52AF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F12563A0-B8C6-45BD-BF2E-76F804C67703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F12563A0-B8C6-45BD-BF2E-76F804C67703}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F12563A0-B8C6-45BD-BF2E-76F804C67703}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F12563A0-B8C6-45BD-BF2E-76F804C67703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC71013-48DE-4737-971A-AA73C1C52AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC71013-48DE-4737-971A-AA73C1C52AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC71013-48DE-4737-971A-AA73C1C52AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC71013-48DE-4737-971A-AA73C1C52AF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B10A4BD0-76D2-42C6-823D-3848E0B5633F}
+		SolutionGuid = {58F5B389-B597-48D6-8DD4-767950D58F03}
 	EndGlobalSection
 EndGlobal
