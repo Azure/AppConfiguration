@@ -8,8 +8,8 @@
 
 ## 1.1.3/1.2.3 - April 06, 2020
 
-* Fixed the bug that caused the configurations to refresh extra times when the config store didn't use feature flags.
-* Updated to version 1.3.0 of the Azure Core library fixing compatibility with some other Azure libraries.
+* Fixed the bug [#298](https://github.com/Azure/AppConfiguration/issues/298) that caused the configurations to refresh extra times when the config store didn't use feature flags.
+* Fixed bug [#659](https://github.com/microsoft/spring-cloud-azure/issues/659). Updated to version 1.3.0 of the Azure Core library fixing compatibility with some other Azure libraries.
 * Fixed the bug where the number of labels that could be used was maxed at 5.
 * Reduced the number of requests made when using multiple labels.
 
