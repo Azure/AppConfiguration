@@ -1,0 +1,19 @@
+﻿<!-- Be sure to import WebDemoSettings.json into your App Configuration store so that these configuration values are set properly.  -->
+
+@{
+    ViewBag.Title = System.Configuration.ConfigurationManager.AppSettings["WebDemo:Settings:AppName"];
+    ViewBag.BackgroundColor = System.Configuration.ConfigurationManager.AppSettings["WebDemo:Settings:BackgroundColor"];
+    ViewBag.FontSize = System.Configuration.ConfigurationManager.AppSettings["WebDemo:Settings:FontSize"] + "px";
+    ViewBag.Message = System.Configuration.ConfigurationManager.AppSettings["WebDemo:Settings:Messages"];
+}
+
+<style>
+    body {
+        background-color: @ViewBag.BackgroundColor;
+    }
+    h1 {
+        font-size: @ViewBag.FontSize;
+    }
+</style>
+
+<h1>@ViewBag.Message</h1>
