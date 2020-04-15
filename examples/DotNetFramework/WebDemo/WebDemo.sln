@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29820.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BF12FB6-B5A2-477A-BEB1-55AF3489B0D9}"
+	ProjectSection(SolutionItems) = preProject
+		WebDemoSettings.json = WebDemoSettings.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Azure.AppConfiguration.WebDemo", "Microsoft.Azure.AppConfiguration.WebDemo\Microsoft.Azure.AppConfiguration.WebDemo.csproj", "{3E7AC0C5-AAD7-4204-9920-1E5555287C96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E7AC0C5-AAD7-4204-9920-1E5555287C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E7AC0C5-AAD7-4204-9920-1E5555287C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E7AC0C5-AAD7-4204-9920-1E5555287C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E7AC0C5-AAD7-4204-9920-1E5555287C96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9E4D193-392A-4565-8129-E4C834968D51}
+	EndGlobalSection
+EndGlobal
