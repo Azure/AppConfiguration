@@ -37,7 +37,7 @@ namespace ConfigurationStoreBackup
         private static readonly ConfigurationClient primaryAppConfigClient = new ConfigurationClient(new Uri(Environment.GetEnvironmentVariable("PrimaryStoreEndpoint")), new ManagedIdentityCredential());
         private static readonly ConfigurationClient secondaryAppConfigClient = new ConfigurationClient(new Uri(Environment.GetEnvironmentVariable("SecondaryStoreEndpoint")), new ManagedIdentityCredential());
         private static readonly QueueClient queueClient = new QueueClient(Environment.GetEnvironmentVariable("AzureWebJobsStorage"), "eventgridqueue");
-        private static readonly int maxMessagesToRead = 32;
+        private const int maxMessagesToRead = 32;
 
         [FunctionName("BackupAppConfigurationStore")]
         public static void Run([TimerTrigger("0 */10 * * * *")]TimerInfo myTimer, ILogger log)
@@ -57,7 +57,7 @@ namespace ConfigurationStoreBackup
         private static async Task ProcessStorageQueueMessagesAsync(ILogger log)
         {
             // Peek to see if there are events in the queue.
-            while (await AnyMessageInQueueAsync())
+            while ((await queueClient.PeekMessagesAsync().ConfigureAwait(false)).Value.Length > 0)
             {
                 Response<QueueMessage[]> retrievedMessages = await queueClient.ReceiveMessagesAsync(maxMessagesToRead).ConfigureAwait(false);
 
@@ -85,15 +85,9 @@ namespace ConfigurationStoreBackup
             }
         }
 
-        private static async Task<bool> AnyMessageInQueueAsync()
-        {
-            var peekedMessages = await queueClient.PeekMessagesAsync().ConfigureAwait(false);
-            return peekedMessages.Value.Length > 0; 
-        }
-
         private static HashSet<KeyLabel> ExtractKeyLabelsFromEvents(QueueMessage[] retrievedMessages, ILogger log)
         {
-            HashSet<KeyLabel> updatedKeyLabels = new HashSet<KeyLabel>(new KeyLabelComparer());
+            HashSet<KeyLabel> updatedKeyLabels = new HashSet<KeyLabel>();
             foreach (QueueMessage message in retrievedMessages)
             {
                 string decodedMessage = string.Empty;
@@ -102,7 +96,7 @@ namespace ConfigurationStoreBackup
                     // Event grid will encode events in Base64 format before publishing to storage queue. Decode the message before parsing it.
                     decodedMessage = Encoding.UTF8.GetString(Convert.FromBase64String(message.MessageText));
                     JToken dataObject = JObject.Parse(decodedMessage).Property("data")?.Value;
-                    if (dataObject != null)
+                    if (dataObject != null && dataObject["key"] != null)
                     {
                         string key = dataObject["key"].ToString();
                         string label = dataObject["label"]?.ToString();
@@ -118,11 +112,6 @@ namespace ConfigurationStoreBackup
                 {
                     // If its not a valid JSON, ignore the queue message. 
                     log.LogInformation($"Queue message in invalid JSON format will be ignored.\nMessage: {decodedMessage}");
-                }
-                catch (NullReferenceException)
-                {
-                    // If key is null, ignore the queue message. 
-                    log.LogInformation($"Event data contains null 'key'. Queue message will be ignored.\nMessage: {decodedMessage}");
                 }
             }
             return updatedKeyLabels;
