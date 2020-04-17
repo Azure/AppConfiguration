@@ -129,7 +129,7 @@ namespace ConfigurationStoreBackup
                         // Current setting retrieved from primary store needs to be updated in secondary store.
                         await secondaryAppConfigClient.SetConfigurationSettingAsync(setting).ConfigureAwait(false);
                         log.LogInformation($"Successfully updated key: {setting.Key} label: {setting.Label}");
-                        
+
                         updatedKeyLabels.Remove(primaryStoreKeyLabel);
                         if (updatedKeyLabels.Count == 0)
                         {

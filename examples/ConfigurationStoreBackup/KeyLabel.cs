@@ -12,7 +12,7 @@ namespace ConfigurationStoreBackup
             Key = key;
             Label = label;
         }
-        
+
         public override bool Equals(Object obj)
         {
             if (obj is KeyLabel)
