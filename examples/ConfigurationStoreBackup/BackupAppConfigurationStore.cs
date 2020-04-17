@@ -67,8 +67,8 @@ namespace ConfigurationStoreBackup
                 // If there are any valid App Configuration events, update secondary store.
                 if (updatedKeyLabels.Count > 0)
                 {
-                    bool backupCompleted = await BackupKeyValuesAsync(updatedKeyLabels, log).ConfigureAwait(false);
-                    if (!backupCompleted)
+                    bool isBackupSuccessful = await BackupKeyValuesAsync(updatedKeyLabels, log).ConfigureAwait(false);
+                    if (!isBackupSuccessful)
                     {
                         // Abort this function without deleting retrievedMessages from storage queue.
                         log.LogError($"Backup failed because of error(s) returned by Azure App Configuration service.");
@@ -105,12 +105,10 @@ namespace ConfigurationStoreBackup
                 }
                 catch (FormatException)
                 {
-                    // If its not in valid base64 format, ignore the queue message. 
                     log.LogInformation($"Queue message in invalid Base64 format will be ignored.\nMessage: {message.MessageText}");
                 }
                 catch (JsonReaderException)
                 {
-                    // If its not a valid JSON, ignore the queue message. 
                     log.LogInformation($"Queue message in invalid JSON format will be ignored.\nMessage: {decodedMessage}");
                 }
             }
@@ -119,7 +117,7 @@ namespace ConfigurationStoreBackup
 
         private static async Task<bool> BackupKeyValuesAsync(HashSet<KeyLabel> updatedKeyLabels, ILogger log)
         {
-            bool backupCompleted = false;
+            bool isBackupSuccessful = false;
             try
             {
                 // Read all settings from primary store and update secondary store.
@@ -135,7 +133,6 @@ namespace ConfigurationStoreBackup
                         updatedKeyLabels.Remove(primaryStoreKeyLabel);
                         if (updatedKeyLabels.Count == 0)
                         {
-                            // If no more key labels were updated, we can stop processing.
                             break;
                         }
                     }
@@ -146,7 +143,7 @@ namespace ConfigurationStoreBackup
                 {
                     await secondaryAppConfigClient.DeleteConfigurationSettingAsync(keyLabel.Key, keyLabel.Label).ConfigureAwait(false);
                 }
-                backupCompleted = true;
+                isBackupSuccessful = true;
             }
             catch (RequestFailedException exception)
             {
@@ -160,7 +157,7 @@ namespace ConfigurationStoreBackup
                     log.LogError($"\nStatus: {ex.Status}\nError Message: {ex.Message}");
                 }
             }
-            return backupCompleted;
+            return isBackupSuccessful;
         }
     }
 }

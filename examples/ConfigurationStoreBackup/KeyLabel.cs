@@ -4,8 +4,8 @@ namespace ConfigurationStoreBackup
 {
     internal struct KeyLabel
     {
-        internal string Key { get; }
-        internal string Label { get; }
+        public string Key { get; }
+        public string Label { get; }
 
         public KeyLabel(string key, string label)
         {
