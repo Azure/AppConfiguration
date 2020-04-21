@@ -19,9 +19,7 @@ namespace SimpleAppConfigEventHub
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            services.Configure<EventHubConnection>(Configuration.GetSection("EventHubConnection"));
-            services.Configure<Settings>(Configuration.GetSection("Demo:Settings"));
+            services.AddSingleton<IEventHubService, EventHubService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

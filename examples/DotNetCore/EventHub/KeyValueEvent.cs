@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace SimpleAppConfigEventHub
 {
-    class EventContract
+    class KeyValueEvent
     {
         [JsonProperty("id")]
         public string Id { get; set; }

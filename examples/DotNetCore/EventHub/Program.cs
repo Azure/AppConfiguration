@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace SimpleAppConfigEventHub
@@ -15,6 +16,20 @@ namespace SimpleAppConfigEventHub
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureAppConfiguration(builder =>
+                    {
+                        var settings = builder.Build();
+                        var appConfigConnectionString = settings["EventHubConnection:AppConfigConnectionString"];
+                        if (!string.IsNullOrEmpty(appConfigConnectionString))
+                        {
+                            builder.AddAzureAppConfiguration(options =>
+                            {
+                                options.Connect(appConfigConnectionString)
+                                       .Select(keyFilter: "Demo:Settings:*");
+                            });
+                        }
+                    });
+
                     webBuilder.UseStartup<Startup>();
                 });
     }
