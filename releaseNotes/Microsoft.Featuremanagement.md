@@ -4,6 +4,14 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.1.0-preview - Apr 22, 2020
+
+### Targeting
+
+Support for rolling out features to a target audience has been added through built in feature filters. [#56](https://github.com/microsoft/FeatureManagement-Dotnet/pull/56)
+
+Targeting enables developers to progressively roll out features to a target audience that can be increased gradually. For more information on the concept of targeting and how to use this new feature take a look at the project's [readme](https://github.com/microsoft/FeatureManagement-Dotnet#targeting).
+
 ## 2.0.0 - Feb 26, 2020
 
 ### Enumerating Feature Names
