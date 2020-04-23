@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "Replace with your storage account connection string",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "PrimaryStoreEndpoint": "Replace with endpoint for your primary App Configuration store",
+    "SecondaryStoreEndpoint": "Replace with endpoint for your secondary App Configuration store"
+  }
+}
