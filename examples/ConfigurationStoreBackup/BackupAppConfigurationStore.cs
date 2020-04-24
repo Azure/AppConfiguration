@@ -27,6 +27,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,36 +37,35 @@ namespace ConfigurationStoreBackup
     {
         private const string PrimaryConfigStoreEndpointEnvVarName = "PrimaryStoreEndpoint"; // eg., https://{store1}.azconfig.io
         private const string SecondaryConfigStoreEndpointEnvVarName = "SecondaryStoreEndpoint"; // eg., https://{store2}.azconfig.io
-        private const string StorageConnectionStringEnvVarName = "AzureWebJobsStorage";
-        private const string QueueName = "eventgridqueue";
+        private const string StorageQueueUriEnvVarName = "StorageQueueUri"; // eg., https://{account_name}.queue.core.windows.net/{queue_name}
         private const int MaxMessagesToRead = 32;
 
         [FunctionName("BackupAppConfigurationStore")]
         public static async Task Run([TimerTrigger("0 */10 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"Azure App Configuration store backup started at: {DateTime.Now}");
-            string storageConnectionString = Environment.GetEnvironmentVariable(StorageConnectionStringEnvVarName);
-            if (string.IsNullOrEmpty(storageConnectionString))
+            string storageQueueUri = Environment.GetEnvironmentVariable(StorageQueueUriEnvVarName);
+            if (string.IsNullOrEmpty(storageQueueUri))
             {
-               throw new InvalidOperationException($"Please ensure that the environment variable '{StorageConnectionStringEnvVarName}' is correctly set.");
+                throw new ArgumentException($"Please ensure that the environment variable '{StorageQueueUriEnvVarName}' is set to the storage queue URI.");
             }
 
             string primaryStoreEndpoint = Environment.GetEnvironmentVariable(PrimaryConfigStoreEndpointEnvVarName);
             if (string.IsNullOrEmpty(primaryStoreEndpoint))
             {
-                throw new InvalidOperationException($"Please ensure that the environment variable '{PrimaryConfigStoreEndpointEnvVarName}' is set to the endpoint of the primary App Configuration store.");
+                throw new ArgumentException($"Please ensure that the environment variable '{PrimaryConfigStoreEndpointEnvVarName}' is set to the endpoint of the primary App Configuration store.");
             }
 
             string secondaryStoreEndpoint = Environment.GetEnvironmentVariable(SecondaryConfigStoreEndpointEnvVarName);
             if (string.IsNullOrEmpty(secondaryStoreEndpoint))
             {
-                throw new InvalidOperationException($"Please ensure that the environment variable '{SecondaryConfigStoreEndpointEnvVarName}' is set to the endpoint of the secondary App Configuration store.");
+                throw new ArgumentException($"Please ensure that the environment variable '{SecondaryConfigStoreEndpointEnvVarName}' is set to the endpoint of the secondary App Configuration store.");
             }
 
-            QueueClient queueClient = new QueueClient(storageConnectionString, QueueName);
+            QueueClient queueClient = new QueueClient(new Uri(storageQueueUri), new ManagedIdentityCredential());
             ConfigurationClient primaryAppConfigClient = new ConfigurationClient(new Uri(primaryStoreEndpoint), new ManagedIdentityCredential());
             ConfigurationClient secondaryAppConfigClient = new ConfigurationClient(new Uri(secondaryStoreEndpoint), new ManagedIdentityCredential());
-            
+
             await BackupAppConfigurationStoreAsync(queueClient, primaryAppConfigClient, secondaryAppConfigClient, log);
         }
 
@@ -85,7 +85,13 @@ namespace ConfigurationStoreBackup
                 // If there are any valid App Configuration events, update secondary store.
                 if (updatedKeyLabels.Count > 0)
                 {
-                    await BackupKeyValuesAsync(updatedKeyLabels, primaryAppConfigClient, secondaryAppConfigClient, log);
+                    bool isBackupSuccessful = await BackupKeyValuesAsync(updatedKeyLabels, primaryAppConfigClient, secondaryAppConfigClient, log);
+                    if (!isBackupSuccessful)
+                    {
+                        // Abort this function without deleting retrievedMessages from storage queue.
+                        log.LogWarning($"Aborting App Configuration store backup. It will be attempted next time the function is triggered.");
+                        break;
+                    }
                 }
 
                 // Delete this batch of events from storage queue.
@@ -94,14 +100,14 @@ namespace ConfigurationStoreBackup
                     try
                     {
                         await queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt);
-                        log.LogDebug($"Sucessfully deleted message from queue. Message ID: {message.MessageId}");
+                        log.LogInformation($"Sucessfully deleted message from queue. Message ID: {message.MessageId}");
                     }
                     catch (RequestFailedException ex) when (
                         ex.ErrorCode == QueueErrorCode.PopReceiptMismatch ||
                         ex.ErrorCode == QueueErrorCode.MessageNotFound)
                     {
                         // We can continue processing the rest of the queue and safely ignore these exceptions.
-                        log.LogDebug($"Failed to delete message from queue. Message ID: {message.MessageId}\nException: {ex}");
+                        log.LogWarning($"Failed to delete message from queue. Message ID: {message.MessageId}\nException: {ex}");
                     }
                 }
             }
@@ -127,21 +133,22 @@ namespace ConfigurationStoreBackup
                 }
                 catch (FormatException)
                 {
-                    log.LogInformation($"Queue message in invalid Base64 format is ignored.\nMessage: {message.MessageText}");
+                    log.LogWarning($"Queue message in invalid Base64 format is ignored.\nMessage: {message.MessageText}");
                 }
                 catch (JsonReaderException)
                 {
-                    log.LogInformation($"Queue message in invalid JSON format is ignored.\nMessage: {decodedMessage}");
+                    log.LogWarning($"Queue message in invalid JSON format is ignored.\nMessage: {decodedMessage}");
                 }
             }
             return updatedKeyLabels;
         }
 
-        private static async Task BackupKeyValuesAsync(HashSet<KeyLabel> updatedKeyLabels,
+        private static async Task<bool> BackupKeyValuesAsync(HashSet<KeyLabel> updatedKeyLabels,
                                                        ConfigurationClient primaryAppConfigClient,
                                                        ConfigurationClient secondaryAppConfigClient,
                                                        ILogger log)
         {
+            bool isBackupSuccessful = false;
             try
             {
                 // Read all settings from primary store and update secondary store.
@@ -168,17 +175,22 @@ namespace ConfigurationStoreBackup
                     await secondaryAppConfigClient.DeleteConfigurationSettingAsync(keyLabel.Key, keyLabel.Label);
                     log.LogInformation($"Successfully deleted key: {keyLabel.Key} label: {keyLabel.Label}");
                 }
+                isBackupSuccessful = true;
             }
-            catch (RequestFailedException)
+            catch (RequestFailedException exception) when (exception.Status != (int)HttpStatusCode.Conflict)
             {
-                log.LogError($"Request to Azure App Configuration failed.");
-                throw;
+                log.LogWarning($"Request to Azure App Configuration failed.\nStatus: {exception.Status}\nError Message: {exception.Message}\nStack Trace: {exception.StackTrace}");
             }
             catch (AggregateException exception) when ((exception as AggregateException)?.InnerExceptions?.All(ex => ex is RequestFailedException) ?? false)
             {
-                log.LogError($"Request to Azure App Configuration failed.");
-                throw;
+                StringBuilder sb = new StringBuilder();
+                foreach (RequestFailedException ex in exception.InnerExceptions)
+                {
+                    sb.Append($"\nStatus: {ex.Status}\nError Message: {ex.Message}\nStack Trace: {ex.StackTrace}");
+                }
+                log.LogWarning($"Request to Azure App Configuration failed with the following exceptions: {sb}");
             }
+            return isBackupSuccessful;
         }
     }
 }
