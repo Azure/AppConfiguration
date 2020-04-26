@@ -62,54 +62,57 @@ namespace ConfigurationStoreBackup
                 throw new ArgumentException($"Please ensure that the environment variable '{SecondaryConfigStoreEndpointEnvVarName}' is set to the endpoint of the secondary App Configuration store.");
             }
 
-            QueueClient queueClient = new QueueClient(new Uri(storageQueueUri), new ManagedIdentityCredential());
-            ConfigurationClient primaryAppConfigClient = new ConfigurationClient(new Uri(primaryStoreEndpoint), new ManagedIdentityCredential());
-            ConfigurationClient secondaryAppConfigClient = new ConfigurationClient(new Uri(secondaryStoreEndpoint), new ManagedIdentityCredential());
-
-            await BackupAppConfigurationStoreAsync(queueClient, primaryAppConfigClient, secondaryAppConfigClient, log);
+            await BackupAppConfigurationStoreAsync(storageQueueUri, primaryStoreEndpoint, secondaryStoreEndpoint, log);
         }
 
-        private static async Task BackupAppConfigurationStoreAsync(QueueClient queueClient,
-                                                                   ConfigurationClient primaryAppConfigClient,
-                                                                   ConfigurationClient secondaryAppConfigClient,
+        private static async Task BackupAppConfigurationStoreAsync(string storageQueueUri,
+                                                                   string primaryStoreEndpoint,
+                                                                   string secondaryStoreEndpoint,
                                                                    ILogger log)
         {
+            QueueClient queueClient = new QueueClient(new Uri(storageQueueUri), new ManagedIdentityCredential());
+
             // Peek to see if there are events in the queue.
-            while ((await queueClient.PeekMessagesAsync()).Value.Length > 0)
+            if ((await queueClient.PeekMessagesAsync()).Value.Length > 0)
             {
-                Response<QueueMessage[]> retrievedMessages = await queueClient.ReceiveMessagesAsync(MaxMessagesToRead);
-
-                // Extract list of key+labels from event data.
-                HashSet<KeyLabel> updatedKeyLabels = ExtractKeyLabelsFromEvents(retrievedMessages.Value, log);
-
-                // If there are any valid App Configuration events, update secondary store.
-                if (updatedKeyLabels.Count > 0)
+                ConfigurationClient primaryAppConfigClient = new ConfigurationClient(new Uri(primaryStoreEndpoint), new ManagedIdentityCredential());
+                ConfigurationClient secondaryAppConfigClient = new ConfigurationClient(new Uri(secondaryStoreEndpoint), new ManagedIdentityCredential());
+                do
                 {
-                    bool isBackupSuccessful = await BackupKeyValuesAsync(updatedKeyLabels, primaryAppConfigClient, secondaryAppConfigClient, log);
-                    if (!isBackupSuccessful)
-                    {
-                        // Abort this function without deleting retrievedMessages from storage queue.
-                        log.LogWarning($"Aborting App Configuration store backup. It will be attempted next time the function is triggered.");
-                        break;
-                    }
-                }
+                    Response<QueueMessage[]> retrievedMessages = await queueClient.ReceiveMessagesAsync(MaxMessagesToRead);
 
-                // Delete this batch of events from storage queue.
-                foreach (QueueMessage message in retrievedMessages.Value)
-                {
-                    try
+                    // Extract list of key+labels from event data.
+                    HashSet<KeyLabel> updatedKeyLabels = ExtractKeyLabelsFromEvents(retrievedMessages.Value, log);
+
+                    // If there are any valid App Configuration events, update secondary store.
+                    if (updatedKeyLabels.Count > 0)
                     {
-                        await queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt);
-                        log.LogInformation($"Sucessfully deleted message from queue. Message ID: {message.MessageId}");
+                        bool isBackupSuccessful = await BackupKeyValuesAsync(updatedKeyLabels, primaryAppConfigClient, secondaryAppConfigClient, log);
+                        if (!isBackupSuccessful)
+                        {
+                            // Abort this function without deleting retrievedMessages from storage queue.
+                            log.LogWarning($"Aborting App Configuration store backup. It will be attempted next time the function is triggered.");
+                            break;
+                        }
                     }
-                    catch (RequestFailedException ex) when (
-                        ex.ErrorCode == QueueErrorCode.PopReceiptMismatch ||
-                        ex.ErrorCode == QueueErrorCode.MessageNotFound)
+
+                    // Delete this batch of events from storage queue.
+                    foreach (QueueMessage message in retrievedMessages.Value)
                     {
-                        // We can continue processing the rest of the queue and safely ignore these exceptions.
-                        log.LogWarning($"Failed to delete message from queue. Message ID: {message.MessageId}\nException: {ex}");
+                        try
+                        {
+                            await queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt);
+                            log.LogInformation($"Sucessfully deleted message from queue. Message ID: {message.MessageId}");
+                        }
+                        catch (RequestFailedException ex) when (
+                            ex.ErrorCode == QueueErrorCode.PopReceiptMismatch ||
+                            ex.ErrorCode == QueueErrorCode.MessageNotFound)
+                        {
+                            // We can continue processing the rest of the queue and safely ignore these exceptions.
+                            log.LogWarning($"Failed to delete message from queue. Message ID: {message.MessageId}\nException: {ex}");
+                        }
                     }
-                }
+                } while ((await queueClient.PeekMessagesAsync()).Value.Length > 0);
             }
         }
 
