@@ -6,6 +6,14 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 1.1.4/1.2.4 - April 27, 2020
+
+* Add ability to modify client connection to App Configuration and Key Vault. Clients can be provided via ```ConfigurationClientBuilderSetup``` and ```SecretClientBuilderSetup```.
+  * This allows for setting up additional client information such as proxy information.
+* Fixed the bug that caused a partial store to load when both /application/ and /<application_name>/ are used, but one failed to load. This also caused the store to be unable to refresh.
+* Fixed the bug that caused extra requests to be made when a large number of changes existed in the store history.
+* Fixed the bug where using empty label could not be used and was document as null label, which returned all results.
+
 ## 1.1.3/1.2.3 - April 06, 2020
 
 * Fixed the bug that caused the configurations to refresh extra times when the config store didn't use feature flags. [#298](https://github.com/Azure/AppConfiguration/issues/298)
