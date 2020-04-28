@@ -8,11 +8,12 @@
 
 ## 1.1.4/1.2.4 - April 27, 2020
 
-* Add ability to modify client connection to App Configuration and Key Vault. Clients can be provided via ```ConfigurationClientBuilderSetup``` and ```SecretClientBuilderSetup```.
+* Add support to allow users configure the client used to connect to App Configuration and Key Vault. Users can define the clients via `ConfigurationClientBuilderSetup` and `SecretClientBuilderSetup`, shown [here](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client). [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
   * This allows for setting up additional client information such as proxy information.
-* Fixed the bug that caused a partial store to load when both /application/ and /<application_name>/ are used, but one failed to load. This also caused the store to be unable to refresh.
-* Fixed the bug that caused extra requests to be made when a large number of changes existed in the store history.
-* Fixed the bug where using empty label could not be used and was document as null label, which returned all results.
+* Fixed the bug that caused a partial store to load when both `/application/` and `/<application_name>/` are used, and only one of them loaded. This also caused the store to be unable to refresh.
+* Fixed a bug that may cause the excessive number of requests being made during configuration change detection to the App Configuration. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
+* Fixed the bug where using an empty string label could not be done. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
+  * Also a documentation issues was fixed that caused confusion between empty and null label, where null label returned all results.
 
 ## 1.1.3/1.2.3 - April 06, 2020
 
@@ -23,7 +24,7 @@
 
 ## 1.1.2/1.2.2 - February 25, 2020
 
-* Credentials for authentication can now be provided in code via ```AppConfigurationCredentialProvider``` and ```KeyVaultCredentialProvider```.
+* Credentials for authentication can now be provided in code via `AppConfigurationCredentialProvider` and `KeyVaultCredentialProvider`.
   * This method allows for different authentication methods/credentials to be used when connecting with multiple App Configuration instances or Key Vaults.
 * The ```spring.cloud.azure.appconfiguration.stores[0].fail-fast``` setting has been updated to be per store.
   * Previously this setting controlled the error handling for all App Configuration instances, now this setting allows for different error handling to be configured per App Configuration instance.
