@@ -4,7 +4,8 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
-### v3.0.13
+### v3.0.13 - May, 04 2020
+* Fixed the issue that some reserved symbols misencoded set to environment variables. [#313](https://github.com/Azure/AppConfiguration/issues/313)
 
 ### v2.0.11 - March, 24 2020
 * The Azure App Configuration pipeline task for the Azure DevOps is now generally available.
