@@ -4,6 +4,8 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v3.0.13
+
 ### v2.0.11 - March, 24 2020
 * The Azure App Configuration pipeline task for the Azure DevOps is now generally available.
 * Added `FAQ` section to the [documentation](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task).  
