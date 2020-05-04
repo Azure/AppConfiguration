@@ -6,14 +6,13 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
-## 1.1.4/1.2.4 - April 27, 2020
+## 1.1.5/1.2.5 - April 27, 2020
 
-* Add support to allow users configure the client used to connect to App Configuration and Key Vault. Users can define the clients via `ConfigurationClientBuilderSetup` and `SecretClientBuilderSetup`, shown [here](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client). [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
-  * This allows for setting up additional client information such as proxy information.
-* Fixed the bug that caused a partial store to load when both `/application/` and `/<application_name>/` are used, and only one of them loaded. This also caused the store to be unable to refresh.
-* Fixed a bug that may cause the excessive number of requests being made during configuration change detection to the App Configuration. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
-* Fixed the bug where using an empty string label could not be done. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
-  * Also a documentation issues was fixed that caused confusion between empty and null label, where null label returned all results.
+* Added support to allow users to configure the client used to connect to App Configuration and Key Vault. Users can now define the clients via `ConfigurationClientBuilderSetup` and `SecretClientBuilderSetup`, shown [here](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client).
+  * This allows for setting up additional client information such as proxy information. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
+* Fixed the bug that caused a partial configuration to load when both `/application/` and `/<application_name>/` are used, and only one of them loaded. This also caused the store to be unable to refresh.
+* Improved the performance of refresh by reducing the number of requests made to App Configuration during configuration change detection. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
+* Fixed the bug where using an empty string label "\0" or a comma without a value before it could not be used. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
 
 ## 1.1.3/1.2.3 - April 06, 2020
 
