@@ -10,7 +10,7 @@
 
 * Added support to allow users to configure the client used to connect to App Configuration and Key Vault. Users can now define the clients via `ConfigurationClientBuilderSetup` and `SecretClientBuilderSetup`, shown [here](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client).
   * This allows for setting up additional client information such as proxy information. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
-* Fixed the bug that caused a partial configuration to load when both `/application/` and `/<application_name>/` are used, and only one of them loaded. This also caused the store to be unable to refresh.
+* Fixed the bug that caused partial configuration to load when both `/application/` and `/<application_name>/` are used, and only one of them loaded. This also caused the store to be unable to refresh.
 * Improved the performance of refresh by reducing the number of requests made to App Configuration during configuration change detection. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
 * Fixed the bug where using an empty string label "\0" or a comma without a value before it could not be used. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
 
