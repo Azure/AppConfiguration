@@ -9,8 +9,6 @@ using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration.Models;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace SimpleAppConfigEventHub

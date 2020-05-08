@@ -331,7 +331,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-
-# Remove generated files
-*/wwwroot/lib/*
-*/wwwroot/favicon.ico
