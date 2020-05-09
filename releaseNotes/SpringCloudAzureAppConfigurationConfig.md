@@ -8,11 +8,12 @@
 
 ## 1.1.5/1.2.5 - April 27, 2020
 
-* Added support to allow users to configure the client used to connect to App Configuration and Key Vault. Users can now define the clients via `ConfigurationClientBuilderSetup` and `SecretClientBuilderSetup`, shown [here](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client).
-  * This allows for setting up additional client information such as proxy information. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
-* Fixed the bug that caused partial configuration to load when both `/application/` and `/<application_name>/` are used, and only one of them loaded. This also caused the store to be unable to refresh.
-* Improved the performance of refresh by reducing the number of requests made to App Configuration during configuration change detection. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
-* Fixed the bug where using an empty string label "\0" or a comma without a value before it could not be used. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
+* Introduced new interfaces, which allows users to customize client builders for connecting to App Configuration and Key Vault. See this [document](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client) for more details and examples. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
+  * `ConfigurationClientBuilderSetup`
+  * `SecretClientBuilderSetup`
+* Fixed the bug that caused configuration to load partially and refresh to fail when both `/application/` and `/<application_name>/` were used but only one of them loaded.
+* Fixed the bug that more than necessary requests may be made for configuration change detection especially when an App Configuration store has many keys or many change revisions. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
+* Fixed the bug that `%00` was not working when it's used to indicate keys with no labels explicitly. Changed to use `\0` to indicate keys with no labels to be consistent with the service. For example, a property setting below means loading keys with no labels and then overwritten by keys with label `dev`. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
 
 ## 1.1.3/1.2.3 - April 06, 2020
 
@@ -25,13 +26,13 @@
 
 * Credentials for authentication can now be provided in code via `AppConfigurationCredentialProvider` and `KeyVaultCredentialProvider`.
   * This method allows for different authentication methods/credentials to be used when connecting with multiple App Configuration instances or Key Vaults.
-* The ```spring.cloud.azure.appconfiguration.stores[0].fail-fast``` setting has been updated to be per store.
+* The `spring.cloud.azure.appconfiguration.stores[0].fail-fast` setting has been updated to be per store.
   * Previously this setting controlled the error handling for all App Configuration instances, now this setting allows for different error handling to be configured per App Configuration instance.
   * The error handling specified by fail-fast is now limited to when settings are loaded on application startup. This setting does not affect error handling for configuration refresh. However, if there is an error loading from the App Configuration instance on startup and fail-fast is false for that instance, it will not be included in refresh attempts.
 * Failed refreshes will now be automatically retried, if not completely successful.
 * spring-cloud-azure-appconfiguration-config has been split into two packages: spring-cloud-azure-appconfiguration-config and spring-cloud-azure-appconfiguration-config-web. The web provider take on the spring-web dependency used for automated refresh. In the spring-cloud-azure-appconfiguration-config provider, refresh needs to be manually triggered.
   * To continue using automated refresh, the "spring-cloud-azure-appconfiguration-config" dependency should be updated to "spring-cloud-azure-appconfiguration-config-web".
-* ```AppConfigurationRefresh```'s ```refreshConfigurations()``` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
+* `AppConfigurationRefresh`'s `refreshConfigurations()` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
 
 ## 1.1.1/1.2.1 - January 13, 2020
 
