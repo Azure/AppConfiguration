@@ -15,9 +15,9 @@
 * Fixed the bug that more than necessary requests may be made for configuration change detection especially when an App Configuration store has many keys or many change revisions. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
 * Fixed the bug that `%00` was not working when it's used to indicate keys with no labels explicitly. Changed to use `\0` to indicate keys with no labels to be consistent with the service. For example, a property setting below means loading keys with no labels and then overwritten by keys with label `dev`. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
 
-```java
-spring.cloud.azure.appconfiguration.stores[0].label = \0,dev
-```
+  ```java
+  spring.cloud.azure.appconfiguration.stores[0].label = \0,dev
+  ```
 
 ## 1.1.3/1.2.3 - April 06, 2020
 
