@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace WebDemoWithEventHub
@@ -22,6 +23,7 @@ namespace WebDemoWithEventHub
 
             // We add a Settings model to the service container, which takes its values from the applications configuration.
             services.Configure<Settings>(Configuration.GetSection("WebDemo:Settings"));
+            services.AddSingleton<ISettingsProvider, EventHubService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
