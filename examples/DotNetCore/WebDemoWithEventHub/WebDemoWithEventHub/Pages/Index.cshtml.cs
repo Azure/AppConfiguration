@@ -1,7 +1,6 @@
 ﻿namespace WebDemoWithEventHub.Pages
 {
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.Extensions.Options;
 
     public class IndexModel : PageModel
     {
