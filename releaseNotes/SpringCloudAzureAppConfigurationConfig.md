@@ -6,6 +6,19 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 1.1.5/1.2.5 - April 27, 2020
+
+* Introduced new interfaces, which allow users to customize client builders for connecting to App Configuration and Key Vault. See this [document](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#client-builder-customization) for more details and examples. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
+  * `ConfigurationClientBuilderSetup`
+  * `SecretClientBuilderSetup`
+* When fail-fast is disabled, an application may only load configuration under one context but not the other from an App Configuration store. The bug is fixed so either all configuration is loaded successfully or nothing is loaded to ensure the consistency of configuration in the application.
+* Fixed the bug that more than necessary requests may be made for configuration change detection especially when an App Configuration store has many keys or many change revisions. [#672](https://github.com/microsoft/spring-cloud-azure/issues/672)
+* Fixed the bug that `%00` was not working when it's used to indicate keys with no labels explicitly. Changed to use `\0` to indicate keys with no labels to be consistent with the service. For example, a property setting below means loading keys with no labels and then overwritten by keys with label `dev`. [#655](https://github.com/microsoft/spring-cloud-azure/issues/655)
+
+  ```java
+  spring.cloud.azure.appconfiguration.stores[0].label = \0,dev
+  ```
+
 ## 1.1.3/1.2.3 - April 06, 2020
 
 * Fixed the bug that caused the configurations to refresh extra times when the config store didn't use feature flags. [#298](https://github.com/Azure/AppConfiguration/issues/298)
@@ -15,15 +28,15 @@
 
 ## 1.1.2/1.2.2 - February 25, 2020
 
-* Credentials for authentication can now be provided in code via ```AppConfigurationCredentialProvider``` and ```KeyVaultCredentialProvider```.
+* Credentials for authentication can now be provided in code via `AppConfigurationCredentialProvider` and `KeyVaultCredentialProvider`.
   * This method allows for different authentication methods/credentials to be used when connecting with multiple App Configuration instances or Key Vaults.
-* The ```spring.cloud.azure.appconfiguration.stores[0].fail-fast``` setting has been updated to be per store.
+* The `spring.cloud.azure.appconfiguration.stores[0].fail-fast` setting has been updated to be per store.
   * Previously this setting controlled the error handling for all App Configuration instances, now this setting allows for different error handling to be configured per App Configuration instance.
   * The error handling specified by fail-fast is now limited to when settings are loaded on application startup. This setting does not affect error handling for configuration refresh. However, if there is an error loading from the App Configuration instance on startup and fail-fast is false for that instance, it will not be included in refresh attempts.
 * Failed refreshes will now be automatically retried, if not completely successful.
 * spring-cloud-azure-appconfiguration-config has been split into two packages: spring-cloud-azure-appconfiguration-config and spring-cloud-azure-appconfiguration-config-web. The web provider take on the spring-web dependency used for automated refresh. In the spring-cloud-azure-appconfiguration-config provider, refresh needs to be manually triggered.
   * To continue using automated refresh, the "spring-cloud-azure-appconfiguration-config" dependency should be updated to "spring-cloud-azure-appconfiguration-config-web".
-* ```AppConfigurationRefresh```'s ```refreshConfigurations()``` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
+* `AppConfigurationRefresh`'s `refreshConfigurations()` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
 
 ## 1.1.1/1.2.1 - January 13, 2020
 
