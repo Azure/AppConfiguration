@@ -8,7 +8,7 @@
 
 ## 1.1.5/1.2.5 - April 27, 2020
 
-* Introduced new interfaces, which allow users to customize client builders for connecting to App Configuration and Key Vault. See this [document](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#modifying-connection-client) for more details and examples. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
+* Introduced new interfaces, which allow users to customize client builders for connecting to App Configuration and Key Vault. See this [document](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#client-builder-customization) for more details and examples. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
   * `ConfigurationClientBuilderSetup`
   * `SecretClientBuilderSetup`
 * Fixed the bug that caused configuration to load partially and refresh to fail when both `/application/` and `/<application_name>/` were used but only one of them loaded.
