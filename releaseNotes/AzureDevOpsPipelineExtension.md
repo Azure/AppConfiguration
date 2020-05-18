@@ -4,6 +4,9 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v3.0.14 - May, 15 2020
+* Fixed the issue that Azure App Configuration pipeline task in version 3.0.13 doesn't load correctly in Linux environment pipeline. [#327](https://github.com/Azure/AppConfiguration/issues/327)
+
 ### v3.0.13 - May, 04 2020
 * Fixed the issue that some symbols, for example, percent sign (%), could not be set to Pipeline Task variables correctly. [#313](https://github.com/Azure/AppConfiguration/issues/313)
 
