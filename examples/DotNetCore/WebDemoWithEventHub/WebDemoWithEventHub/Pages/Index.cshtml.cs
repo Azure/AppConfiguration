@@ -5,9 +5,9 @@
 
     public class IndexModel : PageModel
     {
-        public IndexModel(IOptions<Settings> settings)
+        public IndexModel(IOptionsSnapshot<Settings> options)
         {
-            Settings = settings.Value;
+            Settings = options.Value;
         }
 
         public Settings Settings { get; }
