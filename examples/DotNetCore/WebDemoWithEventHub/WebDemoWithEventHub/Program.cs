@@ -2,15 +2,25 @@
 using Azure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace WebDemoWithEventHub
 {
     public class Program
     {
+        private static IConfigurationRefresher refresher = null;
+
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            IHostBuilder builder = CreateHostBuilder(args);
+            builder.ConfigureServices((services) =>
+            {
+                services.AddSingleton<IConfigRefresher>(new ConfigRefresher() { Refresher = refresher });
+            });
+
+            builder.Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -39,12 +49,17 @@ namespace WebDemoWithEventHub
                             builder.AddAzureAppConfiguration(options =>
                             {
                                 options.Connect(new Uri(appConfigurationEndpoint), new DefaultAzureCredential())
+                                        .ConfigureKeyVault(kv =>
+                                        {
+                                            kv.SetCredential(new DefaultAzureCredential());
+                                        })
                                        .Select(keyFilter: "WebDemo:*")
                                        .ConfigureRefresh((refreshOptions) =>
                                        {
-                                           // Indicates that all configuration should be refreshed when the given key has changed.
-                                           refreshOptions.Register(key: "WebDemo:Sentinel", refreshAll: true);
+                                           refreshOptions.Register(key: "WebDemo:Settings", refreshAll: true);
                                        });
+
+                                refresher = options.GetRefresher();
                             });
                         }
                     });

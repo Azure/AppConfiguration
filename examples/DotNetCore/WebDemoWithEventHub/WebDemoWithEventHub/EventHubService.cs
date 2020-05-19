@@ -11,90 +11,69 @@ using System.Threading.Tasks;
 
 namespace WebDemoWithEventHub
 {
-    public class EventHubService : ISettingsProvider
+    public class EventHubService
     {
-        private Settings settings;
+        private Settings _settings;
 
-        private IConfiguration configuration;
+        private EventHubConnection _eventHubConnection;
 
-        private EventHubConnection eventHubConnection;
+        private EventProcessorClient _processorClient;
 
-        private EventProcessorClient processorClient;
+        private IConfigRefresher _configRefresher;
 
-        private IConfigurationRefresher refresher;
-
-        public EventHubService(IConfiguration config, IOptions<Settings> options)
+        public EventHubService(IConfiguration config, IConfigRefresher configRefresher)
         {
-            var builder = new ConfigurationBuilder();
-            builder.AddAzureAppConfiguration(options =>
-            {
-                options.Connect(config["AppConfigConnectionString"])
-                       .ConfigureKeyVault(kv =>
-                       {
-                           kv.SetCredential(new DefaultAzureCredential());
-                       })
-                       .Select(keyFilter: "WebDemo:*")
-                       .ConfigureRefresh((refreshOptions) =>
-                       {
-                            refreshOptions.Register(key: "WebDemo:Settings", refreshAll: true);
-                       });
+            _configRefresher = configRefresher;
 
-                refresher = options.GetRefresher();
-            });
-
-            configuration = builder.Build();
-
-            eventHubConnection = configuration.GetSection("WebDemo:Connection").Get<EventHubConnection>();
-            settings = configuration.GetSection("WebDemo:Settings").Get<Settings>();
+            _eventHubConnection = config.GetSection("WebDemo:Connection").Get<EventHubConnection>();
+            _settings = config.GetSection("WebDemo:Settings").Get<Settings>();
 
             InitEventHubProcessor();
         }
 
-        public Settings GetSettings() => settings;
-
         private void InitEventHubProcessor()
         {
-            if (string.IsNullOrEmpty(eventHubConnection.EventHubConnectionString))
+            if (string.IsNullOrEmpty(_eventHubConnection.EventHubConnectionString))
             {
-                throw new ArgumentNullException(nameof(eventHubConnection.EventHubConnectionString));
+                throw new ArgumentNullException(nameof(_eventHubConnection.EventHubConnectionString));
             }
 
-            if (string.IsNullOrEmpty(eventHubConnection.EventHubName))
+            if (string.IsNullOrEmpty(_eventHubConnection.EventHubName))
             {
-                throw new ArgumentNullException(nameof(eventHubConnection.EventHubName));
+                throw new ArgumentNullException(nameof(_eventHubConnection.EventHubName));
             }
 
-            if (string.IsNullOrEmpty(eventHubConnection.StorageConnectionString))
+            if (string.IsNullOrEmpty(_eventHubConnection.StorageConnectionString))
             {
-                throw new ArgumentNullException(nameof(eventHubConnection.StorageConnectionString));
+                throw new ArgumentNullException(nameof(_eventHubConnection.StorageConnectionString));
             }
 
-            if (string.IsNullOrEmpty(eventHubConnection.StorageContainerName))
+            if (string.IsNullOrEmpty(_eventHubConnection.StorageContainerName))
             {
-                throw new ArgumentNullException(nameof(eventHubConnection.StorageContainerName));
+                throw new ArgumentNullException(nameof(_eventHubConnection.StorageContainerName));
             }
 
-            string consumerGroup = string.IsNullOrEmpty(eventHubConnection.EventHubConsumerGroup)
+            string consumerGroup = string.IsNullOrEmpty(_eventHubConnection.EventHubConsumerGroup)
                 ? EventHubConsumerClient.DefaultConsumerGroupName
-                : eventHubConnection.EventHubConsumerGroup;
+                : _eventHubConnection.EventHubConsumerGroup;
 
-            var storageClient = new BlobContainerClient(connectionString: eventHubConnection.StorageConnectionString,
-                                                        blobContainerName: eventHubConnection.StorageContainerName);
+            var storageClient = new BlobContainerClient(connectionString: _eventHubConnection.StorageConnectionString,
+                                                        blobContainerName: _eventHubConnection.StorageContainerName);
 
-            processorClient = new EventProcessorClient(checkpointStore: storageClient,
+            _processorClient = new EventProcessorClient(checkpointStore: storageClient,
                                                        consumerGroup: consumerGroup,
-                                                       connectionString: eventHubConnection.EventHubConnectionString,
-                                                       eventHubName: eventHubConnection.EventHubName);
+                                                       connectionString: _eventHubConnection.EventHubConnectionString,
+                                                       eventHubName: _eventHubConnection.EventHubName);
 
-            processorClient.ProcessEventAsync += ProcessEventHandler;
-            processorClient.ProcessErrorAsync += ProcessErrorHandler;
-            processorClient.StartProcessing();
+            _processorClient.ProcessEventAsync += ProcessEventHandler;
+            _processorClient.ProcessErrorAsync += ProcessErrorHandler;
+            _processorClient.StartProcessing();
         }
 
-        private async Task ProcessEventHandler(ProcessEventArgs eventArgs)
+        private Task ProcessEventHandler(ProcessEventArgs eventArgs)
         {
-            await refresher.TryRefreshAsync();
-            settings = configuration.GetSection("WebDemo:Settings").Get<Settings>();
+            _configRefresher.RefreshConfiguration();
+            return Task.CompletedTask;
         }
 
         private Task ProcessErrorHandler(ProcessErrorEventArgs eventArgs)

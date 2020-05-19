@@ -1,12 +1,13 @@
 ﻿namespace WebDemoWithEventHub.Pages
 {
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.Extensions.Options;
 
     public class IndexModel : PageModel
     {
-        public IndexModel(ISettingsProvider settingsProvider)
+        public IndexModel(IOptions<Settings> settings)
         {
-            Settings = settingsProvider.GetSettings();
+            Settings = settings.Value;
         }
 
         public Settings Settings { get; }
