@@ -22,7 +22,6 @@ namespace WebDemoWithEventHub
 
             // We add a Settings model to the service container, which takes its values from the applications configuration.
             services.Configure<Settings>(Configuration.GetSection("WebDemo:Settings"));
-            services.AddSingleton<IConfigRefresher>(new ConfigRefresher());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
