@@ -1,11 +1,8 @@
-﻿using Azure.Identity;
-using Azure.Messaging.EventHubs;
+﻿using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
@@ -13,61 +10,53 @@ namespace WebDemoWithEventHub
 {
     public class EventHubService
     {
-        private Settings _settings;
-
-        private EventHubConnection _eventHubConnection;
-
-        private EventProcessorClient _processorClient;
-
         private IConfigRefresher _configRefresher;
 
         public EventHubService(IConfiguration config, IConfigRefresher configRefresher)
         {
             _configRefresher = configRefresher;
 
-            _eventHubConnection = config.GetSection("WebDemo:Connection").Get<EventHubConnection>();
-            _settings = config.GetSection("WebDemo:Settings").Get<Settings>();
-
-            InitEventHubProcessor();
+            EventHubConnection eventHubConnection = config.GetSection("WebDemo:EventHubConnection").Get<EventHubConnection>();
+            InitEventHubProcessor(eventHubConnection);
         }
 
-        private void InitEventHubProcessor()
+        private void InitEventHubProcessor(EventHubConnection eventHubConnection)
         {
-            if (string.IsNullOrEmpty(_eventHubConnection.EventHubConnectionString))
+            if (string.IsNullOrEmpty(eventHubConnection.EventHubConnectionString))
             {
-                throw new ArgumentNullException(nameof(_eventHubConnection.EventHubConnectionString));
+                throw new ArgumentNullException(nameof(eventHubConnection.EventHubConnectionString));
             }
 
-            if (string.IsNullOrEmpty(_eventHubConnection.EventHubName))
+            if (string.IsNullOrEmpty(eventHubConnection.EventHubName))
             {
-                throw new ArgumentNullException(nameof(_eventHubConnection.EventHubName));
+                throw new ArgumentNullException(nameof(eventHubConnection.EventHubName));
             }
 
-            if (string.IsNullOrEmpty(_eventHubConnection.StorageConnectionString))
+            if (string.IsNullOrEmpty(eventHubConnection.StorageConnectionString))
             {
-                throw new ArgumentNullException(nameof(_eventHubConnection.StorageConnectionString));
+                throw new ArgumentNullException(nameof(eventHubConnection.StorageConnectionString));
             }
 
-            if (string.IsNullOrEmpty(_eventHubConnection.StorageContainerName))
+            if (string.IsNullOrEmpty(eventHubConnection.StorageContainerName))
             {
-                throw new ArgumentNullException(nameof(_eventHubConnection.StorageContainerName));
+                throw new ArgumentNullException(nameof(eventHubConnection.StorageContainerName));
             }
 
-            string consumerGroup = string.IsNullOrEmpty(_eventHubConnection.EventHubConsumerGroup)
+            string consumerGroup = string.IsNullOrEmpty(eventHubConnection.EventHubConsumerGroup)
                 ? EventHubConsumerClient.DefaultConsumerGroupName
-                : _eventHubConnection.EventHubConsumerGroup;
+                : eventHubConnection.EventHubConsumerGroup;
 
-            var storageClient = new BlobContainerClient(connectionString: _eventHubConnection.StorageConnectionString,
-                                                        blobContainerName: _eventHubConnection.StorageContainerName);
+            var storageClient = new BlobContainerClient(connectionString: eventHubConnection.StorageConnectionString,
+                                                        blobContainerName: eventHubConnection.StorageContainerName);
 
-            _processorClient = new EventProcessorClient(checkpointStore: storageClient,
+            var processorClient = new EventProcessorClient(checkpointStore: storageClient,
                                                        consumerGroup: consumerGroup,
-                                                       connectionString: _eventHubConnection.EventHubConnectionString,
-                                                       eventHubName: _eventHubConnection.EventHubName);
+                                                       connectionString: eventHubConnection.EventHubConnectionString,
+                                                       eventHubName: eventHubConnection.EventHubName);
 
-            _processorClient.ProcessEventAsync += ProcessEventHandler;
-            _processorClient.ProcessErrorAsync += ProcessErrorHandler;
-            _processorClient.StartProcessing();
+            processorClient.ProcessEventAsync += ProcessEventHandler;
+            processorClient.ProcessErrorAsync += ProcessErrorHandler;
+            processorClient.StartProcessing();
         }
 
         private Task ProcessEventHandler(ProcessEventArgs eventArgs)

@@ -49,14 +49,14 @@ namespace WebDemoWithEventHub
                             builder.AddAzureAppConfiguration(options =>
                             {
                                 options.Connect(new Uri(appConfigurationEndpoint), new DefaultAzureCredential())
-                                        .ConfigureKeyVault(kv =>
-                                        {
-                                            kv.SetCredential(new DefaultAzureCredential());
-                                        })
                                        .Select(keyFilter: "WebDemo:*")
                                        .ConfigureRefresh((refreshOptions) =>
                                        {
-                                           refreshOptions.Register(key: "WebDemo:Settings", refreshAll: true);
+                                           refreshOptions.Register(key: "WebDemo:Sentinel", refreshAll: true);
+                                       })
+                                       .ConfigureKeyVault(keyVaultOptions =>
+                                       {
+                                           keyVaultOptions.SetCredential(new DefaultAzureCredential());
                                        });
 
                                 refresher = options.GetRefresher();
