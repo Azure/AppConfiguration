@@ -2,25 +2,15 @@
 using Azure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace WebDemoWithEventHub
 {
     public class Program
     {
-        private static IConfigurationRefresher refresher = null;
-
         public static void Main(string[] args)
         {
-            IHostBuilder builder = CreateHostBuilder(args);
-            builder.ConfigureServices((services) =>
-            {
-                services.AddSingleton<IConfigRefresher>(new ConfigRefresher() { Refresher = refresher });
-            });
-
-            builder.Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -52,14 +42,12 @@ namespace WebDemoWithEventHub
                                        .Select(keyFilter: "WebDemo:*")
                                        .ConfigureRefresh((refreshOptions) =>
                                        {
-                                           refreshOptions.Register(key: "WebDemo:Sentinel", refreshAll: true);
+                                           refreshOptions.Register(key: "WebDemo:*", refreshAll: true);
                                        })
                                        .ConfigureKeyVault(keyVaultOptions =>
                                        {
                                            keyVaultOptions.SetCredential(new DefaultAzureCredential());
                                        });
-
-                                refresher = options.GetRefresher();
                             });
                         }
                     });
