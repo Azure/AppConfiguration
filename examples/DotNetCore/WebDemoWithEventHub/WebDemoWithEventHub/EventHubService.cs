@@ -3,30 +3,22 @@ using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebDemoWithEventHub
 {
     public class EventHubService
     {
-        private IList<IConfigurationRefresher> _refreshers = new List<IConfigurationRefresher>();
+        IConfigurationRoot _configRoot;
 
         public EventHubService(IConfiguration config)
         {
             EventHubConnection eventHubConnection = config.GetSection("WebDemo:Connection").Get<EventHubConnection>();
             InitEventHubProcessor(eventHubConnection);
-            if (config is IConfigurationRoot configurationRoot)
+            if (config is IConfigurationRoot)
             {
-                foreach (var provider in configurationRoot.Providers)
-                {
-                    if (provider is IConfigurationRefresher refresher)
-                    {
-                        _refreshers.Add(refresher);
-                    }
-                }
+                _configRoot = (IConfigurationRoot)config;
             }            
         }
 
@@ -71,11 +63,7 @@ namespace WebDemoWithEventHub
 
         private Task ProcessEventHandler(ProcessEventArgs eventArgs)
         {
-            foreach (var refresher in _refreshers)
-            {
-                refresher.TryRefreshAsync();
-            }
-
+            _configRoot?.Reload();
             return Task.CompletedTask;
         }
 
