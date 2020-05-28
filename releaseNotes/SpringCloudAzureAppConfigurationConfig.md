@@ -6,11 +6,11 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
-## 1.1.6/1.2.6 - May 28, 2020
+## 1.1.5/1.2.6 - May 28, 2020
 
 * Fixed the bug where configuration refresh didn't work when using provider in Java 11 inside a docker container that is using more than 2 CPUs. Switched from using CompletableFuture to @Async which resolves the issue.
 
-## 1.1.5/1.2.5 - April 27, 2020
+## 1.1.4/1.2.5 - April 27, 2020
 
 * Introduced new interfaces, which allow users to customize client builders for connecting to App Configuration and Key Vault. See this [document](https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-starters/spring-cloud-starter-azure-appconfiguration-config#client-builder-customization) for more details and examples. [#656](https://github.com/microsoft/spring-cloud-azure/issues/656)
   * `ConfigurationClientBuilderSetup`
@@ -43,7 +43,6 @@
 * `AppConfigurationRefresh`'s `refreshConfigurations()` can be called to check if the settings for each App Configuration instance are up to date and, if the cache has expired, trigger a refresh event.
 
 ## 1.1.1/1.2.1 - January 13, 2020
-
 * Added Support for Spring Boot 2.2.x Hoxton with version 1.2.1. Spring Boot 2.1.x Greenwich is still supported with 1.1.1.
 
 ### Configuration
