@@ -8,7 +8,7 @@
 
 ## 1.1.5/1.2.6 - May 28, 2020
 
-* Fixed the bug where configuration refresh didn't work when using provider in Java 11 inside a docker container that is using more than 2 CPUs. Switched from using CompletableFuture to @Async which resolves the issue.
+* Fixed the bug where the configuration cannot be refreshed successfully when this library is used in a Java 11 container running with more than 2 CPUs.
 
 ## 1.1.4/1.2.5 - April 27, 2020
 
