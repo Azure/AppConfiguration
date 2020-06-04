@@ -6,16 +6,21 @@ using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using Microsoft.Extensions.Logging;
 
 namespace WebDemoWithEventHub
 {
     public class EventHubService
     {
-        IConfigurationRefresher _refresher;
+        private IConfigurationRefresher _refresher;
 
-        public EventHubService(IConfiguration config)
+        private ILogger<EventHubService> _logger;
+
+        public EventHubService(IConfiguration config, ILogger<EventHubService> logger)
         {
-            EventHubConnection eventHubConnection = config.GetSection("WebDemo:Connection").Get<EventHubConnection>();
+            _logger = logger;
+
+            EventHubConnection eventHubConnection = config.GetSection("WebDemo:EventHubConnection").Get<EventHubConnection>();
             InitEventHubProcessor(eventHubConnection);
             if (config is IConfigurationRoot configRoot)
             {
@@ -26,7 +31,11 @@ namespace WebDemoWithEventHub
                         _refresher = (IConfigurationRefresher)provider;
                     }
                 }
-            }            
+            }
+            else
+            {
+                _logger.LogError($"{nameof(config)} is not an instance of {typeof(IConfigurationRoot)}.");
+            }
         }
 
         private void InitEventHubProcessor(EventHubConnection eventHubConnection)
@@ -70,6 +79,8 @@ namespace WebDemoWithEventHub
 
         private Task ProcessEventHandler(ProcessEventArgs eventArgs)
         {
+            _logger.LogInformation("EventHub update received. Triggering cache invalidation.");
+
             //
             // Invalidate cache to force refresh.
             _refresher?.ResetCache();
@@ -79,8 +90,9 @@ namespace WebDemoWithEventHub
 
         private Task ProcessErrorHandler(ProcessErrorEventArgs eventArgs)
         {
-            Console.WriteLine($"\n\nERROR: Partition: '{eventArgs.PartitionId}': an unhandled exception was encountered.\n\n");
-            Console.WriteLine(eventArgs.Exception.Message);
+            _logger.LogError($"\n\nERROR: Partition: '{eventArgs.PartitionId}': an unhandled exception was encountered.\n\n");
+            _logger.LogError(eventArgs.Exception.Message);
+
             return Task.CompletedTask;
         }
     }
