@@ -1,6 +1,9 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 3.0.2 - July 01, 2020
+* Fixed the issue that caused a configuration change to be skipped as a part of refresh when a change is detected in a key with `refreshAll` set to `true` and all attempts to retrieve the updated settings from App Configuration fail. [#178](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/178)
+
 ### 3.0.1 - April 02, 2020
 * Improved refresh for feature flags to reduce the number of calls made to App Configuration if no change is detected. [#138](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/138)
 * Fixed the issue that caused `TryRefreshAsync` to throw an `Azure.Identity.AuthenticationFailedException` when the `TokenCredential` used to fetch a key vault reference failed to authenticate. [#149](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/149)
