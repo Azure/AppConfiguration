@@ -4,6 +4,18 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.2.0-preview - July 10, 2020
+
+### Custom Feature Providers
+
+Support for custom feature providers has been added. [#79](https://github.com/microsoft/FeatureManagement-Dotnet/pull/79)
+
+Implementing a custom feature provider enables developers to to read feature flags from sources such as a database or a feature management service. For more information on the concept of custom feature providers and how to use this new feature take a look at the project's [readme](https://github.com/microsoft/FeatureManagement-Dotnet#custom-feature-providers).
+
+### Netcoreapp3.1 Targeting
+
+The netcoreapp3.1 framework has been added to the list of target frameworks. This change resolves dependency issues for ASP.NET Core 3.1 applications. [#77](https://github.com/microsoft/FeatureManagement-Dotnet/pull/77)
+
 ## 2.1.0-preview - Apr 22, 2020
 
 ### Targeting
