@@ -1,5 +1,5 @@
 ## Azure App Configuration Push Extension release notes
-Azure App Configuration Push extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version of the Azure App Configuration task will print to the console when the task is executed: ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
+Azure App Configuration Push extension for Azure DevOps pipeline can be installed from the [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version of the Azure App Configuration task will print to the console when the task is executed: ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v1.0.0 - July, 19 2020
 * Initial version.
