@@ -8,8 +8,7 @@
 
 ## 1.2.7 - July 14, 2020
 
-* Fixed the bug where "featureManagement." needed to be added before some feature flag names when coming from App Configuration.
-* Fixed the bug where switching from an on/off feature flag to a conditional feature flag didn't work though refresh.
+* Fixed the bug that feature flags that do not use feature filters will appear always off regardless of their actual states.
 
 ## 1.1.2/1.2.2 - February 25, 2020
 
