@@ -6,6 +6,10 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
+## 1.2.7 - July 14, 2020
+
+* Fixed the bug that feature flags that do not use feature filters will appear always off regardless of their actual states.
+
 ## 1.1.2/1.2.2 - February 25, 2020
 
 * `FeatureManager` now has a method `getAllFeatureNames` which will return the names of all loaded Feature Flags.
