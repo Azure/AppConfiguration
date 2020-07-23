@@ -9,7 +9,7 @@
 ## 1.2.7 - July 14, 2020
 
 * Fixed the bug where setting `spring.cloud.azure.appconfiguration.enabled` to false while using `spring-cloud-azure-appconfiguration-config-web`, resulted in an error on startup. [#332](https://github.com/Azure/AppConfiguration/issues/332)
-* Fixed issues where a 400 Error would be returned from App Configuration when multiple labels and profiles are used at the same time. [#675](https://github.com/microsoft/spring-cloud-azure/issues/675)
+* Fixed the bug where a 400 Error would be returned from App Configuration when multiple labels and profiles are used at the same time. [#675](https://github.com/microsoft/spring-cloud-azure/issues/675)
 
 ## 1.1.5/1.2.6 - May 28, 2020
 
