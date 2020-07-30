@@ -6,7 +6,7 @@
    ````csharp
    void SetDirty(TimeSpan? maxDelay = null)
    ````
-* Added JSON content-type (e.g. MIME type `application/json`) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded properly to IConfiguration. [#191](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/191)
+* Added JSON content-type (e.g. MIME type `application/json`) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded properly to `IConfiguration`. [#191](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/191)
 * Added support for applications to obtain `IConfigurationRefresher` instances through dependency injection (DI). This allows better control of when to call `RefreshAsync()/TryRefreshAsync()` or whether to `await` the call. The following two APIs can be used to take advantage of this feature. [#167](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/167)
 
     * Call `IServiceCollection.AddAzureAppConfiguration()` first to add required services to the DI container.
