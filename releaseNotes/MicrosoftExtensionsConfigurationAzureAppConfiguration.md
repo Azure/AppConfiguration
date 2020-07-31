@@ -2,11 +2,15 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 4.0.0-preview - July 23, 2020
-* Added enhanced support for applications that leverage Event Grid integration in App Configuration for configuration refresh. The following new API is introduced in `IConfigurationRefresher` interface, which can be called when an application responds to push notifications from Event Grid. This signals the application to reassess whether configuration should be updated on the next call to `RefreshAsync()` or `TryRefreshAsync()`. [#133](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/133)
+* **Breaking Change :** Added enhanced support for applications that leverage Event Grid integration in App Configuration for configuration refresh. The following new API is introduced in `IConfigurationRefresher` interface, which can be called when an application responds to push notifications from Event Grid. This signals the application to reassess whether configuration should be updated on the next call to `RefreshAsync()` or `TryRefreshAsync()`. [#133](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/133)
    ````csharp
    void SetDirty(TimeSpan? maxDelay = null)
    ````
-* Added JSON content-type (e.g. MIME type `application/json`) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded properly to `IConfiguration`. [#191](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/191)
+* **Breaking Change :** Added JSON content-type (e.g. MIME type `application/json`) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded properly to `IConfiguration`. Existing applications that use key-values with a valid JSON content-type may need to be updated. [#191](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/191)
+* **Breaking Change :** Added the following property to `IConfigurationRefresher` to allow users to disambiguate instances of the interface when using multiple Azure App Configuration providers.
+   ````csharp
+   Uri AppConfigurationEndpoint { get; }
+   ````
 * Added support for applications to obtain `IConfigurationRefresher` instances through dependency injection (DI). This allows better control of when to call `RefreshAsync()/TryRefreshAsync()` or whether to `await` the call. The following two APIs can be used to take advantage of this feature. [#167](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/167)
 
     * Call `IServiceCollection.AddAzureAppConfiguration()` first to add required services to the DI container.
