@@ -1,6 +1,30 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 4.0.0-preview - July 23, 2020
+* **Breaking Change :** Added enhanced support for applications that leverage Event Grid integration in App Configuration for configuration refresh. The following new API is introduced in `IConfigurationRefresher` interface, which can be called when an application responds to push notifications from Event Grid. This signals the application to reassess whether configuration should be updated on the next call to `RefreshAsync()` or `TryRefreshAsync()`. [#133](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/133)
+   ````csharp
+   void SetDirty(TimeSpan? maxDelay = null)
+   ````
+* **Breaking Change :** Added JSON content-type (e.g. MIME type `application/json`) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded properly to `IConfiguration`. Existing applications that use key-values with a valid JSON content-type may need to be updated. [#191](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/191)
+* **Breaking Change :** Added the following property to `IConfigurationRefresher` to allow users to disambiguate instances of the interface when using multiple Azure App Configuration providers.
+   ````csharp
+   Uri AppConfigurationEndpoint { get; }
+   ````
+* Added support for applications to obtain `IConfigurationRefresher` instances through dependency injection (DI). This allows better control of when to call `RefreshAsync()/TryRefreshAsync()` or whether to `await` the call. The following two APIs can be used to take advantage of this feature. [#167](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/167)
+
+    * Call `IServiceCollection.AddAzureAppConfiguration()` first to add required services to the DI container.
+      ````csharp
+      public static IServiceCollection AddAzureAppConfiguration(this IServiceCollection services)
+      ````
+    * Retrieve `IConfigurationRefresher` instances via `IConfigurationRefresherProvider` interface obtained through DI.
+      ````csharp
+      public interface IConfigurationRefresherProvider
+      {
+         IEnumerable<IConfigurationRefresher> Refreshers { get; }
+      }
+      ````
+
 ### 3.0.2 - July 01, 2020
 * Fixed an issue that may cause configuration refresh to be ignored when the key registered to refresh all configuration has changed. [#178](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/178)
 

@@ -1,6 +1,16 @@
 ## Microsoft.Azure.AppConfiguration.AspNetCore
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore)
 
+### 4.0.0-preview - July 23, 2020
+* Added multi-targeting support for .NET Core 3.1 besides .NET Standard 2.0. [#173](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/173)
+
+* **Breaking Change :** To leverage the new feature of dependency injection support for obtaining `IConfigurationRefresher` instances introduced in the `4.0.0-preview` version of the `Microsoft.Extensions.Configuration.AzureAppConfiguration` package, the following changes are made.
+    * Users must call `IServiceCollection.AddAzureAppConfiguration()` in `ConfigureServices(...)` to register the required services for configuration refresh before they can call `IApplicationBuilder.UseAzureAppConfiguration()`. This makes it easier to retrieve instances of `IConfigurationRefresher` through dependency injection in a controller or a middleware, and have better control of when and how configuration is refreshed.
+
+    * An exception is thrown when the required services for configuration refresh could not be retrieved from the `IServiceCollection` instance. [#166](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/166)
+
+* **Breaking Change :** Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.0.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 3.0.2 - July 01, 2020
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `3.0.2`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
