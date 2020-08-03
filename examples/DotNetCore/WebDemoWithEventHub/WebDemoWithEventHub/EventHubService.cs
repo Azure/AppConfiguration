@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
@@ -16,26 +17,14 @@ namespace WebDemoWithEventHub
 
         private ILogger<EventHubService> _logger;
 
-        public EventHubService(IConfiguration config, ILogger<EventHubService> logger)
+        public EventHubService(IConfiguration config, IConfigurationRefresherProvider providers, ILogger<EventHubService> logger)
         {
             _logger = logger;
 
             EventHubConnection eventHubConnection = config.GetSection("WebDemo:EventHubConnection").Get<EventHubConnection>();
             InitEventHubProcessor(eventHubConnection);
-            if (config is IConfigurationRoot configRoot)
-            {
-                foreach (var provider in configRoot.Providers)
-                {
-                    if (provider is Microsoft.Extensions.Configuration.AzureAppConfiguration.IConfigurationRefresher)
-                    {
-                        _refresher = (IConfigurationRefresher)provider;
-                    }
-                }
-            }
-            else
-            {
-                _logger.LogError($"{nameof(config)} is not an instance of {typeof(IConfigurationRoot)}.");
-            }
+
+            _refresher = providers.Refreshers.FirstOrDefault(r => r is IConfigurationRefresher);
         }
 
         private void InitEventHubProcessor(EventHubConnection eventHubConnection)
@@ -83,7 +72,7 @@ namespace WebDemoWithEventHub
 
             //
             // Invalidate cache to force refresh.
-            _refresher?.ResetCache();
+            _refresher?.SetDirty(maxDelay: TimeSpan.FromSeconds(1));
             
             return Task.CompletedTask;
         }
