@@ -21,9 +21,11 @@ namespace WebDemoWithEventHub
         {
             services.AddRazorPages();
 
-            // We add a Settings model to the service container, which takes its values from the applications configuration.
+            // We add a Settings and EventHubConnection models to the service container, which takes its values from the applications configuration.
             services.Configure<Settings>(Configuration.GetSection("WebDemo:Settings"));
+            services.Configure<EventHubConnection>(Configuration.GetSection("WebDemo:EventHubConnection"));
 
+            // Adds Azure App Configuration services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
             services.AddAzureAppConfiguration();
 
             // Add the service containing listener methods for EventHub updates.

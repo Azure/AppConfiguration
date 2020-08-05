@@ -13,22 +13,24 @@ namespace WebDemoWithEventHub
 {
     public class EventHubService
     {
-        private IConfigurationRefresher _refresher;
+        private IConfigurationRefresher _configurationRefresher;
 
         private ILogger<EventHubService> _logger;
 
-        public EventHubService(IConfiguration config, IConfigurationRefresherProvider providers, ILogger<EventHubService> logger)
+        public EventHubService(EventHubConnection eventHubConnection, IConfigurationRefresherProvider refresherProvider, ILogger<EventHubService> logger)
         {
             _logger = logger;
-
-            EventHubConnection eventHubConnection = config.GetSection("WebDemo:EventHubConnection").Get<EventHubConnection>();
             InitEventHubProcessor(eventHubConnection);
-
-            _refresher = providers.Refreshers.FirstOrDefault(r => r is IConfigurationRefresher);
+            _configurationRefresher = refresherProvider.Refreshers.FirstOrDefault(refresher => refresher is IConfigurationRefresher);
         }
 
         private void InitEventHubProcessor(EventHubConnection eventHubConnection)
         {
+            if (eventHubConnection == null)
+            {
+                throw new ArgumentNullException(nameof(eventHubConnection));
+            }
+
             if (string.IsNullOrEmpty(eventHubConnection.EventHubConnectionString))
             {
                 throw new ArgumentNullException(nameof(eventHubConnection.EventHubConnectionString));
@@ -71,8 +73,8 @@ namespace WebDemoWithEventHub
             _logger.LogInformation("EventHub update received. Triggering cache invalidation.");
 
             //
-            // Invalidate cache to force refresh.
-            _refresher?.SetDirty(maxDelay: TimeSpan.FromSeconds(1));
+            // Set the cached value for key-values registered for refresh as dirty.
+            _configurationRefresher?.SetDirty();
             
             return Task.CompletedTask;
         }
