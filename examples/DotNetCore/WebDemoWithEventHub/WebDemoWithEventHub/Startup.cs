@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -25,7 +24,7 @@ namespace WebDemoWithEventHub
             services.Configure<Settings>(Configuration.GetSection("WebDemo:Settings"));
             services.Configure<EventHubConnection>(Configuration.GetSection("WebDemo:EventHubConnection"));
 
-            // Adds Azure App Configuration services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
+            // Add Azure App Configuration required services to the DI
             services.AddAzureAppConfiguration();
 
             // Add the service containing listener methods for EventHub updates.
