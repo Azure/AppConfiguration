@@ -5,9 +5,9 @@ using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace WebDemoWithEventHub
 {
@@ -17,10 +17,10 @@ namespace WebDemoWithEventHub
 
         private ILogger<EventHubService> _logger;
 
-        public EventHubService(EventHubConnection eventHubConnection, IConfigurationRefresherProvider refresherProvider, ILogger<EventHubService> logger)
+        public EventHubService(IOptions<EventHubConnection> eventHubConnection, IConfigurationRefresherProvider refresherProvider, ILogger<EventHubService> logger)
         {
             _logger = logger;
-            InitEventHubProcessor(eventHubConnection);
+            InitEventHubProcessor(eventHubConnection.Value);
             _configurationRefresher = refresherProvider.Refreshers.FirstOrDefault(refresher => refresher is IConfigurationRefresher);
         }
 
