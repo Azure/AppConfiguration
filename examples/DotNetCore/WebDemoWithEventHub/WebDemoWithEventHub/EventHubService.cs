@@ -17,11 +17,13 @@ namespace WebDemoWithEventHub
 
         private ILogger<EventHubService> _logger;
 
+        private EventProcessorClient _eventProcessorClient;
+
         public EventHubService(IOptions<EventHubConnection> eventHubConnection, IConfigurationRefresherProvider refresherProvider, ILogger<EventHubService> logger)
         {
             _logger = logger;
             InitEventHubProcessor(eventHubConnection.Value);
-            _configurationRefresher = refresherProvider.Refreshers.FirstOrDefault(refresher => refresher is IConfigurationRefresher);
+            _configurationRefresher = refresherProvider.Refreshers.FirstOrDefault();
         }
 
         private void InitEventHubProcessor(EventHubConnection eventHubConnection)
@@ -58,14 +60,14 @@ namespace WebDemoWithEventHub
             var storageClient = new BlobContainerClient(connectionString: eventHubConnection.StorageConnectionString,
                                                         blobContainerName: eventHubConnection.StorageContainerName);
 
-            var processorClient = new EventProcessorClient(checkpointStore: storageClient,
+            _eventProcessorClient = new EventProcessorClient(checkpointStore: storageClient,
                                                        consumerGroup: consumerGroup,
                                                        connectionString: eventHubConnection.EventHubConnectionString,
                                                        eventHubName: eventHubConnection.EventHubName);
 
-            processorClient.ProcessEventAsync += ProcessEventHandler;
-            processorClient.ProcessErrorAsync += ProcessErrorHandler;
-            processorClient.StartProcessing();
+            _eventProcessorClient.ProcessEventAsync += ProcessEventHandler;
+            _eventProcessorClient.ProcessErrorAsync += ProcessErrorHandler;
+            _eventProcessorClient.StartProcessing();
         }
 
         private Task ProcessEventHandler(ProcessEventArgs eventArgs)
