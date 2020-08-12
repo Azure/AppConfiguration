@@ -44,6 +44,10 @@ namespace WebDemoWithEventHub
                                        {
                                            // Indicates that all configuration should be refreshed when the given key has changed.
                                            refreshOptions.Register(key: "WebDemo:Sentinel", refreshAll: true);
+                                       })
+                                       .ConfigureKeyVault(keyVaultOptions =>
+                                       {
+                                           keyVaultOptions.SetCredential(new DefaultAzureCredential());
                                        });
                             });
                         }
