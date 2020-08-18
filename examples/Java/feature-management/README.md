@@ -7,3 +7,10 @@ This example can be updated to use feature filters by adding one to your Beta fe
 Another built in filter is `TimeWindowFilter`, which will return true only if either; between the start and end date, after the start date, or before the end date. This can be done by adding the `TimeWIndowFilter` to the featureFilters `HashMap` in `HelloWorld.java`. Then adding the start and/or end dates to your feature. The `TimeWindowFilter` parameters can be found in `FilterParameters.java`.
 
 Additionally you can create your own filters by implementing the class `FeatureFilter.java` and following the same process used to add the `TimeWindowFilter`.
+
+To run:
+
+```terminal
+mvn clean install
+java -jar target/feature-management/feature-management.jar
+```
