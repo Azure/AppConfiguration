@@ -41,11 +41,11 @@ public class FeatureManager {
 
     private HashMap<String, Boolean> onOff;
 
-    public FeatureManager(String connectionString, HashMap<String, FeatureFilter> featureFilters) throws IOException {
+    public FeatureManager(String connectionString, String label, HashMap<String, FeatureFilter> featureFilters) throws IOException {
         this.featureFilters = featureFilters;
         ConfigurationClientBuilder builder = new ConfigurationClientBuilder();
         ConfigurationClient client = builder.connectionString(connectionString).buildClient();
-        SettingSelector settingSelector = new SettingSelector().setKeyFilter(".appconfig*");
+        SettingSelector settingSelector = new SettingSelector().setKeyFilter(".appconfig*").setLabelFilter(label);
         PagedIterable<ConfigurationSetting> features = client.listConfigurationSettings(settingSelector);
 
         FeatureSet featureSet = createFeatureSet(features);
