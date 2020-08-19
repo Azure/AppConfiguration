@@ -37,5 +37,13 @@ Additionally you can create your own feature flag filters by implementing the cl
 
 ```terminal
 mvn clean install
-java -jar target/feature-management/feature-management.jar
+java -jar target\feature-management\feature-management.jar
+```
+
+**Example Output**:
+
+```terminal
+[main] INFO com.azure.data.appconfiguration.ConfigurationAsyncClient - Listing ConfigurationSettings - SettingSelector(keyFilter=.appconfig*, labelFilter= , acceptDateTime=null, fields=ALL_FIELDS)
+[reactor-http-nio-1] INFO com.azure.data.appconfiguration.ConfigurationAsyncClient - Listed ConfigurationSettings - SettingSelector(keyFilter=.appconfig*, labelFilter= , acceptDateTime=null, fields=ALL_FIELDS)
+Hello World
 ```
