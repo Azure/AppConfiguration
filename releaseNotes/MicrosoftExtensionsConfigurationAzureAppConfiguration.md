@@ -1,6 +1,10 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 4.0.0 - September 11, 2020
+* **Breaking Change :** Updated `ConfigureRefresh` to throw when it is passed a callback that does not register any key-value for refresh using the `Register` method. [#162](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/162)
+* Fixed the issue that caused `KeyVaultReferenceException` to be thrown when the `optional` parameter is set to `true` in the method `AddAzureAppConfiguration` and a key vault reference could not be resolved. [#136](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/136)
+
 ### 4.0.0-preview - July 23, 2020
 * **Breaking Change :** Added enhanced support for applications that leverage Event Grid integration in App Configuration for configuration refresh. The following new API is introduced in `IConfigurationRefresher` interface, which can be called when an application responds to push notifications from Event Grid. This signals the application to reassess whether configuration should be updated on the next call to `RefreshAsync()` or `TryRefreshAsync()`. [#133](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/133)
    ````csharp
