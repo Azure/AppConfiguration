@@ -4,6 +4,10 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.2.0 - September 16, 2020
+
+No changes have been made in this version. This is the first stable release with the targeting feature filter (introduced in 2.1.0-preview) and custom feature providers (introduced in 2.2.0-preview).
+
 ## 2.2.0-preview - July 10, 2020
 
 ### Custom Feature Providers
