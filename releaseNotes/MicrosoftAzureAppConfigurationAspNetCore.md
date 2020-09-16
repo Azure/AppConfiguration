@@ -1,6 +1,9 @@
 ## Microsoft.Azure.AppConfiguration.AspNetCore
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore)
 
+### 4.0.0 - September 11, 2020
+* **Breaking Change :** Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.0.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 4.0.0-preview - July 23, 2020
 * Added multi-targeting support for .NET Core 3.1 besides .NET Standard 2.0. [#173](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/173)
 
