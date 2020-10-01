@@ -585,3 +585,67 @@ while IFS= read -r line; do
 done <<< "$headers"
 curl -X "$method" -d "$body" "${header_args[@]}" "https://$host$url"
 ```
+
+### R
+
+```r
+library(httr)
+library(digest)
+library(lubridate)
+library(base64enc)
+
+sign_request <- function(host, method, url, body, credential, secret) {
+    
+    verb <- toupper(method)
+    utc_now <- format(lubridate::now(tzone = "GMT"), "%a, %b %d %Y %H:%M:%S GMT") 
+    signed_headers <- "x-ms-date;host;x-ms-content-sha256"
+    
+    content_hash <- base64enc::base64encode(
+        digest::digest(body, 
+                       serialize = FALSE, 
+                       algo = "sha256", 
+                       raw = TRUE)
+        )
+    
+    string_to_sign <- paste0(
+        verb, '\n', 
+        url, '\n', 
+        utc_now, ';', host, ';', content_hash
+    )
+   
+    sig_key <- base64enc::base64decode(secret)
+    signature <- digest::hmac(
+        key = sig_key, 
+        object = utf8ToInt(string_to_sign), 
+        algo = "sha256", 
+        serialize = FALSE,
+        raw = TRUE
+    )
+    
+    
+    auth <- paste0(
+        "HMAC-SHA256 Credential=", credential, 
+        "&SignedHeaders=", signed_headers, 
+        "&Signature=", base64enc::base64encode(signature)
+    )
+    
+    httr::add_headers(
+        'x-ms-date' = utc_now,
+        'x-ms-content-sha256' = content_hash,
+        'Authorization' = auth
+        )
+}
+
+host <- "{config store name}.azconfig.io"
+method <- "GET"
+url <- "/kv?api-version=1.0"
+body <- ""
+credential <- "<Credential>"
+secret <- "<Secret>"
+
+
+res <- httr::GET(
+	url = paste0("https://", host, url),
+	sign_request(host, method, url, body, credential, secret)
+)
+```
