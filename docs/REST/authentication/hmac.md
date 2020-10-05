@@ -217,12 +217,12 @@ function signRequest(host,
 }
 ```
 
-### React native - Javacript
+### React native
 *Prerequisites*: [RNSimpleCrypto](https://github.com/ghbutton/react-native-simple-crypto), [base64](https://github.com/eranbo/react-native-base64)
 
 ```js
 const signRequest = async (
-  host,             // sample '<xconfig>.azconfig.io'
+  host,             // sample '<config>.azconfig.io'
   method = 'GET',   // GET, PUT, POST, DELETE
   url = '/kv?api-version=1.0',  // path+query
   body = undefined, // request body (undefined of none)
