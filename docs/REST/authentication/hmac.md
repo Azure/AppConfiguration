@@ -217,6 +217,52 @@ function signRequest(host,
 }
 ```
 
+### React native - Javacript
+*Prerequisites*: [RNSimpleCrypto](https://github.com/ghbutton/react-native-simple-crypto), [base64](https://github.com/eranbo/react-native-base64)
+
+```js
+const signRequest = async (
+  host,             // sample '<xconfig>.azconfig.io'
+  method = 'GET',   // GET, PUT, POST, DELETE
+  url = '/kv?api-version=1.0',  // path+query
+  body = undefined, // request body (undefined of none)
+  credential,       // access key id
+  secret            // access key value (base64 encoded)
+) => {
+  const verb = method.toUpperCase()
+  const utcNow = new Date().toUTCString()
+  const bodySha256 = await RNSimpleCrypto.SHA.sha256(body)
+  const contentHash = await RNSimpleCrypto.utils.convertArrayBufferToBase64(bodySha256)
+
+  //
+  // SignedHeaders
+  const signedHeaders = 'x-ms-date;host;x-ms-content-sha256' // Semicolon separated header names
+
+  //
+  // String-To-Sign
+  const stringToSign = 
+    verb + '\n' +                             // VERB
+    url + '\n' +                              // path_and_query
+    utcNow + ';' + host + ';' + contentHash   // Semicolon separated SignedHeaders values
+
+  //
+  // Signature
+  const b64StringTosign = base64.encode(stringToSign)
+  const arrayBufferStringToSign = await RNSimpleCrypto.utils.convertBase64ToArrayBuffer(b64StringTosign)
+  const keyHmac = await RNSimpleCrypto.utils.convertBase64ToArrayBuffer(secret)
+  const signatureHmac256 = await RNSimpleCrypto.HMAC.hmac256(arrayBufferStringToSign, keyHmac)
+  const signature = await RNSimpleCrypto.utils.convertArrayBufferToBase64(signatureHmac256)
+
+  //
+  // Result request headers
+  return {
+    'x-ms-date': utcNow,
+    'x-ms-content-sha256': contentHash,
+    'Authorization': 'HMAC-SHA256 Credential=' + credential + '&SignedHeaders=' + signedHeaders + '&Signature=' + signature
+  }
+}
+```
+
 ### C#
 
 ```cs
