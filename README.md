@@ -14,7 +14,9 @@ Subscribe to the following repo to be notified of announcements and updates abou
 
 ## REST API Reference
 
-Access full functionalities of App Configuration via its [REST APIs]((https://docs.microsoft.com/azure/azure-app-configuration/rest-api)) from any programming languages including those that don't have SDKs or development tools you often use.
+Follow links below for the Azure App Configuration REST API reference
+  * [Key-vaule data operation](https://docs.microsoft.com/azure/azure-app-configuration/rest-api)
+  * [Configuration store management](https://docs.microsoft.com/rest/api/appconfiguration/)
 
 ## Client Libraries
 
