@@ -15,7 +15,7 @@ Subscribe to the following repo to be notified of announcements and updates abou
 ## REST API Reference
 
 Follow the links below for the Azure App Configuration REST API reference.
-  * [Key-vaule data operation](https://docs.microsoft.com/azure/azure-app-configuration/rest-api)
+  * [Key-value data operation](https://docs.microsoft.com/azure/azure-app-configuration/rest-api)
   * [Configuration store management](https://docs.microsoft.com/rest/api/appconfiguration/)
 
 ## Client Libraries
