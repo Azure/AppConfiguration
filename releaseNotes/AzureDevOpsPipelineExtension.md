@@ -8,7 +8,7 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ### v3.2.15 - December, 10 2020
 * Fixed an issue causing the task to partially succeed when key-values are overwritten [#372](https://github.com/Azure/AppConfiguration/issues/372)
-* Erorr handling in the case where, required parameters are missing 
+* Improved error message when required parameters are not provided 
 
 ### v3.0.14 - May, 15 2020
 * Fixed an issue causing the task to fail when run in a Linux pipeline. [#327](https://github.com/Azure/AppConfiguration/issues/327)
