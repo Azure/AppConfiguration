@@ -24,8 +24,6 @@ namespace FunctionApp
                        // Indicate to load feature flags
                        .UseFeatureFlags();
             });
-
-            base.ConfigureAppConfiguration(builder);
         }
 
         public override void Configure(IFunctionsHostBuilder builder)
