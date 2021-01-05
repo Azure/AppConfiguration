@@ -1,6 +1,11 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 4.1.0 - December 15, 2020
+* Added `SetSecretResolver` API to allow users to configure the behavior when a Key Vault reference cannot be resolved. [#209](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/209)
+* Added support for registering key-values with same key but different labels for refresh. [#156](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/156)
+* Fixed an issue that caused cache expiration to be ignored on first call to RefreshAsync. [#172](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/172)
+
 ### 4.0.0 - September 11, 2020
 * **Breaking Change :** Updated `ConfigureRefresh` to throw when it is passed a callback that does not register any key-value for refresh using the `Register` method. [#162](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/162)
 * Fixed the issue that caused `KeyVaultReferenceException` to be thrown when the `optional` parameter is set to `true` in the method `AddAzureAppConfiguration` and a key vault reference could not be resolved. [#136](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/136)
