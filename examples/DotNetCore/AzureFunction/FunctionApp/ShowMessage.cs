@@ -1,8 +1,10 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -11,13 +13,13 @@ namespace FunctionApp
 {
     public class ShowMessage
     {
-        private readonly Settings _settings;
+        private readonly IConfiguration _configuration;
         private readonly IConfigurationRefresher _configurationRefresher;
 
-        public ShowMessage(IOptionsSnapshot<Settings> settings, IConfigurationRefresher configurationRefresher)
+        public ShowMessage(IConfiguration configuration, IConfigurationRefresherProvider refresherProvider)
         {
-            _settings = settings.Value;
-            _configurationRefresher = configurationRefresher;
+            _configuration = configuration;
+            _configurationRefresher = refresherProvider.Refreshers.First();
         }
 
         [FunctionName("ShowMessage")]
@@ -32,11 +34,12 @@ namespace FunctionApp
             // The configuration is refreshed asynchronously without blocking the execution of the current function.
             _ = _configurationRefresher.TryRefreshAsync();
 
-            string message = _settings.Message;
+            string key = "TestApp:Settings:Message";
+            string message = _configuration[key];
 
             return message != null
                 ? (ActionResult)new OkObjectResult(message)
-                : new BadRequestObjectResult($"Please create a key-value with the key 'TestApp:Settings:Message' in Azure App Configuration.");
+                : new BadRequestObjectResult($"Please create a key-value with the key '{key}' in Azure App Configuration.");
         }
     }
 }
