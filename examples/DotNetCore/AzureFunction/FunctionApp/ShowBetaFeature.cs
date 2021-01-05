@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,10 @@ namespace FunctionApp
         private readonly IFeatureManagerSnapshot _featureManagerSnapshot;
         private readonly IConfigurationRefresher _configurationRefresher;
 
-        public ShowBetaFeature(IFeatureManagerSnapshot featureManagerSnapshot, IConfigurationRefresher configurationRefresher)
+        public ShowBetaFeature(IFeatureManagerSnapshot featureManagerSnapshot, IConfigurationRefresherProvider refresherProvider)
         {
             _featureManagerSnapshot = featureManagerSnapshot;
-            _configurationRefresher = configurationRefresher;
+            _configurationRefresher = refresherProvider.Refreshers.First();
         }
 
         [FunctionName("ShowBetaFeature")]
