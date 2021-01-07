@@ -3,6 +3,12 @@
 The Azure App Configuration extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task&ssr=false#overview). The version of the Azure App Configuration task being used will print to the console when the task is executed: 
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
+### v3.2.16 - December, 10 2020
+* Updated the readme 
+
+### v3.2.15 - December, 10 2020
+* Fixed an issue causing the task to partially succeed when key-values are overwritten [#372](https://github.com/Azure/AppConfiguration/issues/372)
+* Improved error message when required parameters are not provided 
 
 ### v3.0.14 - May, 15 2020
 * Fixed an issue causing the task to fail when run in a Linux pipeline. [#327](https://github.com/Azure/AppConfiguration/issues/327)
