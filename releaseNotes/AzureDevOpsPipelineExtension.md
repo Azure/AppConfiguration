@@ -3,6 +3,11 @@
 The Azure App Configuration extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task&ssr=false#overview). The version of the Azure App Configuration task being used will print to the console when the task is executed: 
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
+
+### v3.3.16 - February, 16 2021
+* Fixed “task.json” as the task editor gives wrong assistance. 
+* Added error message when certificate based-authentication is used, as its not supported.
+
 ### v3.2.16 - December, 10 2020
 * Updated the readme 
 
