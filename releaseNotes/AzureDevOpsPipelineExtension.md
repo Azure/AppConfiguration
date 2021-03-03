@@ -5,8 +5,8 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
 ### v3.3.16 - February, 16 2021
-* Fixed “task.json” as the task editor gives wrong assistance. 
-* Added error message when certificate based-authentication is used, as its not supported.
+* Fixed incorrect tooltip help messages for task parameters in task editor UI [#447](https://github.com/Azure/AppConfiguration/issues/447) 
+* Updated error message when certificate based authentication is used to indicate that it is not supported.
 
 ### v3.2.16 - December, 10 2020
 * Updated the readme 
