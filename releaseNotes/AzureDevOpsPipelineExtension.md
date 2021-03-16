@@ -5,7 +5,7 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
 ### v3.4.16 - March, 12 2021
-* Fixed a bug that was causing an unauthorized error when Managed Identities based authentication is used.
+* Added the capability to use managed identity based authentication.
 
 ### v3.3.16 - February, 16 2021
 * Fixed incorrect tooltip help messages for task parameters in task editor UI [#447](https://github.com/Azure/AppConfiguration/issues/447) 
