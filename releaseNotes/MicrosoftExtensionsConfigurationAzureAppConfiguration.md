@@ -1,6 +1,9 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 4.2.0 - March 19, 2021
+* Added support for .NET 5 as a target framework.
+
 ### 4.1.0 - December 15, 2020
 * Added `SetSecretResolver` API to allow users to configure the behavior when a Key Vault reference cannot be resolved. [#209](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/209)
 * Added support for registering key-values with same key but different labels for refresh. [#156](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/156)
