@@ -6,6 +6,14 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 1.2.9 - March 18, 2020
+
+* Updated to newer versions of dependencies. Spring Boot 2.3.5.RELEASE and Spring Cloud 2.2.5.RELEASE.
+
+## 1.2.8 - March 9, 2020
+
+* Should not be used, released with incorrect version of Spring Boot.
+
 ## 1.2.7 - July 14, 2020
 
 * Fixed the bug where setting `spring.cloud.azure.appconfiguration.enabled` to false while using `spring-cloud-azure-appconfiguration-config-web`, resulted in an error on startup. [#332](https://github.com/Azure/AppConfiguration/issues/332)
