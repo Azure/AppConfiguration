@@ -1,6 +1,14 @@
 ## Microsoft.Azure.AppConfiguration.AspNetCore
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore)
 
+
+### 4.3.0-preview - April 14,2021
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.3.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
+### 4.2.1 - March 25,2021
+* Updated package license information.
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.2.1`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 4.2.0 - March 19, 2021
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.2.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 

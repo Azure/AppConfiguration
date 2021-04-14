@@ -1,6 +1,22 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 4.3.0-preview - April 14,2021
+* Added two new APIs for filtering and trimming feature flag by a prefix. [#234](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/234)
+
+   * Selectively load feature flags based on key and label filters:
+   ```csharp 
+   FeatureFlagOptions Select(string featureFlagFilter, string labelFilter)
+   ```
+
+   * Trim a prefix from the keys of all feature flags retrieved from Azure App Configuration:
+   ```csharp
+   FeatureFlagOptions TrimFeatureFlagPrefix(string prefix)
+   ```
+
+### 4.2.1 - March 25,2021
+* Updated package license information.
+
 ### 4.2.0 - March 19, 2021
 * Added support for .NET 5 as a target framework.
 
