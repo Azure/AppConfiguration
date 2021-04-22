@@ -9,7 +9,7 @@
    FeatureFlagOptions Select(string featureFlagFilter, string labelFilter)
    ```
 
-   * Trim a prefix from the keys of all feature flags retrieved from Azure App Configuration:
+   * Trim a prefix from the id of all feature flags retrieved from Azure App Configuration:
    ```csharp
    FeatureFlagOptions TrimFeatureFlagPrefix(string prefix)
    ```
