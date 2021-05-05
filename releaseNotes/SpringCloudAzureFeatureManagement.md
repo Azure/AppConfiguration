@@ -11,6 +11,7 @@
 * Change group id from `com.microsoft.azure` to `com.azure.spring`.
 * Change artifact id from `spring-cloud-azure-feature-management` to `azure-spring-cloud-feature-management`.
 * Change artifact id from `spring-cloud-azure-feature-management-web` to `azure-spring-cloud-feature-management-web`.
+* Added Support for Feature Targeting
 
 ## 1.3.0 - April 21, 2021
 
