@@ -19,7 +19,7 @@
   * Users can now select multiple groups of keys from one store see `spring.cloud.azure.appconfiguration.stores[0].selects`.
   * `spring.profiles.active` is now the default label of all filters. This can be overridden using selects. If no profile is set `\0` is used i.e. `(No Label)`
 * Added [support](https://docs.microsoft.com/azure/azure-app-configuration/howto-leverage-json-content-type) for JSON content type
-* Added a new Push based Refresh method. Two Spring Actuator endpoints have been added appconfiguration-refresh and appconfiguration-refresh-bus. The first triggers the cache to reset on configurations on an application. The second triggers a refresh on all instances subscribed to the same Service Bus.
+* Added a new Push based Refresh method. Two Spring Actuator endpoints have been added. `appconfiguration-refresh` triggers the cache to reset on configurations on an application. `appconfiguration-refresh-bus` triggers a refresh on all instances subscribed to the same Service Bus.
 
 ## 1.3.0 - April 21, 2021
 
