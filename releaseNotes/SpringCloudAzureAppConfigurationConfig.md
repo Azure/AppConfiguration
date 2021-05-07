@@ -14,10 +14,10 @@
 * Change artifact id from `spring-cloud-azure-appconfiguration-config` to `azure-spring-cloud-appconfiguration-config`.
 * Change artifact id from `spring-cloud-azure-appconfiguration-config-web` to `azure-spring-cloud-appconfiguration-config-web`.
 * Format and options of library configuration has completely changed. See [Readme](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config/README.md) for full details.
-  * Use of a Watch Key is now required see `spring.cloud.azure.appconfiguration.stores[0].monitoring.triggers` in Readme linked above.
+  * Use of a Watch Key `spring.cloud.azure.appconfiguration.stores[0].monitoring.triggers` is now required see the readme linked above.
   * Feature Management config loading is now disabled by default.
   * Users can now select multiple groups of keys from one store see `spring.cloud.azure.appconfiguration.stores[0].selects`.
-  * `spring.profiles.active` is now the default label of all filters. This can be overridden using selects. If no profile is set `\0` is used i.e. `(No Label)`
+  * `spring.profiles.active` is now the default label of all filters. This can be overridden using `selects`. If no profile is set `\0` is used i.e. `(No Label)`
 * Added [support](https://docs.microsoft.com/azure/azure-app-configuration/howto-leverage-json-content-type) for JSON content type
 * Added a new Push based Refresh method. Two Spring Actuator endpoints have been added. `appconfiguration-refresh` triggers the cache to reset on configurations on an application. `appconfiguration-refresh-bus` triggers a refresh on all instances subscribed to the same Service Bus.
 
