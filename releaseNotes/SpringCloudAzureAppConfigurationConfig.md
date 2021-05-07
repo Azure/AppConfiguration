@@ -1,16 +1,35 @@
-# spring-cloud-azure-appconfiguration-config
+# azure-spring-cloud-appconfiguration-config
 
 [Source code][source_code] | [Package (Maven)][package] | [Product documentation][docs] | [Samples][samples]
 
-# spring-cloud-azure-appconfiguration-config-web
+# azure-spring-cloud-appconfiguration-config-web
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
-## 1.2.9 - March 18, 2020
+## 2.0.0-beta.1 - May 5, 2021
+
+**Breaking Changes**
+
+* Change group id from `com.microsoft.azure` to `com.azure.spring`.
+* Change artifact id from `spring-cloud-azure-appconfiguration-config` to `azure-spring-cloud-appconfiguration-config`.
+* Change artifact id from `spring-cloud-azure-appconfiguration-config-web` to `azure-spring-cloud-appconfiguration-config-web`.
+* Format and options of library configuration has completely changed. See [Readme](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config/README.md) for full details.
+  * Use of a Watch Key `spring.cloud.azure.appconfiguration.stores[0].monitoring.triggers` is now required see the readme linked above.
+  * Feature Management config loading is now disabled by default.
+  * Users can now select multiple groups of keys from one store see `spring.cloud.azure.appconfiguration.stores[0].selects`.
+  * `spring.profiles.active` is now the default label of all filters. This can be overridden using `selects`. If no profile is set `\0` is used i.e. `(No Label)`
+* Added [support](https://docs.microsoft.com/azure/azure-app-configuration/howto-leverage-json-content-type) for JSON content type
+* Added a new Push based Refresh method. Two Spring Actuator endpoints have been added. `appconfiguration-refresh` triggers the cache to reset on configurations on an application. `appconfiguration-refresh-bus` triggers a refresh on all instances subscribed to the same Service Bus.
+
+## 1.3.0 - April 21, 2021
+
+* Updated to newer versions of dependencies. Spring Boot 2.4.3 and Spring Cloud 3.0.1.
+
+## 1.2.9 - March 18, 2021
 
 * Updated to newer versions of dependencies. Spring Boot 2.3.5.RELEASE and Spring Cloud 2.2.5.RELEASE.
 
-## 1.2.8 - March 9, 2020
+## 1.2.8 - March 9, 2021
 
 * Should not be used, released with incorrect version of Spring Boot.
 
@@ -141,10 +160,10 @@
 
 <!-- LINKS -->
 [docs]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
-[package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config
-[samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples
-[source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config
+[package]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-samples/feature-management-web-sample
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config
 [token_credentials]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
 
-[package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config-web
-[source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config-web
+[package_web]: https://mvnrepository.com/artifact/com.azure.azure/azure-spring-cloud-appconfiguration-config-web
+[source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config-web
