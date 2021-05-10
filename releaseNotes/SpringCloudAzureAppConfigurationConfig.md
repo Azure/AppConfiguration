@@ -1,4 +1,5 @@
 # spring-cloud-azure-appconfiguration-config
+
 [Source code][source_code] | [Package (Maven)][package] | [Product documentation][docs] | [Samples][samples]
 
 # spring-cloud-azure-appconfiguration-config-web

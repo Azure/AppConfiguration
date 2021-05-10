@@ -6,13 +6,6 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
-## 2.0.0-beta.1 - May 5, 2021
-
-* Change group id from `com.microsoft.azure` to `com.azure.spring`.
-* Change artifact id from `spring-cloud-azure-feature-management` to `azure-spring-cloud-feature-management`.
-* Change artifact id from `spring-cloud-azure-feature-management-web` to `azure-spring-cloud-feature-management-web`.
-* Added Support for Feature Targeting
-
 ## 1.3.0 - April 21, 2021
 
 * Updated to newer versions of dependencies. Spring Boot 2.4.3 and Spring Cloud 3.0.1.
@@ -21,7 +14,7 @@
 
 * Updated to newer versions of dependencies. Spring Boot 2.3.5.RELEASE and Spring Cloud 2.2.5.RELEASE.
 
-## 1.2.8 - March 9, 2020
+## 1.2.8 - March 9, 2021
 
 * Should not be used, released with incorrect version of Spring Boot.
 
@@ -72,11 +65,11 @@ feature-management:
 * Adds FeatureGates, Disabled Action Handling, and Routing away from disabled features
 
 <!-- LINKS -->
-<!-- LINKS -->
 [docs]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management
 [samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-sample
 [source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
+
 [package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management-web
 [samples_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-web-sample
 [source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management-web
