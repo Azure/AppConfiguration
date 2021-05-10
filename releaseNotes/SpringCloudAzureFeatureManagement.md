@@ -1,23 +1,12 @@
-# azure-spring-cloud-feature-management
+# spring-cloud-azure-feature-management
 
 [Source code][source_code] | [Package (Maven)][package] | [Samples][samples] | [Product documentation][docs]
 
-# azure-spring-cloud-feature-management-web
+# spring-cloud-azure-feature-management-web
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
-## 2.0.0-beta.1 - May 5, 2021
-
-* Change group id from `com.microsoft.azure` to `com.azure.spring`.
-* Change artifact id from `spring-cloud-azure-feature-management` to `azure-spring-cloud-feature-management`.
-* Change artifact id from `spring-cloud-azure-feature-management-web` to `azure-spring-cloud-feature-management-web`.
-* Added Support for Feature Targeting
-
-## 1.3.0 - April 21, 2021
-
-* Updated to newer versions of dependencies. Spring Boot 2.4.3 and Spring Cloud 3.0.1.
-
-## 1.2.9 - March 18, 2021
+## 1.2.9 - March 18, 2020
 
 * Updated to newer versions of dependencies. Spring Boot 2.3.5.RELEASE and Spring Cloud 2.2.5.RELEASE.
 
@@ -72,11 +61,11 @@ feature-management:
 * Adds FeatureGates, Disabled Action Handling, and Routing away from disabled features
 
 <!-- LINKS -->
-[docs]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-feature-management
-[package]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-feature-management
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-samples/feature-management-sample
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-feature-management
+[docs]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
+[package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management
+[samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-sample
+[source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
 
-[package_web]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-feature-management-web
-[samples_web]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-samples/feature-management-web-sample
-[source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-feature-management-web
+[package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management-web
+[samples_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-web-sample
+[source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management-web
