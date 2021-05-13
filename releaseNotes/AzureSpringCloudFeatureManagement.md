@@ -8,8 +8,10 @@
 
 ## 2.0.0-beta.1 - May 5, 2021
 
-* Same Feature as `com.microsoft.azure` `azure-spring-cloud-feature-management` and `com.microsoft.azure` `azure-spring-cloud-feature-management-web`
-* Added Support for Feature Targeting
+* The Feature Management libraries have have renamed to match the structure and naming convention in the azure-sdk-for-java.
+* Targeting, a new built in Feature Filter type.
+  * Support for rolling out features to a target audience has been added through built in feature filters.
+  * Targeting enables developers to progressively roll out features to a target audience that can be increased gradually.  For more information on the concept of targeting and how to use this new feature take a look at the project's [readme](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-feature-management#targetingfilter).
 
 <!-- LINKS -->
 [docs]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-feature-management

@@ -8,23 +8,16 @@
 
 ## 2.0.0-beta.1 - May 5, 2021
 
-* Enables loading of configurations from multiple config stores.
+* Enables loading from multiple App Configuration stores.
 * Each store can load configurations by using key/label `selects`. Many `selects` can be used, default is key = `/applicaiton/*` with label = `${spring.profiles.active}` or if null `\0`. See [README][readme] for full configuration.
-* Authentication vis Connection String, Managed Identity, or any method supported by Azure Identity SDK, see Token Credential Provider in README.
-* Each individual store can have monitoring enabled and disabled and have a cache-expiration time set.
-  * Monitoring requires at least one trigger to be set. `spring.cloud.azure.appconfiguration.stores[0].monitoring.triggers[0].key` is required `spring.cloud.azure.appconfiguration.stores[0].monitoring.triggers[0].label` is optional.
-  * Monitoring has both Pull and Push model options.
-    * Pull checks the config store for changes based on Activity when the cache has expired.
-    * Push involves setting up a Azure Event Grid Web Hook to notify the client application that a change has occurred. Two Spring Actuator Endpoints exist to connect to. `appconfiguration-refresh` triggers the cache to reset on configurations on an application. `appconfiguration-refresh-bus` triggers a refresh on all instances subscribed to the same Service Bus.
-      * Push refresh requires a token name and value to be set for verification. The application needs to be running when creating the Web Hook as a response needs to be returned to setup a Web Hook.
+* Authentication via Connection String, Managed Identity, or any method supported by Azure Identity SDK, see Token Credential Provider in README.
+* App Configuration stores can be monitored for changes. This is done by a specified configuration know as a trigger being checked in the App Configuration store on a set interval. Each individual App Configuration store can be enabled/disabled for monitoring and have a different interval in which they are checked. Monitoring can be done through either a Push or Pull model.
+  * Pull Monitoring checks the config store for changes strictly based on how long it has been since the last check and activity in the application.
+  * Push Monitoring has the App Configuration store notify the Application that configurations have changed through a web-hook.
 * Feature Flag loading can be enabled per config store `spring.cloud.azure.appconfiguration.stores[0].feature-flags.enable`
   * A single label can be used to load feature flags, default `\0` i.e. (No Label).
   * A cache expiration can be set for feature flags.
-* Configuration Support
-  * Key-Value
-  * Key Vault Reference
-  * Placeholder Values i.e. `${my.config}`
-  * [Json](https://docs.microsoft.com/azure/azure-app-configuration/howto-leverage-json-content-type)
+* Configurations can be set using: Key-Value, Key Vault Reference, Placeholder Values i.e. `${my.config}`, [Json](https://docs.microsoft.com/azure/azure-app-configuration/howto-leverage-json-content-type)
 
 <!-- LINKS -->
 [docs]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
