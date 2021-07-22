@@ -6,7 +6,7 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
-## 2.0.0-beta.1 - May 5, 2021
+## 2.0.0 - July 22, 2021
 
 * Enables loading from multiple App Configuration stores.
 * Each store can load configurations by using key/label `selects`. Many `selects` can be used, default is key = `/applicaiton/*` with label = `${spring.profiles.active}` or if null `\0`. See [README][readme] for full configuration.
@@ -22,10 +22,10 @@
 <!-- LINKS -->
 [docs]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
 [package]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-samples/azure-appconfiguration-sample
+[samples]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config
 [token_credentials]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
 [readme]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config
 
-[package_web]: https://mvnrepository.com/artifact/com.azure.azure/azure-spring-cloud-appconfiguration-config-web
+[package_web]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config-web
 [source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config-web
