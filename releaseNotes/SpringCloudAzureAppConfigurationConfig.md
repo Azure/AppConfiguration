@@ -6,6 +6,8 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+[Latest Library](./AzureSpringCloudAppConfigurationConfig)
+
 ## 1.3.0 - April 21, 2021
 
 * Updated to newer versions of dependencies. Spring Boot 2.4.3 and Spring Cloud 3.0.1.
