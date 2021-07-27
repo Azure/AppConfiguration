@@ -6,8 +6,8 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 * Added the capability to use certificate based authentication.
 * Added logs that show more information about the task.
 * Marked extension as public.
-* Fixed bug that caused the warning 'Can\'t find loc string for key:CouldNotFetchAccessTokenforAzureStatusCode causes app config azdo task to fail' [#520](https://github.com/Azure/AppConfiguration/issues/520).
-* Added more information to the error message 'Failed to parse' [#513](https://github.com/Azure/AppConfiguration/issues/513).
+* Fixed bug that caused the warning "Can\'t find loc string for key:CouldNotFetchAccessTokenforAzureStatusCode causes app config azdo task to fail" [#520](https://github.com/Azure/AppConfiguration/issues/520).
+* Added more information to the error message "Failed to parse" [#513](https://github.com/Azure/AppConfiguration/issues/513).
 
 ### v1.3.4 - March, 12 2021
 * Added the capability to use managed identity based authentication.
