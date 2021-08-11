@@ -6,8 +6,6 @@ You can open [issues](https://github.com/Azure/AppConfiguration/issues?utf8=%E2%
 
 Documentation: https://aka.ms/AzureAppConfiguration
 
-Slack: https://aka.ms/azconfig/slack
-
 ## Announcements
 Subscribe to the following repo to be notified of announcements and updates about Azure App Configuration.
   * [Azure/AppConfiguration-Announcements](https://github.com/Azure/AppConfiguration-Announcements)
