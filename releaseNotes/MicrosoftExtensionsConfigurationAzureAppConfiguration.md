@@ -2,6 +2,11 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 
+### 4.5.0 - August 12, 2021
+* Added deprecation warning to all Offline Cache APIs. The current implementation of offline cache will be removed in an upcoming major release. 
+
+* Added more request tracing options to get a better understanding of how customers use this library.
+
 ### 4.4.0 - May 7,2021
 * Added two new APIs which allow users to opt-in for periodically reloading secrets and certificates from Key Vault. [#249](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/249)
 
