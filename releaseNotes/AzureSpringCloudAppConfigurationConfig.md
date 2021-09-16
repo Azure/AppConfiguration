@@ -6,6 +6,11 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 2.1.0 - September 06, 2021
+
+* Added Health Monitor support with Spring Actuator.
+* Added new API which allows users to configure the behavior when a Key Vault reference which cannot be resolved with `KeyVaultSecretProvider`.
+
 ## 2.0.0 - July 22, 2021
 
 * Enables loading from multiple App Configuration stores.
