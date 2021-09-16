@@ -1,6 +1,33 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+
+### 4.5.0 - August 12, 2021
+* Added deprecation warning to all Offline Cache APIs. The current implementation of offline cache will be removed in the next major release. 
+
+### 4.4.0 - May 7,2021
+* Added two new APIs which allow users to opt-in for periodically reloading secrets and certificates from Key Vault. [#249](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/249)
+
+   * **Set refresh interval for individual keys of Key Vault references in App Config:**
+
+    ```cs
+    AzureAppConfigurationKeyVaultOptions SetSecretRefreshInterval(string secretReferenceKey, TimeSpan refreshInterval)
+    ```
+
+    This method allows users to set a refresh interval per key of Key Vault references. The API can be called multiple times to register multiple keys of Key Vault references for refresh.
+
+   * **Set refresh interval for all Key Vault references in App Config:**
+
+    ```cs
+    AzureAppConfigurationKeyVaultOptions SetSecretRefreshInterval(TimeSpan refreshInterval)
+    ```
+
+    This method allows users to set a refresh interval for all Key Vault references which do not have individual refresh intervals.
+
+* This is the first stable release of the `FeatureFlagOptions.Select` API introduced in 4.3.0-preview release.
+
+* `FeatureFlagOptions.TrimFeatureFlagPrefix` API, which was introduced in 4.3.0-preview release, has been removed from this stable release.
+
 ### 4.3.0-preview - April 14,2021
 * Added two new APIs for filtering and trimming feature flag by a prefix. [#234](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/234)
 

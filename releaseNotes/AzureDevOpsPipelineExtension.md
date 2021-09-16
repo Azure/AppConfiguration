@@ -4,6 +4,11 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v3.5.16 - July, 22 2021
+* Added the capability to use certificate based authentication.
+* Added logs that show more details with reference to parameters used to run the task.
+* Fixed a bug that caused the warning "Can\'t find loc string for key:CouldNotFetchAccessTokenforAzureStatusCode causes app config azdo task to fail" [#520](https://github.com/Azure/AppConfiguration/issues/520). 
+
 ### v3.4.16 - March, 12 2021
 * Added the capability to use managed identity based authentication.
 
