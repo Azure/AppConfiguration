@@ -8,8 +8,24 @@
 
 ## 2.1.0 - September 06, 2021
 
-* Added Health Monitor support with Spring Actuator.
-* Added new API which allows users to configure the behavior when a Key Vault reference which cannot be resolved with `KeyVaultSecretProvider`.
+* Added Health Monitor support with Spring Actuator. [#21982](https://github.com/Azure/azure-sdk-for-java/issues/21982)
+* Added new API which allows users to configure the behavior when a Key Vault reference which cannot be resolved. `KeyVaultSecretProvider` can be used to resolve the references using its `getSecret` method, which provides a URI to the requested secret.
+
+```java
+@Bean
+public KeyVaultSecretProvider keyVaultSecretProvider() {
+    return new KeyVaultSecretProvider() {
+        
+        @Override
+        public String getSecret(String uri) {
+
+            ...
+
+            return mySecret;
+        }
+    };
+}
+```
 
 ## 2.0.0 - July 22, 2021
 
