@@ -4,6 +4,27 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.4.0 - September 24, 2021
+
+### Enhancements
+
+* Added option to throw when attempting to evaluate a missing feature. [#140](https://github.com/microsoft/FeatureManagement-Dotnet/pull/140)
+* `IFeatureManagementSnapshot` is now thread-safe. [#141](https://github.com/microsoft/FeatureManagement-Dotnet/pull/140)
+
+### Bug fix
+
+* `FilterAliasAttribute` now uses the proper parameter name in an `ArgumentNullException` if `alias` is null.
+
+## 2.3.0 - April 15, 2021
+
+### net5.0 Targeting
+
+The net5.0 framework has been added to the list of target frameworks. This change resolves dependency issues for ASP.NET Core 5.0 applications.
+
+### Bug fix
+
+* The license URL for these packages has been fixed.
+
 ## 2.2.0 - September 16, 2020
 
 No changes have been made in this version. This is the first stable release with the targeting feature filter (introduced in 2.1.0-preview) and custom feature providers (introduced in 2.2.0-preview).
