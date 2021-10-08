@@ -8,8 +8,8 @@
 
 ## 2.1.1 - September 29, 2021
 
-* Fixed the bug where `null` labeled watch keys used the return value `null` for future requests instead of `\0`.
-* Fixed the bug where adding or deleting a feature flags wouldn't trigger a refresh.
+* Fixed the bug where a watch key has multiple labels and at least one is`(No Label)`, where if the `(No Label)` key is deleted then one of the other keys would be used for watch as wach was using `null` instead of `(No Label)` on all requests besides startup.
+* Fixed the bug where adding or deleting a feature flags wouldn't cause a refresh to be triggered. [#24049](https://github.com/Azure/azure-sdk-for-java/issues/24049)
 
 ## 2.1.0 - September 06, 2021
 
