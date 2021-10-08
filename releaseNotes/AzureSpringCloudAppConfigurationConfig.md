@@ -6,14 +6,11 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
-<<<<<<< HEAD
 ## 2.1.1 - September 29, 2021
 
 * Fixed the bug where `null` labeled watch keys used the return value `null` for future requests instead of `\0`.
 * Fixed the bug where adding or deleting a feature flags wouldn't trigger a refresh.
 
-=======
->>>>>>> e883a7b91da783b71bf124098ec53e894d085009
 ## 2.1.0 - September 06, 2021
 
 * Added Health Monitor support with Spring Actuator. [#21982](https://github.com/Azure/azure-sdk-for-java/issues/21982)
