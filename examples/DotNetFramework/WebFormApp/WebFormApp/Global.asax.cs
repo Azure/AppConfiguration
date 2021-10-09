@@ -34,7 +34,7 @@ namespace WebFormApp
         {
             // Signal to refresh the configuration if the registered key(s) is modified.
             // This will be a no-op if the cache expiration time window is not reached.
-            // The configuration is refreshed asynchronously without blocking the execution of the current function.
+            // The configuration is refreshed asynchronously without blocking the execution of the current request.
             _ = _configurationRefresher.TryRefreshAsync();
         }
     }
