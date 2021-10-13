@@ -19,7 +19,7 @@ This ASP.NET Core app demonstrates how to enable dynamic configuration from App 
 This example demonstrates how to enable dynamic configuration from App Configuration in a Web Job app written in .NET Core.
 
 ## [WebDemo (.NET Framework)](./DotNetFramework/WebDemo)
-This ASP.NET web application is an MVC 5 app written in .NET Framework. It leverages the [configuration builder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) for App Configuration to load configuration to App Settings and consumes from the `ConfigurationManager`. As the design of App Settings, the configuration will only be updated upon app restart.
+This ASP.NET web application is an MVC 5 app written in .NET Framework. It leverages the [configuration builder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) for App Configuration to load configuration to App Settings and consumes from the `ConfigurationManager`. As is the design of the .NET Framework App Settings, the configuration will only be updated upon app restart.
 
 ## [WebFormApp](./DotNetFramework/WebFormApp)
 This ASP.NET web application is a .NET Framework Web Form app. It demonstrates how to leverage the App Configuration [.NET Standard provider library](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) to achieve dynamic configuration. The same technique applies to .NET Framework MVC apps.
