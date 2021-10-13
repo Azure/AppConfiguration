@@ -7,10 +7,16 @@ namespace WebFormApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            body.Attributes["bgcolor"] = Global.Configuration["TestApp:Settings:BackgroundColor"];
-            message.Text = Global.Configuration["TestApp:Settings:Message"];
-            message.Font.Size = FontUnit.Point(int.Parse(Global.Configuration["TestApp:Settings:FontSize"]));
-            message.ForeColor = System.Drawing.Color.FromName(Global.Configuration["TestApp:Settings:FontColor"]);
+            // Read configuration from the IConfiguration object loaded from Azure App Configuration
+            string messageText = Global.Configuration["TestApp:Settings:Message"] ?? "Please add the key \"TestApp:Settings:Message\" in your Azure App Configuration store.";
+            string messageFontSize = Global.Configuration["TestApp:Settings:FontSize"] ?? "20";
+            string messageFontColor = Global.Configuration["TestApp:Settings:FontColor"] ?? "Black";
+            string backgroundColor = Global.Configuration["TestApp:Settings:BackgroundColor"] ?? "White";
+
+            message.Text = messageText;
+            message.Font.Size = FontUnit.Point(int.Parse(messageFontSize));
+            message.ForeColor = System.Drawing.Color.FromName(messageFontColor);
+            body.Attributes["bgcolor"] = backgroundColor;
         }
     }
 }

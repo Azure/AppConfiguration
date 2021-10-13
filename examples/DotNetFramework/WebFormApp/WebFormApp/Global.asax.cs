@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using System;
 
 namespace WebFormApp
 {
@@ -12,14 +12,15 @@ namespace WebFormApp
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            // Initialize configuration from Azure App Configuration
+            // Initialize configuration from Azure App Configuration.
             ConfigurationBuilder builder = new ConfigurationBuilder();
             builder.AddAzureAppConfiguration(options =>
             {
                 options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
                        // Load all keys that start with `TestApp:`
                        .Select("TestApp:*")
-                       // Configure to reload configuration if the registered 'Sentinel' key is modified
+                       // Configure to reload configuration if the registered key 'TestApp:Settings:Sentinel' is modified.
+                       // Use the default cache expiration time of 30 seconds that can be changed by calling SetCacheExpiration.
                        .ConfigureRefresh(refresh => 
                        {
                            refresh.Register("TestApp:Settings:Sentinel", refreshAll:true);

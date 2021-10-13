@@ -9,8 +9,6 @@
 
 namespace WebFormApp
 {
-
-
     public partial class Default
     {
 
