@@ -1,14 +1,15 @@
 # Azure App Configuration
 
-Azure App Configuration is an Azure service that allows users to manage configuration within the cloud. Users can create App Configuration stores to store key-value settings and consume stored settings from within applications, deployment pipelines, release processes, microservices, and other Azure resources.
+Azure App Configuration is an Azure service that allows users to manage configuration within the cloud. Users can create App Configuration stores to store key-value settings and consume stored settings from applications, build pipelines, release processes, microservices, and other Azure resources. See the [documentation](https://aka.ms/AzureAppConfiguration) for more information.
 
-You can open [issues](https://github.com/Azure/AppConfiguration/issues?utf8=%E2%9C%93&q=is%3Aissue) to ask questions or share feedback about the Azure App Configuration service. If you have a suggestion or a request for a feature, please share your idea with us at [Azure Feedback](https://feedback.azure.com/forums/920545-azure-app-configuration) so others can vote.
-
-Documentation: https://aka.ms/AzureAppConfiguration
+You can open [issues](https://github.com/Azure/AppConfiguration/issues?utf8=%E2%9C%93&q=is%3Aissue) to ask questions or share feedback about Azure App Configuration.
 
 ## Announcements
 Subscribe to the following repo to be notified of announcements and updates about Azure App Configuration.
   * [Azure/AppConfiguration-Announcements](https://github.com/Azure/AppConfiguration-Announcements)
+
+## Examples
+Learn how to use App Configuration in your app from [a variety of examples](./examples/README.md).
 
 ## REST API Reference
 
@@ -24,7 +25,7 @@ Load key-values in App Configuration to your application's existing configuratio
 
 Module | Platform | Sample | Release Notes
 ------ | -------- | ------ | -------------
-[Microsoft.Extensions.Configuration.AzureAppConfiguration](https://github.com/Azure/AppConfiguration-DotnetProvider)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Extensions.Configuration.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore/) | .NET Standard | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftAzureAppConfigurationAspNetCore.md)
+[Microsoft.Extensions.Configuration.AzureAppConfiguration](https://github.com/Azure/AppConfiguration-DotnetProvider)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Extensions.Configuration.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) | .NET Standard | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftAzureAppConfigurationAspNetCore.md)
 [Microsoft.Azure.AppConfiguration.AspNetCore](https://github.com/Azure/AppConfiguration-DotnetProvider)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Azure.AppConfiguration.AspNetCore.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore/) | ASP&#46;NET Core | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetCore) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/master/releaseNotes/MicrosoftExtensionsConfigurationAzureAppConfiguration.md)
 [Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration](https://github.com/aspnet/MicrosoftConfigurationBuilders/tree/master/src/AzureAppConfig)<br/>[![NuGet](https://img.shields.io/nuget/v/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration.svg?color=blue)](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) | .NET Framework | [Sample](https://github.com/Azure/AppConfiguration/tree/master/examples/DotNetFramework/WebDemo) | [Release Notes](https://github.com/aspnet/MicrosoftConfigurationBuilders/releases)
 [azure-spring-cloud-appconfiguration-config](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config)<br/>[![Maven Central](https://img.shields.io/maven-central/v/com.azure.spring/azure-spring-cloud-appconfiguration-config.svg?color=blue)](https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config) | Spring Boot | [Sample](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration/azure-appconfiguration-sample) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/AzureSpringCloudAppConfigurationConfig.md)
