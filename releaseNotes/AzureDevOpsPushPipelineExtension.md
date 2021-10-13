@@ -2,6 +2,11 @@
 Azure App Configuration Push extension for Azure DevOps pipeline can be installed from the [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version information can be found in the console when the task is executed:
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
+### v2.0.0 - October, 12 2021
+* Upgraded task to use Node 10, previously using Node 6.
+* Support importing feature flags from json/yaml files.
+* Added capability to detect configuration file encoding format and display appropriate error message [#550](https://github.com/Azure/AppConfiguration/issues/550).
+
 ### v1.4.4 - July, 22 2021
 * The Azure App Configuration Push pipeline task is now generally available.
 * Added the capability to use certificate based authentication.
