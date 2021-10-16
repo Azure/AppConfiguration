@@ -13,7 +13,12 @@ namespace WebFormApp
             string messageFontColor = Global.Configuration["TestApp:Settings:FontColor"] ?? "Black";
             string backgroundColor = Global.Configuration["TestApp:Settings:BackgroundColor"] ?? "White";
 
-            message.Text = messageText;
+            // Read feature flags from the IFeatureManager object
+            string featureName = "Beta";
+            bool featureEnabled = Global.FeatureManager.IsEnabledAsync(featureName).Result;
+
+            // Update the page
+            message.Text = featureEnabled ? messageText + $"<br>The {featureName} feature is here!" : messageText;
             message.Font.Size = FontUnit.Point(int.Parse(messageFontSize));
             message.ForeColor = System.Drawing.Color.FromName(messageFontColor);
             body.Attributes["bgcolor"] = backgroundColor;
