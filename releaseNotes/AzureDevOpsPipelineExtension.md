@@ -4,6 +4,9 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v4.0.0 - October, 12 2021
+* Upgraded task to use Node 10. It previously used Node 6.
+
 ### v3.5.16 - July, 22 2021
 * Added the capability to use certificate based authentication.
 * Added logs that show more details with reference to parameters used to run the task.
