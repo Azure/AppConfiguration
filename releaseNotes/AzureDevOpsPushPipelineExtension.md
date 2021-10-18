@@ -3,8 +3,8 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v2.0.0 - October, 12 2021
-* Upgraded task to use Node 10, previously using Node 6.
-* Support importing feature flags from json/yaml files.
+* Upgraded task to use Node 10. It previously used Node 6.
+* Added support for importing feature flags from json/yaml files.
 * Added capability to detect configuration file encoding format and display appropriate error message [#550](https://github.com/Azure/AppConfiguration/issues/550).
 
 ### v1.4.4 - July, 22 2021
