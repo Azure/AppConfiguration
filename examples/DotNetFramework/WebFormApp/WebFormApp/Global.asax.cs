@@ -53,5 +53,10 @@ namespace WebFormApp
             // The configuration is refreshed asynchronously without blocking the execution of the current request.
             _ = _configurationRefresher.TryRefreshAsync();
         }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+            (_serviceProvider as IDisposable).Dispose();
+        }
     }
 }
