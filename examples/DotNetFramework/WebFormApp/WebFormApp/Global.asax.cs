@@ -21,14 +21,15 @@ namespace WebFormApp
             builder.AddAzureAppConfiguration(options =>
             {
                 options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
-                       // Load all keys that start with `TestApp:`
-                       .Select("TestApp:*")
+                       // Load all keys that start with `TestApp:` and have no label
+                       .Select("TestApp:*", LabelFilter.Null)
                        // Configure to reload configuration if the registered key 'TestApp:Settings:Sentinel' is modified.
                        // Use the default cache expiration of 30 seconds. It can be overriden via AzureAppConfigurationOptions.SetCacheExpiration.
                        .ConfigureRefresh(refresh => 
                        {
                            refresh.Register("TestApp:Settings:Sentinel", refreshAll:true);
                        })
+                       // Load all feature flags with no label. To load a specific label, set via FeatureFlagOptions.Label.
                        // Use the default cache expiration of 30 seconds. It can be overriden via FeatureFlagOptions.CacheExpirationInterval.
                        .UseFeatureFlags();
 
