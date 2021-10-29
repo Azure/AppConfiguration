@@ -6,6 +6,11 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 2.1.1 - September 29, 2021
+
+* Fixed a bug where a watch key may not work as expected. If you use a key with no label as the watch key and delete the key in App Configuration, if the key has values with other labels, the key with another label could be used as the watch key.
+* Fixed a bug where adding or deleting a feature flag in App Configuration wouldn't cause the feature flag to be added or deleted in users' applications. [#24049](https://github.com/Azure/azure-sdk-for-java/issues/24049)
+
 ## 2.1.0 - September 06, 2021
 
 * Added Health Monitor support with Spring Actuator. [#21982](https://github.com/Azure/azure-sdk-for-java/issues/21982)
