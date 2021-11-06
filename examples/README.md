@@ -3,8 +3,11 @@
 ## [ConfigurationStoreBackup](./ConfigurationStoreBackup)
 This Azure Functions App demonstrates how to backup configuration data from one App Configuration store to another store. It uses Event Grid for change notifications received from App Configuration and saves them in an Azure Storage queue. The app wakes up every 10 minutes to backup the data if there are any changes.
 
-## [AzureFunction](./DotNetCore/AzureFunction)
-This example is an Azure Functions app written in .NET Core. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration. It also shows how to leverage App Configuration for a queue triggered function with the trigger settings stored in App Configuration.
+## [Azure Functions (In-process)](./DotNetCore/AzureFunction/FunctionApp)
+This example is a .NET class library Function App, which runs in-process with the runtime of Azure Functions. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration. It also shows how to leverage App Configuration for a queue triggered function with the trigger settings stored in App Configuration.
+
+## [Azure Functions (Out-of-process)](./DotNetCore/AzureFunction/FunctionAppIsolatedMode)
+This example is a .NET isolated process Function App, which runs out-of-process in Azure Functions. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
 
 ## [ConsoleApplication](./DotNetCore/ConsoleApplication)
 This example demonstrates how to enable dynamic configuration from App Configuration in a console app written in .NET Core.
