@@ -8,8 +8,11 @@ You can open [issues](https://github.com/Azure/AppConfiguration/issues?utf8=%E2%
 Subscribe to the following repo to be notified of announcements and updates about Azure App Configuration.
   * [Azure/AppConfiguration-Announcements](https://github.com/Azure/AppConfiguration-Announcements)
 
+## Roadmap
+Check out what is on the [roadmap](https://github.com/Azure/AppConfiguration/projects/1) of Azure App Configuration and what the team is currently working on.
+
 ## Examples
-Learn how to use App Configuration in your app from [a variety of examples](./examples/README.md).
+Learn how to use Azure App Configuration in your app from [a variety of examples](./examples/README.md).
 
 ## REST API Reference
 
