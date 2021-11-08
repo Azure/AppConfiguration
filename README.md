@@ -9,7 +9,7 @@ Subscribe to the following repo to be notified of announcements and updates abou
   * [Azure/AppConfiguration-Announcements](https://github.com/Azure/AppConfiguration-Announcements)
 
 ## Roadmap
-Check out what is on the [roadmap](https://github.com/Azure/AppConfiguration/projects/1) of Azure App Configuration and what the team is working on.
+Check out what is on the [roadmap](https://github.com/Azure/AppConfiguration/projects/1) of Azure App Configuration and what the team is currently working on.
 
 ## Examples
 Learn how to use Azure App Configuration in your app from [a variety of examples](./examples/README.md).
