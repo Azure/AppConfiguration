@@ -2,6 +2,9 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore)
 
 
+### 4.5.1 - November 8, 2021
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.5.1`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 4.5.0 - August 12, 2021
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `4.5.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
