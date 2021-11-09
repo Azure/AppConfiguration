@@ -3,7 +3,7 @@
 
 
 ### 4.5.1 - November 8, 2021
-* Fixed an bug where the cache expiration time was not being updated after failed refresh operations. [#283](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/283)
+* Fixed a bug where the cache expiration time was not being updated after failed refresh operations. [#283](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/283)
 
 ### 4.5.0 - August 12, 2021
 * Added deprecation warning to all Offline Cache APIs. The current implementation of offline cache will be removed in the next major release. 
