@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.31904.369
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp", "FunctionApp\FunctionApp.csproj", "{8C4BCA4B-3413-4757-A27A-CD19319BB84E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionAppIsolatedMode", "FunctionAppIsolatedMode\FunctionAppIsolatedMode.csproj", "{1F856589-317F-4708-B6D8-491EA899FEC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionAppIsolatedMode", "FunctionAppIsolatedMode\FunctionAppIsolatedMode.csproj", "{1F856589-317F-4708-B6D8-491EA899FEC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
