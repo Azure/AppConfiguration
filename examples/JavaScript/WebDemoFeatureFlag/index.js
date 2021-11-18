@@ -23,7 +23,7 @@ const server = async () => {
   app.get("/", async (req, res) => {
 
     // get feature flag
-    const results = await getConfigurationSetting(".appconfig.featureflag/beta");
+    const results = await getConfigurationSetting(".appconfig.featureflag/Beta");
     const value = JSON.parse(results);
     const beta = (value && value.enabled == true) ? true : false;
 
