@@ -6,7 +6,6 @@ if (!process.env.production) {
 }
 
 const connectionString = process.env.APPCONFIG_CONNECTION_STRING;
-console.log(connectionString)
 const client = new AppConfigurationClient(connectionString);
 
 const getConfigurationSetting = async (key) => {
