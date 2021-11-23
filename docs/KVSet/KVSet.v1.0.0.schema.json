@@ -36,13 +36,19 @@
         },
         "value": {
           "$id": "#/properties/value",
-          "type": "string",
           "title": "Value",
           "description": "The 'value' in the key-value.",
           "examples": [
             "blue"
           ],
-          "pattern": "^(.*)$"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "label": {
           "$id": "#/properties/label",
@@ -51,7 +57,7 @@
           "examples": [
             "staging"
           ],
-          "default": null,
+          "default": "",
           "anyOf": [
             {
               "type": "string"
@@ -68,7 +74,7 @@
           "examples": [
             "plaintext"
           ],
-          "default": null,
+          "default": "",
           "anyOf": [
             {
               "type": "string"
@@ -89,8 +95,7 @@
         }
       },
       "required": [
-        "key",
-        "value"
+        "key"
       ]
     }
   }
