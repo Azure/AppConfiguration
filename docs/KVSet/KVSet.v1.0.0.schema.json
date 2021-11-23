@@ -20,14 +20,14 @@
   "$defs": {
     "kv": {
       "type": "object",
-      "title": "Key value pair",
-      "description": "An individual key-value pair and associated metadata in the 'appconfig/kvset' format.",
+      "title": "Key-value",
+      "description": "An individual key-value and associated metadata in the 'appconfig/kvset' format.",
       "properties": {
         "key": {
           "$id": "#/properties/key",
           "type": "string",
           "title": "Key",
-          "description": "The 'key' in the key-value pair.",
+          "description": "The 'key' in the key-value.",
           "examples": [
             "background_color"
           ],
@@ -38,7 +38,7 @@
           "$id": "#/properties/value",
           "type": "string",
           "title": "Value",
-          "description": "The 'value' in the key-value pair.",
+          "description": "The 'value' in the key-value.",
           "examples": [
             "blue"
           ],
@@ -47,7 +47,7 @@
         "label": {
           "$id": "#/properties/label",
           "title": "Label",
-          "description": "The label for the key-value pair.",
+          "description": "The label for the key-value.",
           "examples": [
             "staging"
           ],
@@ -64,7 +64,7 @@
         "content_type": {
           "$id": "#/properties/content_type",
           "title": "Content Type",
-          "description": "The content type for the key-value pair.",
+          "description": "The content type for the key-value.",
           "examples": [
             "plaintext"
           ],
