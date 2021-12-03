@@ -1,5 +1,5 @@
 // Watch this issue for this quickstart: https://github.com/Azure/azure-sdk-for-js/issues/18669
-const appConfig = require("@azure/app-configuration");
+const {AppConfigurationClient, parseSecretReference} = require("@azure/app-configuration");
 
 // Add settings `.env` file if not production environment
 // Copy the `.env-sample` and rename it to `.env`, then
@@ -11,7 +11,7 @@ if (!process.env.production) {
 
 // Authentication for App Configuration
 const connection_string = process.env.AZURE_APP_CONFIG_CONNECTION_STRING;
-const client = new appConfig.AppConfigurationClient(connection_string);
+const client = new AppConfigurationClient(connection_string);
 
 // Authentication for Key Vault
 if (
@@ -28,7 +28,7 @@ if (
 // - AZURE_TENANT_ID: The tenant ID in Azure Active Directory
 // - AZURE_CLIENT_ID: The application (client) ID registered in the AAD tenant
 // - AZURE_CLIENT_SECRET: The client secret for the registered application
-const { SecretClient } = require("@azure/keyvault-secrets");
+const { SecretClient, parseKeyVaultSecretIdentifier } = require("@azure/keyvault-secrets");
 const { DefaultAzureCredential } = require("@azure/identity");
 const credential = new DefaultAzureCredential();
 const url = process.env["KEYVAULT_URI"];
@@ -44,17 +44,17 @@ const run = async (key) => {
       key,
     });
 
-    // Get Key Vault value
-    const parsedSecretReference = appConfig.parseSecretReference(retrievedSetting);
-    const secretName = parsedSecretReference.value.secretId.substring(
-      parsedSecretReference.value.secretId.indexOf("secrets/") + 8,
-      parsedSecretReference.value.secretId.length
-    );
+    // Parse App config reference to get reference URI
+    const parsedSecretReference = parseSecretReference(retrievedSetting);
+
+    // Parse reference URI to get Secret Name
+    const secretName = parseKeyVaultSecretIdentifier(parsedSecretReference.value.secretId).name;
 
     // Read the secret
     const secret = await secretClient.getSecret(
       secretName
     );
+    
     console.log(
       `Get the secret from keyvault key: {'${secret.name}', value: '${secret.value}'}`
     );
