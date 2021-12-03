@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://azconfig.io/schemas/KVSet/v1.0.0/KVSet.json",
-  "title": "An Azure App Configuration schema for importing/exporting using 'appconfig/kvset' format",
+  "title": "An Azure App Configuration schema for importing/exporting using 'appconfig/kvset' profile",
   "type": "object",
   "required": [
     "items"
@@ -21,7 +21,7 @@
     "kv": {
       "type": "object",
       "title": "Key-value",
-      "description": "An individual key-value and associated metadata in the 'appconfig/kvset' format.",
+      "description": "An individual key-value and associated metadata in the 'appconfig/kvset' profile.",
       "properties": {
         "key": {
           "$id": "#/properties/key",
@@ -41,6 +41,7 @@
           "examples": [
             "blue"
           ],
+          "default": null,
           "anyOf": [
             {
               "type": "string"
@@ -57,7 +58,7 @@
           "examples": [
             "staging"
           ],
-          "default": "",
+          "default": null,
           "anyOf": [
             {
               "type": "string"
@@ -88,6 +89,8 @@
           "$id": "#/properties/tags",
           "title": "Tags",
           "type": "object",
+          "default": {
+          },
           "description": "The tags assigned to the key value pair.",
           "additionalProperties": {
             "type": "string"
