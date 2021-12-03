@@ -1,7 +1,5 @@
 # Azure App Configuration 'appconfig/kvset' profile
 
-Azure App Configuration can be exported and imported using Azure CLI version 2.30.0 or later using the `appconfig/kvset` profile.
-
 The following is the JSON schema used to import and export using `appconfig/kvset` profile - [KVSet.v1.0.0.schema.json](./KVSet.v1.0.0.schema.json).
 
 ## Examples

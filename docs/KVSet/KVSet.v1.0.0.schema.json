@@ -41,7 +41,7 @@
           "examples": [
             "blue"
           ],
-          "default": null,
+          "default": "",
           "anyOf": [
             {
               "type": "string"
