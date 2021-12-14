@@ -47,7 +47,7 @@ Module | Platform | Sample | Release Notes
 
 #### SDKs
 
-Create, read, update and delete key-values in App Configuration programmatically.
+Create, read, update and delete key-values, feature flags, and Key Vault references in App Configuration programmatically.
 
 Module | Platform | Sample | Release Notes
 ------ | -------- | ------ | -------------
