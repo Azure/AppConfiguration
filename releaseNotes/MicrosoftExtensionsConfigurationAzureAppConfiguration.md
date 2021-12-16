@@ -3,8 +3,9 @@
 
 
 ### 5.0.0-preview - December 16, 2021
-* **Breaking Change :** Removed all offline caching capabilities. [#135](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/135)
-* **Breaking Change :** Added support for parsing and using sync-token from push notifications received from Event Grid. Using sync-token ensures that users get the latest key-values from App Configuration on any subsequent request. The following new APIs were added:
+### Breaking Changes:
+* Removed all offline caching capabilities. [#135](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/135)
+* Added support for parsing and using sync-token from push notifications received from Event Grid. Using sync-token ensures that users get the latest key-values from App Configuration on any subsequent request. The following new APIs were added:
    ```csharp
    EventGridEventExtensions.TryCreatePushNotification(this EventGridEvent eventGridEvent, out PushNotification pushNotification)
    IConfigurationRefresher.ProcessPushNotification(PushNotification pushNotification, TimeSpan? maxDelay = null)
@@ -31,14 +32,14 @@
    ```
    The next call to `RefreshAsync()` or `TryRefreshAsync()` will get the latest key-values from your App Config store. [#278](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/278)
 
-* **Breaking Change :** Added support for `CancellationToken` during refresh operations. The following APIs are updated in `IConfigurationRefresher` interface: [#281](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/281)
+* Added support for `CancellationToken` during refresh operations. The following APIs were updated in `IConfigurationRefresher` interface: [#281](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/281)
    ```csharp
    Task RefreshAsync(CancellationToken cancellationToken = default);
    Task<bool> TryRefreshAsync(CancellationToken cancellationToken = default);
    ```
-* **Breaking Change :** Added support for logging errors during refresh operations. [#273](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/273)
-* **Breaking Change :** Ensure that Key Vault secret refresh interval cannot be less than 1 second. [#284](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/284)
-* **Breaking Change :** Upgraded Microsoft.Extensions packages from version 2.1.1 to 3.1.18. [#272](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/272)
+* Added support for logging errors during refresh operations. [#273](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/273)
+* Ensured that Key Vault secret refresh interval cannot be less than 1 second. [#284](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/284)
+* Upgraded Microsoft.Extensions packages from version 2.1.1 to 3.1.18. [#272](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/272)
 
 
 ### 4.5.1 - November 8, 2021
