@@ -2,6 +2,46 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 
+### 5.0.0-preview - December 16, 2021
+### Breaking Changes:
+* Removed all offline caching capabilities. [#135](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/135)
+* Added support for parsing and using sync-token from push notifications received from Event Grid. Using sync-token ensures that users get the latest key-values from App Configuration on any subsequent request. The following new APIs were added:
+   ```csharp
+   EventGridEventExtensions.TryCreatePushNotification(this EventGridEvent eventGridEvent, out PushNotification pushNotification)
+   IConfigurationRefresher.ProcessPushNotification(PushNotification pushNotification, TimeSpan? maxDelay = null)
+   ```
+   To use sync-token in a [push refresh enabled application](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh), the existing `SetDirty()` call can be replaced by the following code. Depending on the [event handler](https://docs.microsoft.com/en-us/azure/event-grid/event-handlers) you're using, you may need to convert the received event to an `EventGridEvent` object. For example, if you are using Service Bus as the event handler, the code will look like this:
+   ```csharp
+   serviceBusClient.RegisterMessageHandler(
+                  handler: (message, cancellationToken) =>
+                  {
+                     EventGridEvent eventGridEvent = EventGridEvent.Parse(BinaryData.FromBytes(message.Body));
+   
+                     if (eventGridEvent.TryCreatePushNotification(out PushNotification pushNotification))
+                     {
+                        _refresher.ProcessPushNotification(pushNotification, maxDelay); 
+                     }
+   
+                     return Task.CompletedTask;
+                  },
+                  exceptionReceivedHandler: (exceptionargs) =>
+                  {
+                        Console.WriteLine($"{exceptionargs.Exception}");
+                        return Task.CompletedTask;
+                  });
+   ```
+   The next call to `RefreshAsync()` or `TryRefreshAsync()` will get the latest key-values from your App Config store. [#278](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/278)
+
+* Added support for `CancellationToken` during refresh operations. The following APIs were updated in `IConfigurationRefresher` interface: [#281](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/281)
+   ```csharp
+   Task RefreshAsync(CancellationToken cancellationToken = default);
+   Task<bool> TryRefreshAsync(CancellationToken cancellationToken = default);
+   ```
+* Added support for logging errors during refresh operations. [#273](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/273)
+* Ensured that Key Vault secret refresh interval cannot be less than 1 second. [#284](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/284)
+* Upgraded Microsoft.Extensions packages from version 2.1.1 to 3.1.18. [#272](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/272)
+
+
 ### 4.5.1 - November 8, 2021
 * Fixed a bug where the cache expiration time was not being updated after failed refresh operations. [#283](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/283)
 
