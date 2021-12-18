@@ -15,6 +15,9 @@ This example demonstrates how to enable dynamic configuration from App Configura
 ## [WebDemo (.NET Core)](./DotNetCore/WebDemo)
 This ASP.NET Core app demonstrates how to enable dynamic configuration from App Configuration using the *poll model*. It uses Azure AD/Managed Identity to authenticate with App Configuration.
 
+## [WebDemo (.NET 6)](./DotNetCore/WebDemoNet6)
+This example is an ASP.NET Core app, which uses the modernized project template introduced in .NET 6. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
+
 ## [WebDemoWithEventHub](./DotNetCore/WebDemoWithEventHub/WebDemoWithEventHub)
 This ASP.NET Core app demonstrates how to enable dynamic configuration from App Configuration using the *push model*. It uses Event Hub to consume push notifications from Event Grid triggered by changes made in App Configuration.
 
@@ -24,5 +27,5 @@ This example demonstrates how to enable dynamic configuration from App Configura
 ## [WebDemo (.NET Framework)](./DotNetFramework/WebDemo)
 This ASP.NET web application is a .NET Framework MVC 5 app. It leverages the [configuration builder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) for App Configuration to load configuration to App Settings and consumes from the `ConfigurationManager`. As is the design of the .NET Framework App Settings, the configuration will only be updated upon app restart.
 
-## [WebFormApp](./DotNetFramework/WebFormApp)
+## [WebFormApp (.NET Framework)](./DotNetFramework/WebFormApp)
 This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates how to leverage the App Configuration [.NET Standard provider library](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) to achieve dynamic configuration and control feature launches with feature flags. The same technique applies to .NET Framework MVC apps.
