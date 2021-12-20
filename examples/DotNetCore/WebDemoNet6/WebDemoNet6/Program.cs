@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
-           // Load all keys that start with `TestApp:` and have no label
+           // Load all keys that start with `WebDemo:` and have no label
            .Select("WebDemo:*")
            // Configure to reload configuration if the registered key 'WebDemo:Sentinel' is modified.
            // Use the default cache expiration of 30 seconds. It can be overriden via AzureAppConfigurationOptions.SetCacheExpiration.
