@@ -10,7 +10,7 @@ builder.Configuration.AddAzureAppConfiguration(options =>
            // Load all keys that start with `WebDemo:` and have no label
            .Select("WebDemo:*")
            // Configure to reload configuration if the registered key 'WebDemo:Sentinel' is modified.
-           // Use the default cache expiration of 30 seconds. It can be overriden via AzureAppConfigurationOptions.SetCacheExpiration.
+           // Use the default cache expiration of 30 seconds. It can be overriden via AzureAppConfigurationRefreshOptions.SetCacheExpiration.
            .ConfigureRefresh(refreshOptions =>
            {
                refreshOptions.Register("WebDemo:Sentinel", refreshAll: true);
