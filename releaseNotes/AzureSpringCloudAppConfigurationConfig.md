@@ -8,7 +8,7 @@
 
 ## 2.3.0 - January 05, 2022
 
-* Fixed a bug where `spring.cloud.application` was still used in a location. This caused a refresh bug where a null value was used on refresh. `spring.cloud.application` has replaced by `key-filter`.
+* Fixed a bug where `spring.cloud.application` was still used in a location. This caused a refresh bug where a null value was used on refresh. `spring.cloud.application` has now been replaced by `key-filter`.
 
 ## 2.2.0 - November 25, 2021
 
