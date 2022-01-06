@@ -6,6 +6,14 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 2.3.0 - January 05, 2022
+
+* Fixed a bug where `spring.cloud.application` was still used in a location. This caused a refresh bug where a null value was used on refresh. `spring.cloud.application` has replaced by `key-filter`.
+
+## 2.2.0 - November 25, 2021
+
+* Fixed a bug where content-type json configurations that used numbers literals inside of tables/lists wouldn't resolve.
+
 ## 2.1.1 - September 29, 2021
 
 * Fixed a bug where a watch key may not work as expected. If you use a key with no label as the watch key and delete the key in App Configuration, if the key has values with other labels, the key with another label could be used as the watch key.
