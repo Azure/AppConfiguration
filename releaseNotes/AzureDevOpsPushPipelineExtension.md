@@ -3,7 +3,7 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v3.1.0 - January, 07 2022
-* Supporting task in other sovereign clouds.
+* Added support for sovereign clouds such as Azure Government and Azure China.
 * Updated task input from **App Configuration Name** to **App Configuration Endpoint**.
 
 ### v2.0.0 - October, 12 2021
