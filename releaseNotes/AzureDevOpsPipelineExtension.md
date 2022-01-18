@@ -5,8 +5,13 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
 ### v5.1.0 - January, 07 2022
-* Added support for sovereign clouds such as Azure Government and Azure China.
-* Updated task input from **App Configuration Name** to **App Configuration Endpoint**.
+* **Breaking change**: 
+With the added support of sovereign clouds such as Azure Government and Azure China, the task inputs were updated.
+  **Before**: 
+  Task input was *App Configuration Name*
+
+  **After**:
+  Task input was updated to *App Configuration endpoint*, the *App Configuration endpoint* can be gotten from the App Configuration store overview page.
 
 ### v4.0.0 - October, 12 2021
 * Upgraded task to use Node 10. It previously used Node 6.
