@@ -2,6 +2,9 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 
+### 5.0.0 - Feb 02, 2022
+* Added deprecation warning to the `SetDirty` API. `ProcessPushNotification` API should be used instead for push-model based configuration refresh. [#301](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/301)
+
 ### 5.0.0-preview - December 16, 2021
 ### Breaking Changes:
 * Removed all offline caching capabilities. [#135](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/135)
