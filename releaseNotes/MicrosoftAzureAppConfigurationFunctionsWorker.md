@@ -3,7 +3,7 @@
 
 
 ### 5.0.1 - Feb 03, 2022
-* Moved the `UseAzureAppConfiguration` extension method to `Microsoft.extensions.Hosting` namespace.  [#299](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/299)
+* Moved the `UseAzureAppConfiguration` extension method to `Microsoft.Extensions.Hosting` namespace.  [#299](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/299)
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `5.0.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
 ### 5.0.0-preview - Dec 16, 2021
