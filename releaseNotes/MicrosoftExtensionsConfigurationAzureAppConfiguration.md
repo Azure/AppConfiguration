@@ -3,7 +3,7 @@
 
 
 ### 5.0.0 - Feb 02, 2022
-* Added deprecation warning to the `SetDirty` API. `ProcessPushNotification` API should be used instead for push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#301](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/301)
+* Added deprecation warning to the `IConfigurationRefresher.SetDirty` API. `IConfigurationRefresher.ProcessPushNotification` API should be used instead for push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#301](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/301)
 
 ### 5.0.0-preview - December 16, 2021
 ### Breaking Changes:
