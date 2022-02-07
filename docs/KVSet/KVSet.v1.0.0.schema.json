@@ -13,12 +13,12 @@
       "title": "Items",
       "description": "An array of key-values in the Azure App Configuration store.",
       "items": {
-        "$ref" : "#/$defs/kv"
+        "$ref" : "#/$defs/KeyValue"
       }
     }
   },
   "$defs": {
-    "kv": {
+    "KeyValue": {
       "type": "object",
       "title": "Key-value",
       "description": "An individual key-value and associated metadata in the 'appconfig/kvset' profile.",
@@ -73,7 +73,7 @@
           "title": "Content Type",
           "description": "The content type for the key-value.",
           "examples": [
-            "plaintext"
+            "application/json"
           ],
           "default": "",
           "anyOf": [
