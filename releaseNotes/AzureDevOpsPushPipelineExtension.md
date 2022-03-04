@@ -2,6 +2,9 @@
 Azure App Configuration Push extension for Azure DevOps pipeline can be installed from the [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version information can be found in the console when the task is executed:
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
+### v3.2.0 - March, 02 2022
+Fixed a bug that caused an invalid_client error when using certificate authentication [#608](https://github.com/Azure/AppConfiguration/issues/608).
+
 ### v3.1.0 - January, 07 2022
 * **Breaking change**: 
 With the added support of sovereign clouds such as Azure Government and Azure China, the task inputs were updated.
