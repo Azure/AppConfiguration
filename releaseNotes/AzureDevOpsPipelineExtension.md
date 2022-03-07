@@ -4,6 +4,9 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v5.2.0 - March, 02 2022
+Fixed a bug that caused an invalid_client error when using certificate-based authentication [#608](https://github.com/Azure/AppConfiguration/issues/608).
+
 ### v5.1.0 - January, 07 2022
 * **Breaking change**: 
 With the added support of sovereign clouds such as Azure Government and Azure China, the task inputs were updated.
