@@ -14,11 +14,11 @@
 
 * Dependency updates
 
-## 2.2.0 - March 02, 2022
+## 2.2.0 - Jan 06, 2022
 
 * Support for Spring Boot 2.5.5-2.5.8, 2.6.0-2.6.1.
 
-## 2.1.0 - March 02, 2022
+## 2.1.0 - Nov 25, 2021
 
 * Dependency updates
 
