@@ -6,6 +6,15 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+## 2.5.0 - March 29, 2022
+
+* Added configuration for periodically reloading all configurations. Can be used for forcing Key Vault references can be updated. `spring.cloud.azure.appconfiguration.refresh-interval= 1d`
+* Added support for parsing and using sync-token from push notifications received from Event Grid. Using sync-token ensures that users get the latest key-values from App Configuration on any subsequent request.
+
+## 2.4.0 - March 02, 2022
+
+* Dependency updates
+
 ## 2.3.0 - January 05, 2022
 
 * Fixed a bug where `spring.cloud.application` was still used in a location. This caused a refresh bug where a null value was used on refresh. `spring.cloud.application` has now been replaced by `key-filter`.

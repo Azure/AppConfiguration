@@ -6,6 +6,22 @@
 
 [Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
 
+## 2.4.0 - March 29, 2022
+
+* Updated PercentageFilter to support both Strings and Doubles.
+
+## 2.3.0 - March 02, 2022
+
+* Dependency updates
+
+## 2.2.0 - March 02, 2022
+
+* Support for Spring Boot 2.5.5-2.5.8, 2.6.0-2.6.1.
+
+## 2.1.0 - March 02, 2022
+
+* Dependency updates
+
 ## 2.0.0 - June 22, 2021
 
 * The Feature Management libraries have have renamed to match the structure and naming convention in the azure-sdk-for-java.
