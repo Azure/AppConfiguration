@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/KVSet/v1.0.0/KVSet.json",
+  "title": "An Azure App Configuration schema for importing/exporting using 'appconfig/kvset' profile",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "items": {
+      "$id": "#/properties/items",
+      "type": "array",
+      "title": "Items",
+      "description": "An array of key-values in the Azure App Configuration store.",
+      "items": {
+        "$ref" : "#/$defs/KeyValue"
+      }
+    }
+  },
+  "$defs": {
+    "KeyValue": {
+      "type": "object",
+      "title": "Key-value",
+      "description": "An individual key-value and associated metadata in the 'appconfig/kvset' profile.",
+      "properties": {
+        "key": {
+          "$id": "#/properties/key",
+          "type": "string",
+          "title": "Key",
+          "description": "The 'key' in the key-value.",
+          "examples": [
+            "background_color"
+          ],
+          "pattern": "^(.*)$",
+          "minLength": 1
+        },
+        "value": {
+          "$id": "#/properties/value",
+          "title": "Value",
+          "description": "The 'value' in the key-value.",
+          "examples": [
+            "blue"
+          ],
+          "default": "",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "label": {
+          "$id": "#/properties/label",
+          "title": "Label",
+          "description": "The label for the key-value.",
+          "examples": [
+            "staging"
+          ],
+          "default": null,
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "content_type": {
+          "$id": "#/properties/content_type",
+          "title": "Content Type",
+          "description": "The content type for the key-value.",
+          "examples": [
+            "application/json"
+          ],
+          "default": "",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "$id": "#/properties/tags",
+          "title": "Tags",
+          "type": "object",
+          "default": {
+          },
+          "description": "The tags assigned to the key value pair.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "key"
+      ]
+    }
+  }
+}

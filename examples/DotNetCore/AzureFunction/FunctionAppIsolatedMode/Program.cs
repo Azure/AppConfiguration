@@ -1,8 +1,7 @@
-using System;
-using Microsoft.Azure.AppConfiguration.Functions.Worker;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
+using System;
 
 namespace FunctionAppIsolatedMode
 {
