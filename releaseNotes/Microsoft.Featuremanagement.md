@@ -4,6 +4,16 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.5.0 - April 4, 2022
+
+### Enhancements
+
+* Updated `FeatureGateAttribute` to support Razor pages. This attribute can be placed on Razor page handlers to control access to the page based on whether a feature flag is on or off. [#166](https://github.com/microsoft/FeatureManagement-Dotnet/pull/166)
+
+### Bug fix
+
+* Fixed an issue in `PercentageFilter` where a feature may occasionally be considered as on even when the filter is set to 0 percent. [#156](https://github.com/microsoft/FeatureManagement-Dotnet/pull/156)
+
 ## 2.4.0 - September 24, 2021
 
 ### Enhancements
