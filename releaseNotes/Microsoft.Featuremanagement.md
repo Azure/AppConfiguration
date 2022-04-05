@@ -8,7 +8,7 @@
 
 ### Enhancements
 
-* Updated `FeatureGateAttribute` to support Razor pages. This attribute can be placed on Razor page handlers to control access to the page based on whether a feature flag is on or off. [#165](https://github.com/microsoft/FeatureManagement-Dotnet/pull/165)
+* Updated `FeatureGateAttribute` to support Razor pages. This attribute can be placed on Razor page handlers to control access to the page based on whether a feature flag is on or off. [#166](https://github.com/microsoft/FeatureManagement-Dotnet/pull/166)
 
 ### Bug fix
 
