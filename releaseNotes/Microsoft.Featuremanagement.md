@@ -4,6 +4,12 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.5.1 - April 6, 2022
+
+### Bug fix
+
+* Updated summary on `FeatureGateAttribute` to mention that it is usable on Razor pages. [#170](https://github.com/microsoft/FeatureManagement-Dotnet/pull/170)
+
 ## 2.5.0 - April 4, 2022
 
 ### Enhancements
