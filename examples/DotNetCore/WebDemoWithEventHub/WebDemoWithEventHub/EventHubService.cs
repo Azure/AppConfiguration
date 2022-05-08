@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Messaging.EventGrid;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -74,9 +76,14 @@ namespace WebDemoWithEventHub
         {
             _logger.LogInformation("EventHub update received. Triggering cache invalidation.");
 
-            //
-            // Set the cached value for key-values registered for refresh as dirty.
-            _configurationRefresher?.SetDirty();
+            // Build EventGridEvent from notification message
+            EventGridEvent eventGridEvent = EventGridEvent.Parse(BinaryData.FromBytes(eventArgs.Data.EventBody));
+
+            // Create PushNotification from eventGridEvent
+            eventGridEvent.TryCreatePushNotification(out PushNotification pushNotification);
+
+            // Prompt Configuration Refresh based on the PushNotification
+            _configurationRefresher.ProcessPushNotification(pushNotification);
             
             return Task.CompletedTask;
         }
