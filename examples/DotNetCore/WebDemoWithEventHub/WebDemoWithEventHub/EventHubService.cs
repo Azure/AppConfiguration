@@ -76,14 +76,21 @@ namespace WebDemoWithEventHub
         {
             _logger.LogInformation("EventHub update received. Triggering cache invalidation.");
 
-            // Build EventGridEvent from notification message
-            EventGridEvent eventGridEvent = EventGridEvent.Parse(BinaryData.FromBytes(eventArgs.Data.EventBody));
+            if (eventArgs.Data != null)
+            {
+                // Build EventGridEvent from notification message
+                EventGridEvent eventGridEvent = EventGridEvent.Parse(eventArgs.Data.EventBody);
 
-            // Create PushNotification from eventGridEvent
-            eventGridEvent.TryCreatePushNotification(out PushNotification pushNotification);
+                // Create PushNotification from eventGridEvent
+                eventGridEvent.TryCreatePushNotification(out PushNotification pushNotification);
 
-            // Prompt Configuration Refresh based on the PushNotification
-            _configurationRefresher.ProcessPushNotification(pushNotification);
+                // Prompt Configuration Refresh based on the PushNotification
+                _configurationRefresher.ProcessPushNotification(pushNotification);
+            }
+            else
+            {
+                _logger.LogWarning("EventHub event is null. Likely the receive call is timed out.");
+            }
             
             return Task.CompletedTask;
         }
