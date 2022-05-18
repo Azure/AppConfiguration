@@ -4,17 +4,17 @@ Azure App Configuration is an Azure service that allows users to manage configur
 
 You can open [issues](https://github.com/Azure/AppConfiguration/issues?utf8=%E2%9C%93&q=is%3Aissue) to ask questions or share feedback about Azure App Configuration.
 
-## Announcements
+## Annnon
 Subscribe to the following repo to be notified of announcements and updates about Azure App Configuration.
   * [Azure/AppConfiguration-Announcements](https://github.com/Azure/AppConfiguration-Announcements)
 
 ## Roadmap
 Check out what is on the [roadmap](https://github.com/Azure/AppConfiguration/projects/1) of Azure App Configuration and what the team is currently working on.
 
-## Examples
+## Examp
 Learn how to use Azure App Configuration in your app from [a variety of examples](./examples/README.md).
 
-## REST API Reference
+## REST API 
 
 Follow the links below for the Azure App Configuration REST API reference.
   * [Key-value data operation](https://docs.microsoft.com/azure/azure-app-configuration/rest-api)
