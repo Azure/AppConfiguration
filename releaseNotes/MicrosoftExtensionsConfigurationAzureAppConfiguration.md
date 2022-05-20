@@ -2,6 +2,9 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 
+### 5.1.0-preview - May 20, 2022
+* Adding support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+
 ### 5.0.0 - Feb 02, 2022
 * Added deprecation warning to the `IConfigurationRefresher.SetDirty` API. `IConfigurationRefresher.ProcessPushNotification` API should be used instead for push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#301](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/301)
 

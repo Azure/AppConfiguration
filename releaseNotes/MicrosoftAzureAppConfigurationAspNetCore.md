@@ -2,6 +2,9 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore)
 
 
+### 5.1.0-preview - May 20, 2022
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `5.1.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 5.0.0 - Feb 02, 2022
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `5.0.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
