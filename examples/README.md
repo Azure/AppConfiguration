@@ -34,8 +34,22 @@ This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates 
 
 Contains multiple Azure App Configuration Spring boot sample projects.
 
-* azure-appconfiguration-sample
-* azure-appconifugration-refresh-sample
-* azure-appconfiguration-conversion-sample
-* feature-management-sample
-* feature-management-web-sample
+### azure-appconfiguration-sample
+
+This example shows how to use the basic features of Azure App Configuration
+
+### azure-appconifugration-refresh-sample
+
+This example shows how to dynamically update configurations in a Spring Web application.
+
+### azure-appconfiguration-conversion-sample
+
+This example shows how to convert an existing Java Spring Boots application to use Azure App Configuration - Conversion.
+
+### feature-management-sample
+
+This example shows how to use feature flags.
+
+### feature-management-web-sample
+
+This example shows how to use feature flags in a Spring Web application.
