@@ -29,3 +29,13 @@ This ASP.NET web application is a .NET Framework MVC 5 app. It leverages the [co
 
 ## [WebFormApp (.NET Framework)](./DotNetFramework/WebFormApp)
 This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates how to leverage the App Configuration [.NET Standard provider library](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) to achieve dynamic configuration and control feature launches with feature flags. The same technique applies to .NET Framework MVC apps.
+
+## [Spring Samples](https://github.com/Azure-Samples/azure-spring-boot-samples/)
+
+Contains multiple Azure App Configuration Spring sample projects.
+
+* azure-appconfiguration-sample
+* azure-appconifugration-refresh-sample
+* azure-appconfiguration-conversion-sample
+* feature-management-sample
+* feature-management-web-sample
