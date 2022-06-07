@@ -32,7 +32,7 @@ This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates 
 
 ## [Spring Samples](https://github.com/Azure-Samples/azure-spring-boot-samples/)
 
-Contains multiple Azure App Configuration Spring sample projects.
+Contains multiple Azure App Configuration Spring boot sample projects.
 
 * azure-appconfiguration-sample
 * azure-appconifugration-refresh-sample
