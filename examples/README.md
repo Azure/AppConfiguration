@@ -40,7 +40,7 @@ This example shows how to use the basic features of Azure App Configuration in a
 
 ### azure-appconifugration-refresh-sample
 
-This example shows how to dynamically update configurations in a Spring Web application.
+This example shows how to dynamically update application settings in a Spring Web application.
 
 ### azure-appconfiguration-conversion-sample
 
