@@ -46,7 +46,7 @@ Contains multiple Azure App Configuration Spring boot sample projects.
 
 ### azure-appconfiguration-sample
 
-This example shows how to use the basic features of Azure App Configuration in a in Java Spring cloud application.
+This example shows how to use the basic features of Azure App Configuration in a in Java Spring cloud console application.
 
 ### azure-appconifugration-refresh-sample
 
