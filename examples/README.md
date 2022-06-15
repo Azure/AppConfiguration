@@ -44,22 +44,22 @@ This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates 
 
 Contains multiple Azure App Configuration Spring boot sample projects.
 
-### azure-appconfiguration-sample
+### [azure-spring-cloud-appconfiguration-config-sample](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample)
 
 This example shows how to use the basic features of Azure App Configuration in a in Java Spring cloud console application.
 
-### azure-appconifugration-refresh-sample
+### [azure-spring-cloud-starter-appconfiguration-config-sample](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration/azure-spring-cloud-starter-appconfiguration-config/azure-spring-cloud-starter-appconfiguration-config-sample)
 
 This example shows how to dynamically update configuration properties in a Spring Web application.
 
-### azure-appconfiguration-conversion-sample
+### [azure-spring-cloud-appconfiguration-config-convert-sample](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample)
 
 This example shows how to convert an existing Java Spring boot application to use Azure App Configuration.
 
-### feature-management-sample
+### [azure-spring-cloud-feature-management-sample](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration/azure-spring-cloud-feature-management/azure-spring-cloud-feature-management-sample)
 
 This example shows how to use feature flags in a Java Spring boot application.
 
-### feature-management-web-sample
+### [azure-spring-cloud-feature-management-web-sample](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration/azure-spring-cloud-feature-management-web/azure-spring-cloud-feature-management-web-sample)
 
 This example shows how to use feature flags in a Spring Web application.
