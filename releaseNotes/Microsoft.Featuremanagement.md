@@ -4,6 +4,60 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 3.0.0-preview - June 17, 2022
+
+### Dynamic Features 
+
+Dynamic features are a tool that can be used to surface different variants of a feature to different segments of an audience. Previously, this library only worked with feature flags. Feature flags are limited to boolean values, as they are either enabled or disabled. Dynamic features have dynamic values. They can be string, int, a complex object, or any other type. 
+
+```cs
+//
+// Modify view based off multiple possible variants
+model.BackgroundUrl = dynamicFeatureManager.GetVariantAsync<string>("HomeBackground", cancellationToken);
+
+return View(model);
+```
+
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/README.md#dynamic-features). 
+
+### Cancellation token support 
+
+Version 2 of Microsoft.FeatureManagement has an asynchronous pipeline, but cancellation token support was not added. Adding support for this in v2 would have required changing interfaces, thus a breaking change. V3 introduces this breaking change, and now proper cancellation is supported through the pipeline. 
+
+### New Configuration Schema 
+
+The original schema of the "FeatureManagement" configuration section treated all sub objects as feature flags. Now there are dynamic features alongside feature flags. Additionally, there are other switches that are expected to be added in the future to customize global feature management state. To make room for this the schema has been updated. 
+
+```json
+{
+    "FeatureManagement": {
+        "FeatureFlags": {
+        },
+        "DynamicFeatures": {
+        }
+    }
+}
+```
+
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/README.md#feature-flag-declaration).
+
+### Breaking Changes
+
+* `IFeatureFilter.EvaluateAsync` now accepts a cancellation token.
+  * `IFeatureFilter.EvaluateAsync(FeatureFilterEvaluationContext)` -> `IFeatureFilter.EvaluateAsync(FeatureFilterEvaluationContext, CancellationToken)`
+  * All built-in feature filters `EvaluateAsync` method now require a cancellation token. 
+  * An equivalent change applies to `IContextualFeatureFilter`.
+* `ITargetingContextAccessor.GetContextAsync` now accepts a cancellation token. 
+  * `ITargetingContextAccessor.GetContextAsync()` -> `ITargetingContextAccessor.GetContextAsync(CancellationToken)`.
+* All async `IFeatureManager` methods now accept a cancellation token.
+* `IFeatureManager.GetFeatureNamesAsync` has been renamed to `IFeatureManager.GetFeatureFlagNamesAsync`.
+* `IFeatureDefinitionProvider` has been renamed to `IFeatureFlagDefinitionProvider`.
+  * All methods now accept cancellation token.
+* `ISessionManager` now accepts cancellation token.
+* `FeatureDefinition` renamed to `FeatureFlagDefinition`.
+* `IFeatureManagementBuilder` now declares `AddFeatureVariantAssigner`.
+* `FeatureFilterEvaluationContext.FeatureName` renamed to `FeatureFilterEvaluationContext.FeatureFlagName`
+
 ## 2.5.1 - April 6, 2022
 
 ### Bug fix
