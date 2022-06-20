@@ -18,7 +18,7 @@ model.BackgroundUrl = dynamicFeatureManager.GetVariantAsync<string>("HomeBackgro
 return View(model);
 ```
 
-For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/README.md#dynamic-features). 
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/README.md#dynamic-features). 
 
 ### Cancellation token support 
 
@@ -39,7 +39,7 @@ The original schema of the "FeatureManagement" configuration section treated all
 }
 ```
 
-For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/README.md#feature-flag-declaration).
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/README.md#feature-flag-declaration).
 
 ### Breaking Changes
 
