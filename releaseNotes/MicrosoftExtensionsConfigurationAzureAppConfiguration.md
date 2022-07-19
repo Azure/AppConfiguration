@@ -2,6 +2,13 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 
+### 5.2.0-preview - July 18, 2022
+* Added support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+
+### 5.1.0 - July 18, 2022
+* Added support for .NET 6 as a target framework. [#290](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/290)
+* Removed support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+
 ### 5.1.0-preview - May 20, 2022
 * Added support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
 
