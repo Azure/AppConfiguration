@@ -1,6 +1,37 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 5.3.0-preview - July 27, 2022
+* Added support for fail-over mechanism leveraging geo-replication support for Azure App Configuration stores. To use this capability a new API `Connect(List<Uri> endpoints, TokenCredential credential)` has been added. A sample application using fail-over mechanism may look like the following -
+```csharp
+private static void Configure()
+{
+    var builder = new ConfigurationBuilder();
+    // Load a subset of the application's configuration from a json file and environment variables
+    builder.AddJsonFile("appsettings.json")
+           .AddEnvironmentVariables();
+
+    IConfiguration configuration = builder.Build();
+    IConfigurationSection endpointsSection = configuration.GetSection("AppConfig:Endpoints");
+
+    IEnumerable<Uri> endpoints = endpointsSection.GetChildren().Select(endpoint => new Uri(endpoint.Value));
+
+    if (endpoints == null || !endpoints.Any())
+    {
+        Console.WriteLine("Endpoints not found.");
+        Console.WriteLine("Please set the array 'Appconfig:Endpoints' in appsettings.json with valid Azure App Configuration replica endpoints and re-run this example.");
+        return;
+    }
+
+    // Augment the configuration builder with Azure App Configuration
+    builder.AddAzureAppConfiguration(options =>
+    {
+        options.Connect(endpoints, new DefaultAzureCredential());
+    });
+
+    Configuration = builder.Build();
+}
+```
 
 ### 5.2.0-preview - July 18, 2022
 * Added support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
