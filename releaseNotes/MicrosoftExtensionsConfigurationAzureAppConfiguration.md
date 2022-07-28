@@ -1,6 +1,14 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 5.3.0-preview - July 27, 2022
+* Added the following new API for the App Configuration geo-replication support. [#178](https://github.com/Azure/AppConfiguration/issues/178)
+
+   ```cs
+   public AzureAppConfigurationOptions Connect(IEnumerable<Uri> endpoints, TokenCredential credential)
+   ```
+
+   The new API allows you to provide an ordered list of replica endpoints of your App Configuration store. The App Configuration provider will fail over to other replicas when a replica is not accessible (either the service is unavailable or there are networking issues). A sample application can be found [here](https://github.com/Azure/AppConfiguration-DotnetProvider/tree/release/preview/v5/examples/ConsoleAppWithFailOver).
 
 ### 5.2.0-preview - July 18, 2022
 * Added support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
