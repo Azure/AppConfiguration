@@ -13,8 +13,8 @@ Initial Beta Release of the Azure App Configuration Provider for Python
 * Trim prefixes off key names.
 * Resolving Key Vault References, requires AAD.
 * Secret Resolver, resolve Key Vault References locally without connecting to Key Vault.
-* Json Content Type
+* JSON content-type (e.g. MIME type application/json) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded properly to IConfiguration. Existing applications that use key-values with a valid JSON content-type may need to be updated.
 
 [package]: https://pypi.org/project/azure-appconfiguration-provider/
 [samples]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration-provider/samples
-[source_code]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration-providerspring-cloud-azure-appconfiguration-config
+[source_code]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration-provider
