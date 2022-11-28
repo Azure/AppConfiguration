@@ -2,6 +2,13 @@
 Azure App Configuration Push extension for Azure DevOps pipeline can be installed from the [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version information can be found in the console when the task is executed:
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
+### v4.4.0 - November, 21 2022
+* Support Import mode option for KVSet profile.
+* Support strict for KVSet profile.
+
+### v3.4.0 - October, 19 2022
+* Added ImportMode and Dry run options. Import Mode option is only supported for Default profile.
+
 ### v3.3.0 - July, 13 2022
 * Added KVSet file content profile support.
 * Fixed a bug that caused an unexpected error "Cannot convert undefined or null to object" when pushing properties from .properties file.
