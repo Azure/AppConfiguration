@@ -4,7 +4,7 @@
 ### 5.2.0 - November 29, 2022
 * Added support for .NET 7 as a target framework. [#366](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/366)
 * Fixed a bug where passing an empty string for the label filter to `AzureAppConfigurationOptions.Select` would select key-values with all labels. [#311](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/311)
-* Fixed a bug where calls to `AzureAppConfigurationOptions.Select` with a null label would override future calls with a label specified. [#349](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/349)
+* Fixed a bug where calls to `AzureAppConfigurationOptions.Select` would be incorrectly ignored if the key-values were already selected by a previous call. [#349](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/349)
 * Fixed a bug where `AddAzureAppConfiguration` could throw an exception on invalid feature flags even with the `optional` parameter set to `true`. [#348](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/348)
 * Upgraded the package references `Azure.Security.KeyVault.Secrets` to `4.3.0` and `System.Text.Json` to `4.7.2` . [#351](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/351)
 
