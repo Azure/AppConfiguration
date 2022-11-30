@@ -7,11 +7,6 @@
 * Fixed a bug where calls to `AzureAppConfigurationOptions.Select` would be incorrectly ignored if the key-values were already selected by a previous call. [#349](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/349)
 * Fixed a bug where `AddAzureAppConfiguration` could throw an exception on invalid feature flags even with the `optional` parameter set to `true`. [#348](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/348)
 * Upgraded the package references `Azure.Security.KeyVault.Secrets` to `4.3.0` and `System.Text.Json` to `4.7.2`. [#351](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/351)
-* Removed the following new API for the App Configuration geo-replication support. [#178](https://github.com/Azure/AppConfiguration/issues/178)
-   ```cs
-   public AzureAppConfigurationOptions Connect(IEnumerable<Uri> endpoints, TokenCredential credential)
-   ```
-* Removed support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
 
 ### 5.3.0-preview - July 27, 2022
 * Added the following new API for the App Configuration geo-replication support. [#178](https://github.com/Azure/AppConfiguration/issues/178)
