@@ -3,11 +3,12 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v4.4.0 - November, 15 2022
-* Added Import mode option support for KVSet profile.
+* Added ImportMode option support for KVSet profile.
 * Added Strict support for KVSet profile. With the added support of Strict for KVSet profile, when Strict is set to true any key-values in the store that are not included in the configuration file will be deleted.
 
 ### v3.4.0 - October, 19 2022
-* Added ImportMode and Dry run options. Import Mode option is only supported for Default profile.
+* Added ImportMode option, ImportMode is only supported for Default profile.
+* Added DryRun option.
 
 ### v3.3.0 - July, 13 2022
 * Added KVSet file content profile support.
