@@ -3,7 +3,7 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v5.0.0 - February, 02 2023
-Upgraded task to use Node 16, previously used Node10.
+Updated the task to require Node.js 16. It previously required 10
 
 ### v4.4.0 - November, 15 2022
 * Added ImportMode option support for KVSet profile.
