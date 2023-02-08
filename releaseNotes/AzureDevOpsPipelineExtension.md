@@ -4,6 +4,10 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v6.0.0 - February, 02 2023
+* Updated the task to require Node.js 16. It previously required 10.
+* Fixed a bug that caused an invalid secret URL warning when resolving key vault references in sovereign clouds.
+
 ### v5.2.0 - March, 02 2022
 Fixed a bug that caused an invalid_client error when using certificate-based authentication [#608](https://github.com/Azure/AppConfiguration/issues/608).
 
