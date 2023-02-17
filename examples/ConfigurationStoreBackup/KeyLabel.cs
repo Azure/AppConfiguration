@@ -10,17 +10,7 @@ namespace ConfigurationStoreBackup
         public KeyLabel(string key, string label)
         {
             Key = key;
-            Label = label;
-        }
-
-        public override bool Equals(Object obj)
-        {
-            if (obj is KeyLabel keyLabel)
-            {
-                return string.Equals(this.Key, keyLabel.Key, StringComparison.Ordinal)
-                    && string.Equals(this.Label, keyLabel.Label, StringComparison.Ordinal);
-            }
-            return false;
+            Label = label ?? string.Empty;
         }
 
         public override int GetHashCode()
