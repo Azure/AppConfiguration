@@ -1,0 +1,4 @@
+Django
+whitenoise
+azure-appconfiguration-provider
+azure-identity
