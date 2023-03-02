@@ -15,7 +15,7 @@ from pathlib import Path
 from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions
 from azure.identity import DefaultAzureCredential
 
-ENDPOINT = "your-endpoint"
+ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 credential = DefaultAzureCredential()
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 config = load_provider(endpoint=ENDPOINT, key_vault_options=keyvault_options, credential=credential)
