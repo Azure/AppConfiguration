@@ -5,7 +5,7 @@ from azure.identity import DefaultAzureCredential
 
 app = Flask(__name__)
 
-ENDPOINT = "your-endpoint"
+ENDPOINT =  os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 credential = DefaultAzureCredential()
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 azure_app_config = load_provider(endpoint=ENDPOINT, key_vault_options=keyvault_options, credential=credential)
