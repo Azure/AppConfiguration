@@ -1,6 +1,6 @@
 # Azure App Configuration Examples
 
-## Dotnet
+## DotNet Samples
 
 ### [ConfigurationStoreBackup](./ConfigurationStoreBackup)
 
