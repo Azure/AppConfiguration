@@ -16,9 +16,14 @@ from azure.appconfiguration.provider import load_provider, AzureAppConfiguration
 from azure.identity import DefaultAzureCredential
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
+
+# Set up credentials and settings used in resolving key vault references.
 credential = DefaultAzureCredential()
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
-config = load_provider(endpoint=ENDPOINT, key_vault_options=keyvault_options, credential=credential)
+
+# Load app configuration key-values and resolved key vault reference values.
+config = load_provider(endpoint=ENDPOINT, key_vault_options=keyvault_options, credential=credential) 
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +33,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.get('secret_key')
+# This is a key vault reference. The corresponding secret in key vault is returned.
+SECRET_KEY = config.get('secret_key') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,9 +118,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = config.get('language_code', 'en-us')
+LANGUAGE_CODE = 'en-us'
 
 USER_NAME = config.get('name')
+
+COLOR = config.get('color')
+
+FONT_SIZE = config.get('font_size')
 
 TIME_ZONE = 'UTC'
 
