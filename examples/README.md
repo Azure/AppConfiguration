@@ -68,10 +68,10 @@ This example shows how to use feature flags in a Spring Web application.
 
 ## Python Samples
 
-### [python-django-webapp-sample](./PythonProvider/python-django-webapp-sample)
+### [python-django-webapp-sample](./Python/python-django-webapp-sample/)
 
 This example shows how to use the Azure App Configuration Python Provider in your python Django app.
 
-### [python-flask-webapp-sample](./PythonProvider/python-flask-webapp-sample)
+### [python-flask-webapp-sample](./Python/python-flask-webapp-sample/)
 
 This example shows how to use the Azure App Configuration Python Provider in your python Flask app.
