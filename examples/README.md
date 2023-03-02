@@ -66,7 +66,7 @@ This example shows how to use feature flags in a Java Spring boot application.
 
 This example shows how to use feature flags in a Spring Web application.
 
-## Python Provider Samples
+## Python Samples
 
 ### [python-django-webapp-sample](./PythonProvider/python-django-webapp-sample)
 
