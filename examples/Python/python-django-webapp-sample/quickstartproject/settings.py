@@ -22,8 +22,11 @@ credential = DefaultAzureCredential()
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 
 # Load app configuration key-values and resolved key vault reference values.
-config = load_provider(endpoint=ENDPOINT, key_vault_options=keyvault_options, credential=credential) 
-
+# Trim all key-values with the prefix 'testapp_settings_'
+config = load_provider(endpoint=ENDPOINT,
+                       key_vault_options=keyvault_options,
+                       credential=credential,
+                       trimmed_key_prefixes=["testapp_settings_"])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is a key vault reference. The corresponding secret in key vault is returned.
-SECRET_KEY = config.get('secret_key') 
+SECRET_KEY = config.get('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
