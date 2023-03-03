@@ -19,9 +19,9 @@ az appconfig create --name <config-store-name> --resource-group <resource-group-
 ### Create Keys
 
 ```Powershell
-az appconfig kv set --name <config-store-name> --key name --value "John Doe"
-az appconfig kv set --name <config-store-name> --key font_size --value "30px"
-az appconfig kv set --name <config-store-name> --key color --value "yellow"
+az appconfig kv set --name <config-store-name> --key testapp_settings_name --value "John Doe"
+az appconfig kv set --name <config-store-name> --key testapp_settings_font_size --value "30px"
+az appconfig kv set --name <config-store-name> --key testapp_settings_color --value "yellow"
 ```
 
 ### Create Key Vault Reference
