@@ -1,6 +1,6 @@
 import os
-from flask import Flask, render_template, send_from_directory
-from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions
+from flask import Flask, render_template
+from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions, SettingSelector
 from azure.identity import DefaultAzureCredential
 
 app = Flask(__name__)
@@ -10,13 +10,15 @@ ENDPOINT =  os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 
 # Set up credentials and settings used in resolving key vault references.
 credential = DefaultAzureCredential()
-keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 
 # Load app configuration key-values and resolved key vault reference values.
-# Trim all key-values with the prefix 'testapp_settings_'
+# Select only key-values that start with 'testapp_settings_' and trim the prefix
+selects = SettingSelector(key_filter="testapp_settings_*")
+keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 azure_app_config = load_provider(endpoint=ENDPOINT,
                                  key_vault_options=keyvault_options,
                                  credential=credential,
+                                 selects=[selects],
                                  trimmed_key_prefixes=["testapp_settings_"])
 
 # App Configuration provider implements the Mapping Type which is compatible with the existing Flask config.
@@ -27,16 +29,11 @@ app.config.update(azure_app_config)
 def index():
    print('Request for index page received')
    context = {}
-   context['name'] = app.config.get('name')
+   context['message'] = app.config.get('message')
    context['font_size'] = app.config.get('font_size')
    context['color'] = app.config.get('color')
    context['key'] = app.config.get('secret_key') # This is a key vault reference. The corresponding secret in key vault is returned.
    return render_template('index.html', **context)
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == '__main__':
