@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions
+from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions, SettingSelector
 from azure.identity import DefaultAzureCredential
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
@@ -22,10 +22,12 @@ credential = DefaultAzureCredential()
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 
 # Load app configuration key-values and resolved key vault reference values.
-# Trim all key-values with the prefix 'testapp_settings_'
+# Select only key-values that start with 'testapp_settings_' and trim the prefix
+selects = SettingSelector(key_filter="testapp_settings_*")
 config = load_provider(endpoint=ENDPOINT,
                        key_vault_options=keyvault_options,
                        credential=credential,
+                       selects=[selects],
                        trimmed_key_prefixes=["testapp_settings_"])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -123,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-USER_NAME = config.get('name')
+MESSAGE = config.get('message')
 
 COLOR = config.get('color')
 

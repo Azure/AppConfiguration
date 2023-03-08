@@ -3,7 +3,7 @@ from django.conf import settings
 
 def index(request):
     context = {
-        "name": settings.USER_NAME,
+        "message": settings.MESSAGE,
         "key": settings.SECRET_KEY,
         "color": settings.COLOR,
         "font_size": settings.FONT_SIZE
