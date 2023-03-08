@@ -1,4 +1,4 @@
-Django
-whitenoise
-azure-appconfiguration-provider
-azure-identity
+Django==4.1.7
+whitenoise==6.4.0
+azure-appconfiguration-provider==1.0.0b2
+azure-identity==1.12.0
