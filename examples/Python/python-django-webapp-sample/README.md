@@ -60,7 +60,7 @@ $Env:AZURE_APPCONFIG_ENDPOINT="your-store-endpoint"
 export AZURE_APPCONFIG_ENDPOINT="your-store-enpoint"
 ```
 
-Start the flask application using the flask command:
+Start the flask application using the django command:
 ```commandline
 # Run database migration
 python manage.py migrate
