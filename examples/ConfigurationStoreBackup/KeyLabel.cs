@@ -10,7 +10,7 @@ namespace ConfigurationStoreBackup
         public KeyLabel(string key, string label)
         {
             Key = key;
-            Label = label;
+            Label = label ?? string.Empty;
         }
 
         public override bool Equals(Object obj)
