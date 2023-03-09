@@ -25,7 +25,7 @@ keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
-azure_app_config = load(endpoint=ENDPOINT,
+config = load(endpoint=ENDPOINT,
                                  key_vault_options=keyvault_options,
                                  credential=credential,
                                  selects=[selects, selects_secret],
