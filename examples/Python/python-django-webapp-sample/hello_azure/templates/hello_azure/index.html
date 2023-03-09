@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+
+<head>
+  <title>Hello Azure - Python Django Example</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<html>
+  
+<style>
+  h1 {
+    font-size: {{font_size}};
+  }
+</style>
+
+<body style="background-color:{{color}}">
+  <main>
+    <div class="px-4 py-3 my-2 text-center">
+      <h1>{{message}}</h1>
+      <p class="fs-5">
+        Resolved Key vault value: <b>{{key}}</b> (For demonstration purposes only)
+      </p>
+    </div>
+  </main>
+</body>
+
+</html>
