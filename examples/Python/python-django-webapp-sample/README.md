@@ -62,6 +62,9 @@ export AZURE_APPCONFIG_ENDPOINT="your-store-enpoint"
 
 Start the flask application using the flask command:
 ```commandline
+# Run database migration
+python manage.py migrate
+# Run the app at http://127.0.0.1:8000
 python manage.py runserver
 ```
 

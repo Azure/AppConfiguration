@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions, SettingSelector
+from azure.appconfiguration.provider import load, AzureAppConfigurationKeyVaultOptions, SettingSelector
 from azure.identity import DefaultAzureCredential
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
@@ -24,11 +24,12 @@ keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 # Load app configuration key-values and resolved key vault reference values.
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
-config = load_provider(endpoint=ENDPOINT,
-                       key_vault_options=keyvault_options,
-                       credential=credential,
-                       selects=[selects],
-                       trimmed_key_prefixes=["testapp_settings_"])
+selects_secret = SettingSelector(key_filter="secret_key")
+azure_app_config = load(endpoint=ENDPOINT,
+                                 key_vault_options=keyvault_options,
+                                 credential=credential,
+                                 selects=[selects, selects_secret],
+                                 trim_prefixes=["testapp_settings_"])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

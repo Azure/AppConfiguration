@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template
-from azure.appconfiguration.provider import load_provider, AzureAppConfigurationKeyVaultOptions, SettingSelector
+from azure.appconfiguration.provider import load, AzureAppConfigurationKeyVaultOptions, SettingSelector
 from azure.identity import DefaultAzureCredential
 
 app = Flask(__name__)
@@ -14,12 +14,13 @@ credential = DefaultAzureCredential()
 # Load app configuration key-values and resolved key vault reference values.
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
+selects_secret = SettingSelector(key_filter="secret_key")
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
-azure_app_config = load_provider(endpoint=ENDPOINT,
+azure_app_config = load(endpoint=ENDPOINT,
                                  key_vault_options=keyvault_options,
                                  credential=credential,
-                                 selects=[selects],
-                                 trimmed_key_prefixes=["testapp_settings_"])
+                                 selects=[selects, selects_secret],
+                                 trim_prefixes=["testapp_settings_"])
 
 # App Configuration provider implements the Mapping Type which is compatible with the existing Flask config.
 # Update Flask config mapping with loaded values in the App Configuration provider.
