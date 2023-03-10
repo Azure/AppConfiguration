@@ -17,10 +17,10 @@ selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
 keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 azure_app_config = load(endpoint=ENDPOINT,
-                                 key_vault_options=keyvault_options,
-                                 credential=credential,
-                                 selects=[selects, selects_secret],
-                                 trim_prefixes=["testapp_settings_"])
+                        key_vault_options=keyvault_options,
+                        credential=credential,
+                        selects=[selects, selects_secret],
+                        trim_prefixes=["testapp_settings_"])
 
 # App Configuration provider implements the Mapping Type which is compatible with the existing Flask config.
 # Update Flask config mapping with loaded values in the App Configuration provider.

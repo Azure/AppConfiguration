@@ -26,10 +26,10 @@ keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
 config = load(endpoint=ENDPOINT,
-                                 key_vault_options=keyvault_options,
-                                 credential=credential,
-                                 selects=[selects, selects_secret],
-                                 trim_prefixes=["testapp_settings_"])
+              key_vault_options=keyvault_options,
+              credential=credential,
+              selects=[selects, selects_secret],
+              trim_prefixes=["testapp_settings_"])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
