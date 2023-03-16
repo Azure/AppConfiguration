@@ -19,7 +19,7 @@ from azure.identity import DefaultAzureCredential
 c_parser = configparser.ConfigParser()
 c_parser.read('static/config.ini')
 
-default = c_parser['DEFAULT']
+config = c_parser['DEFAULT']
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 
@@ -31,13 +31,15 @@ keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
-config = load(endpoint=ENDPOINT,
+azure_appconfiguration = load(endpoint=ENDPOINT,
               key_vault_options=keyvault_options,
               credential=credential,
               selects=[selects, selects_secret],
               trim_prefixes=["testapp_settings_"])
 
-default.update(config)
+# Updates the config object with the app configuration key-values and resolved key vault reference values.
+# This will override any values in the config object with the same key.
+config.update(azure_appconfiguration)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,7 +49,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is a key vault reference. The corresponding secret in key vault is returned.
-SECRET_KEY = default.get('secret_key')
+SECRET_KEY = config.get('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,9 +135,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-MESSAGE = default.get('message')
+MESSAGE = config.get('message')
 
-FONT_SIZE = default.get('font_size')
+FONT_SIZE = config.get('font_size')
 
 TIME_ZONE = 'UTC'
 
