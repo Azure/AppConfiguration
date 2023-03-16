@@ -12,8 +12,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+import configparser
 from azure.appconfiguration.provider import load, AzureAppConfigurationKeyVaultOptions, SettingSelector
 from azure.identity import DefaultAzureCredential
+
+c_parser = configparser.ConfigParser()
+c_parser.read('static/config.ini')
+
+default = c_parser['DEFAULT']
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 
@@ -31,16 +37,17 @@ config = load(endpoint=ENDPOINT,
               selects=[selects, selects_secret],
               trim_prefixes=["testapp_settings_"])
 
+default.update(config)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is a key vault reference. The corresponding secret in key vault is returned.
-SECRET_KEY = config.get('secret_key')
+SECRET_KEY = default.get('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,11 +133,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-MESSAGE = config.get('message')
+MESSAGE = default.get('message')
 
-COLOR = config.get('color')
-
-FONT_SIZE = config.get('font_size')
+FONT_SIZE = default.get('font_size')
 
 TIME_ZONE = 'UTC'
 
