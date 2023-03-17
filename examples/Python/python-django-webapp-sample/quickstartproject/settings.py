@@ -137,6 +137,8 @@ LANGUAGE_CODE = 'en-us'
 
 MESSAGE = config.get('message')
 
+COLOR = config.get('color')
+
 FONT_SIZE = config.get('font_size')
 
 TIME_ZONE = 'UTC'

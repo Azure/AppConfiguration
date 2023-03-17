@@ -32,6 +32,7 @@ def index():
    context = {}
    context['message'] = app.config.get('message')
    context['font_size'] = app.config.get('font_size')
+   context['color'] = app.config.get('color')
    context['key'] = app.config.get('secret_key') # This is a key vault reference. The corresponding secret in key vault is returned.
    return render_template('index.html', **context)
 
