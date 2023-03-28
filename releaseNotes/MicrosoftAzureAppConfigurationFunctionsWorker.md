@@ -1,6 +1,9 @@
 ## Microsoft.Azure.AppConfiguration.Functions.Worker
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.Functions.Worker)
 
+### 6.0.0 - November 29, 2022
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `6.0.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 5.2.0 - November 29, 2022
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `5.2.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 

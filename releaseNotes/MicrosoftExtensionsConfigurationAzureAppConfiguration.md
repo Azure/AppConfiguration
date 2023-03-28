@@ -1,6 +1,19 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 6.0.0 - November 29, 2022
+* Fixed a bug where configuration did not refresh when ChainedConfigurationProvider was used. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
+* Added the following new API for the App Configuration geo-replication support. [#385](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/385)
+
+   ```cs
+   public AzureAppConfigurationOptions Connect(IEnumerable<string> connectionStrings)
+   ```
+
+   The new API allows you to provide an ordered list of connection strings of your App Configuration store. The App Configuration provider will fail over to other replicas when a replica is not accessible (either the service is unavailable or there are networking issues).
+* Removed `IConfigurationRefresher.SetDirty` API. `IConfigurationRefresher.ProcessPushNotification` API should be used for push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
+* Removed .NET 5 as a target framework. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
+* Removed support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+
 ### 5.2.0 - November 29, 2022
 * Added support for .NET 7 as a target framework. [#366](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/366)
 * Fixed a bug where passing an empty string for the label filter to `AzureAppConfigurationOptions.Select` would select key-values with all labels. [#311](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/311)
