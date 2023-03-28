@@ -2,14 +2,14 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 6.0.0 - November 29, 2022
-* Fixed a bug where configuration did not refresh when ChainedConfigurationProvider was used. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
-* Added the following new API for the App Configuration geo-replication support. [#385](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/385)
+* Fixed a bug where the configuration did not refresh when ChainedConfigurationProvider was used. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
+* Added the following new API for additional App Configuration geo-replication support. [#385](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/385)
 
    ```cs
    public AzureAppConfigurationOptions Connect(IEnumerable<string> connectionStrings)
    ```
 
-   The new API allows you to provide an ordered list of connection strings of your App Configuration store. The App Configuration provider will fail over to other replicas when a replica is not accessible (either the service is unavailable or there are networking issues).
+   The new API allows you to provide an ordered list of connection strings of your App Configuration store and its replicas.
 
 * Removed `IConfigurationRefresher.SetDirty` API. `IConfigurationRefresher.ProcessPushNotification` API should be used for push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
 * Removed .NET 5 as a target framework. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
