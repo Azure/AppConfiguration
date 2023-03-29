@@ -2,7 +2,12 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 6.0.0 - November 29, 2022
-* Fixed a bug where the configuration did not refresh when ChainedConfigurationProvider was used. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
+### Breaking Changes:
+* Removed `IConfigurationRefresher.SetDirty` API to migrate to `IConfigurationRefresher.ProcessPushNotification` API for necessary data consistency in push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
+* Removed .NET 5 as a target framework as .NET 5 is out of support. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
+* Removed support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+* Removed `IConfigurationRefresher.LoggerFactory` and added success logs for refresh operations. All logs can now additionally be enabled through [these instructions](https://learn.microsoft.com/en-us/dotnet/azure/sdk/logging) for logging with Azure SDK for .NET. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
+
 * Added the following new API for additional App Configuration geo-replication support. [#385](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/385)
 
    ```cs
@@ -11,9 +16,15 @@
 
    The new API allows you to provide an ordered list of connection strings of your App Configuration store and its replicas.
 
-* Removed `IConfigurationRefresher.SetDirty` API. `IConfigurationRefresher.ProcessPushNotification` API should be used for push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
-* Removed .NET 5 as a target framework. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
-* Removed support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+* Added the following new API for performing custom transformations on App Configuration settings. [#157](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/157)
+
+   ```cs
+   public AzureAppConfigurationOptions Map(Func<ConfigurationSetting, ValueTask<ConfigurationSetting>> mapper)
+   ```
+
+* Fixed a bug where the configuration did not refresh when `ChainedConfigurationProvider` was used. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
+* Fixed a bug where the `cacheExpirationInterval` value for key-values and feature flags was sometimes not updated upon refresh. [#365](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/365)
+* Fixed a bug where if the provider failed while loading data from the App Configuration store, updates to key-values could persist in the configuration after failure. [#363](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/363)
 
 ### 5.2.0 - November 29, 2022
 * Added support for .NET 7 as a target framework. [#366](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/366)
