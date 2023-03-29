@@ -1,7 +1,7 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
-### 6.0.0 - November 29, 2022
+### 6.0.0 - March 28, 2023
 ### Breaking Changes:
 * Removed `IConfigurationRefresher.SetDirty` API to migrate to `IConfigurationRefresher.ProcessPushNotification` API for necessary data consistency in push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
 * Removed .NET 5 as a target framework as .NET 5 is out of support. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
@@ -22,9 +22,7 @@
    public AzureAppConfigurationOptions Map(Func<ConfigurationSetting, ValueTask<ConfigurationSetting>> mapper)
    ```
 
-* Fixed a bug where the configuration did not refresh when `ChainedConfigurationProvider` was used. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
-* Fixed a bug where the `cacheExpirationInterval` value for key-values and feature flags was sometimes not updated upon refresh. [#365](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/365)
-* Fixed a bug where if the provider failed while loading data from the App Configuration store, updates to key-values could persist in the configuration after failure. [#363](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/363)
+* For .NET 7 or later, added support for refreshing configuration when `AzureAppConfigurationProvider` is nested under `ChainedConfigurationProvider`. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
 
 ### 5.2.0 - November 29, 2022
 * Added support for .NET 7 as a target framework. [#366](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/366)
