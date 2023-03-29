@@ -8,6 +8,10 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+### Breaking Changes
+
+* Libraries and namespaces to `spring-cloud-azure-feature-management-web` and `com.azure.spring.cloud.feature.management`.
+
 ## 1.3.0 - April 21, 2021
 
 * Updated to newer versions of dependencies. Spring Boot 2.4.3 and Spring Cloud 3.0.1.

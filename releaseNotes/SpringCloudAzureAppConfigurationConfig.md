@@ -14,6 +14,22 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 4.0.0 - March 29, 2023
+
+### Features Added
+
+* Added support for [Azure Spring common configuration properties][azure_spring_common_configuration_properties].
+* Added support for Geo-Replication, enables the library to connect to a replica when the origin store fails to connect. Configuration is done through the `spring.cloud.azure.appconfiguration.stores[0].endpoints` property or `spring.cloud.azure.appconfiguration.stores[0].connection-strings`, where a list of endpoints/connection-strings can be provided. The endpoints/connection-strings will be attempted to connect in priority order.
+* Feature Flags can now be selected using a key and label filter, instead of just a label filter. The configurations are now `spring.cloud.azure.appconfiguration.stores[0].feature-flags.selects[0].key-filter` and `spring.cloud.azure.appconfiguration.stores[0].feature-flags.selects[0].label-filter`.
+
+### Breaking Changes
+
+* Libraries and namespaces have been renamed to `spring-cloud-azure-appconfiguration-config` and `com.azure.spring.cloud.appconfiguration.config`.
+* Renamed `ConfigurationClientBuilderSetup` to `ConfigurationClientCustomizer`.
+* Renamed `SecretClientBuilderSetup` to `SecretClientCustomizer`.
+* Removed `AppConfigurationCredentialProvider` and `KeyVaultCredentialProvider`, instead you can use [Azure Spring common configuration properties][azure_spring_common_configuration_properties] or modify the credentials using `ConfigurationClientCustomizer`/`SecretClientCustomizer`.
+* Feature Flags are now merged when found across multiple stores, if duplicate keys are found the highest priority store wins.
+
 ## 1.3.0 - April 21, 2021
 
 * Updated to newer versions of dependencies. Spring Boot 2.4.3 and Spring Cloud 3.0.1.
@@ -162,3 +178,5 @@
 
 [package_starter]: https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-appconfiguration-config
 [source_code_starter]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config
+
+[azure_spring_common_configuration_properties]: https://learn.microsoft.com/azure/developer/java/spring-framework/configuration
