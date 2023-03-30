@@ -3,10 +3,16 @@
 
 ### 6.0.0 - March 28, 2023
 ### Breaking Changes:
-* Removed `IConfigurationRefresher.SetDirty` API to migrate to `IConfigurationRefresher.ProcessPushNotification` API for necessary data consistency in push-model based configuration refresh. Refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt) for more details about the `ProcessPushNotification` API. [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
+* Removed `IConfigurationRefresher.SetDirty` API in favor of `IConfigurationRefresher.ProcessPushNotification` API for push-model based configuration refresh. Unlike the `SetDirty` method, the `ProcessPushNotification` method guarantees that all configuration changes up to the triggering event are loaded in the following configuration refresh. For more details on the `ProcessPushNotification` API, refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt). [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
 * Removed .NET 5 as a target framework as .NET 5 is out of support. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
-* Removed support for Feature Management V2 schema introduced in Microsoft.FeatureManagement 3.0.0-preview library. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
-* Removed `IConfigurationRefresher.LoggerFactory` and added success logs for refresh operations. All logs can now additionally be enabled through [these instructions](https://learn.microsoft.com/en-us/dotnet/azure/sdk/logging) for logging with Azure SDK for .NET. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
+* Feature Management V2 schema support, which was introduced in 5.2.0-preview release, has been removed from this stable release. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
+* Removed IConfigurationRefresher.LoggerFactory API, but refresh logs are still available through standard ASP.NET Core logging if services.AddAzureAppConfiguration() is invoked in your ConfigureServices method. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
+
+* This is the first stable release of the following API introduced in 5.3.0-preview release:
+
+   ```cs
+   public AzureAppConfigurationOptions Connect(IEnumerable<Uri> endpoints, TokenCredential credential)
+   ```
 
 * Added the following new API for additional App Configuration geo-replication support. [#385](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/385)
 
@@ -16,12 +22,6 @@
 
    The new API allows you to provide an ordered list of connection strings of your App Configuration store and its replicas.
 
-* This is the first stable release of the following API introduced in 5.3.0-preview release:
-
-   ```cs
-   public AzureAppConfigurationOptions Connect(IEnumerable<Uri> endpoints, TokenCredential credential)
-   ```
-
 ### Enhancements
 * Added the following new API for performing custom transformations on App Configuration settings. [#157](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/157)
 
@@ -30,6 +30,7 @@
    ```
 
 * For .NET 7 or later, added support for refreshing configuration when `AzureAppConfigurationProvider` is nested under `ChainedConfigurationProvider`. [#168](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/168)
+* Added support for Azure SDK logging in addition to standard ASP.NET Core logging. Refresh logs are available under the "Microsoft-Extensions-Configuration-AzureAppConfiguration-Refresh" category. To enable Azure SDK logs, refer to [these instructions](https://learn.microsoft.com/en-us/dotnet/azure/sdk/logging). [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
 
 ### 5.2.0 - November 29, 2022
 * Added support for .NET 7 as a target framework. [#366](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/366)
