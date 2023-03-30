@@ -16,6 +16,13 @@
 
    The new API allows you to provide an ordered list of connection strings of your App Configuration store and its replicas.
 
+* This is the first stable release of the following API introduced in 5.3.0-preview release:
+
+   ```cs
+   public AzureAppConfigurationOptions Connect(IEnumerable<Uri> endpoints, TokenCredential credential)
+   ```
+
+### Enhancements
 * Added the following new API for performing custom transformations on App Configuration settings. [#157](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/157)
 
    ```cs
