@@ -10,7 +10,7 @@
 * `IConfigurationRefresher.ProcessPushNotification` no longer invalidates the cache for unregistered endpoints. [#319](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/319)
 
 ### Enhancements
-* This is the first stable release of the following API introduced in 5.3.0-preview release:
+* This is the first stable release of the following API introduced in 5.3.0-preview release. [#178](https://github.com/Azure/AppConfiguration/issues/178)
 
    ```cs
    public AzureAppConfigurationOptions Connect(IEnumerable<Uri> endpoints, TokenCredential credential)
