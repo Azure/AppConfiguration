@@ -6,8 +6,10 @@
 * Removed `IConfigurationRefresher.SetDirty` API in favor of `IConfigurationRefresher.ProcessPushNotification` API for push-model based configuration refresh. Unlike the `SetDirty` method, the `ProcessPushNotification` method guarantees that all configuration changes up to the triggering event are loaded in the following configuration refresh. For more details on the `ProcessPushNotification` API, refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt). [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
 * Removed .NET 5 as a target framework as .NET 5 is out of support. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
 * Feature Management V2 schema support, which was introduced in 5.2.0-preview release, has been removed from this stable release. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
-* Removed IConfigurationRefresher.LoggerFactory API, but refresh logs are still available through standard ASP.NET Core logging if services.AddAzureAppConfiguration() is invoked in your ConfigureServices method. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
+* Removed `IConfigurationRefresher.LoggerFactory API`, but refresh logs are still available through standard ASP.NET Core logging if `services.AddAzureAppConfiguration()` is invoked in your `ConfigureServices` method. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
+* `IConfigurationRefresher.ProcessPushNotification` no longer invalidates the cache for unregistered endpoints. [#319](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/319)
 
+### Enhancements
 * This is the first stable release of the following API introduced in 5.3.0-preview release:
 
    ```cs
@@ -22,7 +24,6 @@
 
    The new API allows you to provide an ordered list of connection strings of your App Configuration store and its replicas.
 
-### Enhancements
 * Added the following new API for performing custom transformations on App Configuration settings. [#157](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/157)
 
    ```cs
