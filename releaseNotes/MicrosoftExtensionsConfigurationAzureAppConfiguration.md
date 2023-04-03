@@ -7,7 +7,7 @@
 * Removed .NET 5 as a target framework as .NET 5 is out of support. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
 * Feature Management V2 schema support, which was introduced in 5.2.0-preview release, has been removed from this stable release. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
 * Removed `IConfigurationRefresher.LoggerFactory` API, but refresh logs are still available through standard ASP.NET Core logging if `services.AddAzureAppConfiguration()` is invoked in your `ConfigureServices` method. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
-* "`IConfigurationRefresher.ProcessPushNotification` now validates that the push notification was triggered for one of the registered App Config stores. If no matching AppConfig store is registered, push notification is ignored and refresh operation will not be triggered." [#319](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/319)
+* `IConfigurationRefresher.ProcessPushNotification` now validates that the push notification was triggered for one of the registered AppConfig stores. If no matching AppConfig store is registered, push notification is ignored and refresh operation will not be triggered. [#319](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/319)
 
 ### Enhancements
 * This is the first stable release of the following API introduced in 5.3.0-preview release. [#178](https://github.com/Azure/AppConfiguration/issues/178)
