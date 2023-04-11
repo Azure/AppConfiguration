@@ -65,7 +65,6 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                     }
                 }
 
-
                 return builder.ToString();
             }
             catch (RequestFailedException e)
@@ -114,7 +113,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
                                     string blobList = await ListAllBlobsFlatListing(blobServiceClient);
 
-                                    setting = new ConfigurationSetting(setting.Key, $"{blobList}", setting.Label, setting.ETag);
+                                    setting = new ConfigurationSetting(setting.Key, blobList, setting.Label, setting.ETag);
                                 }
                                 catch (Exception e)
                                 {
