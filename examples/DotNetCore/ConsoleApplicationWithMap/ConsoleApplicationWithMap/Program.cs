@@ -118,7 +118,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                                 }
                                 catch (Exception e)
                                 {
-                                    Console.WriteLine($"Error getting file: {e.Message}");
+                                    Console.WriteLine($"Error getting blob information: {e.Message}");
                                 }
                             }
 
