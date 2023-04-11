@@ -136,19 +136,25 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             string display = string.Empty;
             StringBuilder sb = new StringBuilder();
 
-            sb.Clear();
+            do
+            {
+                sb.Clear();
 
-            // Trigger and wait for an async refresh for registered configuration settings
-            await _refresher.TryRefreshAsync();
+                // Trigger and wait for an async refresh for registered configuration settings
+                await _refresher.TryRefreshAsync();
 
-            sb.AppendLine($"{Configuration["StorageAccountName"]}");
-            sb.AppendLine();
+                sb.AppendLine($"{Configuration["StorageAccountName"]}");
+                sb.AppendLine();
 
-            sb.AppendLine("Press any key to exit...");
+                sb.AppendLine("Press any key to exit...");
 
-            display = sb.ToString();
+                display = sb.ToString();
 
-            Console.Write(display);
+                Console.Clear();
+                Console.Write(display);
+
+                await Task.Delay(1000);
+            } while (!token.IsCancellationRequested);
         }
     }
 }
