@@ -114,7 +114,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
                                     string fileList = await ListBlobsFlatListing(blobServiceClient);
 
-                                    setting = new ConfigurationSetting(setting.Key, $"{fileList}");
+                                    setting = new ConfigurationSetting(setting.Key, $"{fileList}", setting.Label, setting.ETag);
                                 }
                                 catch (Exception e)
                                 {
