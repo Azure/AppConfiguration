@@ -39,7 +39,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             return client;
         }
 
-        private static async Task<string> ListBlobsFlatListing(BlobServiceClient blobServiceClient)
+        private static async Task<string> ListAllBlobsFlatListing(BlobServiceClient blobServiceClient)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -112,7 +112,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                                 {
                                     BlobServiceClient blobServiceClient = GetBlobServiceClient(setting.Value);
 
-                                    string blobList = await ListBlobsFlatListing(blobServiceClient);
+                                    string blobList = await ListAllBlobsFlatListing(blobServiceClient);
 
                                     setting = new ConfigurationSetting(setting.Key, $"{blobList}", setting.Label, setting.ETag);
                                 }
