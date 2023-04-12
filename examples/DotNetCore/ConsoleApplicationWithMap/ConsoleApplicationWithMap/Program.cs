@@ -140,7 +140,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                 // Trigger and wait for an async refresh for registered configuration settings
                 await _refresher.TryRefreshAsync();
 
-                sb.AppendLine($"{Configuration["BlobUri"]}");
+                sb.AppendLine($"Blob content: {Configuration["BlobUri"]}");
                 sb.AppendLine();
 
                 sb.AppendLine("Press any key to exit...");
