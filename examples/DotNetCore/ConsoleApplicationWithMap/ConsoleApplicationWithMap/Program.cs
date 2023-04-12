@@ -113,7 +113,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                                 }
                                 else
                                 {
-                                    newSettingValue = "Error reading blob content.";
+                                    newSettingValue = "Error parsing blob content";
                                 }
 
                                 setting = new ConfigurationSetting(setting.Key, newSettingValue, setting.Label, setting.ETag);
