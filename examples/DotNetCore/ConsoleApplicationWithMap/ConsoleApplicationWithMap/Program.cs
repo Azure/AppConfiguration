@@ -1,17 +1,36 @@
-﻿using Azure;
-using Azure.Data.AppConfiguration;
+﻿using Azure.Data.AppConfiguration;
 using Azure.Identity;
 using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
 
 namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.ConsoleApplication
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+    using Newtonsoft.Json;
     using System;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+
+    /*
+        Example Blob Content
+        -------------------------
+
+        {
+            "Data": [
+                "Lorem",
+                "ipsum",
+                "dolor",
+                "sit",
+                "amet"
+            ]
+        }
+    */
+
+    class MyBlobContent
+    {
+        public IList<string> Data { get; set; }
+    }
 
     class Program
     {
@@ -30,48 +49,33 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             cts.Cancel();
         }
 
-        private static BlobServiceClient GetBlobServiceClient(string accountName)
+        private static async Task<string> ReadBlobContentAsync(Uri blobUri)
         {
-            BlobServiceClient client = new(
-                new Uri($"https://{accountName}.blob.core.windows.net"),
-                new DefaultAzureCredential());
+            var blobClient = new BlobClient(blobUri, new DefaultAzureCredential());
 
-            return client;
-        }
+            // Read blob content
+            var contentStream = new MemoryStream();
+            await blobClient.DownloadToAsync(contentStream);
 
-        private static async Task<string> ListAllBlobsFlatListing(BlobServiceClient blobServiceClient)
-        {
-            StringBuilder builder = new StringBuilder();
+            // Go to the beginning of the content stream
+            contentStream.Position = 0;
 
-            try
+            // Convert content to json format
+            var reader = new StreamReader(contentStream);
+            var jsonReader = new JsonTextReader(reader);
+
+            var serializer = new JsonSerializer();
+
+            // Save the string values in the JSON array "Data" to MyBlobContent.Data
+            MyBlobContent? blobContent = serializer.Deserialize<MyBlobContent>(jsonReader);
+
+            if (blobContent != null)
             {
-                foreach (BlobContainerItem containerItem in blobServiceClient.GetBlobContainers())
-                {
-                    BlobContainerClient blobContainerClient = blobServiceClient.GetBlobContainerClient(containerItem.Name);
-
-                    // Call the listing operation and return pages of the specified size.
-                    var resultSegment = blobContainerClient.GetBlobsAsync()
-                    .AsPages(default);
-
-                    // Enumerate the blobs returned for each page.
-                    await foreach (Page<BlobItem> blobPage in resultSegment)
-                    {
-                        foreach (BlobItem blobItem in blobPage.Values)
-                        {
-                            builder.AppendLine($"Blob name: {blobItem.Name}");
-                        }
-
-                        builder.AppendLine();
-                    }
-                }
-
-                return builder.ToString();
+                return string.Join(" ", blobContent.Data);
             }
-            catch (RequestFailedException e)
+            else
             {
-                Console.WriteLine(e.Message);
-                Console.ReadLine();
-                throw;
+                return "";
             }
         }
 
@@ -97,32 +101,25 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             builder.AddAzureAppConfiguration(options =>
             {
                 options.Connect(configuration["ConnectionString"])
-                       .Select("*")
-                       .ConfigureRefresh(refresh =>
-                       {
-                           refresh.Register("StorageAccountName")
-                                  .SetCacheExpiration(TimeSpan.FromSeconds(10));
-                       })
+                        .Select("*")
+                        .ConfigureRefresh(refresh =>
+                        {
+                            // key: BlobUri
+                            // value: https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}
+                            refresh.Register("BlobUri")
+                                    .SetCacheExpiration(TimeSpan.FromSeconds(10));
+                        })
                         .Map(async (setting) =>
                         {
-                            if (setting.ContentType.Equals("application/storageaccount"))
+                            if (setting.ContentType.Equals("application/storage.blob"))
                             {
-                                try
-                                {
-                                    BlobServiceClient blobServiceClient = GetBlobServiceClient(setting.Value);
+                                 string blobContent = await ReadBlobContentAsync(new Uri(setting.Value));
 
-                                    string blobList = await ListAllBlobsFlatListing(blobServiceClient);
-
-                                    setting = new ConfigurationSetting(setting.Key, blobList, setting.Label, setting.ETag);
-                                }
-                                catch (Exception e)
-                                {
-                                    Console.WriteLine($"Error getting blob information: {e.Message}");
-                                }
+                                 setting = new ConfigurationSetting(setting.Key, blobContent, setting.Label, setting.ETag);
                             }
 
-                             return setting;
-                         });
+                            return setting;
+                        });
 
                 // Get an instance of the refresher that can be used to refresh data
                 _refresher = options.GetRefresher();
@@ -143,7 +140,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                 // Trigger and wait for an async refresh for registered configuration settings
                 await _refresher.TryRefreshAsync();
 
-                sb.AppendLine($"{Configuration["StorageAccountName"]}");
+                sb.AppendLine($"{Configuration["BlobUri"]}");
                 sb.AppendLine();
 
                 sb.AppendLine("Press any key to exit...");
