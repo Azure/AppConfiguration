@@ -71,7 +71,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             if (blobContent != null)
             {
-                return string.Join(" ", blobContent.Data);
+                return string.Join(", ", blobContent.Data);
             }
             else
             {
