@@ -49,7 +49,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             cts.Cancel();
         }
 
-        private static async Task<string> ReadBlobContentAsync(Uri blobUri)
+        private static async Task<MyBlobContent?> ReadBlobContentAsync(Uri blobUri)
         {
             var blobClient = new BlobClient(blobUri, new DefaultAzureCredential());
 
@@ -67,16 +67,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             var serializer = new JsonSerializer();
 
             // Save the string values in the JSON array "Data" to MyBlobContent.Data
-            MyBlobContent? blobContent = serializer.Deserialize<MyBlobContent>(jsonReader);
-
-            if (blobContent != null)
-            {
-                return $"[{string.Join(", ", blobContent.Data)}]";
-            }
-            else
-            {
-                return "";
-            }
+            return serializer.Deserialize<MyBlobContent>(jsonReader);
         }
 
         private static void Configure()
@@ -113,9 +104,19 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                         {
                             if (setting.ContentType.Equals("application/storage.blob"))
                             {
-                                 string blobContent = await ReadBlobContentAsync(new Uri(setting.Value));
+                                MyBlobContent? blobContent = await ReadBlobContentAsync(new Uri(setting.Value));
+                                string newSettingValue = "";
 
-                                 setting = new ConfigurationSetting(setting.Key, blobContent, setting.Label, setting.ETag);
+                                if (blobContent != null)
+                                {
+                                    newSettingValue = $"[{string.Join(", ", blobContent.Data)}]";
+                                }
+                                else
+                                {
+                                    newSettingValue = "Error reading blob content.";
+                                }
+
+                                setting = new ConfigurationSetting(setting.Key, newSettingValue, setting.Label, setting.ETag);
                             }
 
                             return setting;
