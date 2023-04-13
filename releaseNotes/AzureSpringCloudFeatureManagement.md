@@ -4,7 +4,9 @@
 
 # azure-spring-cloud-feature-management-web
 
-[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
+[Source code web][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
+
+> Active development has moved to group `com.azure.spring` and artifacts `spring-cloud-azure-feature-management` and  `spring-cloud-azure-feature-management-web`. See [SpringCloudAzureFeatureManagement](.\SpringCloudAzureFeatureManagement.md) for more information.
 
 ## 2.4.0 - March 29, 2022
 

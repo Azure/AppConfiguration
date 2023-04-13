@@ -8,6 +8,8 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 4.7.0 - April 06, 2023
+
 ### Breaking Changes
 
 * Libraries and namespaces to `spring-cloud-azure-feature-management-web` and `com.azure.spring.cloud.feature.management`.

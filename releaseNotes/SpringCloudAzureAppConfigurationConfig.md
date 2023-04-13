@@ -14,7 +14,7 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
-## 4.0.0 - March 29, 2023
+## 4.7.0 - April 06, 2023
 
 ### Features Added
 
@@ -28,7 +28,7 @@
 * Renamed `ConfigurationClientBuilderSetup` to `ConfigurationClientCustomizer`.
 * Renamed `SecretClientBuilderSetup` to `SecretClientCustomizer`.
 * Removed `AppConfigurationCredentialProvider` and `KeyVaultCredentialProvider`, instead you can use [Azure Spring common configuration properties][azure_spring_common_configuration_properties] or modify the credentials using `ConfigurationClientCustomizer`/`SecretClientCustomizer`.
-* Feature Flags are now merged when found across multiple stores, if duplicate keys are found the highest priority store wins.
+* Feature Flags are now merged when loaded from multiple stores, if duplicate keys are found the highest priority store wins.
 
 ## 1.3.0 - April 21, 2021
 
