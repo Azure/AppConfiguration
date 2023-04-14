@@ -74,18 +74,18 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             IConfiguration configuration = builder.Build();
 
-            //if (string.IsNullOrEmpty(configuration["ConnectionString"]))
-            //{
-            //    Console.WriteLine("Connection string not found.");
-            //    Console.WriteLine("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(configuration["ConnectionString"]))
+            {
+                Console.WriteLine("Connection string not found.");
+                Console.WriteLine("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
+                return;
+            }
 
             // Augment the configuration builder with Azure App Configuration
             // Pull the connection string from an environment variable
             builder.AddAzureAppConfiguration(options =>
             {
-                options.Connect(new Uri("https://ajusupovic-ac2.azconfig.io"), new DefaultAzureCredential())
+                options.Connect(configuration["ConnectionString"])
                         // key: BlobUri
                         // value: https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}
                         .Select("BlobUri")
