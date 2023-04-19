@@ -4,6 +4,38 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.6.0-preview - April 17, 2023
+
+### Feature - RequirementType
+
+Features can now declare a `RequirementType`. The default `RequirementType` is `Any`, which means if any of it's filters evaluate to true, then the feature will be enabled. Declaring a `RequirementType` of `All` means that every filter must evaluate to true in order for the feature to be enabled. Added in https://github.com/microsoft/FeatureManagement-Dotnet/pull/221.
+
+```json
+"FeatureW": {
+    "RequirementType": "All",
+    "EnabledFor": []
+}
+```
+
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet#requirementtype)
+
+### Targeting Exclusion
+
+Targeting filters define an `Audience`. Now, `Audiences` can be fine tuned to exclude certain users and groups. By adding an `Exclusion` to an `Audience`, targeting filters will evaluate to false for users that are either directly defined, or a part of a group that is defined within the `Exclusion`. This takes priority over any other section of the Audience. Added in https://github.com/microsoft/FeatureManagement-Dotnet/pull/218.
+
+```json
+"Exclusion": {
+    "Users": [
+        "Mark"
+    ],
+    "Groups": [
+        "Admins"
+    ]
+}
+```
+
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet#targeting-exclusion)
+
 ## 3.0.0-preview - June 17, 2022
 
 ### Dynamic Features 
