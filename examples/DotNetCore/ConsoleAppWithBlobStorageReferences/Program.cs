@@ -3,7 +3,7 @@ using Azure.Identity;
 using Azure.Storage.Blobs;
 using System.Text;
 
-namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.ConsoleApplication
+namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.ConsoleAppWithBlobStorageReferences
 {
     /*
         Example Blob Content
@@ -28,18 +28,29 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
     class Program
     {
         static IConfiguration Configuration { get; set; }
-        static IConfigurationRefresher _refresher;
 
         static void Main(string[] args)
         {
             Configure();
 
-            var cts = new CancellationTokenSource();
-            _ = Run(cts.Token);
+            string display = string.Empty;
+            StringBuilder sb = new StringBuilder();
+
+            var blobContent = new MyBlobContent();
+            Configuration.GetSection("BlobUri").Bind(blobContent);
+
+            sb.AppendLine($"Blob content: \n{string.Join(", ", blobContent.Data)}");
+            sb.AppendLine();
+
+            sb.AppendLine("Press any key to exit...");
+
+            display = sb.ToString();
+
+            Console.Clear();
+            Console.Write(display);            
 
             // Finish on key press
             Console.ReadKey();
-            cts.Cancel();
         }
 
         private static async Task<string> ReadBlobContentAsync(Uri blobUri)
@@ -83,11 +94,6 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                         // key: BlobUri
                         // value: https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}
                         .Select("BlobUri")
-                        .ConfigureRefresh(refresh =>
-                        {
-                            // Changes to BlobSentinel will refresh all key-values, including BlobUri
-                            refresh.Register("BlobSentinel", true);
-                        })
                         .Map(async (setting) =>
                         {
                             if (setting.ContentType.Equals("application/storage.blob"))
@@ -100,40 +106,9 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
                             return setting;
                         });
-
-                // Get an instance of the refresher that can be used to refresh data
-                _refresher = options.GetRefresher();
             });
 
             Configuration = builder.Build();
-        }
-
-        private static async Task Run(CancellationToken token)
-        {
-            string display = string.Empty;
-            StringBuilder sb = new StringBuilder();
-
-            do
-            {
-                sb.Clear();
-
-                // Trigger and wait for an async refresh for registered configuration settings
-                await _refresher.TryRefreshAsync();
-
-                IEnumerable<string?> blobData = Configuration.GetSection("BlobUri:Data").AsEnumerable().Where(kv => !string.IsNullOrEmpty(kv.Value)).Select(kv => $"{kv.Key} = {kv.Value}");
-
-                sb.AppendLine($"Blob content: \n{string.Join("\n", blobData)}");
-                sb.AppendLine();
-
-                sb.AppendLine("Press any key to exit...");
-
-                display = sb.ToString();
-
-                Console.Clear();
-                Console.Write(display);
-
-                await Task.Delay(1000);
-            } while (!token.IsCancellationRequested);
         }
     }
 }
