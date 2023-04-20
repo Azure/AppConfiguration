@@ -10,7 +10,7 @@
 * Selecting multiple sets of configurations using SettingSelector
 * Trim prefixes off key names
 * Resolving Key Vault References, requires AAD
-* Secret Resolver, resolve Key Vault References locally without connecting to Key Vault
+* Secret Resolver, provides a way for a custom implementation of resolving Key Vault references.
 * JSON content-type (e.g. MIME type application/json) support for key-values in App Configuration. This allows primitive types, arrays, and JSON objects to be loaded.
 * Async Support
 * Full support of Mapping API, allowing for `dict` like access to the loaded configuration
