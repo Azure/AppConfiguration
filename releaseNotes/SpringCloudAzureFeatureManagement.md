@@ -2,11 +2,17 @@
 
 [Source code][source_code] | [Package (Maven)][package] | [Samples][samples] | [Product documentation][docs]
 
+[CHANGELOG](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-feature-management/CHANGELOG.md)
+
 # spring-cloud-azure-feature-management-web
 
-[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Samples web][samples_web] | [Product documentation][docs]
+[Source code][source_code_web] | [Package (Maven)][package_web]
 
-[Latest Library](./AzureSpringCloudFeatureManagement)
+## 4.7.0 - April 06, 2023
+
+### Breaking Changes
+
+* Libraries and namespaces to `spring-cloud-azure-feature-management-web` and `com.azure.spring.cloud.feature.management`.
 
 ## 1.3.0 - April 21, 2021
 
@@ -67,11 +73,10 @@ feature-management:
 * Adds FeatureGates, Disabled Action Handling, and Routing away from disabled features
 
 <!-- LINKS -->
-[docs]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
-[package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management
-[samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-sample
-[source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management
+[docs]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-feature-management
+[package]: https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-feature-management
+[samples]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-feature-management
 
-[package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-feature-management-web
-[samples_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples/feature-management-web-sample
-[source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-feature-management-web
+[package_web]: https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-feature-management-web
+[source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-feature-management-web

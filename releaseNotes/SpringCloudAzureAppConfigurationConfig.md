@@ -1,12 +1,34 @@
+# spring-cloud-azure-starter-appconfiguration-config
+
+[Source code][source_code_starter] | [Package (Maven)][package_starter] | [Product documentation][docs] | [Samples][samples]
+
+[CHANGELOG](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config/CHANGELOG.md)
+
 # spring-cloud-azure-appconfiguration-config
 
-[Source code][source_code] | [Package (Maven)][package] | [Product documentation][docs] | [Samples][samples]
+[Source code][source_code] | [Package (Maven)][package]
+
+[CHANGELOG](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-appconfiguration-config/CHANGELOG.md)
 
 # spring-cloud-azure-appconfiguration-config-web
 
-[Source code web ][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
+[Source code][source_code_web] | [Package (Maven)][package_web]
 
-[Latest Library](./AzureSpringCloudAppConfigurationConfig)
+## 4.7.0 - April 06, 2023
+
+### Features Added
+
+* Added support for [Azure Spring common configuration properties][azure_spring_common_configuration_properties].
+* Added failover support for App Configuration stores with geo-replication enabled. Configuration is done through the `spring.cloud.azure.appconfiguration.stores[0].endpoints` property or `spring.cloud.azure.appconfiguration.stores[0].connection-strings`, where a list of endpoints/connection-strings can be provided. The endpoints/connection-strings will be attempted to connect in priority order.
+* Feature Flags can now be selected using a key and label filter, instead of just a label filter. The configurations are now `spring.cloud.azure.appconfiguration.stores[0].feature-flags.selects[0].key-filter` and `spring.cloud.azure.appconfiguration.stores[0].feature-flags.selects[0].label-filter`.
+
+### Breaking Changes
+
+* Libraries and namespaces have been renamed to `spring-cloud-azure-appconfiguration-config` and `com.azure.spring.cloud.appconfiguration.config`.
+* Renamed `ConfigurationClientBuilderSetup` to `ConfigurationClientCustomizer`.
+* Renamed `SecretClientBuilderSetup` to `SecretClientCustomizer`.
+* Removed `AppConfigurationCredentialProvider` and `KeyVaultCredentialProvider`, instead you can use [Azure Spring common configuration properties][azure_spring_common_configuration_properties] or modify the credentials using `ConfigurationClientCustomizer`/`SecretClientCustomizer`.
+* Feature Flags are now merged when loaded from multiple stores, if duplicate keys are found the highest priority store wins.
 
 ## 1.3.0 - April 21, 2021
 
@@ -146,11 +168,15 @@
 * Added Feature Management Support.
 
 <!-- LINKS -->
-[docs]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
-[package]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config
-[samples]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-samples
-[source_code]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config
-[token_credentials]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+[docs]: https://learn.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
+[package]: https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-appconfiguration-config
+[samples]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-appconfiguration-config
 
-[package_web]: https://mvnrepository.com/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config-web
-[source_code_web]: https://github.com/microsoft/spring-cloud-azure/tree/master/spring-cloud-azure-appconfiguration-config-web
+[package_web]: https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-appconfiguration-config-web
+[source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-appconfiguration-config-web
+
+[package_starter]: https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-appconfiguration-config
+[source_code_starter]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config
+
+[azure_spring_common_configuration_properties]: https://learn.microsoft.com/azure/developer/java/spring-framework/configuration
