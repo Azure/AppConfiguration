@@ -37,7 +37,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             StringBuilder sb = new StringBuilder();
 
             List<Product> tableContent = new List<Product>();
-            Configuration.GetSection("TableUri").Bind(tableContent);
+            Configuration.GetSection("Inventory").Bind(tableContent);
 
             sb.AppendLine("Your store inventory:\n");
 
@@ -117,13 +117,12 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             builder.AddAzureAppConfiguration(options =>
             {
                 options.Connect(configuration["ConnectionString"])
-                        // key: TableUri
-                        // value: https://{account_name}.table.core.windows.net/{table_name}
-                        .Select("TableUri")
+                        .Select("*")
                         .Map(async (setting) =>
                         {
                             if (setting.ContentType.Equals("application/storage.table"))
                             {
+                                // Example value: https://{account_name}.table.core.windows.net/{table_name}
                                 string tableContent = await ReadTableContentAsync(new Uri(setting.Value));
 
                                 setting = new ConfigurationSetting(setting.Key, tableContent, setting.Label);
