@@ -36,21 +36,22 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             string display = string.Empty;
             StringBuilder sb = new StringBuilder();
 
-            List<Product> tableContent = new List<Product>();
-            Configuration.GetSection("Inventory").Bind(tableContent);
-
-            sb.AppendLine("Your store inventory:\n");
-
-            var tableFormat = "{0,-20} {1,-10} {2,-10}";
-
-            sb.AppendFormat(tableFormat, "Product Name", "Quantity", "On Sale");
+            IConfigurationSection inventory = Configuration.GetSection("MyShop");
+            
+            sb.AppendLine("Your shop inventory:\n");
+            sb.AppendLine(inventory.Value);
             sb.AppendLine();
 
-            foreach (Product product in tableContent)
-            {
-                sb.AppendFormat(tableFormat, product.Name, product.Quantity, product.Sale);
-                sb.AppendLine();
-            }
+            //var tableFormat = "{0,-20} {1,-10} {2,-10}";
+
+            //sb.AppendFormat(tableFormat, "Product Name", "Quantity", "On Sale");
+            //sb.AppendLine();
+
+            //foreach (Product product in tableContent)
+            //{
+            //    sb.AppendFormat(tableFormat, product.Name, product.Quantity, product.Sale);
+            //    sb.AppendLine();
+            //}
 
             sb.AppendLine("Press any key to exit...");
 
@@ -102,6 +103,8 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
         private static void Configure()
         {
             var builder = new ConfigurationBuilder();
+
+            builder.AddJsonFile("appsettings.json");
 
             IConfiguration configuration = builder.Build();
 
