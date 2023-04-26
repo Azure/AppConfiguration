@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
         public int Quantity { get; init; }
 
-        public bool Sale { get; init; }
+        public bool OnSale { get; init; }
 
         public ETag ETag { get; set; } = default!;
 
@@ -36,22 +36,21 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             string display = string.Empty;
             StringBuilder sb = new StringBuilder();
 
-            IConfigurationSection inventory = Configuration.GetSection("MyShop");
+            List<Product> tableContent = new List<Product>();
+            Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
             
             sb.AppendLine("Your shop inventory:\n");
-            sb.AppendLine(inventory.Value);
+
+            var tableFormat = "{0,-20} {1,-10} {2,-10}";
+
+            sb.AppendFormat(tableFormat, "Product Name", "Quantity", "On Sale");
             sb.AppendLine();
 
-            //var tableFormat = "{0,-20} {1,-10} {2,-10}";
-
-            //sb.AppendFormat(tableFormat, "Product Name", "Quantity", "On Sale");
-            //sb.AppendLine();
-
-            //foreach (Product product in tableContent)
-            //{
-            //    sb.AppendFormat(tableFormat, product.Name, product.Quantity, product.Sale);
-            //    sb.AppendLine();
-            //}
+            foreach (Product product in tableContent)
+            {
+                sb.AppendFormat(tableFormat, product.Name, product.Quantity, product.OnSale);
+                sb.AppendLine();
+            }
 
             sb.AppendLine("Press any key to exit...");
 
@@ -80,7 +79,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                 PartitionKey = "gear-surf-surfboards",
                 Name = "Ocean Surfboard",
                 Quantity = 8,
-                Sale = true
+                OnSale = true
             };
 
             var prod2 = new Product()
@@ -89,7 +88,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                 PartitionKey = "gear-surf-surfboards",
                 Name = "Sand Surfboard",
                 Quantity = 5,
-                Sale = false
+                OnSale = false
             };
 
             await tableClient.UpsertEntityAsync(prod1);
@@ -104,7 +103,8 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
         {
             var builder = new ConfigurationBuilder();
 
-            builder.AddJsonFile("appsettings.json");
+            builder.AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables();
 
             IConfiguration configuration = builder.Build();
 
