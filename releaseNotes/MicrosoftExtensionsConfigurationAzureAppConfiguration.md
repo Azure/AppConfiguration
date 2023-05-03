@@ -2,7 +2,7 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
 ### 6.0.1 - May 3, 2023
-* Fixed a bug where .NET Framework applications would fail while trying to refresh the configuration. [#410](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/410)
+* Fixed a bug where ASP.NET (.NET Framework) applications would fail to refresh the configuration. [#410](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/410)
 
 ### 6.0.0 - March 28, 2023
 ### Breaking Changes:
