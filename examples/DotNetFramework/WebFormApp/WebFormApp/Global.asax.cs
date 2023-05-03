@@ -24,13 +24,13 @@ namespace WebFormApp
                        // Load all keys that start with `TestApp:` and have no label
                        .Select("TestApp:*", LabelFilter.Null)
                        // Configure to reload configuration if the registered key 'TestApp:Settings:Sentinel' is modified.
-                       // Use the default cache expiration of 30 seconds. It can be overriden via AzureAppConfigurationRefreshOptions.SetCacheExpiration.
+                       // Use the default cache expiration of 30 seconds. It can be overridden via AzureAppConfigurationRefreshOptions.SetCacheExpiration.
                        .ConfigureRefresh(refresh =>
                        {
                            refresh.Register("TestApp:Settings:Sentinel", refreshAll: true);
                        })
                        // Load all feature flags with no label. To load specific feature flags and labels, set via FeatureFlagOptions.Select.
-                       // Use the default cache expiration of 30 seconds. It can be overriden via FeatureFlagOptions.CacheExpirationInterval.
+                       // Use the default cache expiration of 30 seconds. It can be overridden via FeatureFlagOptions.CacheExpirationInterval.
                        .UseFeatureFlags();
 
                 _configurationRefresher = options.GetRefresher();
