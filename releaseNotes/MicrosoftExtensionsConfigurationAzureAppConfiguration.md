@@ -1,6 +1,9 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 6.0.1 - May 3, 2023
+* Fixed a bug where .NET Framework applications would fail while trying to refresh the configuration. [#410](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/410)
+
 ### 6.0.0 - March 28, 2023
 ### Breaking Changes:
 * Removed `IConfigurationRefresher.SetDirty` API in favor of `IConfigurationRefresher.ProcessPushNotification` API for push-model based configuration refresh. Unlike the `SetDirty` method, the `ProcessPushNotification` method guarantees that all configuration changes up to the triggering event are loaded in the following configuration refresh. For more details on the `ProcessPushNotification` API, refer to [this tutorial](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core-push-refresh?tabs=windowscommandprompt). [#357](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/357)
