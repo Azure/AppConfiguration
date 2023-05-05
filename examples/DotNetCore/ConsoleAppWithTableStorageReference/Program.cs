@@ -36,6 +36,8 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             string display = string.Empty;
 
             StringBuilder sb = BuildProductTable();
+
+            sb.AppendLine();
             sb.AppendLine("Press any key to exit...");
 
             display = sb.ToString();
