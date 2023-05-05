@@ -55,6 +55,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             List<Product> tableContent = new List<Product>();
             Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
+
             // Example value for MyShop:DisplayedColumns: Product OnSale
             string myShopDisplayedColumns = Configuration.GetValue<string>("MyShop:DisplayedColumns");
             string[] allowedProductFields = new string[] { "Product", "Quantity", "OnSale" };
