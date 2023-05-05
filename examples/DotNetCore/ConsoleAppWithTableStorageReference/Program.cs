@@ -34,24 +34,8 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             Configure();
 
             string display = string.Empty;
-            StringBuilder sb = new StringBuilder();
 
-            List<Product> tableContent = new List<Product>();
-            Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
-            
-            sb.AppendLine("Your shop inventory:\n");
-
-            var tableFormat = "{0,-20} {1,-10} {2,-10}";
-
-            sb.AppendFormat(tableFormat, "Product Name", "Quantity", "On Sale");
-            sb.AppendLine();
-
-            foreach (Product product in tableContent)
-            {
-                sb.AppendFormat(tableFormat, product.Name, product.Quantity, product.OnSale);
-                sb.AppendLine();
-            }
-
+            StringBuilder sb = BuildProductTable();
             sb.AppendLine("Press any key to exit...");
 
             display = sb.ToString();
@@ -61,6 +45,60 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             // Finish on key press
             Console.ReadKey();
+        }
+
+        private static StringBuilder BuildProductTable()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            List<Product> tableContent = new List<Product>();
+            Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
+            // Example value for MyShop:DisplayedColumns: Product OnSale
+            string myShopDisplayedColumns = Configuration.GetValue<string>("MyShop:DisplayedColumns");
+            string[] allowedProductFields = new string[] { "Product", "Quantity", "OnSale" };
+            string[] columnsToDisplay;
+
+            if (!string.IsNullOrEmpty(myShopDisplayedColumns))
+            {
+                columnsToDisplay = myShopDisplayedColumns.Split(' ');
+            }
+            else
+            {
+                columnsToDisplay = new string[allowedProductFields.Length];
+                Array.Copy(allowedProductFields, columnsToDisplay, allowedProductFields.Length);
+            }
+
+            sb.AppendLine("Your shop inventory:\n");
+            var tableFormat = string.Empty;
+
+            for (int i = 0; i < columnsToDisplay.Length; i++)
+            {
+                tableFormat += "{" + i + ", -20}";
+            }
+
+            sb.AppendFormat(tableFormat, columnsToDisplay);
+            sb.AppendLine();
+
+            foreach (Product product in tableContent)
+            {
+                string[] productValues = new string[] { product.Name, product.Quantity.ToString(), product.OnSale.ToString() };
+                string[] fieldsToPrint = new string[columnsToDisplay.Length];
+                int fieldsToPrintIndex = 0;
+
+                foreach (string field in allowedProductFields)
+                {
+                    if (columnsToDisplay.Contains(field))
+                    {
+                        fieldsToPrint[fieldsToPrintIndex] = productValues[Array.IndexOf(columnsToDisplay, field)];
+                        fieldsToPrintIndex++;
+                    }
+                }
+
+                sb.AppendFormat(tableFormat, fieldsToPrint);
+                sb.AppendLine();
+            }
+
+            return sb;
         }
 
         private static async Task<string> ReadTableContentAsync(Uri tableUri)
