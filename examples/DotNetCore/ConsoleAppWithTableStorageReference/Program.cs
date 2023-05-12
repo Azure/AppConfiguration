@@ -67,8 +67,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             }
             else
             {
-                columnsToDisplay = new string[allowedProductFields.Length];
-                Array.Copy(allowedProductFields, columnsToDisplay, allowedProductFields.Length);
+                columnsToDisplay = allowedProductFields;
             }
 
             sb.AppendLine("Your shop inventory:\n");
