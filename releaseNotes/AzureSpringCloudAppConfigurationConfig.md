@@ -6,6 +6,8 @@
 
 [Source code web][source_code_web] | [Package (Maven) web][package_web] | [Product documentation][docs]
 
+> Active development has moved to group `com.azure.spring` and artifacts `spring-cloud-azure-appconfiguration-config` and  `spring-cloud-azure-appconfiguration-config-web`. See [SpringCloudAzureAppConfigurationConfig](.\SpringCloudAzureAppConfigurationConfig.md) for more information.
+
 ## 2.5.0 - March 29, 2022
 
 * Add a refresh interval `spring.cloud.azure.appconfiguration.refresh-interval` that can be used to periodically reload all the key-value pairs in a configuration store. This can also be used to force update Key Vault References.
@@ -66,9 +68,8 @@
 [docs]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
 [package]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config
 [samples]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/appconfiguration
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config
-[token_credentials]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
-[readme]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.11.0/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config
+[readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.11.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config
 
 [package_web]: https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config-web
-[source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config-web
+[source_code_web]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.11.0/sdk/appconfiguration/azure-spring-cloud-appconfiguration-config-web
