@@ -1,7 +1,7 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://azconfig.io/schemas/FeatureManagement/v1.0.0/FeatureFlag.json",
+  "$id": "http://azconfig.io/schemas/FeatureManagement/v1.1.0/FeatureFlag.json",
   "type": "object",
   "title": "An Azure App Configuration Feature Declaration",
   "required": [
@@ -56,6 +56,16 @@
       "description": "The declaration of conditions used to dynamically enable features.",
       "required": [],
       "properties": {
+        "requirement_type": {
+          "$id": "#/properties/conditions/properties/requirement_type",
+          "type": "string",
+          "title": "Requirement Type",
+          "description": "Determines whether any or all registered feature filters must be enabled for the feature to be considered enabled.",
+          "examples": [
+            "Any",
+            "All"
+          ]
+        },
         "client_filters": {
           "$id": "#/properties/conditions/properties/client_filters",
           "type": "array",
