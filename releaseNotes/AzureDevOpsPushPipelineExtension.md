@@ -3,7 +3,15 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v5.0.0 - February, 02 2023
-Updated the task to require Node.js 16. It previously required 10
+* Updated the task to require Node.js 16. It previously required 10
+
+* **Breaking change**: 
+
+    **Before**: 
+      Import feature flags to store by specifying the content type as “application/vnd.microsoft.appconfig.ff+json;charset=utf-8 ” and specifying the prefix as “.appconfig.featureflag/”.
+
+    **After**:
+      Import feature flags to store by specifying the prefix as “.appconfig.featureflag/” is not supported and it will be treated as key-value. To import feature flags please follow [feature management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/docs/schemas/FeatureManagement.v1.0.0.json).
 
 ### v4.4.0 - November, 15 2022
 * Added ImportMode option support for KVSet profile.
