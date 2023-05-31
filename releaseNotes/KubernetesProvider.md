@@ -6,7 +6,7 @@
 
 ### New Features
 
-* Resolving Key Vault References and download them to Kubernetes Secret
+* Added support for Key Vault references, which allows resolved secrets to be saved to a Kubernetes Secret.
 
 ## 1.0.0-alpha - March 8, 2023
 
