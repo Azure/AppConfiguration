@@ -2,6 +2,17 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.1.0-preview - Jun XX, 2023
+
+### New Features
+
+* Dynamic configuration support, support refreshing the data of ConfigMap or Secret by watching the sentinel key periodically.
+* HMAC authentication support.
+
+### Bug Fixes
+
+* Fixed an issue happens while multiple selectors are used.
+
 ## 1.0.0-preview - April 07, 2023
 
 ### New Features
