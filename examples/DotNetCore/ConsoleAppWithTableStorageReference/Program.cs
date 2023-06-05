@@ -40,13 +40,51 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             sb.AppendLine();
             sb.AppendLine("Press any key to exit...");
 
-            display = sb.ToString();
-
             Console.Clear();
-            Console.Write(display);            
+            Console.Write(sb.ToString());            
 
             // Finish on key press
             Console.ReadKey();
+        }
+
+        private static void Configure()
+        {
+            var builder = new ConfigurationBuilder();
+
+            builder.AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables();
+
+            IConfiguration configuration = builder.Build();
+
+            if (string.IsNullOrEmpty(configuration["ConnectionString"]))
+            {
+                Console.WriteLine("Connection string not found.");
+                Console.WriteLine("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
+                return;
+            }
+
+            // Augment the configuration builder with Azure App Configuration
+            // Pull the connection string from an environment variable
+            builder.AddAzureAppConfiguration(options =>
+            {
+                options.Connect(configuration["ConnectionString"])
+                        .Select("*")
+                        .Map(async (setting) =>
+                        {
+                            if (setting.ContentType.Equals("application/storage.table"))
+                            {
+                                // Example value: https://{account_name}.table.core.windows.net/{table_name}
+                                string tableContent = await ReadTableContentAsync(new Uri(setting.Value));
+
+                                setting = new ConfigurationSetting(setting.Key, tableContent, setting.Label);
+                                setting.ContentType = "application/json";
+                            }
+
+                            return setting;
+                        });
+            });
+
+            Configuration = builder.Build();
         }
 
         private static StringBuilder BuildProductTable()
@@ -56,16 +94,12 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             List<Product> tableContent = new List<Product>();
             Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
 
-            // Example value for MyShop:DisplayedColumns: Product OnSale
-            string myShopDisplayedColumns = Configuration.GetValue<string>("MyShop:DisplayedColumns");
-            string[] allowedProductFields = new string[] { "Product", "Quantity", "OnSale" };
-            string[] columnsToDisplay;
+            // Example value for MyShop:DisplayedColumns = [Name, OnSale]
+            // Content-Type = application/json
+            string[] columnsToDisplay = Configuration.GetValue<string[]>("MyShop:DisplayedColumns");
+            string[] allowedProductFields = new string[] { "Name", "Quantity", "OnSale" };
 
-            if (!string.IsNullOrEmpty(myShopDisplayedColumns))
-            {
-                columnsToDisplay = myShopDisplayedColumns.Split(' ');
-            }
-            else
+            if (columnsToDisplay == null)
             {
                 columnsToDisplay = allowedProductFields;
             }
@@ -137,46 +171,6 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             var products = tableClient.Query<Product>();
 
             return JsonSerializer.Serialize(products.ToList());
-        }
-
-        private static void Configure()
-        {
-            var builder = new ConfigurationBuilder();
-
-            builder.AddJsonFile("appsettings.json")
-                    .AddEnvironmentVariables();
-
-            IConfiguration configuration = builder.Build();
-
-            if (string.IsNullOrEmpty(configuration["ConnectionString"]))
-            {
-                Console.WriteLine("Connection string not found.");
-                Console.WriteLine("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
-                return;
-            }
-
-            // Augment the configuration builder with Azure App Configuration
-            // Pull the connection string from an environment variable
-            builder.AddAzureAppConfiguration(options =>
-            {
-                options.Connect(configuration["ConnectionString"])
-                        .Select("*")
-                        .Map(async (setting) =>
-                        {
-                            if (setting.ContentType.Equals("application/storage.table"))
-                            {
-                                // Example value: https://{account_name}.table.core.windows.net/{table_name}
-                                string tableContent = await ReadTableContentAsync(new Uri(setting.Value));
-
-                                setting = new ConfigurationSetting(setting.Key, tableContent, setting.Label);
-                                setting.ContentType = "application/json";
-                            }
-
-                            return setting;
-                        });
-            });
-
-            Configuration = builder.Build();
         }
     }
 }
