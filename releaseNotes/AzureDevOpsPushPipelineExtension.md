@@ -20,6 +20,15 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
     **After**:
       Import feature flags to store by specifying the prefix as “.appconfig.featureflag/” is not supported. To import feature flags please follow [feature management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/docs/schemas/FeatureManagement.v1.0.0.json).
 
+* **Breaking change**:
+   
+    **Before**:
+      Importing key vault references value as an escaped json string.
+
+    **After**:
+      Importing key vault references value as an escaped json strings is not supported, please specify the key vault reference value as a json object.
+
+
 ### v4.4.0 - November, 15 2022
 * Added ImportMode option support for KVSet profile.
 * Added Strict support for KVSet profile. When using the KVSet profile and setting Strict to true any key-values in the store that are not included in the configuration file will be deleted.
