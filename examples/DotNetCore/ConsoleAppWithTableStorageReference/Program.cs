@@ -73,7 +73,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                         {
                             if (setting.ContentType.Equals("application/storage.table"))
                             {
-                                // Example value: https://{account_name}.table.core.windows.net/{table_name}
+                                // Example value for key "MyShop:Inventory" in App Configuration: https://{account_name}.table.core.windows.net/{table_name}
                                 string tableContent = await ReadTableContentAsync(new Uri(setting.Value));
 
                                 setting = new ConfigurationSetting(setting.Key, tableContent, setting.Label);
@@ -94,10 +94,10 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             List<Product> tableContent = new List<Product>();
             Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
 
-            // Example value for MyShop:DisplayedColumns = [Name, OnSale]
-            // Content-Type = application/json
-            string[] columnsToDisplay = Configuration.GetValue<string[]>("MyShop:DisplayedColumns");
-            string[] allowedProductFields = new string[] { "Name", "Quantity", "OnSale" };
+            // Example value for "MyShop:DisplayedColumns": [Name, OnSale]
+            // Content-Type: application/json
+            List<string> columnsToDisplay = Configuration.GetValue<List<string>>("MyShop:DisplayedColumns");
+            List<string> allowedProductFields = new List<string> { "Name", "Quantity", "OnSale" };
 
             if (columnsToDisplay == null)
             {
@@ -107,30 +107,30 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             sb.AppendLine("Your shop inventory:\n");
             var tableFormat = string.Empty;
 
-            for (int i = 0; i < columnsToDisplay.Length; i++)
+            for (int i = 0; i < columnsToDisplay.Count(); i++)
             {
                 tableFormat += "{" + i + ", -20}";
             }
 
-            sb.AppendFormat(tableFormat, columnsToDisplay);
+            sb.AppendFormat(tableFormat, columnsToDisplay.ToArray());
             sb.AppendLine();
 
             foreach (Product product in tableContent)
             {
-                string[] productValues = new string[] { product.Name, product.Quantity.ToString(), product.OnSale.ToString() };
-                string[] fieldsToPrint = new string[columnsToDisplay.Length];
+                List<string> productValues = new List<string> { product.Name, product.Quantity.ToString(), product.OnSale.ToString() };
+                List<string> fieldsToPrint = new List<string>(new string[columnsToDisplay.Count()]);
                 int fieldsToPrintIndex = 0;
 
                 foreach (string field in allowedProductFields)
                 {
                     if (columnsToDisplay.Contains(field))
                     {
-                        fieldsToPrint[fieldsToPrintIndex] = productValues[Array.IndexOf(columnsToDisplay, field)];
+                        fieldsToPrint[fieldsToPrintIndex] = productValues[columnsToDisplay.IndexOf(field)];
                         fieldsToPrintIndex++;
                     }
                 }
 
-                sb.AppendFormat(tableFormat, fieldsToPrint);
+                sb.AppendFormat(tableFormat, fieldsToPrint.ToArray());
                 sb.AppendLine();
             }
 
