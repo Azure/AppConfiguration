@@ -117,8 +117,8 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             foreach (Product product in tableContent)
             {
-                List<string> productValues = new List<string> { product.Name, product.Quantity.ToString(), product.OnSale.ToString() };
-                List<string> fieldsToPrint = new List<string>(new string[columnsToDisplay.Count()]);
+                string[] productValues = new string[] { product.Name, product.Quantity.ToString(), product.OnSale.ToString() };
+                string[] fieldsToPrint = new string[columnsToDisplay.Count()];
                 int fieldsToPrintIndex = 0;
 
                 foreach (string field in allowedProductFields)
@@ -130,7 +130,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                     }
                 }
 
-                sb.AppendFormat(tableFormat, fieldsToPrint.ToArray());
+                sb.AppendFormat(tableFormat, fieldsToPrint);
                 sb.AppendLine();
             }
 
