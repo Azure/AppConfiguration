@@ -4,6 +4,30 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.6.0-preview2 - June 7, 2023
+
+### Enhancement - Parameter Caching
+
+Applications using built-in `ConfigurationFeatureDefinitionProvider` will now benefit from caching of feature filter parameters. This will improve performance of the application by reducing the number of times a filter's parameters are cast in short time frames, yielding observed performance increase of up to 100x. This change will not affect custom filters by default. For custom filters, the class must implement the `IFilterParametersBinder` interface. Below is an example.
+
+```csharp
+class MyFilter : IFeatureFilter, IFilterParametersBinder
+{
+    public object BindParameters(IConfiguration filterParameters)
+    {
+        return filterParameters.Get<FilterSettings>();
+    }
+
+    public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context, CancellationToken cancellationToken)
+    {
+        FilterSettings settings = (FilterSettings)context.Settings;
+        ...
+    }
+}
+```
+
+For more details read [here](https://github.com/microsoft/FeatureManagement-Dotnet/pull/229)
+
 ## 2.6.0-preview - April 17, 2023
 
 ### Feature - RequirementType
