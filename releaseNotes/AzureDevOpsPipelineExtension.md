@@ -9,10 +9,10 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
   With the update to the task to require Node.js 16. It previously required 10. The minimum agent version for running the task on self hosted agent changed. 
 
     **Before**:
-        [Azure Pipeline agent version 2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0) or later.
+      [Azure Pipeline agent version 2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0) or later.
 
     **After**:
-        [Azure Pipeline agent version 2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later.
+      [Azure Pipeline agent version 2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later.
 
 * Fixed a bug that caused an invalid secret URL warning when resolving key vault references in sovereign clouds.
 
