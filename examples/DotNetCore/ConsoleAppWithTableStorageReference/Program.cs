@@ -96,41 +96,26 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             // Example value for "MyShop:DisplayedColumns": [Name, OnSale]
             // Content-Type: application/json
-            List<string> columnsToDisplay = Configuration.GetValue<List<string>>("MyShop:DisplayedColumns");
-            List<string> allowedProductFields = new List<string> { "Name", "Quantity", "OnSale" };
-
-            if (columnsToDisplay == null)
-            {
-                columnsToDisplay = allowedProductFields;
-            }
-
-            sb.AppendLine("Your shop inventory:\n");
-            var tableFormat = string.Empty;
-
-            for (int i = 0; i < columnsToDisplay.Count(); i++)
-            {
-                tableFormat += "{" + i + ", -20}";
-            }
-
-            sb.AppendFormat(tableFormat, columnsToDisplay.ToArray());
-            sb.AppendLine();
+            List<string> columnsToDisplay = new List<string>();
+            Configuration.GetSection("MyShop:DisplayedColumns").Bind(columnsToDisplay);
 
             foreach (Product product in tableContent)
             {
-                string[] productValues = new string[] { product.Name, product.Quantity.ToString(), product.OnSale.ToString() };
-                string[] fieldsToPrint = new string[columnsToDisplay.Count()];
-                int fieldsToPrintIndex = 0;
-
-                foreach (string field in allowedProductFields)
+                if (columnsToDisplay.Contains(nameof(product.Name)))
                 {
-                    if (columnsToDisplay.Contains(field))
-                    {
-                        fieldsToPrint[fieldsToPrintIndex] = productValues[columnsToDisplay.IndexOf(field)];
-                        fieldsToPrintIndex++;
-                    }
+                    sb.AppendLine($"Name = {product.Name}");
                 }
 
-                sb.AppendFormat(tableFormat, fieldsToPrint);
+                if (columnsToDisplay.Contains(nameof(product.Quantity)))
+                {
+                    sb.AppendLine($"Quantity = {product.Quantity.ToString()}");
+                }
+
+                if (columnsToDisplay.Contains(nameof(product.OnSale)))
+                {
+                    sb.AppendLine($"OnSale = {product.OnSale.ToString()}");
+                }
+
                 sb.AppendLine();
             }
 
