@@ -4,6 +4,10 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 2.6.0 - June 23, 2023
+
+Promotes the changes in [2.6.0-preview](#260-preview2---june-7-2023) and [2.6.0-preview2](#260-preview2---june-7-2023) to stable. These changes include parameter caching, requirement type, and targeting exclusion.
+
 ## 2.6.0-preview2 - June 7, 2023
 
 ### Enhancement - Parameter Caching
