@@ -3,7 +3,7 @@
 
 ### 7.0.0-preview - July 20, 2023
 ### Breaking Changes:
-* Feature flags are now parsed and transformed into feature management configuration by default. You can still call `AzureAppConfigurationOptions.UseFeatureFlags` to configure your feature flags. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
+* Feature flags are now parsed and transformed into feature management configuration even if `AzureAppConfigurationOptions.UseFeatureFlags` is not called. `AzureAppConfigurationOptions.UseFeatureFlags` is still used to configure feature flag options. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
 
 ### Enhancements
 * Added the following new API for adding a snapshot's key-values to the configuration. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
