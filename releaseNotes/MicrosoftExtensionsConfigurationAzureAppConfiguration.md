@@ -1,6 +1,17 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 7.0.0-preview - July 20, 2023
+### Breaking Changes:
+* Feature flags are now parsed and transformed into feature management configuration even if `AzureAppConfigurationOptions.UseFeatureFlags` is not called. `AzureAppConfigurationOptions.UseFeatureFlags` is still used to configure feature flag options. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
+
+### Enhancements
+* Added the following new API for adding a snapshot's key-values to the configuration. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
+
+   ```cs
+   public AzureAppConfigurationOptions SelectSnapshot(string name)
+   ```
+
 ### 6.0.1 - May 3, 2023
 * Fixed a bug where ASP.NET (.NET Framework) applications would fail to refresh the configuration. [#410](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/410)
 
