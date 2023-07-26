@@ -6,8 +6,8 @@
 
 ### New Features
 
-* Dynamic configuration support, support refreshing ConfigMap or Secret by watching the sentinel key periodically.
-* HMAC authentication support.
+* Added support for dynamic configuration so the corresponding ConfigMap and Secret will be automatically updated when data is changed in App Configuration.
+* Added support for access key (aka. connection string) based authentication.
 
 ### Bug Fixes
 
