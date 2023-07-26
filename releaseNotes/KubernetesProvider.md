@@ -2,16 +2,23 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.1.0-preview - Jun XX, 2023
+## 1.0.0-preview3 - July 26, 2023
 
 ### New Features
 
-* Dynamic configuration support, support refreshing the data of ConfigMap or Secret by watching the sentinel key periodically.
+* Dynamic configuration support, support refreshing ConfigMap or Secret by watching the sentinel key periodically.
 * HMAC authentication support.
 
 ### Bug Fixes
 
 * Fixed an issue happens while multiple selectors are used.
+* Fixed an issue that resolved secrets are not saved in the selected order.
+
+## 1.0.0-preview2 - July 07, 2023
+
+### Bug Fixes
+
+* Fixed a race condition issue happens while resolving Key Vault references.
 
 ## 1.0.0-preview - April 07, 2023
 
