@@ -2,6 +2,24 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.0.0-preview3 - July 31, 2023
+
+### New Features
+
+* Added support for dynamic configuration so the corresponding ConfigMap and Secret will be automatically updated when data is changed in Azure App Configuration.
+* Added support for access key (aka. connection string) based authentication.
+
+### Bug Fixes
+
+* Fixed an issue that happens while multiple selectors are used.
+* Fixed an issue that resolved secrets are not saved in the selected order.
+
+## 1.0.0-preview2 - July 07, 2023
+
+### Bug Fixes
+
+* Fixed a race condition issue that happens while resolving Key Vault references.
+
 ## 1.0.0-preview - April 07, 2023
 
 ### New Features
