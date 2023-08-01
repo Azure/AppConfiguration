@@ -3,30 +3,11 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v5.0.0 - February, 02 2023
-* **Breaking change**:
-  With the update to the task to require Node.js 16. It previously required 10. The minimum agent version for running the task on self hosted agent changed.
-
-    **Before**:
-      [Azure Pipeline agent version 2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0) or later.
-
-    **After**:
-      [Azure Pipeline agent version 2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later.
-
-* **Breaking change**:
-
-    **Before**:
-      Import feature flags to store by specifying the content type as “application/vnd.microsoft.appconfig.ff+json;charset=utf-8 ” and specifying the prefix as “.appconfig.featureflag/”.
-
-    **After**:
-      Import feature flags to store by specifying the prefix as “.appconfig.featureflag/” is not supported. To import feature flags please follow [feature management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/docs/schemas/FeatureManagement.v1.0.0.json).
-
-* **Breaking change**:
-
-    **Before**:
-      Importing key vault references value as an escaped json string.
-
-    **After**:
-      Importing key vault references value as an escaped json strings is not supported, please specify the key vault reference value as a json object.
+* **Breaking Changes**:
+  - Updated the task to require Node.js 16. It previously required 10.
+  - Updated the minimum supported azure pipeline agent version to [2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later. Previously it was [2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0).
+  - Importing key vault references value as an escaped json strings is not supported, please specify the key vault reference value as a json object.
+  - Feature flag import now requires adherence to the [feature management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/docs/schemas/FeatureManagement.v1.0.0.json). Settings with feature flag prefix and content type will fail to import
 
 ### v4.4.0 - November, 15 2022
 * Added ImportMode option support for KVSet profile.
