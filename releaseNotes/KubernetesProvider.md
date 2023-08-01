@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.0.0-preview3 - July 26, 2023
+## 1.0.0-preview3 - July 31, 202322
 
 ### New Features
 
