@@ -11,14 +11,14 @@
 
 ### Bug Fixes
 
-* Fixed an issue happens while multiple selectors are used.
+* Fixed an issue that happens while multiple selectors are used.
 * Fixed an issue that resolved secrets are not saved in the selected order.
 
 ## 1.0.0-preview2 - July 07, 2023
 
 ### Bug Fixes
 
-* Fixed a race condition issue happens while resolving Key Vault references.
+* Fixed a race condition issue that happens while resolving Key Vault references.
 
 ## 1.0.0-preview - April 07, 2023
 
