@@ -2,11 +2,11 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.0.0-preview3 - July 31, 202322
+## 1.0.0-preview3 - July 31, 2023
 
 ### New Features
 
-* Added support for dynamic configuration so the corresponding ConfigMap and Secret will be automatically updated when data is changed in App Configuration.
+* Added support for dynamic configuration so the corresponding ConfigMap and Secret will be automatically updated when data is changed in Azure App Configuration.
 * Added support for access key (aka. connection string) based authentication.
 
 ### Bug Fixes
