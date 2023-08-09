@@ -3,7 +3,7 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v5.0.0 - February, 02 2023
-**Breaking Changes**:
+**Breaking Changes**
   - Updated the task to require Node.js 16. It previously required 10.
   - Updated the minimum supported azure pipeline agent version to [2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later. Previously it was [2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0).
   - Importing key vault references value as an escaped json strings is not supported, please specify the key vault reference value as a json object.
