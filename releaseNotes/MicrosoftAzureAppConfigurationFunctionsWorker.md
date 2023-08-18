@@ -1,9 +1,12 @@
 ## Microsoft.Azure.AppConfiguration.Functions.Worker
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.Functions.Worker)
 
+### 7.0.0-preview2 - August 21, 2023
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.0.0-preview2`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 6.1.0 - August 17, 2023
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `6.1.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
-* Fixed an issue where concurrent access to HttpContext could cause a null reference exception in middleware used alongside Azure App Configuration middleware.
+* Fixed an issue where accessing HttpContext could sometimes cause a null reference exception in middleware used alongside Azure App Configuration middleware. [#432](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/432)
 
 ### 7.0.0-preview - July 20, 2023
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.0.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
