@@ -1,6 +1,14 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 7.0.0-preview.2 - August 24, 2023
+* Includes all changes made in `6.1.0`.
+
+### 6.1.0 - August 17, 2023
+* Fixed a bug where `TryRefreshAsync` could throw an `AggregateException` after a network timeout while trying to get key-values from Azure App Configuration. [#440](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/440)
+* Designated a new environment variable `AZURE_APP_CONFIGURATION_PROVIDER_DISABLED` that when equal to "true" will disable Azure App Configuration in your application. [#429](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/429)
+* Added a new warning log that indicates when the provider fails over to a different endpoint. [#431](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/431)
+
 ### 7.0.0-preview - July 20, 2023
 ### Breaking Changes:
 * Feature flags are now parsed and transformed into feature management configuration even if `AzureAppConfigurationOptions.UseFeatureFlags` is not called. `AzureAppConfigurationOptions.UseFeatureFlags` is still used to configure feature flag options. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
