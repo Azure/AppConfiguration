@@ -38,9 +38,11 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             StringBuilder sb = BuildProductTable();
 
             sb.AppendLine();
+
             sb.AppendLine("Press any key to exit...");
 
             Console.Clear();
+
             Console.Write(sb.ToString());            
 
             // Finish on key press
@@ -59,7 +61,9 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             if (string.IsNullOrEmpty(configuration["ConnectionString"]))
             {
                 Console.WriteLine("Connection string not found.");
+                
                 Console.WriteLine("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
+                
                 return;
             }
 
@@ -71,12 +75,15 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                         .Select("*")
                         .Map(async (setting) =>
                         {
-                            if (setting.ContentType.Equals("application/storage.table"))
+                            if (setting.ContentType.Equals("application/x.table"))
                             {
-                                // Example value for key "MyShop:Inventory" in App Configuration: https://{account_name}.table.core.windows.net/{table_name}
-                                string tableContent = await ReadTableContentAsync(new Uri(setting.Value));
+                                var cts = new CancellationTokenSource();
 
-                                setting = new ConfigurationSetting(setting.Key, tableContent, setting.Label);
+                                // Example value for key "MyShop:Inventory" in App Configuration: https://{account_name}.table.core.windows.net/{table_name}
+                                IEnumerable<Product> products = await ReadProductsAsync(new Uri(setting.Value), cts.Token);
+
+                                setting = new ConfigurationSetting(setting.Key, JsonSerializer.Serialize(products.ToList()), setting.Label);
+
                                 setting.ContentType = "application/json";
                             }
 
@@ -92,11 +99,13 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             StringBuilder sb = new StringBuilder();
 
             List<Product> tableContent = new List<Product>();
+
             Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
 
             // Example value for "MyShop:DisplayedColumns": [Name, OnSale]
             // Content-Type: application/json
             List<string> columnsToDisplay = new List<string>();
+
             Configuration.GetSection("MyShop:DisplayedColumns").Bind(columnsToDisplay);
 
             foreach (Product product in tableContent)
@@ -122,7 +131,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             return sb;
         }
 
-        private static async Task<string> ReadTableContentAsync(Uri tableUri)
+        private static async Task<IEnumerable<Product>> ReadProductsAsync(Uri tableUri, CancellationToken cancellationToken)
         {
             string[] pathSegments = tableUri.Segments;
 
@@ -132,30 +141,25 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             var tableClient = new TableClient(tableUri, tableName, new DefaultAzureCredential());
 
             // Adding example products to display
-            var prod1 = new Product()
+            await tableClient.UpsertEntityAsync(new Product()
             {
                 RowKey = "68719518388",
                 PartitionKey = "gear-surf-surfboards",
                 Name = "Ocean Surfboard",
                 Quantity = 8,
                 OnSale = true
-            };
+            });
 
-            var prod2 = new Product()
+            await tableClient.UpsertEntityAsync(new Product()
             {
                 RowKey = "68719518390",
                 PartitionKey = "gear-surf-surfboards",
                 Name = "Sand Surfboard",
                 Quantity = 5,
                 OnSale = false
-            };
+            });
 
-            await tableClient.UpsertEntityAsync(prod1);
-            await tableClient.UpsertEntityAsync(prod2);
-
-            var products = tableClient.Query<Product>();
-
-            return JsonSerializer.Serialize(products.ToList());
+            return tableClient.Query<Product>();
         }
     }
 }
