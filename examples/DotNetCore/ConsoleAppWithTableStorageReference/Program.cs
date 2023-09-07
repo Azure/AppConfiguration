@@ -33,8 +33,6 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
         {
             Configure();
 
-            string display = string.Empty;
-
             StringBuilder sb = BuildProductTable();
 
             sb.AppendLine();
