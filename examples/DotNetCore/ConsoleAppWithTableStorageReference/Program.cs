@@ -14,15 +14,13 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
         {
             Configure();
 
-            StringBuilder sb = BuildProductTable();
-
-            sb.AppendLine();
-
-            sb.AppendLine("Press any key to exit...");
+            var products = Configuration.GetSection("MyShop:Inventory").Get<List<Product>>();
 
             Console.Clear();
 
-            Console.Write(sb.ToString());            
+            Console.WriteLine(FormatProducts(products));
+
+            Console.WriteLine(Environment.NewLine + "Press any key to exit...");
 
             // Finish on key press
             Console.ReadKey();
@@ -52,44 +50,35 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             {
                 options.Connect(configuration["ConnectionString"])
                         .Select("*")
-                        .Map((setting) =>
+                        .Map(async (setting) =>
                         {
-                            if (setting.ContentType.Equals("application/x.example.table.product"))
+                            switch (setting.ContentType)
                             {
-                                // Example value for key "MyShop:Inventory" in App Configuration: https://{account_name}.table.core.windows.net/{table_name}
-                                IEnumerable<Product> products = ReadProducts(new Uri(setting.Value));
+                                case "application/x.example.tablereference.product":
 
-                                setting = new ConfigurationSetting(setting.Key, JsonSerializer.Serialize(products.ToList()), setting.Label);
+                                    return await MapProductTableReference(setting).ConfigureAwait(false);
 
-                                setting.ContentType = "application/json";
+                                default:
+
+                                    return setting;
                             }
-
-                            return new ValueTask<ConfigurationSetting>(setting);
                         });
             });
 
             Configuration = builder.Build();
         }
 
-        private static StringBuilder BuildProductTable()
+        private static string FormatProducts(List<Product> products)
         {
             StringBuilder sb = new StringBuilder();
 
-            List<Product> tableContent = new List<Product>();
-
-            Configuration.GetSection("MyShop:Inventory").Bind(tableContent);
-
-            // Example value for "MyShop:DisplayedColumns": [Name, OnSale]
-            // Content-Type: application/json
-            List<string> columnsToDisplay = new List<string>();
-
-            Configuration.GetSection("MyShop:DisplayedColumns").Bind(columnsToDisplay);
+            List<string> columnsToDisplay = Configuration.GetSection("MyShop:DisplayedColumns").Get<List<string>>();
 
             sb.AppendLine("Product table:");
 
             sb.AppendLine();
 
-            foreach (Product product in tableContent)
+            foreach (Product product in products)
             {
                 if (columnsToDisplay.Contains(nameof(product.Name)))
                 {
@@ -109,11 +98,13 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                 sb.AppendLine();
             }
 
-            return sb;
+            return sb.ToString();
         }
 
-        private static IEnumerable<Product> ReadProducts(Uri tableUri)
+        private static async ValueTask<ConfigurationSetting> MapProductTableReference(ConfigurationSetting setting)
         {
+            var tableUri = new Uri(setting.Value);
+
             string[] pathSegments = tableUri.Segments;
 
             // The last segment in the path should be the table name
@@ -121,7 +112,18 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             var tableClient = new TableClient(tableUri, tableName, new DefaultAzureCredential());
 
-            return tableClient.Query<Product>();
+            var products = new List<Product>();
+
+            await foreach (var product in tableClient.QueryAsync<Product>().ConfigureAwait(false))
+            {
+                products.Add(product);
+            }
+
+            setting = new ConfigurationSetting(setting.Key, JsonSerializer.Serialize(products), setting.Label);
+
+            setting.ContentType = "application/json";
+
+            return setting;
         }
     }
 }
