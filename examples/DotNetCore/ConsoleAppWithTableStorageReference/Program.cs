@@ -1,5 +1,4 @@
-﻿using Azure;
-using Azure.Data.AppConfiguration;
+﻿using Azure.Data.AppConfiguration;
 using Azure.Data.Tables;
 using Azure.Identity;
 using System.Text;
@@ -7,24 +6,6 @@ using System.Text.Json;
 
 namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.ConsoleAppWithTableStorageReference
 {
-    // C# record type for items in the table
-    public record Product : ITableEntity
-    {
-        public string RowKey { get; set; } = default!;
-
-        public string PartitionKey { get; set; } = default!;
-
-        public string Name { get; init; } = default!;
-
-        public int Quantity { get; init; }
-
-        public bool OnSale { get; init; }
-
-        public ETag ETag { get; set; } = default!;
-
-        public DateTimeOffset? Timestamp { get; set; } = default!;
-    }
-
     class Program
     {
         static IConfiguration Configuration { get; set; }
@@ -73,7 +54,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
                         .Select("*")
                         .Map(async (setting) =>
                         {
-                            if (setting.ContentType.Equals("application/x.table"))
+                            if (setting.ContentType.Equals("application/x.example.table.product"))
                             {
                                 var cts = new CancellationTokenSource();
 
