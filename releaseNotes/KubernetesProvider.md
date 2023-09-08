@@ -2,11 +2,12 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.0.0-preview4 - September xx, 2023
+## 1.0.0-preview4 - September 08, 2023
 
 ### New Features
-* Added support for periodically resolving Key Vault references and update the values for associated data items in generated Kubernetes secret accordingly. 
+* Added support for periodically resolving Key Vault references to fetch latest version secret and update Kubernetes secret accordingly.
 * Added support for file style (json, yaml, properties) ConfigMap.
+* Added support for workload identity based authentication.
 
 ## 1.0.0-preview3 - July 31, 2023
 
