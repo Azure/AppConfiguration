@@ -52,21 +52,19 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             {
                 options.Connect(configuration["ConnectionString"])
                         .Select("*")
-                        .Map(async (setting) =>
+                        .Map((setting) =>
                         {
                             if (setting.ContentType.Equals("application/x.example.table.product"))
                             {
-                                var cts = new CancellationTokenSource();
-
                                 // Example value for key "MyShop:Inventory" in App Configuration: https://{account_name}.table.core.windows.net/{table_name}
-                                IEnumerable<Product> products = await ReadProductsAsync(new Uri(setting.Value), cts.Token);
+                                IEnumerable<Product> products = ReadProducts(new Uri(setting.Value));
 
                                 setting = new ConfigurationSetting(setting.Key, JsonSerializer.Serialize(products.ToList()), setting.Label);
 
                                 setting.ContentType = "application/json";
                             }
 
-                            return setting;
+                            return new ValueTask<ConfigurationSetting>(setting);
                         });
             });
 
@@ -86,6 +84,10 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             List<string> columnsToDisplay = new List<string>();
 
             Configuration.GetSection("MyShop:DisplayedColumns").Bind(columnsToDisplay);
+
+            sb.AppendLine("Product table:");
+
+            sb.AppendLine();
 
             foreach (Product product in tableContent)
             {
@@ -110,7 +112,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             return sb;
         }
 
-        private static async Task<IEnumerable<Product>> ReadProductsAsync(Uri tableUri, CancellationToken cancellationToken)
+        private static IEnumerable<Product> ReadProducts(Uri tableUri)
         {
             string[] pathSegments = tableUri.Segments;
 
@@ -118,25 +120,6 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             string tableName = pathSegments[pathSegments.Length - 1];
 
             var tableClient = new TableClient(tableUri, tableName, new DefaultAzureCredential());
-
-            // Adding example products to display
-            await tableClient.UpsertEntityAsync(new Product()
-            {
-                RowKey = "68719518388",
-                PartitionKey = "gear-surf-surfboards",
-                Name = "Ocean Surfboard",
-                Quantity = 8,
-                OnSale = true
-            });
-
-            await tableClient.UpsertEntityAsync(new Product()
-            {
-                RowKey = "68719518390",
-                PartitionKey = "gear-surf-surfboards",
-                Name = "Sand Surfboard",
-                Quantity = 5,
-                OnSale = false
-            });
 
             return tableClient.Query<Product>();
         }
