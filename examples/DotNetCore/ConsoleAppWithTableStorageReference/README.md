@@ -8,37 +8,7 @@ Follow the guide for [creating a table in the Azure portal](https://learn.micros
 
 ## Add data to your storage table
 
-Add products to your table by using the code below and referencing the `Product` record in `Product.cs`.
-
-```csharp
-string yourTableUrl = ""; // Set equal to table Url from Storage account
-string yourTableName = ""; // Set equal to table name from Storage account
-
-TableClient tableClient = new TableClient(new Uri(yourTableUrl), yourTableName, new DefaultAzureCredential());
-
-// Create new item using composite key constructor
-var prod1 = new Product()
-{
-    RowKey = "68719518388",
-    PartitionKey = "gear-surf-surfboards",
-    Name = "Ocean Surfboard",
-    Quantity = 8,
-    OnSale = true
-};
-
-var prod2 = new Product()
-{
-    RowKey = "68719518390",
-    PartitionKey = "gear-surf-surfboards",
-    Name = "Sand Surfboard",
-    Quantity = 5,
-    OnSale = false
-};
-
-// Add new items to server-side table
-await tableClient.AddEntityAsync<Product>(prod1);
-await tableClient.AddEntityAsync<Product>(prod2);
-```
+Add products to your table by using [these instructions](https://learn.microsoft.com/en-us/azure/cosmos-db/table/quickstart-dotnet?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fstorage%2Ftables%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json&tabs=azure-cli%2Cwindows#create-an-item) and referencing the `Product` record in `Product.cs`.
 
 ## Create Azure App Configuration key-values
 
