@@ -8,7 +8,7 @@ Follow the guide for [creating a table in the Azure portal](https://learn.micros
 
 ## Add data to your storage table
 
-Add products to your table by using [these instructions](https://learn.microsoft.com/en-us/azure/cosmos-db/table/quickstart-dotnet?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fstorage%2Ftables%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json&tabs=azure-cli%2Cwindows#create-an-item) and referencing the `Product` record in `Product.cs`.
+Add products to your table by following [these instructions](https://learn.microsoft.com/en-us/azure/cosmos-db/table/quickstart-dotnet?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fstorage%2Ftables%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json&tabs=azure-cli%2Cwindows#create-an-item) and referencing the `Product` record in `Product.cs`.
 
 ## Create Azure App Configuration key-values
 
