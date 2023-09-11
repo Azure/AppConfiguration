@@ -72,7 +72,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
         {
             StringBuilder sb = new StringBuilder();
 
-            List<string> propertiesToDisplay = Configuration.GetSection("MyShop:DisplayedProperties").Get<List<string>>();
+            List<string> columnsToDisplay = Configuration.GetSection("MyShop:DisplayedColumns").Get<List<string>>();
 
             sb.AppendLine("Product table:");
 
@@ -80,17 +80,17 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             foreach (Product product in products)
             {
-                if (propertiesToDisplay.Contains(nameof(product.Name)))
+                if (columnsToDisplay.Contains(nameof(product.Name)))
                 {
                     sb.AppendLine($"Name = {product.Name}");
                 }
 
-                if (propertiesToDisplay.Contains(nameof(product.Quantity)))
+                if (columnsToDisplay.Contains(nameof(product.Quantity)))
                 {
                     sb.AppendLine($"Quantity = {product.Quantity.ToString()}");
                 }
 
-                if (propertiesToDisplay.Contains(nameof(product.OnSale)))
+                if (columnsToDisplay.Contains(nameof(product.OnSale)))
                 {
                     sb.AppendLine($"OnSale = {product.OnSale.ToString()}");
                 }
