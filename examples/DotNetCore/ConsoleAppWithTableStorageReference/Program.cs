@@ -68,11 +68,11 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
             Configuration = builder.Build();
         }
 
-        private static string FormatProducts(List<Product> products)
+        private static string FormatProducts(IEnumerable<Product> products)
         {
             StringBuilder sb = new StringBuilder();
 
-            List<string> columnsToDisplay = Configuration.GetSection("MyShop:DisplayedColumns").Get<List<string>>();
+            List<string> propertiesToDisplay = Configuration.GetSection("MyShop:DisplayedProperties").Get<List<string>>();
 
             sb.AppendLine("Product table:");
 
@@ -80,17 +80,17 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
 
             foreach (Product product in products)
             {
-                if (columnsToDisplay.Contains(nameof(product.Name)))
+                if (propertiesToDisplay.Contains(nameof(product.Name)))
                 {
                     sb.AppendLine($"Name = {product.Name}");
                 }
 
-                if (columnsToDisplay.Contains(nameof(product.Quantity)))
+                if (propertiesToDisplay.Contains(nameof(product.Quantity)))
                 {
                     sb.AppendLine($"Quantity = {product.Quantity.ToString()}");
                 }
 
-                if (columnsToDisplay.Contains(nameof(product.OnSale)))
+                if (propertiesToDisplay.Contains(nameof(product.OnSale)))
                 {
                     sb.AppendLine($"OnSale = {product.OnSale.ToString()}");
                 }
