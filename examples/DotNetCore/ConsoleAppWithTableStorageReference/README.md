@@ -12,7 +12,7 @@ Add products to your table by following [these instructions](https://learn.micro
 
 ## Create Azure App Configuration key-values
 
-Add the following key-values to your Azure App Configuration store. `MyShop:Inventory` is a reference to the table you created, and `MyShop:DisplayedProperties` is a list of the columns you wish to include in the final output when printing your table to the console.
+Add the following key-values to your Azure App Configuration store. `MyShop:Inventory` is a reference to the table you created, and `MyShop:DisplayedProperties` is a list of the values you wish to include in the final output when printing your table to the console.
 
 1. `MyShop:Inventory`
     - Example value: `https://{account_name}.table.core.windows.net/{table_name}` 
