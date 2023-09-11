@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.Cons
         {
             Configure();
 
-            var products = Configuration.GetSection("MyShop:Inventory").Get<List<Product>>();
+            IEnumerable<Product> products = Configuration.GetSection("MyShop:Inventory").Get<List<Product>>();
 
             Console.Clear();
 
