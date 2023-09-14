@@ -2,6 +2,13 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.0.0-preview4 - September 14, 2023
+
+### New Features
+* Added support for periodically resolving Key Vault references to fetch latest version secret and update Kubernetes secret accordingly.
+* Added support for consuming the generated ConfigMap as a mounted file besides as environment variables. [#775](https://github.com/Azure/AppConfiguration/issues/775)
+* Added support for workload identity authentication. [#795](https://github.com/Azure/AppConfiguration/issues/795)
+
 ## 1.0.0-preview3 - July 31, 2023
 
 ### New Features
