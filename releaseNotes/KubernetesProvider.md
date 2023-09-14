@@ -2,11 +2,11 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.0.0-preview4 - September 13, 2023
+## 1.0.0-preview4 - September 14, 2023
 
 ### New Features
 * Added support for periodically resolving Key Vault references to fetch latest version secret and update Kubernetes secret accordingly.
-* Added support for generating ConfigMap in more data types (json, yaml, properties).
+* Added support for consuming the generated ConfgiMap as a mounted file besides as environment variables.
 * Added support for workload identity authentication.
 
 ## 1.0.0-preview3 - July 31, 2023
