@@ -8,6 +8,6 @@ All feature flag key-values are prefixed with ".appconfig.featureflag/" to disti
 
 The following are the currently used content types in Azure App Configuration feature management:
 
-[application/vnd.microsoft.appconfig.ff+json;charset=utf-8](./FeatureFlag.v1.0.0.schema.json)
+[application/vnd.microsoft.appconfig.ff+json;charset=utf-8](./FeatureFlag.v1.1.0.schema.json)
 
 
