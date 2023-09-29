@@ -22,6 +22,7 @@ az appconfig create --name <config-store-name> --resource-group <resource-group-
 az appconfig kv set --name <config-store-name> --key testapp_settings_message --value "Hello from Azure App Configuration"
 az appconfig kv set --name <config-store-name> --key testapp_settings_font_size --value "30px"
 az appconfig kv set --name <config-store-name> --key testapp_settings_color --value "azure"
+az appconfig kv set --name <config-store-name> --key sentinel --value "1"
 ```
 
 ### Create Key Vault Reference
@@ -67,6 +68,19 @@ python manage.py migrate
 # Run the app at http://127.0.0.1:8000
 python manage.py runserver
 ```
+
+## Refresh Configuration
+
+To refresh your configuration, you first update the value in Azure App Configuration, then update the Sentinel value to trigger a refresh.
+
+```Powershell
+az appconfig kv set --name <config-store-name> --key testapp_settings_color --value "violet"
+az appconfig kv set --name <config-store-name> --key sentinel --value "2"
+```
+
+Refresh the page in your browser to see the updated value.
+
+NOTE: By default refresh can only be triggered every 30 seconds. It may have to wait up till 30 seconds and then refreshing a page to see a refresh.
 
 <!-- LINKS -->
 [azure_sub]: https://azure.microsoft.com/free/
