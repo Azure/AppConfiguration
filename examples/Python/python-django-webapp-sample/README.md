@@ -80,7 +80,7 @@ az appconfig kv set --name <config-store-name> --key sentinel --value "2"
 
 Refresh the page in your browser to see the updated value.
 
-NOTE: By default refresh can only be triggered every 30 seconds. It may have to wait up till 30 seconds and then refreshing a page to see a refresh.
+NOTE: By default refresh can only be triggered every 30 seconds. You might have to wait up to 30 seconds and refresh the page again in order to see a change.
 
 <!-- LINKS -->
 [azure_sub]: https://azure.microsoft.com/free/
