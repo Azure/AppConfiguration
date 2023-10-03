@@ -13,33 +13,34 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import configparser
-from azure.appconfiguration.provider import load, AzureAppConfigurationKeyVaultOptions, SettingSelector
+from azure.appconfiguration.provider import load, SettingSelector, SentinelKey
 from azure.identity import DefaultAzureCredential
 
 c_parser = configparser.ConfigParser()
 c_parser.read('static/config.ini')
 
-config = c_parser['DEFAULT']
+CONFIG = c_parser['DEFAULT']
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 
 # Set up credentials and settings used in resolving key vault references.
 credential = DefaultAzureCredential()
-keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 
 # Load app configuration key-values and resolved key vault reference values.
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
-azure_appconfiguration = load(endpoint=ENDPOINT,
-              key_vault_options=keyvault_options,
+AZURE_APPCONFIGURATION = load(endpoint=ENDPOINT,
+              keyvault_credential=credential,
               credential=credential,
               selects=[selects, selects_secret],
-              trim_prefixes=["testapp_settings_"])
+              trim_prefixes=["testapp_settings_"],
+              refresh_on=[SentinelKey("sentinel")]
+              )
 
 # Updates the config object with the app configuration key-values and resolved key vault reference values.
 # This will override any values in the config object with the same key.
-config.update(azure_appconfiguration)
+CONFIG.update(AZURE_APPCONFIGURATION)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,7 +50,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is a key vault reference. The corresponding secret in key vault is returned.
-SECRET_KEY = config.get('secret_key')
+SECRET_KEY = CONFIG.get('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -134,12 +135,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-MESSAGE = config.get('message')
-
-COLOR = config.get('color')
-
-FONT_SIZE = config.get('font_size')
 
 TIME_ZONE = 'UTC'
 

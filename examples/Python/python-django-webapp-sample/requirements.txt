@@ -1,4 +1,4 @@
 Django==4.1.10
 whitenoise==6.4.0
-azure-appconfiguration-provider==1.0.0
+azure-appconfiguration-provider==1.1.0b1
 azure-identity==1.12.0

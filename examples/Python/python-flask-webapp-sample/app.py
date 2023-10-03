@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template
-from azure.appconfiguration.provider import load, AzureAppConfigurationKeyVaultOptions, SettingSelector
+from azure.appconfiguration.provider import load, SettingSelector, SentinelKey
 from azure.identity import DefaultAzureCredential
 
 app = Flask(__name__)
@@ -15,12 +15,13 @@ credential = DefaultAzureCredential()
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
-keyvault_options = AzureAppConfigurationKeyVaultOptions(credential=credential)
 azure_app_config = load(endpoint=ENDPOINT,
-                        key_vault_options=keyvault_options,
+                        keyvault_credential=credential,
                         credential=credential,
                         selects=[selects, selects_secret],
-                        trim_prefixes=["testapp_settings_"])
+                        trim_prefixes=["testapp_settings_"],
+                        refresh_on=[SentinelKey("sentinel")],
+                  )
 
 # App Configuration provider implements the Mapping Type which is compatible with the existing Flask config.
 # Update Flask config mapping with loaded values in the App Configuration provider.
@@ -28,6 +29,10 @@ app.config.update(azure_app_config)
 
 @app.route('/')
 def index():
+   # Refresh the configuration from App Configuration service.
+   azure_app_config.refresh()
+   # Update Flask config mapping with loaded values in the App Configuration provider.
+   app.config.update(azure_app_config)
    print('Request for index page received')
    context = {}
    context['message'] = app.config.get('message')
