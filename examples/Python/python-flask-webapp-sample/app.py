@@ -1,38 +1,46 @@
 import os
+import asyncio
 from flask import Flask, render_template
-from azure.appconfiguration.provider import load, SettingSelector, SentinelKey
+from azure.appconfiguration.provider import SettingSelector, SentinelKey
+from azure.appconfiguration.provider.aio import load
 from azure.identity import DefaultAzureCredential
 
 app = Flask(__name__)
 
-
-ENDPOINT =  os.environ.get("AZURE_APPCONFIG_ENDPOINT")
-
-# Set up credentials and settings used in resolving key vault references.
+ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 credential = DefaultAzureCredential()
-
-# Load app configuration key-values and resolved key vault reference values.
-# Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
-azure_app_config = load(endpoint=ENDPOINT,
-                        keyvault_credential=credential,
-                        credential=credential,
-                        selects=[selects, selects_secret],
-                        trim_prefixes=["testapp_settings_"],
-                        refresh_on=[SentinelKey("sentinel")],
-                  )
 
-# App Configuration provider implements the Mapping Type which is compatible with the existing Flask config.
-# Update Flask config mapping with loaded values in the App Configuration provider.
-app.config.update(azure_app_config)
+azure_app_config = None  # declare azure_app_config as a global variable
+
+async def load_config():
+   global azure_app_config
+   async with await load(endpoint=ENDPOINT,
+                           selects=[selects, selects_secret],
+                           credential=credential,
+                           trim_prefixes=["testapp_settings_"],
+                           refresh_on=[SentinelKey("sentinel")],
+                     ) as config:
+      azure_app_config = config
+
+      # App Configuration provider implements the Mapping Type which is compatible with the existing Flask config.
+      # Update Flask config mapping with loaded values in the App Configuration provider.
+      app.config.update(azure_app_config)
+
+asyncio.run(load_config())
+
 
 @app.route('/')
-def index():
+async def index():
+   global azure_app_config
    # Refresh the configuration from App Configuration service.
-   azure_app_config.refresh()
+   refresh = asyncio.get_event_loop().create_task(azure_app_config.refresh())
+
    # Update Flask config mapping with loaded values in the App Configuration provider.
-   app.config.update(azure_app_config)
+   refresh.add_done_callback(lambda t: app.config.update(azure_app_config))
+   await refresh
+
    print('Request for index page received')
    context = {}
    context['message'] = app.config.get('message')
