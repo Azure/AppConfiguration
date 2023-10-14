@@ -6,7 +6,7 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 **Breaking Changes**
   - Updated the task to require Node.js 16. It previously required 10.
   - Updated the minimum supported azure pipeline agent version to [2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later. Previously it was [2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0).
-  - Importing configurations with values as escaped JSON strings and the content type application/json demonstrates an altered behavior. Please indicate the value as a JSON object.
+  - Importing configurations with values as escaped JSON strings and the content type `application/json`, introduces a modified behavior, the values of properties in the settings are expected to be specified as JSON objects. Please ensure the values are JSON objects.
 
     **Before**
     ```
