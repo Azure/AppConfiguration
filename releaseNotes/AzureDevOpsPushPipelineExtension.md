@@ -6,7 +6,39 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 **Breaking Changes**
   - Updated the task to require Node.js 16. It previously required 10.
   - Updated the minimum supported azure pipeline agent version to [2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later. Previously it was [2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0).
-  - Importing key vault references value as an escaped json strings is not supported, please specify the key vault reference value as a json object.
+  - Importing configurations with values as escaped JSON strings and the content type application/json demonstrates an altered behavior. Please indicate the value as a JSON object.
+
+    **Before**
+    ```
+    {  
+      "app": "{\"uri\":\"https://keyvault.vault.azure.net/secrets/secret\"}"
+    }
+
+    task: AzureAppConfigurationPush@4
+    inputs:
+      azureSubscription: '<subscription>'
+      AppConfigurationEndpoint: '<store endpoint>'
+      ....
+      ContentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+    ```
+
+    **After**
+    ```
+    {  
+      "app": {
+          "uri": "https://keyvault.vault.azure.net/secrets/secret " 
+        }
+    }
+
+    task: AzureAppConfigurationPush@5
+    inputs:
+      azureSubscription: '<subscription>'
+      AppConfigurationEndpoint: '<store endpoint>'
+      ....
+      ContentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+
+    ```
+
   - Feature flag import now requires adherence to the [feature management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/docs/schemas/FeatureManagement.v1.0.0.json). Settings with feature flag prefix and content type will fail to import
 
 ### v4.4.0 - November, 15 2022
