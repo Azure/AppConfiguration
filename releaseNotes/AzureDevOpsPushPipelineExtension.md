@@ -3,7 +3,44 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v5.0.0 - February, 02 2023
-Updated the task to require Node.js 16. It previously required 10
+**Breaking Changes**
+  - Updated the task to require Node.js 16. It previously required 10.
+  - Updated the minimum supported azure pipeline agent version to [2.206.1](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.206.1) or later. Previously it was [2.144.0](https://github.com/microsoft/azure-pipelines-agent/releases/tag/v2.144.0).
+  - The behavior when importing configurations with JSON content types such as `application/json` or `application/vnd.mycustomresource+json` has changed. The properties in the provided configuration are serialized as JSON to respect the provided content type. Settings that are expected to end up as JSON serialized strings in App Configuration should now be specified as JSON objects.
+
+
+    **Before**
+    ```
+    {  
+      "app": "{\"uri\":\"https://keyvault.vault.azure.net/secrets/secret\"}"
+    }
+
+    task: AzureAppConfigurationPush@4
+    inputs:
+      azureSubscription: '<subscription>'
+      AppConfigurationEndpoint: '<store endpoint>'
+      ....
+      ContentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+    ```
+
+    **After**
+    ```
+    {  
+      "app": {
+          "uri": "https://keyvault.vault.azure.net/secrets/secret " 
+        }
+    }
+
+    task: AzureAppConfigurationPush@5
+    inputs:
+      azureSubscription: '<subscription>'
+      AppConfigurationEndpoint: '<store endpoint>'
+      ....
+      ContentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+
+    ```
+
+  - Feature flag import now requires adherence to the [feature management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v3/docs/schemas/FeatureManagement.v1.0.0.json). Settings with feature flag prefix and content type will fail to import
 
 ### v4.4.0 - November, 15 2022
 * Added ImportMode option support for KVSet profile.
