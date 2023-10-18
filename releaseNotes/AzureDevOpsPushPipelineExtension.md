@@ -35,6 +35,7 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
     inputs:
       azureSubscription: '<subscription>'
       AppConfigurationEndpoint: '<store endpoint>'
+      Depth: 1
       ....
       ContentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
 
