@@ -4,6 +4,9 @@
 ### 7.0.0-preview.2 - August 24, 2023
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.0.0-preview.2`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
+### 6.1.1 - October 25, 2023
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `6.1.1`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 6.1.0 - August 17, 2023
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `6.1.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 * Fixed an issue where accessing `HttpContext` could sometimes throw a `NullReferenceException` in middleware used alongside Azure App Configuration middleware. [#432](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/432)
