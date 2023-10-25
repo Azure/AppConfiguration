@@ -5,8 +5,7 @@
 * Includes all changes made in `6.1.0`.
 
 ### 6.1.1 - October 25, 2023
-* Added enhanced telemetry for feature management to request tracing. [#470](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/470)
-* Fixed a bug that removed existing telemetry from request tracing. [#455](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/455)
+* Improvements for request tracing.
 
 ### 6.1.0 - August 17, 2023
 * Fixed a bug where `TryRefreshAsync` could throw an `AggregateException` after a network timeout while trying to get key-values from Azure App Configuration. [#440](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/440)
