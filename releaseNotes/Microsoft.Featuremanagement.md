@@ -4,6 +4,86 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 3.0.0 - October 27, 2023
+
+### Breaking Changes
+
+* Dropped netcoreapp3.1 and net5.0 target frameworks since both have reached the end of their life cycle. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
+* All feature flags must be defined in a `FeatureManagement` section within configuration. Previously flags were discovered at the top level of configuration if the `FeatureManagement` section was not defined, but this functionality has been removed. https://github.com/microsoft/FeatureManagement-Dotnet/pull/261
+
+### Changes
+
+* Built-in filters are registered by default. https://github.com/microsoft/FeatureManagement-Dotnet/pull/287
+  This includes:
+  * `TimeWindowFilter`
+  * `ContextualTargetingFilter`
+  * `PercentageFilter`
+* `TargetingContextAccessor` can be added via the `.WithTargeting` extension method. This will automatically add the built-in `TargetingFilter`. https://github.com/microsoft/FeatureManagement-Dotnet/pull/287
+* Contextual and non-contextual filters are now able to share the same name/alias. An example of two such filters are the built-in `TargetingFilter` and `ContextualTargetingFilter` that both use the alias `"Targeting"`. Given a scenario that a contextual and non-contextual filter are registered in the application, the filter that is used when evaluating a flag is dependent up on whether a context was passed in to `IFeatureManager.IsEnabled`. See 'contextual/non-contextual filter selection process' below for a more detailed explanation. https://github.com/microsoft/FeatureManagement-Dotnet/pull/262
+* Added netstandard 2.1 as a target framework in the Microsoft.FeatureManagement package. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
+* Added net7.0 as a target framework in the Microsoft.FeatureManagement.AspNetCore package. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
+
+## Bug Fixes
+* Prevents the usage of colon in Feature names.
+* Adjusts log level for noisy warning when feature definitions are not found.
+* Fixed an edge case in targeting if a user is allocated to exactly the 100th percentile (~1 in 2 billion chance)
+
+### Migration
+
+#### Adding built-in filters
+
+It is no longer necessary to register the following filters manually:
+
+  * `TimeWindowFilter`
+  * `ContextualTargetingFilter`
+  * `PercentageFilter`
+
+The following code:
+
+```
+services.AddFeatureManagement()
+    .AddFeatureFilter<TimeWindowFilter>();
+```
+
+should be simplified to:
+
+```
+services.AddFeatureManagement();
+```
+
+#### Adding Targeting Filter
+
+Since the `TargetingFilter` (the non-contextual version) requires an implementation of ITargetingContextAccessor to function, it is not added by default. However, a discovery/helper method was added to streamline it's addition.
+
+The following code:
+
+```
+services.AddSingleton<ITargetingContextAccessor, MyTargetingContextAccessor>();
+
+services.AddFeatureManagement()
+    .AddFeatureFilter<TargetingFilter>();
+```
+
+should be simplified to:
+
+```
+services.AddFeatureManagement()
+    .WithTargeting<MyTargetingContextAccessor>();
+```
+
+### Additional
+
+#### Contextual/non-contextual filter selection process
+The following passage describes the process of selecting a filter when a contextual and non-contextual filter of the same name are registered in an application.
+
+Let's say we have a non-contextual filter called FilterA and two contextual filters FilterB and FilterC which accept TypeB and TypeC contexts respectively. All of three filters share the same alias "SharedFilterName".
+We also have a feature flag "MyFeature" which uses the feature filter "SharedFilterName" in its configuration.
+
+If all of three filters are registered:
+When we call IsEnabledAsync("MyFeature"), the FilterA will be used to evaluate the feature flag.
+When we call IsEnabledAsync("MyFeature", context), if context's type is TypeB, FilterB will be used and if context's type is TypeC, FilterC will be used.
+When we call IsEnabledAsync("MyFeature", context), if context's type is TypeF, FilterA will be used.
+
 ## 2.6.0 - June 23, 2023
 
 Promotes the changes in [2.6.0-preview](#260-preview2---june-7-2023) and [2.6.0-preview2](#260-preview2---june-7-2023) to stable. These changes include parameter caching, requirement type, and targeting exclusion.
