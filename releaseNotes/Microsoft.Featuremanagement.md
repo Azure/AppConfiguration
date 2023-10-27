@@ -76,13 +76,13 @@ services.AddFeatureManagement()
 #### Contextual/non-contextual filter selection process
 The following passage describes the process of selecting a filter when a contextual and non-contextual filter of the same name are registered in an application.
 
-Let's say we have a non-contextual filter called FilterA and two contextual filters FilterB and FilterC which accept TypeB and TypeC contexts respectively. All of three filters share the same alias "SharedFilterName".
-We also have a feature flag "MyFeature" which uses the feature filter "SharedFilterName" in its configuration.
+Let's say you have a non-contextual filter called FilterA and two contextual filters FilterB and FilterC which accept TypeB and TypeC contexts respectively. All of three filters share the same alias "SharedFilterName".
+you also have a feature flag "MyFeature" which uses the feature filter "SharedFilterName" in its configuration.
 
 If all of three filters are registered:
-When we call IsEnabledAsync("MyFeature"), the FilterA will be used to evaluate the feature flag.
-When we call IsEnabledAsync("MyFeature", context), if context's type is TypeB, FilterB will be used and if context's type is TypeC, FilterC will be used.
-When we call IsEnabledAsync("MyFeature", context), if context's type is TypeF, FilterA will be used.
+* When you call IsEnabledAsync("MyFeature"), the FilterA will be used to evaluate the feature flag.
+* When you call IsEnabledAsync("MyFeature", context), if context's type is TypeB, FilterB will be used and if context's type is TypeC, FilterC will be used.
+* When you call IsEnabledAsync("MyFeature", context), if context's type is TypeF, FilterA will be used.
 
 ## 2.6.0 - June 23, 2023
 
