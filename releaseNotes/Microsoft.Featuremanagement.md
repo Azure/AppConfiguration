@@ -146,6 +146,10 @@ For more details read [here](https://github.com/microsoft/FeatureManagement-Dotn
 
 ## 3.0.0-preview - June 17, 2022
 
+### DEPRECATED
+
+This release was deprecated. The dynamic feature functionality will be re-introduced in a later version with some design changes.
+
 ### Dynamic Features 
 
 Dynamic features are a tool that can be used to surface different variants of a feature to different segments of an audience. Previously, this library only worked with feature flags. Feature flags are limited to boolean values, as they are either enabled or disabled. Dynamic features have dynamic values. They can be string, int, a complex object, or any other type. 
