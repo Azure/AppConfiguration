@@ -4,6 +4,9 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v6.5.0 - October, 13 2023
+* Added capability to use workload identity federation for authentication.
+
 ### v6.0.0 - February, 02 2023
 **Breaking changes**
   - Updated the task to require Node.js 16. It previously required 10.
