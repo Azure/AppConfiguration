@@ -18,10 +18,6 @@ This example is a .NET isolated process Function App, which runs out-of-process 
 
 This example demonstrates how to enable dynamic configuration from App Configuration in a console app written in .NET Core.
 
-### [WebDemo (.NET Core)](./DotNetCore/WebDemo)
-
-This ASP.NET Core app demonstrates how to enable dynamic configuration from App Configuration using the *poll model*. It uses Azure AD/Managed Identity to authenticate with App Configuration.
-
 ### [WebDemo (.NET 6)](./DotNetCore/WebDemoNet6)
 
 This example is an ASP.NET Core app, which uses the modernized project template introduced in .NET 6. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
