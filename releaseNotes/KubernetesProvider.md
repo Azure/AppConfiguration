@@ -4,14 +4,15 @@
 
 ## 1.0.0 - xx xx, 2023
 
-**Released the stable API version `v1`**.
+**Release of the stable API version `v1`**.
 
 ### Breaking Changes
 * Schema update (see [Azure App Configuration Kubernetes Provider reference](https://learn.microsoft.com/en-us/azure/azure-app-configuration/reference-kubernetes-provider?tabs=default) for the complete schema):
     * Renamed `keyValues` to `configuration`.
-    * Renamed `keyVaults` to `secret` and move it to the root, which is at the same level as `configuration`.
+    * Renamed `keyVaults` to `secret` and moved it to the root, which is at the same level as `configuration`.
     * Renamed `secret.auth.vaults` to `secret.auth.keyVaults`.
-* Add `*.refresh.enabled` property for dynamic configuration. It defaults to false and is required if data is expected to be refreshed.
+* Added the `configuration.refresh.enabled` property for dynamic configuration. It defaults to `false` and must be set to `true` for dynamic configuration refresh.
+* Added the `secret.refresh.enabled` property for periodically resolving Key Vault references. It defaults to `false` and must be set to `true` for associated Kubernetes secret update. 
 
 ## 1.0.0-preview4 - September 14, 2023
 
