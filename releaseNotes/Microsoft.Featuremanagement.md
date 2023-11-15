@@ -88,7 +88,7 @@ If all of three filters are registered:
 
 ### Bug fix
 
-* Adds edge case for EvaluateAsync call that doesn't use context from FeatureManager
+* Adds edge case for EvaluateAsync call that doesn't use context from FeatureManager.
 
 ## 2.6.0 - June 23, 2023
 
