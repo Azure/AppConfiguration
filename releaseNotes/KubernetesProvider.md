@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.0.0 - xx xx, 2023
+## 1.0.0 - November 15, 2023
 
 **Release of the stable API version `v1`**.
 
