@@ -84,6 +84,12 @@ If all of three filters are registered:
 * When you call IsEnabledAsync("MyFeature", context), if context's type is TypeB, FilterB will be used and if context's type is TypeC, FilterC will be used.
 * When you call IsEnabledAsync("MyFeature", context), if context's type is TypeF, FilterA will be used.
 
+## 2.6.1 - June 28, 2023
+
+### Bug fix
+
+* Fixed an edge case for EvaluateAsync call that doesn't use context from FeatureManager. ([#244](https://github.com/microsoft/FeatureManagement-Dotnet/issues/244))
+
 ## 2.6.0 - June 23, 2023
 
 Promotes the changes in [2.6.0-preview](#260-preview2---june-7-2023) and [2.6.0-preview2](#260-preview2---june-7-2023) to stable. These changes include parameter caching, requirement type, and targeting exclusion.
