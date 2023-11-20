@@ -4,6 +4,13 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v7.0.0 - November, 20 2023
+**Breaking changes**
+  - Updated to fail the task if any Key Vault references cannot be resolved or if the resolved values are unable to be set as a pipeline secret. To avoid failing the task due to Key Vault errors, you can enable the new option to treat these errors as warnings detailed below.
+
+**Enhancement**
+  - Added an option to treat Key Vault resolution errors as warnings.
+
 ### v6.5.0 - October, 13 2023
 * Added capability to use workload identity federation for authentication.
 
