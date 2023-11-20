@@ -3,7 +3,7 @@ Azure App Configuration Push extension for Azure DevOps pipeline can be installe
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
 ### v6.4.0 - November, 20 2023
-* Added support for a feature that allows users to add a prefix to the key name of feature flags. This will provide more flexibility and better organization of feature flags for users.[#810] https://github.com/Azure/AppConfiguration/issues/810
+* Added support for a feature that allows users to add a prefix to the key name of feature flags. This will provide more flexibility and better organization of feature flags for users.[#810](https://github.com/Azure/AppConfiguration/issues/810).
 
 ### v6.3.0 - October, 13 2023
 * Added capability to use workload identity federation for authentication.
