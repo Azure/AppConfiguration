@@ -13,7 +13,7 @@
    public AzureAppConfigurationOptions SelectSnapshot(string name)
    ```
 * Added support for the `requirement_type` property for feature flags introduced in version 2.6.0-preview of the Microsoft.FeatureManagement library. [#475](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/475)
-* The provider will now continuously retry when loading data from App Configuration on startup until the load is successful or the timeout value in `AzureAppConfigurationOptions.StartupOptions.Timeout` has elapsed. `AzureAppConfigurationOptions.StartupOptions` can be set using the following new API. [#488](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/488)
+* The provider will now continuously retry when loading data from App Configuration on startup until either the load is successful or the timeout value in `AzureAppConfigurationOptions.StartupOptions.Timeout` has elapsed. `AzureAppConfigurationOptions.StartupOptions` can be set using the following new API. [#488](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/488)
 
    ```cs
    public AzureAppConfigurationOptions ConfigureStartupOptions(Action<StartupOptions> configure)
