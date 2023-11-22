@@ -1,6 +1,24 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 7.0.0 - November 21, 2023
+### Breaking Changes
+* Removed .NET Core 3.1 as a target framework as .NET Core 3.1 is out of support. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
+* `AddAzureAppConfiguration` now throws errors for invalid inputs when the `optional` flag is equal to `true`. [#408](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/408)
+
+### Enhancements
+* This is the first stable release of the following API introduced in the 7.0.0-preview release. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
+
+   ```cs
+   public AzureAppConfigurationOptions SelectSnapshot(string name)
+   ```
+* Added support for the `requirement_type` property for feature flags introduced in version 2.6.0-preview of the Microsoft.FeatureManagement library. [#475](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/475)
+* The provider will now continuously retry when loading data from App Configuration on startup until the load is successful or the timeout value in `AzureAppConfigurationOptions.StartupOptions.Timeout` has elapsed. `AzureAppConfigurationOptions.StartupOptions` can be set using the following new API. [#488](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/488)
+
+   ```cs
+   public AzureAppConfigurationOptions ConfigureStartupOptions(Action<StartupOptions> configure)
+   ```
+
 ### 7.0.0-preview.2 - August 24, 2023
 * Includes all changes made in `6.1.0`.
 
