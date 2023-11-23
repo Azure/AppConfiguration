@@ -4,6 +4,22 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 3.1.0 - November 23, 2023
+
+### Changes
+
+* Exposing FeatureManager and ConfigurationFeatureDefinitionProvider to public.
+The `FeatureManager` and `ConfigurationFeatureDefinitionProvider` classes are the core services of the feature management system. In the past, both of them were internal and could only be registered via the AddFeatureManagement() method, which relies on `Microsoft.Extensions.DependencyInjection`. This limitation prevented third-party DI container systems from registering these classes, making them incompatible with the entire feature management system. With this change, all Feature Management services have been made accessible to other DI containers. (Related issues: [#126](https://github.com/microsoft/FeatureManagement-Dotnet/issues/126) [#258](https://github.com/microsoft/FeatureManagement-Dotnet/issues/258))
+
+  Additionally, the recommended [way](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive-server-side-rendering?view=aspnetcore-7.0#ihttpcontextaccessorhttpcontext-in-razor-components) for accessing `HttpContext` in Blazor is through a scoped context provider service. The singleton `HttpContextAccessor` pattern, while works well in ASP.NET Core, becomes unreliable in Blazor environments. As a result, to use `Targeting` in Blazor, the targeting filter and targeting context accessor should be registered as scoped. (Related issue: [#15](https://github.com/microsoft/FeatureManagement-Dotnet/issues/15) [#258](https://github.com/microsoft/FeatureManagement-Dotnet/issues/258))
+
+* AddScopedFeatureManagement 
+We have introduced an alternative way `AddScopedFeatureManagement()` to register the feature management system, where the feature manager and all feature filters will be registered as scoped. It ensures that the integration aligns with Blazor's best practices for handling `HttpContext` and enhances the overall ease of use. There is an ongoing PR to demonstrate how to use FeatureManagement in Blazor server app: [#306](https://github.com/microsoft/FeatureManagement-Dotnet/pull/306)
+
+### Bug Fixes
+* Preserved the behavior in 2.x.x when passing a configuration section to `AddFeatureManagement(IConfiguration configuration)`. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
+* Preserved the behavior in 2.x.x when there is a contextual filter is specified, but there is no appropriate context provided during the feature flag evaluation. ([#313](https://github.com/microsoft/FeatureManagement-Dotnet/issues/313))
+
 ## 3.0.0 - October 27, 2023
 
 ### Breaking Changes
