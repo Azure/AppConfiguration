@@ -18,7 +18,7 @@ We have introduced an alternative way `AddScopedFeatureManagement()` to register
 
 ### Bug Fixes
 * Preserved the behavior in 2.x.x when passing a configuration section to `AddFeatureManagement(IConfiguration configuration)`. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
-* Preserved the behavior in 2.x.x when there is a contextual filter is specified, but there is no appropriate context provided during the feature flag evaluation. ([#313](https://github.com/microsoft/FeatureManagement-Dotnet/issues/313))
+* Preserved the behavior in 2.x.x when there is a contextual filter specified, but there is no appropriate context provided during the feature flag evaluation. ([#313](https://github.com/microsoft/FeatureManagement-Dotnet/issues/313))
 
 ## 3.0.0 - October 27, 2023
 
