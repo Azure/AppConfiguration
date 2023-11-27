@@ -3,7 +3,7 @@
 
 ### 7.0.0 - November 21, 2023
 ### Breaking Changes
-* Removed .NET Core 3.1 as a target framework as .NET Core 3.1 is out of support. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
+* Removed .NET Core 3.1 as a target framework as .NET Core 3.1 is out of support. Updated `Microsoft.Extensions` dependencies to version 6.0.0 and later. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
 * `AddAzureAppConfiguration` now throws errors for invalid inputs when the `optional` flag is equal to `true`. [#408](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/408)
 
 ### Enhancements
