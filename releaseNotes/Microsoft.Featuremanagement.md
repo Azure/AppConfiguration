@@ -6,18 +6,19 @@
 
 ## 3.1.0 - November 23, 2023
 
-### Changes
+### Enhancements
 
-* FeatureManager and ConfigurationFeatureDefinitionProvider are now public.
+* `FeatureManager` and `ConfigurationFeatureDefinitionProvider` are now public.
    * Enables usage of external dependency injection containers.
-   * Allows usage of feature manager without requiring dependency injection.
+   * Allows usage of `FeatureManager` without requiring dependency injection.
 
-* Alternative method `AddScopedFeatureManagement` to register the feature management services.
-   * Enables the registration of the feature manager and feature filters as scoped services.
+* Added [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) support for [additional security scenarios](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/additional-scenarios?view=aspnetcore-7.0#pass-tokens-to-a-server-side-blazor-app).
+   * Added `AddScopedFeatureManagement()` method to register the feature manager and feature filters as scoped by default.
+   * Allows usage of scoped feature filters with context provider services to mitigate the [security risk](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive-server-side-rendering?view=aspnetcore-7.0#ihttpcontextaccessorhttpcontext-in-razor-components) when using `HttpContextAccessor` in Blazor components.
 
 ### Bug Fixes
-* Preserved the behavior in 2.x.x when passing a configuration section to `AddFeatureManagement(configuration)`. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
-* Preserved the behavior in 2.x.x when there is a contextual filter specified, but there is no appropriate context provided during the feature flag evaluation. ([#313](https://github.com/microsoft/FeatureManagement-Dotnet/issues/313))
+* Fixed a bug introduced in the previous release where feature flags cannot be loaded from a custom section of configuration.
+* Fixed a bug introduced in the previous release where evaluation of a feature flag that references a contextual feature filter may throw an exception if there is no appropriate context provided during evaluation.
 
 ## 3.0.0 - October 27, 2023
 
@@ -26,7 +27,7 @@
 * Dropped netcoreapp3.1 and net5.0 target frameworks since both have reached the end of their life cycle. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
 * All feature flags must be defined in a `FeatureManagement` section within configuration. Previously flags were discovered at the top level of configuration if the `FeatureManagement` section was not defined, but this functionality has been removed. https://github.com/microsoft/FeatureManagement-Dotnet/pull/261
 
-### Changes
+### Enhancements
 
 * Built-in filters are registered by default. https://github.com/microsoft/FeatureManagement-Dotnet/pull/287
   This includes:
