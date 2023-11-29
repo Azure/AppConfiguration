@@ -3,27 +3,27 @@
 
 ### 7.0.0 - November 21, 2023
 ### Breaking Changes
-* Removed .NET Core 3.1 as a target framework as .NET Core 3.1 is out of support. Updated `Microsoft.Extensions` dependencies to version 6.0.0 and later. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
-* `AddAzureAppConfiguration` now throws errors for invalid inputs when the `optional` flag is equal to `true`. [#408](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/408)
+* `AddAzureAppConfiguration` now throws `ArgumentException` for invalid inputs even if the `optional` parameter is equal to `true`. [#318](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/318)
 
 ### Enhancements
-* This is the first stable release of the following API introduced in the 7.0.0-preview release. [#422](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/422)
+* This is the first stable release of the following API introduced in the 7.0.0-preview release. [#387](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/387)
 
    ```cs
    public AzureAppConfigurationOptions SelectSnapshot(string name)
    ```
-* Added support for the `requirement_type` property for feature flags introduced in version 2.6.0-preview of the Microsoft.FeatureManagement library. [#475](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/475)
-* The provider will now continuously retry when loading data from App Configuration on startup until either the load is successful or the timeout value in `AzureAppConfigurationOptions.StartupOptions.Timeout` has elapsed. `AzureAppConfigurationOptions.StartupOptions` can be set using the following new API. [#488](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/488)
+* Added support for the `requirement_type` property for feature flags introduced in version 2.6.0-preview of the Microsoft.FeatureManagement library. [#406](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/406)
+* The initial configuration load now uses time-based retries instead of count-based retries in case of failures. The time-based retry often works more effectively in real-world scenarios, making applications more resilient to transient errors during startup. By default, the retry timeout is set to 100 seconds in `AzureAppConfigurationOptions.StartupOptions.Timeout`, but you can customize it using the following new API. [#458](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/458)
 
    ```cs
    public AzureAppConfigurationOptions ConfigureStartupOptions(Action<StartupOptions> configure)
    ```
-
-### 7.0.0-preview.2 - August 24, 2023
-* Includes all changes made in `6.1.0`.
+* Added netstandard2.1 as a target framework. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
 
 ### 6.1.1 - October 25, 2023
 * Added improvements for request tracing.
+
+### 7.0.0-preview.2 - August 24, 2023
+* Includes all changes made in `6.1.0`.
 
 ### 6.1.0 - August 17, 2023
 * Fixed a bug where `TryRefreshAsync` could throw an `AggregateException` after a network timeout while trying to get key-values from Azure App Configuration. [#440](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/440)
