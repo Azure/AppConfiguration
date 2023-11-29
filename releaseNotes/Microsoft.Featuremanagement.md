@@ -39,7 +39,7 @@
 * Added netstandard 2.1 as a target framework in the Microsoft.FeatureManagement package. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
 * Added net7.0 as a target framework in the Microsoft.FeatureManagement.AspNetCore package. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
 
-## Bug Fixes
+### Bug Fixes
 * Prevents the usage of colon in Feature names.
 * Adjusts log level for noisy warning when feature definitions are not found.
 * Fixed an edge case in targeting if a user is allocated to exactly the 100th percentile (~1 in 2 billion chance)
