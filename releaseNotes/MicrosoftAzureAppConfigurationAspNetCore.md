@@ -2,7 +2,7 @@
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.AspNetCore)
 
 ### 7.0.0 - November 21, 2023
-* Removed .NET Core 2.1 and .NET Core 3.1 as target frameworks since both are out of support. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
+* Removed .NET Core 3.1 as a target framework as .NET Core 3.1 is out of support. [#482](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/482)
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.0.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
 ### 7.0.0-preview.2 - August 24, 2023
