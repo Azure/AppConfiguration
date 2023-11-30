@@ -4,6 +4,23 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 3.1.0 - November 23, 2023
+
+### Enhancements
+
+* `FeatureManager` and `ConfigurationFeatureDefinitionProvider` are now public. ([#126](https://github.com/microsoft/FeatureManagement-Dotnet/issues/126))
+   * Enables usage of external dependency injection containers.
+   * Allows usage of `FeatureManager` without requiring dependency injection.
+
+* Added support for server-side Blazor apps, where the following API can be used in place of the existing `AddFeatureManagement()` API. The new API registers the feature manager and feature filters as scoped services, while the existing API registers them as singletons. ([#258](https://github.com/microsoft/FeatureManagement-Dotnet/issues/258))
+  ``` C#
+  public static IFeatureManagementBuilder AddScopedFeatureManagement(this IServiceCollection services)
+  ```
+
+### Bug Fixes
+* Fixed a bug introduced in the previous release where feature flags cannot be loaded from a custom section of configuration. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
+* Fixed a bug introduced in the previous release where evaluation of a feature flag that references a contextual feature filter may throw an exception if there is no appropriate context provided during evaluation. ([#313](https://github.com/microsoft/FeatureManagement-Dotnet/issues/313))
+
 ## 3.0.0 - October 27, 2023
 
 ### Breaking Changes
@@ -11,7 +28,7 @@
 * Dropped netcoreapp3.1 and net5.0 target frameworks since both have reached the end of their life cycle. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
 * All feature flags must be defined in a `FeatureManagement` section within configuration. Previously flags were discovered at the top level of configuration if the `FeatureManagement` section was not defined, but this functionality has been removed. https://github.com/microsoft/FeatureManagement-Dotnet/pull/261
 
-### Changes
+### Enhancements
 
 * Built-in filters are registered by default. https://github.com/microsoft/FeatureManagement-Dotnet/pull/287
   This includes:
@@ -23,7 +40,7 @@
 * Added netstandard 2.1 as a target framework in the Microsoft.FeatureManagement package. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
 * Added net7.0 as a target framework in the Microsoft.FeatureManagement.AspNetCore package. https://github.com/microsoft/FeatureManagement-Dotnet/pull/267
 
-## Bug Fixes
+### Bug Fixes
 * Prevents the usage of colon in Feature names.
 * Adjusts log level for noisy warning when feature definitions are not found.
 * Fixed an edge case in targeting if a user is allocated to exactly the 100th percentile (~1 in 2 billion chance)
