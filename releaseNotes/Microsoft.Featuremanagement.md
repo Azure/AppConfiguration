@@ -12,9 +12,10 @@
    * Enables usage of external dependency injection containers.
    * Allows usage of `FeatureManager` without requiring dependency injection.
 
-* Added [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) support for [additional security scenarios](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/additional-scenarios?view=aspnetcore-7.0#pass-tokens-to-a-server-side-blazor-app).
-   * Added `AddScopedFeatureManagement()` method to register the feature manager and feature filters as scoped by default.
-   * Allows usage of scoped feature filters with context provider services to mitigate the [security risk](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive-server-side-rendering?view=aspnetcore-7.0#ihttpcontextaccessorhttpcontext-in-razor-components) when using `HttpContextAccessor` in Blazor components.
+* Added support for server-side Blazor apps, where the following API can be used in place of the existing `AddFeatureManagement()` API. The new API registers the feature manager and feature filters as scoped services, while the existing API registers them as singletons. ([#258](https://github.com/microsoft/FeatureManagement-Dotnet/issues/258))
+``` C#
+public static IFeatureManagementBuilder AddScopedFeatureManagement(this IServiceCollection services)
+```
 
 ### Bug Fixes
 * Fixed a bug introduced in the previous release where feature flags cannot be loaded from a custom section of configuration. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
