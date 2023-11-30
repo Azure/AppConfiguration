@@ -17,8 +17,8 @@
    * Allows usage of scoped feature filters with context provider services to mitigate the [security risk](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive-server-side-rendering?view=aspnetcore-7.0#ihttpcontextaccessorhttpcontext-in-razor-components) when using `HttpContextAccessor` in Blazor components.
 
 ### Bug Fixes
-* Fixed a bug introduced in the previous release where feature flags cannot be loaded from a custom section of configuration.
-* Fixed a bug introduced in the previous release where evaluation of a feature flag that references a contextual feature filter may throw an exception if there is no appropriate context provided during evaluation.
+* Fixed a bug introduced in the previous release where feature flags cannot be loaded from a custom section of configuration. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
+* Fixed a bug introduced in the previous release where evaluation of a feature flag that references a contextual feature filter may throw an exception if there is no appropriate context provided during evaluation. ([#313](https://github.com/microsoft/FeatureManagement-Dotnet/issues/313))
 
 ## 3.0.0 - October 27, 2023
 
