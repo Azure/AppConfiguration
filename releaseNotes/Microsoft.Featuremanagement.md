@@ -13,9 +13,9 @@
    * Allows usage of `FeatureManager` without requiring dependency injection.
 
 * Added support for server-side Blazor apps, where the following API can be used in place of the existing `AddFeatureManagement()` API. The new API registers the feature manager and feature filters as scoped services, while the existing API registers them as singletons. ([#258](https://github.com/microsoft/FeatureManagement-Dotnet/issues/258))
-``` C#
-public static IFeatureManagementBuilder AddScopedFeatureManagement(this IServiceCollection services)
-```
+  ``` C#
+  public static IFeatureManagementBuilder AddScopedFeatureManagement(this IServiceCollection services)
+  ```
 
 ### Bug Fixes
 * Fixed a bug introduced in the previous release where feature flags cannot be loaded from a custom section of configuration. ([#308](https://github.com/microsoft/FeatureManagement-Dotnet/issues/308))
