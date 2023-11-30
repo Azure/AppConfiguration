@@ -8,7 +8,7 @@
 
 ### Enhancements
 
-* `FeatureManager` and `ConfigurationFeatureDefinitionProvider` are now public.
+* `FeatureManager` and `ConfigurationFeatureDefinitionProvider` are now public. ([#126](https://github.com/microsoft/FeatureManagement-Dotnet/issues/126))
    * Enables usage of external dependency injection containers.
    * Allows usage of `FeatureManager` without requiring dependency injection.
 
