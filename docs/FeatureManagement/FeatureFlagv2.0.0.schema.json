@@ -200,7 +200,7 @@
             "default_when_disabled": {
                 "$id": "#/properties/allocation/properties/default_when_disabled",
                 "type": "string",
-                "title": "Default When Disabled",
+                "title": "Variant Allocation Default When Disabled",
                 "description": "Specifies which variant should be used when a variant is requested while the feature is considered disabled.",
                 "default": "",
                 "pattern": "^(.*)$"
@@ -208,7 +208,7 @@
             "default_when_enabled": {
                 "$id": "#/properties/allocation/properties/default_when_enabled",
                 "type": "string",
-                "title": "Default When Enabled",
+                "title": "Variant Allocation Default When Enabled",
                 "description": "Specifies which variant should be used when a variant is requested while the feature is considered enabled and no other variant was allocated to the user.",
                 "default": "",
                 "pattern": "^(.*)$"
