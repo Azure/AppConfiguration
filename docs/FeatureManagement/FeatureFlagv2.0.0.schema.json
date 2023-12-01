@@ -227,20 +227,87 @@
                             "$id": "#/properties/allocation/properties/user/items/properties/users",
                             "type": "array",
                             "title": "User Allocation Users Collection",
-                            "description": "The name of the variant to use if the user allocation matches the current user.",
+                            "description": "Collection of users where if any match the current user, the variant specified in the user allocation is used.",
                             "items": {
                                 "type": "string"
                             }
                         }
                     }
                 }
-
             },
             "group": {
-                
+                "$id": "#/properties/allocation/properties/group",
+                "type": "array",
+                "title": "Group Allocation Collection",
+                "description": "A list of objects each containing a variant name and list of groups for which that variant should be used.",
+                "items": {
+                    "$id": "#/properties/allocation/properties/group/items",
+                    "type": "object",
+                    "title": "Group Allocation",
+                    "required": [
+                        "variant",
+                        "groups"
+                    ],
+                    "properties": {
+                        "variant": {
+                            "$id": "#/properties/allocation/properties/group/items/properties/variant",
+                            "type": "string",
+                            "title": "Group Allocation Variant",
+                            "description": "The name of the variant to use if the group allocation matches a group the current user is in.",
+                            "default": "",
+                            "pattern": "^(.*)$"
+                        },
+                        "groups": {
+                            "$id": "#/properties/allocation/properties/group/items/properties/groups",
+                            "type": "array",
+                            "title": "Group Allocation Groups Collection",
+                            "description": "Collection of groups where if the current user is in any of these groups, the variant specified in the group allocation is used.",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
             },
             "percentile": {
-                
+                "$id": "#/properties/allocation/properties/percentile",
+                "type": "array",
+                "title": "Percentile Allocation Collection",
+                "description": "A list of objects each containing a variant name and percentage range for which that variant should be used.",
+                "items": {
+                    "$id": "#/properties/allocation/properties/percentile/items",
+                    "type": "object",
+                    "title": "Percentile Allocation",
+                    "required": [
+                        "variant",
+                        "from",
+                        "to"
+                    ],
+                    "properties": {
+                        "variant": {
+                            "$id": "#/properties/allocation/properties/percentile/items/properties/variant",
+                            "type": "string",
+                            "title": "Percentile Allocation Variant",
+                            "description": "The name of the variant to use if the calculated percentage for the current user falls in the provided range.",
+                            "default": "",
+                            "pattern": "^(.*)$"
+                        },
+                        "from": {
+                            "$id": "#/properties/allocation/properties/percentile/items/properties/from",
+                            "type": "number",
+                            "title": "Percentile Allocation From",
+                            "description": "",
+                            "default": 0
+                        },
+                        "to": {
+                            "$id": "#/properties/allocation/properties/percentile/items/properties/to",
+                            "type": "number",
+                            "title": "Percentile Allocation To",
+                            "description": "",
+                            "default": 100
+                        }
+                    }
+                }
             },
             "seed": {
                 
