@@ -49,6 +49,17 @@
         "description": "A feature is OFF if enabled is false. If enabled is true, then the feature is ON if there are no conditions (null or empty) or if all conditions are satisfied.",
         "default": false
       },
+      "status": {
+        "$id": "#/properties/status",
+        "type": "string",
+        "title": "Feature Status",
+        "description": "Describes how the feature's enabled state is evaluated. When equal to Conditional, the state is conditional upon feature evaluation. When equal to Disabled, the feature will always be considered disabled.",
+        "enum": [
+          "Conditional",
+          "Disabled"
+        ],
+        "default": "Conditional"
+      },
       "conditions": {
         "$id": "#/properties/conditions",
         "type": "object",
@@ -168,7 +179,7 @@
                     "$id": "#/properties/variants/items/properties/status_override",
                     "type": "string",
                     "title": "Variant Status Override",
-                    "description": "Overrides the enabled state of the feature according to this value. Does not override the state if value is None.",
+                    "description": "Overrides the enabled state of the feature according to this value when this variant is used. Does not override the state if value is None.",
                     "enum": [
                         "None",
                         "Enabled",
