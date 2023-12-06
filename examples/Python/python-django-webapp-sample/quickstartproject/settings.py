@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-from pathlib import Path
 import configparser
-from azure.appconfiguration.provider import load, SettingSelector, SentinelKey
+from pathlib import Path
+from azure.appconfiguration.provider import load, SettingSelector, WatchKey
 from azure.identity import DefaultAzureCredential
 
 c_parser = configparser.ConfigParser()
@@ -30,17 +30,25 @@ credential = DefaultAzureCredential()
 # Select only key-values that start with 'testapp_settings_' and trim the prefix
 selects = SettingSelector(key_filter="testapp_settings_*")
 selects_secret = SettingSelector(key_filter="secret_key")
-AZURE_APPCONFIGURATION = load(endpoint=ENDPOINT,
-              keyvault_credential=credential,
-              credential=credential,
-              selects=[selects, selects_secret],
-              trim_prefixes=["testapp_settings_"],
-              refresh_on=[SentinelKey("sentinel")]
-              )
+
+def callback():
+    # Update Django settings with the app configuration key-values
+    CONFIG.update(AZURE_APP_CONFIG)
+
+AZURE_APP_CONFIG = load(endpoint=ENDPOINT,
+                           selects=[selects, selects_secret],
+                           credential=credential,
+                           keyvault_credential=credential,
+                           trim_prefixes=["testapp_settings_"],
+                           refresh_on=[WatchKey("sentinel")],
+                           on_refresh_success=callback,
+                     )
+
+
 
 # Updates the config object with the app configuration key-values and resolved key vault reference values.
 # This will override any values in the config object with the same key.
-CONFIG.update(AZURE_APPCONFIGURATION)
+CONFIG.update(AZURE_APP_CONFIG)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

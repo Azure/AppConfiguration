@@ -1,7 +1,7 @@
 import os
 import asyncio
 from flask import Flask, render_template
-from azure.appconfiguration.provider import SettingSelector, SentinelKey
+from azure.appconfiguration.provider import SettingSelector, WatchKey
 from azure.appconfiguration.provider.aio import load
 from azure.identity import DefaultAzureCredential
 
@@ -14,13 +14,18 @@ selects_secret = SettingSelector(key_filter="secret_key")
 
 azure_app_config = None  # declare azure_app_config as a global variable
 
+def callback():
+   app.config.update(azure_app_config)
+
 async def load_config():
    global azure_app_config
    async with await load(endpoint=ENDPOINT,
                            selects=[selects, selects_secret],
                            credential=credential,
+                           keyvault_credential=credential,
                            trim_prefixes=["testapp_settings_"],
-                           refresh_on=[SentinelKey("sentinel")],
+                           refresh_on=[WatchKey("sentinel")],
+                           on_refresh_success=callback,
                      ) as config:
       azure_app_config = config
 
@@ -35,11 +40,7 @@ asyncio.run(load_config())
 async def index():
    global azure_app_config
    # Refresh the configuration from App Configuration service.
-   refresh = asyncio.get_event_loop().create_task(azure_app_config.refresh())
-
-   # Update Flask config mapping with loaded values in the App Configuration provider.
-   refresh.add_done_callback(lambda t: app.config.update(azure_app_config))
-   await refresh
+   azure_app_config.refresh()
 
    print('Request for index page received')
    context = {}
