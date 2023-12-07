@@ -2,6 +2,12 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.1.0 - xx xx, 2023
+
+### Enhancements
+* Added the `auth.workloadIdentity.managedIdentityClientIdReference` property for getting managedIdentityClientId from ConfigMap. [#812](https://github.com/Azure/AppConfiguration/issues/812)
+* Added the `configMapData.separator` property for hierarchical format ConfigMap data. [#834](https://github.com/Azure/AppConfiguration/issues/834)
+
 ## 1.0.0 - November 15, 2023
 
 **Release of the stable API version `v1`**.
