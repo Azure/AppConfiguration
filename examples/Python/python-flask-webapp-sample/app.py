@@ -15,19 +15,19 @@ selects_secret = SettingSelector(key_filter="secret_key")
 azure_app_config = None  # declare azure_app_config as a global variable
 
 def callback():
-   app.config.update(azure_app_config)
+    app.config.update(azure_app_config)
 
 async def load_config():
-   global azure_app_config
-   async with await load(endpoint=ENDPOINT,
+    global azure_app_config
+    azure_app_config = await load(endpoint=ENDPOINT,
                            selects=[selects, selects_secret],
                            credential=credential,
                            keyvault_credential=credential,
                            trim_prefixes=["testapp_settings_"],
                            refresh_on=[WatchKey("sentinel")],
                            on_refresh_success=callback,
-                     ) as config:
-      azure_app_config = config
+                     )
+    app.config.update(azure_app_config)
 
 asyncio.run(load_config())
 
@@ -36,7 +36,7 @@ asyncio.run(load_config())
 async def index():
     global azure_app_config
     # Refresh the configuration from App Configuration service.
-    azure_app_config.refresh()
+    await azure_app_config.refresh()
 
     print("Request for index page received")
     context = {}
