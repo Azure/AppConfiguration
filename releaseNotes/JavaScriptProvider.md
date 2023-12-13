@@ -3,11 +3,11 @@
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
 ## 1.0.0-preview.1 - October 24, 2023
-### Fixed
-- Updated version of @azure/identity to 3.3.2, for [CVE-2023-36415](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36415)
+### Bug fixes
+- Updated version of @azure/identity to 3.3.2, fixing security issue [CVE-2023-36415](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36415)
 
 ## 1.0.0-preview - October 11, 2023
-### Added
+### Enhancements
 - Added basic features for loading settings from configuration stores. [#1](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/1)
   - Support authentication with connection string or AAD.
   - Select settings with key/label filters.
