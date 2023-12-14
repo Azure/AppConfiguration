@@ -4,6 +4,11 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 3.1.1 - December 13, 2023
+
+### Bug Fix
+* Fixed a bug where feature manager will fail to add cache entry if the shared memory cache sets `SizeLimit`. ([#325](https://github.com/microsoft/FeatureManagement-Dotnet/issues/325)) 
+
 ## 3.1.0 - November 23, 2023
 
 ### Enhancements
