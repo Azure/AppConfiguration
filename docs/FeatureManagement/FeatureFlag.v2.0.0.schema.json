@@ -328,7 +328,7 @@
         "$id": "#/properties/telemetry_enabled",
         "type": "boolean",
         "title": "Feature Telemetry Enabled State",
-        "description": "A flag to enable or disable sending telemetry events.",
+        "description": "A flag to enable or disable sending telemetry.",
         "default": false
       },
       "telemetry_metadata": {
