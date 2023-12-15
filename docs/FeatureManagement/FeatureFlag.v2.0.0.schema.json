@@ -6,8 +6,7 @@
     "title": "An Azure App Configuration Feature Declaration",
     "required": [
       "id",
-      "enabled",
-      "conditions"
+      "enabled"
     ],
     "properties": {
       "id": {
@@ -46,7 +45,7 @@
         "$id": "#/properties/enabled",
         "type": "boolean",
         "title": "Enabled State",
-        "description": "A feature is OFF if enabled is false. If enabled is true, then the feature is ON if there are no conditions (null or empty) or if all conditions are satisfied.",
+        "description": "A feature is OFF if enabled is false. If enabled is true, then the feature is ON if there are no conditions (null or empty) or if the conditions are satisfied.",
         "default": false
       },
       "status": {
@@ -158,21 +157,20 @@
                     "type": "string",
                     "title": "Variant Name",
                     "description": "The name used to refer to a feature variant.",
-                    "default": "",
                     "pattern": "^(.*)$"
                 },
                 "configuration_value": {
                     "$id": "#/properties/variants/items/properties/configuration_value",
                     "type": ["string", "null", "number", "object", "array", "boolean"],
                     "title": "Variant Configuration Value",
-                    "description": "The inline value set for this feature variant."
+                    "description": "The inline value set for this feature variant.",
+                    "default": null
                 },
                 "configuration_reference": {
                     "$id": "#/properties/variants/items/properties/configuration_reference",
                     "type": "string",
                     "title": "Variant Configuration Reference",
                     "description": "The string used to reference a path in the configuration and set the variant's value equal to the value at that path.",
-                    "default": "",
                     "pattern": "^[a-zA-Z0-9]+(:[a-zA-Z0-9]+)*$"
                 },
                 "status_override": {
@@ -201,7 +199,7 @@
                 "$id": "#/properties/allocation/properties/default_when_disabled",
                 "type": "string",
                 "title": "Variant Allocation Default When Disabled",
-                "description": "Specifies which variant should be used when a variant is requested while the feature is considered disabled.",
+                "description": "Specifies which variant should be used when the feature is considered disabled.",
                 "default": "",
                 "pattern": "^(.*)$"
             },
@@ -209,7 +207,7 @@
                 "$id": "#/properties/allocation/properties/default_when_enabled",
                 "type": "string",
                 "title": "Variant Allocation Default When Enabled",
-                "description": "Specifies which variant should be used when a variant is requested while the feature is considered enabled and no other variant was allocated to the user.",
+                "description": "Specifies which variant should be used when the feature is considered enabled and no other allocation rules are applicable.",
                 "default": "",
                 "pattern": "^(.*)$"
             },
@@ -232,7 +230,6 @@
                             "type": "string",
                             "title": "User Allocation Variant",
                             "description": "The name of the variant to use if the user allocation matches the current user.",
-                            "default": "",
                             "pattern": "^(.*)$"
                         },
                         "users": {
@@ -266,7 +263,6 @@
                             "type": "string",
                             "title": "Group Allocation Variant",
                             "description": "The name of the variant to use if the group allocation matches a group the current user is in.",
-                            "default": "",
                             "pattern": "^(.*)$"
                         },
                         "groups": {
@@ -300,23 +296,20 @@
                             "$id": "#/properties/allocation/properties/percentile/items/properties/variant",
                             "type": "string",
                             "title": "Percentile Allocation Variant",
-                            "description": "The name of the variant to use if the calculated percentage for the current user falls in the provided range.",
-                            "default": "",
+                            "description": "The name of the variant to use if the calculated percentile for the current user falls in the provided range.",
                             "pattern": "^(.*)$"
                         },
                         "from": {
                             "$id": "#/properties/allocation/properties/percentile/items/properties/from",
                             "type": "number",
                             "title": "Percentile Allocation From",
-                            "description": "The lower end of the percentage range for which this variant will be used.",
-                            "default": 0
+                            "description": "The lower end of the percentage range for which this variant will be used."
                         },
                         "to": {
                             "$id": "#/properties/allocation/properties/percentile/items/properties/to",
                             "type": "number",
                             "title": "Percentile Allocation To",
-                            "description": "The upper end of the percentage range for which this variant will be used.",
-                            "default": 100
+                            "description": "The upper end of the percentage range for which this variant will be used."
                         }
                     }
                 }
@@ -325,7 +318,7 @@
                 "$id": "#/properties/allocation/properties/seed",
                 "type": "string",
                 "title": "Percentile Allocation Seed",
-                "description": "The value which percentile calculations are based on. Calculated percentages are consistent across features if the user and seed are consistent.",
+                "description": "The value which percentile calculations are based on. Calculated percentiles are consistent across features if the user and seed are consistent.",
                 "default": "",
                 "pattern": "^(.*)$"
             }
