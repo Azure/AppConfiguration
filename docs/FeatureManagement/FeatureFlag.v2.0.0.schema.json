@@ -215,7 +215,7 @@
                 "$id": "#/properties/allocation/properties/user",
                 "type": "array",
                 "title": "User Allocation Collection",
-                "description": "A list of objects each containing a variant name and list of users for which that variant should be used.",
+                "description": "A list of objects, each containing a variant name and list of users for whom that variant should be used.",
                 "items": {
                     "$id": "#/properties/allocation/properties/user/items",
                     "type": "object",
@@ -248,7 +248,7 @@
                 "$id": "#/properties/allocation/properties/group",
                 "type": "array",
                 "title": "Group Allocation Collection",
-                "description": "A list of objects each containing a variant name and list of groups for which that variant should be used.",
+                "description": "A list of objects, each containing a variant name and list of groups for which that variant should be used.",
                 "items": {
                     "$id": "#/properties/allocation/properties/group/items",
                     "type": "object",
@@ -281,7 +281,7 @@
                 "$id": "#/properties/allocation/properties/percentile",
                 "type": "array",
                 "title": "Percentile Allocation Collection",
-                "description": "A list of objects each containing a variant name and percentage range for which that variant should be used.",
+                "description": "A list of objects, each containing a variant name and percentage range for which that variant should be used.",
                 "items": {
                     "$id": "#/properties/allocation/properties/percentile/items",
                     "type": "object",
