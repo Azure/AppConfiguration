@@ -7,14 +7,12 @@
 - The label filter in a selector is restricted to a single label. An error will be thrown if a label filter contains `*` or `,`. This change is to avoid the ambiguity when multiple values are loaded for the same key. Key-values with different labels can still be loaded using separate selectors for proper configuration composition. [#22](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/22)
 
 ### Bug Fixes
-- Fixed wrong precedence of selectors after deduplication. [#31](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/31)
-- Fixed type mismatch for `ConfigurationSettingId.label` by updating @azure/app-configuration to 1.5.0. [Azure/azure-sdk-for-js#27607](https://github.com/Azure/azure-sdk-for-js/issues/27607)
-- Fixed retry logic when host of configuration store cannot be resolved, by updating @azure/core-rest-pipeline to 1.12.2. [Azure/azure-sdk-for-js#27037](https://github.com/Azure/azure-sdk-for-js/issues/27037)
-
+- When multiple selectors are provided, the last one takes precedence. If there are selectors with the same key filter and label filter, they are deduplicated. This change ensures that the original selector precedence is maintained as provided. [#23](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/23)
+- Updated the reference of `@azure/core-rest-pipeline` to `1.12.2`, addressing [Azure/azure-sdk-for-js#27037](https://github.com/Azure/azure-sdk-for-js/issues/27037). When it fails resolving the given endpoint, the underlying JavaScript SDK now retries before throwing an error.
 
 ## 1.0.0-preview.1 - October 24, 2023
 ### Bug fixes
-- Updated the reference of `@azure/identity` to `3.3.2``, addressing [CVE-2023-36415](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36415)
+- Updated the reference of `@azure/identity` to `3.3.2`, addressing [CVE-2023-36415](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36415)
 
 ## 1.0.0-preview - October 11, 2023
 Added support for
