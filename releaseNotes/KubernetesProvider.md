@@ -6,14 +6,10 @@
 
 ### Enhancements
 * Added the `auth.workloadIdentity.managedIdentityClientIdReference` property for workloadIdentity authentication. It enables the retrieval of the client ID of a user-assigned managed identity from a ConfigMap. [#812](https://github.com/Azure/AppConfiguration/issues/812)
-    ```
-    auth:
-      workloadIdentity:
-        managedIdentityClientIdReference:  
-          configMap: configmap-contains-managed-identity-client-id
-          key: key-of-managed-identity-client-id
-    ```
-* Added the `configMapData.separator` property for generating hierarchical format of json/yaml type ConfigMap data. It defaults to empty and should be configured only if the configuration file loader used in your application can't load key-values without converting them to the hierarchical format. [#834](https://github.com/Azure/AppConfiguration/issues/834)
+* Added support for outputting the ConfigMap data in hierarchical format by specifying the new property `configMapData.separator` if the ConfigMap is consumed as a mounted file. This feature is useful if the configuration file loader used in your application can't load keys without converting them to the hierarchical format. [#834](https://github.com/Azure/AppConfiguration/issues/834)
+
+### Bug fixes
+* Fixed `nil pointer deference` error when a key-value is pulled from App Configuration that has a `null` value. [#848](https://github.com/Azure/AppConfiguration/issues/848)
 
 ## 1.0.0 - November 15, 2023
 
