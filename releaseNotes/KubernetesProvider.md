@@ -9,7 +9,7 @@
 * Added support for outputting the ConfigMap data in hierarchical format by specifying the new property `configMapData.separator` if the ConfigMap is consumed as a mounted file. This feature is useful if the configuration file loader used in your application can't load keys without converting them to the hierarchical format. [#834](https://github.com/Azure/AppConfiguration/issues/834)
 
 ### Bug fixes
-* Fixed `nil pointer deference` error when a key-value is pulled from App Configuration that has a `null` value. [#848](https://github.com/Azure/AppConfiguration/issues/848)
+* Fixed a bug that may cause the Kubernetes provider to crash with an `invalid memory address or nil pointer dereference` error when a key-value pulled from App Configuration has a `null` value. [#848](https://github.com/Azure/AppConfiguration/issues/848)
 
 ## 1.0.0 - November 15, 2023
 
