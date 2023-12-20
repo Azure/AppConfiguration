@@ -8,7 +8,7 @@
 
 ### Bug Fixes
 - When multiple selectors are provided, the last one takes precedence. If there are selectors with the same key filter and label filter, they are deduplicated. This change ensures that the original selector precedence is maintained as provided. [#23](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/23)
-- Updated the reference of `@azure/core-rest-pipeline` to `1.12.2`, addressing [Azure/azure-sdk-for-js#27037](https://github.com/Azure/azure-sdk-for-js/issues/27037). When it fails resolving the given endpoint, the underlying JavaScript SDK now retries before throwing an error.
+- Updated the reference of `@azure/core-rest-pipeline` to `1.12.2`, which added retry for DNS resolution of App Configuration endpoints. [Azure/azure-sdk-for-js#27037](https://github.com/Azure/azure-sdk-for-js/issues/27037)
 
 ## 1.0.0-preview.1 - October 24, 2023
 ### Bug fixes
