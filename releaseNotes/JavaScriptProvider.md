@@ -5,9 +5,9 @@
 ## 1.0.0-preview.2 - December 15, 2023
 ### Breaking Changes
 - The label filter in a selector is restricted to a single label. An error will be thrown if a label filter contains `*` or `,`. This change is to avoid the ambiguity when multiple values are loaded for the same key. Key-values with different labels can still be loaded using separate selectors for proper configuration composition. [#22](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/22)
+- Fixed a bug where the last selector may not take precedence if multiple selectors with the same key and label filters are provided. After applying the fix, the resulting configuration of an application may change. To ensure the intended configuration composition, remove any duplicated selectors.[#23](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/23)
 
 ### Bug Fixes
-- When multiple selectors are provided, the last one takes precedence. If there are selectors with the same key filter and label filter, they are deduplicated. This change ensures that the original selector precedence is maintained as provided. [#23](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/23)
 - Updated the reference of `@azure/core-rest-pipeline` to `1.12.2`, which added retry for DNS resolution of App Configuration endpoints. [Azure/azure-sdk-for-js#27037](https://github.com/Azure/azure-sdk-for-js/issues/27037)
 
 ## 1.0.0-preview.1 - October 24, 2023
