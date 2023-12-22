@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.1.0 - xx xx, 2023
+## 1.1.0 - December 22, 2023
 
 ### Enhancements
 * Added the `auth.workloadIdentity.managedIdentityClientIdReference` property for workloadIdentity authentication. It enables the retrieval of the client ID of a user-assigned managed identity from a ConfigMap. [#812](https://github.com/Azure/AppConfiguration/issues/812)
