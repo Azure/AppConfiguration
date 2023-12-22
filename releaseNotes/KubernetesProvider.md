@@ -2,6 +2,15 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.1.0 - December 22, 2023
+
+### Enhancements
+* Added the `auth.workloadIdentity.managedIdentityClientIdReference` property for workloadIdentity authentication. It enables the retrieval of the client ID of a user-assigned managed identity from a ConfigMap. [#812](https://github.com/Azure/AppConfiguration/issues/812)
+* Added support for outputting the ConfigMap data in hierarchical format by specifying the new property `configMapData.separator` if the ConfigMap is consumed as a mounted file. This feature is useful if the configuration file loader used in your application can't load keys without converting them to the hierarchical format. [#834](https://github.com/Azure/AppConfiguration/issues/834)
+
+### Bug fixes
+* Fixed a bug that may cause the Kubernetes provider to crash with an `invalid memory address or nil pointer dereference` error when a key-value pulled from App Configuration has a `null` value. [#848](https://github.com/Azure/AppConfiguration/issues/848)
+
 ## 1.0.0 - November 15, 2023
 
 **Release of the stable API version `v1`**.
