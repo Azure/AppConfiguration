@@ -51,7 +51,7 @@
       "$id": "#/properties/conditions",
       "type": "object",
       "title": "Feature Enablement Conditions",
-      "description": "The declaration of conditions used to dynamically enable features.",
+      "description": "The declaration of conditions used to dynamically enable the feature",
       "required": [],
       "properties": {
         "requirement_type": {
@@ -82,8 +82,7 @@
                 "$id": "#/properties/conditions/properties/client_filters/items/properties/name",
                 "type": "string",
                 "title": "Client Filter Name",
-                "description": "The name used to refer to and require a client filter.",
-                "default": "",
+                "description": "The name used to refer to a client filter.",
                 "examples": [
                   "Percentage",
                   "TimeWindow"
@@ -94,7 +93,7 @@
                 "$id": "#/properties/conditions/properties/client_filters/items/properties/parameters",
                 "type": "object",
                 "title": "Client Filter Parameters",
-                "description": "Custom parameters for a given client filter. A client filter can require any set of parameters of any type.",
+                "description": "Parameters for a given client filter. A client filter can require any set of parameters of any type.",
                 "required": [],
                 "patternProperties": {
                   "^.*$": {
@@ -130,8 +129,8 @@
     "variants": {
       "$id": "#/properties/variants",
       "type": "array",
-      "title": "Variants Collection",
-      "description": "The list of variants defined for this feature. A variant represents a value of a feature flag that can be a string, a number, a boolean, or even a configuration object.",
+      "title": "Variant Collection",
+      "description": "The list of variants defined for this feature. A variant represents a configuration value of a feature flag that can be a string, a number, a boolean, or even a configuration object.",
       "items": {
           "$id": "#/properties/variants/items",
           "type": "object",
@@ -151,21 +150,21 @@
                   "$id": "#/properties/variants/items/properties/configuration_value",
                   "type": ["string", "null", "number", "object", "array", "boolean"],
                   "title": "Variant Configuration Value",
-                  "description": "The inline value set for this feature variant.",
+                  "description": "The configuration value for this feature variant.",
                   "default": null
               },
               "configuration_reference": {
                   "$id": "#/properties/variants/items/properties/configuration_reference",
                   "type": "string",
                   "title": "Variant Configuration Reference",
-                  "description": "The string used to reference a path in the configuration and set the variant's value equal to the value at that path.",
+                  "description": "The path to a configuration section used as the configuration value for this feature variant.",
                   "pattern": "^[a-zA-Z0-9]+(:[a-zA-Z0-9]+)*$"
               },
               "status_override": {
                   "$id": "#/properties/variants/items/properties/status_override",
                   "type": "string",
                   "title": "Variant Status Override",
-                  "description": "Overrides the enabled state of the feature according to this value when this variant is used. Does not override the state if value is None.",
+                  "description": "Overrides the enabled state of the feature if the given variant is assigned. Does not override the state if value is None.",
                   "enum": [
                       "None",
                       "Enabled",
@@ -186,7 +185,7 @@
           "default_when_disabled": {
               "$id": "#/properties/allocation/properties/default_when_disabled",
               "type": "string",
-              "title": "Variant Allocation Default When Disabled",
+              "title": "Default Variant Allocation When Disabled",
               "description": "Specifies which variant should be used when the feature is considered disabled.",
               "default": "",
               "pattern": "^(.*)$"
@@ -194,7 +193,7 @@
           "default_when_enabled": {
               "$id": "#/properties/allocation/properties/default_when_enabled",
               "type": "string",
-              "title": "Variant Allocation Default When Enabled",
+              "title": "Default Variant Allocation When Enabled",
               "description": "Specifies which variant should be used when the feature is considered enabled and no other allocation rules are applicable.",
               "default": "",
               "pattern": "^(.*)$"
@@ -291,13 +290,17 @@
                           "$id": "#/properties/allocation/properties/percentile/items/properties/from",
                           "type": "number",
                           "title": "Percentile Allocation From",
-                          "description": "The lower end of the percentage range for which this variant will be used."
+                          "description": "The lower end of the percentage range for which this variant will be used.",
+                          "minimum": 0,
+                          "maximum": 100
                       },
                       "to": {
                           "$id": "#/properties/allocation/properties/percentile/items/properties/to",
                           "type": "number",
                           "title": "Percentile Allocation To",
-                          "description": "The upper end of the percentage range for which this variant will be used."
+                          "description": "The upper end of the percentage range for which this variant will be used.",
+                          "minimum": 0,
+                          "maximum": 100
                       }
                   }
               }
@@ -306,7 +309,7 @@
               "$id": "#/properties/allocation/properties/seed",
               "type": "string",
               "title": "Percentile Allocation Seed",
-              "description": "The value which percentile calculations are based on. Calculated percentiles are consistent across features if the user and seed are consistent.",
+              "description": "The value percentile calculations are based on. The calculated percentile is consistent across features for a given user if the same nonempty seed is used.",
               "default": "",
               "pattern": "^(.*)$"
           }
@@ -315,7 +318,7 @@
     "telemetry": {
       "$id": "#/properties/telemetry",
       "type": "object",
-      "title": "Feature Telemetry Options",
+      "title": "Telemetry Options",
       "description": "The declaration of options used to configure telemetry for this feature.",
       "required": [],
       "properties": {
@@ -323,14 +326,14 @@
           "$id": "#/properties/telemetry/properties/enabled",
           "type": "boolean",
           "title": "Telemetry Enabled State",
-          "description": "A flag to enable or disable sending telemetry.",
+          "description": "Indicates if telemetry is enabled.",
           "default": false
         },
         "metadata": {
           "$id": "#/properties/telemetry/properties/metadata",
           "type": "object",
           "title": "Telemetry Metadata",
-          "description": "A container for metadata relevant to telemetry.",
+          "description": "A container for metadata that should be bundled with flag telemetry.",
           "required": [],
           "patternProperties": {
               "^.*$": {
