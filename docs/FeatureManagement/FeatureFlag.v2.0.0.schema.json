@@ -130,7 +130,7 @@
       "$id": "#/properties/variants",
       "type": "array",
       "title": "Variant Collection",
-      "description": "The list of variants defined for this feature. A variant represents a configuration value of a feature flag that can be a string, a number, a boolean, or even a configuration object.",
+      "description": "The list of variants defined for this feature. A variant represents a configuration value of a feature flag that can be a string, a number, a boolean, or a configuration object.",
       "items": {
           "$id": "#/properties/variants/items",
           "type": "object",
