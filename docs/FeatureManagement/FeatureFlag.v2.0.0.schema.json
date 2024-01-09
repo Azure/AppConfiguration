@@ -1,0 +1,348 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/FeatureManagement/v2.0.0/FeatureFlag.json",
+  "type": "object",
+  "title": "An Azure App Configuration Feature Declaration",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "Feature ID",
+      "description": "An ID used to uniquely identify and reference the feature.",
+      "examples": [
+        "fancy-background"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "Feature Description",
+      "description": "A description of the feature.",
+      "default": "",
+      "examples": [
+        "This will display a fancy background on the home page."
+      ],
+      "pattern": "^[a-zA-Z0-9_\\-\\.]*$"
+    },
+    "display_name": {
+      "$id": "#/properties/display_name",
+      "type": "string",
+      "title": "Feature Display Name",
+      "description": "A display name for the feature to use for display rather than the ID.",
+      "default": "",
+      "examples": [
+        "Fancy Background"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "enabled": {
+      "$id": "#/properties/enabled",
+      "type": "boolean",
+      "title": "Enabled State",
+      "description": "A feature is OFF if enabled is false. If enabled is true, then the feature is ON if there are no conditions (null or empty) or if the conditions are satisfied.",
+      "default": false
+    },
+    "conditions": {
+      "$id": "#/properties/conditions",
+      "type": "object",
+      "title": "Feature Enablement Conditions",
+      "description": "The declaration of conditions used to dynamically enable the feature",
+      "required": [],
+      "properties": {
+        "requirement_type": {
+          "$id": "#/properties/conditions/properties/requirement_type",
+          "type": "string",
+          "title": "Requirement Type",
+          "description": "Determines whether any or all registered client filters must be enabled for the feature to be considered enabled.",
+          "enum": [
+            "Any",
+            "All"
+          ],
+          "default": "Any"
+        },
+        "client_filters": {
+          "$id": "#/properties/conditions/properties/client_filters",
+          "type": "array",
+          "title": "Client Filter Collection",
+          "description": "Filters that must run on the client and be evaluated as true for the feature to be considered enabled.",
+          "items": {
+            "$id": "#/properties/conditions/properties/client_filters/items",
+            "type": "object",
+            "title": "Client Filter",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "$id": "#/properties/conditions/properties/client_filters/items/properties/name",
+                "type": "string",
+                "title": "Client Filter Name",
+                "description": "The name used to refer to a client filter.",
+                "examples": [
+                  "Percentage",
+                  "TimeWindow"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "parameters": {
+                "$id": "#/properties/conditions/properties/client_filters/items/properties/parameters",
+                "type": "object",
+                "title": "Client Filter Parameters",
+                "description": "Parameters for a given client filter. A client filter can require any set of parameters of any type.",
+                "required": [],
+                "patternProperties": {
+                  "^.*$": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "array"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "variants": {
+      "$id": "#/properties/variants",
+      "type": "array",
+      "title": "Variant Collection",
+      "description": "The list of variants defined for this feature. A variant represents a configuration value of a feature flag that can be a string, a number, a boolean, or a JSON object.",
+      "items": {
+          "$id": "#/properties/variants/items",
+          "type": "object",
+          "title": "Variant",
+          "required": [
+              "name"
+          ],
+          "properties":{
+              "name": {
+                  "$id": "#/properties/variants/items/properties/name",
+                  "type": "string",
+                  "title": "Variant Name",
+                  "description": "The name used to refer to a feature variant.",
+                  "pattern": "^(.*)$"
+              },
+              "configuration_value": {
+                  "$id": "#/properties/variants/items/properties/configuration_value",
+                  "type": ["string", "null", "number", "object", "array", "boolean"],
+                  "title": "Variant Configuration Value",
+                  "description": "The configuration value for this feature variant.",
+                  "default": null
+              },
+              "configuration_reference": {
+                  "$id": "#/properties/variants/items/properties/configuration_reference",
+                  "type": "string",
+                  "title": "Variant Configuration Reference",
+                  "description": "The path to a configuration section used as the configuration value for this feature variant.",
+                  "pattern": "^[a-zA-Z0-9]+(:[a-zA-Z0-9]+)*$"
+              },
+              "status_override": {
+                  "$id": "#/properties/variants/items/properties/status_override",
+                  "type": "string",
+                  "title": "Variant Status Override",
+                  "description": "Overrides the enabled state of the feature if the given variant is assigned. Does not override the state if value is None.",
+                  "enum": [
+                      "None",
+                      "Enabled",
+                      "Disabled"
+                  ],
+                  "default": "None"
+              }
+          }
+      }
+    },
+    "allocation": {
+      "$id": "#/properties/allocation",
+      "type": "object",
+      "title": "Variant Allocation",
+      "description": "Determines how variants should be allocated for the feature to various users.",
+      "required": [],
+      "properties": {
+          "default_when_disabled": {
+              "$id": "#/properties/allocation/properties/default_when_disabled",
+              "type": "string",
+              "title": "Default Variant Allocation When Disabled",
+              "description": "Specifies which variant should be used when the feature is considered disabled.",
+              "default": "",
+              "pattern": "^(.*)$"
+          },
+          "default_when_enabled": {
+              "$id": "#/properties/allocation/properties/default_when_enabled",
+              "type": "string",
+              "title": "Default Variant Allocation When Enabled",
+              "description": "Specifies which variant should be used when the feature is considered enabled and no other allocation rules are applicable.",
+              "default": "",
+              "pattern": "^(.*)$"
+          },
+          "user": {
+              "$id": "#/properties/allocation/properties/user",
+              "type": "array",
+              "title": "User Allocation Collection",
+              "description": "A list of objects, each containing a variant name and list of users for whom that variant should be used.",
+              "items": {
+                  "$id": "#/properties/allocation/properties/user/items",
+                  "type": "object",
+                  "title": "User Allocation",
+                  "required": [
+                      "variant",
+                      "users"
+                  ],
+                  "properties": {
+                      "variant": {
+                          "$id": "#/properties/allocation/properties/user/items/properties/variant",
+                          "type": "string",
+                          "title": "User Allocation Variant",
+                          "description": "The name of the variant to use if the user allocation matches the current user.",
+                          "pattern": "^(.*)$"
+                      },
+                      "users": {
+                          "$id": "#/properties/allocation/properties/user/items/properties/users",
+                          "type": "array",
+                          "title": "User Allocation Users Collection",
+                          "description": "Collection of users where if any match the current user, the variant specified in the user allocation is used.",
+                          "items": {
+                              "type": "string"
+                          }
+                      }
+                  }
+              }
+          },
+          "group": {
+              "$id": "#/properties/allocation/properties/group",
+              "type": "array",
+              "title": "Group Allocation Collection",
+              "description": "A list of objects, each containing a variant name and list of groups for which that variant should be used.",
+              "items": {
+                  "$id": "#/properties/allocation/properties/group/items",
+                  "type": "object",
+                  "title": "Group Allocation",
+                  "required": [
+                      "variant",
+                      "groups"
+                  ],
+                  "properties": {
+                      "variant": {
+                          "$id": "#/properties/allocation/properties/group/items/properties/variant",
+                          "type": "string",
+                          "title": "Group Allocation Variant",
+                          "description": "The name of the variant to use if the group allocation matches a group the current user is in.",
+                          "pattern": "^(.*)$"
+                      },
+                      "groups": {
+                          "$id": "#/properties/allocation/properties/group/items/properties/groups",
+                          "type": "array",
+                          "title": "Group Allocation Groups Collection",
+                          "description": "Collection of groups where if the current user is in any of these groups, the variant specified in the group allocation is used.",
+                          "items": {
+                              "type": "string"
+                          }
+                      }
+                  }
+              }
+          },
+          "percentile": {
+              "$id": "#/properties/allocation/properties/percentile",
+              "type": "array",
+              "title": "Percentile Allocation Collection",
+              "description": "A list of objects, each containing a variant name and percentage range for which that variant should be used.",
+              "items": {
+                  "$id": "#/properties/allocation/properties/percentile/items",
+                  "type": "object",
+                  "title": "Percentile Allocation",
+                  "required": [
+                      "variant",
+                      "from",
+                      "to"
+                  ],
+                  "properties": {
+                      "variant": {
+                          "$id": "#/properties/allocation/properties/percentile/items/properties/variant",
+                          "type": "string",
+                          "title": "Percentile Allocation Variant",
+                          "description": "The name of the variant to use if the calculated percentile for the current user falls in the provided range.",
+                          "pattern": "^(.*)$"
+                      },
+                      "from": {
+                          "$id": "#/properties/allocation/properties/percentile/items/properties/from",
+                          "type": "number",
+                          "title": "Percentile Allocation From",
+                          "description": "The lower end of the percentage range for which this variant will be used.",
+                          "minimum": 0,
+                          "maximum": 100
+                      },
+                      "to": {
+                          "$id": "#/properties/allocation/properties/percentile/items/properties/to",
+                          "type": "number",
+                          "title": "Percentile Allocation To",
+                          "description": "The upper end of the percentage range for which this variant will be used.",
+                          "minimum": 0,
+                          "maximum": 100
+                      }
+                  }
+              }
+          },
+          "seed": {
+              "$id": "#/properties/allocation/properties/seed",
+              "type": "string",
+              "title": "Percentile Allocation Seed",
+              "description": "The value percentile calculations are based on. The calculated percentile is consistent across features for a given user if the same nonempty seed is used.",
+              "default": "",
+              "pattern": "^(.*)$"
+          }
+      }
+    },
+    "telemetry": {
+      "$id": "#/properties/telemetry",
+      "type": "object",
+      "title": "Telemetry Options",
+      "description": "The declaration of options used to configure telemetry for this feature.",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/telemetry/properties/enabled",
+          "type": "boolean",
+          "title": "Telemetry Enabled State",
+          "description": "Indicates if telemetry is enabled.",
+          "default": false
+        },
+        "metadata": {
+          "$id": "#/properties/telemetry/properties/metadata",
+          "type": "object",
+          "title": "Telemetry Metadata",
+          "description": "A container for metadata that should be bundled with flag telemetry.",
+          "required": [],
+          "patternProperties": {
+              "^.*$": {
+                "type": "string"
+              }
+          },
+          "additionalProperties": false
+        }
+      }
+    }  
+  }
+}

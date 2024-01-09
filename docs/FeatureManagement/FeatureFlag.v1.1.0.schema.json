@@ -6,8 +6,7 @@
   "title": "An Azure App Configuration Feature Declaration",
   "required": [
     "id",
-    "enabled",
-    "conditions"
+    "enabled"
   ],
   "properties": {
     "id": {
@@ -46,7 +45,7 @@
       "$id": "#/properties/enabled",
       "type": "boolean",
       "title": "Enabled State",
-      "description": "A feature is OFF if enabled is false. If enabled is true, then the feature is ON if there are no conditions (null or empty) or if all conditions are satisfied.",
+      "description": "A feature is OFF if enabled is false. If enabled is true, then the feature is ON if there are no conditions (null or empty) or if the conditions are satisfied.",
       "default": false
     },
     "conditions": {
