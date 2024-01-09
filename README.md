@@ -59,6 +59,14 @@ Module | Platform | Sample | Release Notes
 [azure/app-configuration](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/appconfiguration/app-configuration)<br/>[![npm](https://img.shields.io/npm/v/@azure/app-configuration.svg?color=blue)](https://www.npmjs.com/package/@azure/app-configuration) | JavaScript | [Sample](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/appconfiguration/app-configuration/samples) | [Release Notes](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/appconfiguration/app-configuration/CHANGELOG.md)
 [azure-appconfiguration](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration)<br/>[![pypi](https://img.shields.io/pypi/v/azure-appconfiguration.svg?color=blue)](https://pypi.org/project/azure-appconfiguration/) | Python | [Sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration/samples) | [Release Notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/appconfiguration/azure-appconfiguration/CHANGELOG.md)
 
+## Kubernetes Integration
+
+Bring your data in Azure App Configuration down to your Kubernetes cluster, available as ConfigMaps and Secrets and ready to be consumed by any workload.
+
+Module | Platform | Sample | Release Notes
+------ | -------- | ------ | -------------
+[Azure App Configuration Kubernetes Provider](https://github.com/Azure/AppConfiguration-KubernetesProvider)<br/>[![MAR](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAppConfiguration-KubernetesProvider%2Fmain%2Fversion.json&query=%24.version&prefix=v&label=mar)](https://mcr.microsoft.com/en-us/product/azure-app-configuration/kubernetes-provider/about) | Kubernetes | [Sample](https://learn.microsoft.com/azure/azure-app-configuration/quickstart-azure-kubernetes-service) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/KubernetesProvider.md)
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
