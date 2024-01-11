@@ -4,6 +4,99 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 4.0.0-preview - January 4, 2024
+
+### Variants
+
+Variants provide the ability to surface different variations of a feature, allowing different segments of an audience to get different variations of a feature, all within a single feature flag. Variants also contain a value that can either reference another ConfigurationSection or be declared inline on the flag.
+
+```json
+{ 
+    "Name": "Big", 
+    "ConfigurationReference": "ShoppingCart:Big" 
+},  
+{ 
+    "Name": "Small", 
+    "ConfigurationValue": {
+        "Size": 300
+    }
+}
+```
+
+Variants are then assigned via Allocation, which is defined as a part of the feature flag. The fields are User, Group, Percentile, and a couple defaults.
+
+```json
+"Allocation": { 
+    "DefaultWhenEnabled": "Small", 
+    "DefaultWhenDisabled": "Small",  
+    "User": [ 
+        { 
+            "Variant": "Big", 
+            "Users": [ 
+                "Marsha" 
+            ] 
+        } 
+    ], 
+    "Group": [],
+    "Percentile": []
+}
+```
+
+A feature with Variants will still have a boolean result when called via `IsEnabledAsync`, following the usual filters. However, when a feature is called with `GetVariantAsync`, it will evaluate the allocation and return a `Variant` object. 
+
+```csharp
+Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.FeatureU);
+
+String variation = variant.Name;
+IConfigurationSection variantConfiguration = variant.Configuration;
+```
+
+For more details on Variants, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#variants).
+
+### Telemetry
+
+Telemetry offers the ability to emit events containing information about a feature evaluation. This can be used to ensure a flag is running as expected, or to see which users were given which features and why they were given the feature. To enable this functionality, two things need to be done.
+
+The flag needs to explicitly enable telemetry in its definition.
+
+```json
+"MyFlag": {
+    "Telemetry": {
+        "Enabled": true
+    }
+}
+```
+
+And a telemetry publisher needs to be registered. One is offered out-of-the-box for Application Insights and could be added with a single line.
+
+```csharp
+builder.services
+    .AddFeatureManagement()
+    .AddTelemetryPublisher<ApplicationInsightsTelemetryPublisher>();
+```
+
+An example is available to demonstrate how to use the new Telemetry in an ASP.NET application. See [the example](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4/examples/EvaluationDataToApplicationInsights) in the examples folder.
+
+For more details on Telemetry, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#telemetry).
+
+### Additional Changes
+
+#### IVariantFeatureManager
+
+`IVariantFeatureManager` has been added as the successor of the existing `IFeatureManager`. It continues to offer the functions of `IFeatureManager`, but offers the new `GetVariantAsync` methods as well.
+
+#### Cancellation Tokens
+
+`IVariantFeatureManager` incorporates cancellation tokens into the methods of `IFeatureManager`. To migrate from the old interface, simply use the new one, and adjust calls to `IsEnabledAsync` or `GetFeatureNamesAsync` to include a `CancellationToken`. 
+
+#### Status field
+
+Status is a new optional field on a Feature that controls how a flag's enabled state is evaluated. Flags can set this field to `Disabled`. This will cause the flag to always act disabled, while the rest of the defined schema remains intact. See [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#status).
+
+### Breaking Changes
+
+There are no breaking changes in this release.
+
 ## 3.1.1 - December 13, 2023
 
 ### Bug Fix
