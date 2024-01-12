@@ -8,6 +8,153 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 5.9.0-beta.1 - January 11, 2024
+
+### Features Added
+
+* Adds support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://github.com/Azure/azure-sdk-for-java/blob/feature/azconfig-spring/FeatureVariantBeta/sdk/spring/spring-cloud-azure-feature-management/README.md#variants) for more information.
+* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters.
+
+## 5.8.0 - December 13, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.0.13, 3.1.0-3.1.6, 3.2.0-3.2.0.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.4, 2023.0.0-2023.0.0.
+
+## 4.14.0 - December 14, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.18.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
+
+## 5.7.0 - November 08, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.1.5.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.4.
+* Now, Spring Boot 3.2.0-RC1 and Spring Cloud 2023.0.0-RC1 are compatible with this release.
+
+## 4.13.0 - November 08, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.17.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
+
+## 5.6.0 - October 24, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.1.3.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.4.
+
+## 4.12.0 - October 23, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.16.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
+
+## 5.5.0 - August 28, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.1.2.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.4.
+
+## 4.11.0 - August 25, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.14.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
+
+## 5.4.0 - August 02, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.1.0.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.3.
+
+### Bugs Fixed
+
+* Fixes a bug where targeting exclusions don't map correctly resulting in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
+
+## 4.10.0 - August 01, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.13.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.7.
+
+## 4.9.1 - July 19, 2023
+
+### Bugs Fixed
+
+* Fixes a bug where targeting exclusions don't map correctly resulting in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
+
+## 5.3.0 - June 28, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.1.0.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.3.
+
+## 4.9.0 - June 29, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.11.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.7.
+
+## 5.2.0 - June 01, 2023
+
+* This release is compatible with Spring Boot 3.0.0-3.0.5.
+* This release is compatible with Spring Cloud 2022.0.0-2022.0.2.
+
+### Features Added
+
+* Added support for Deny List in the `Microsoft.Targeting` filter. [#34437](https://github.com/Azure/azure-sdk-for-java/pull/34437)
+
+```yml
+feature-management:
+  TargetingTest:
+    enabled-for:
+      -
+        name: Microsoft.Targeting
+        parameters:
+          users:
+            - Jeff
+            - Alicia
+          groups:
+            -
+              name: Ring0
+              rolloutPercentage: 100
+            -
+              name: Ring1
+              rolloutPercentage: 100
+          defaultRolloutPercentage: 50
+          exclusion:
+            users:
+              - Ross
+```
+
+## 4.8.0 - May 25, 2023
+
+* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.11.
+* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.7.
+
+### Features Added
+
+* Added support for Deny List in the `Microsoft.Targeting` filter. [#34437](https://github.com/Azure/azure-sdk-for-java/pull/34437)
+
+```yml
+feature-management:
+  TargetingTest:
+    enabled-for:
+      -
+        name: Microsoft.Targeting
+        parameters:
+          users:
+            - Jeff
+            - Alicia
+          groups:
+            -
+              name: Ring0
+              rolloutPercentage: 100
+            -
+              name: Ring1
+              rolloutPercentage: 100
+          defaultRolloutPercentage: 50
+          exclusion:
+            users:
+              - Ross
+```
+
+## 5.1.0 - April 26, 2023
+
+This release is compatible with Spring Boot 3.0.0-3.0.5.
+This release is compatible with Spring Cloud 2022.0.0-2022.0.2.
+
 ## 4.7.0 - April 06, 2023
 
 ### Breaking Changes
