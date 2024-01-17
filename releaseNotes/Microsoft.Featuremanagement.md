@@ -22,22 +22,22 @@ return View(model);
 
 Variants are defined within a Feature, under a new section named "Variants". Variants are assigned by allocation, defined in a new section named "Allocation".
 
-```json
+```javascript
 "BackgroundUrl": {
-	"Variants": [
-		{
-			"Name": "BlackAndWhite",
-			"ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-get-started-get-started.svg"
-		},
-		{
-			"Name": "WithColor",
-			"ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-host-integration-install-configure.svg"
-		}
-	],
-	"Allocation": { 
-		// Defines Users, Groups, or Percentiles for variant assignment
-	}
-	// Filters and other Feature fields
+    "Variants": [
+        {
+            "Name": "GetStarted",
+            "ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-get-started-get-started.svg"
+        },
+        {
+            "Name": "InstallConfigure",
+            "ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-host-integration-install-configure.svg"
+        }
+    ],
+    "Allocation": { 
+        // Defines Users, Groups, or Percentiles for variant assignment
+    }
+    // Filters and other Feature fields
 }
 ```
 
