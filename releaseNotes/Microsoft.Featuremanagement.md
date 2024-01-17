@@ -8,54 +8,44 @@
 
 ### Variants
 
-Variants provide the ability to surface different variations of a feature, allowing different segments of an audience to get different variations of a feature, all within a single feature flag. Variants also contain a value that can either reference another ConfigurationSection or be declared inline on the flag.
-
-```json
-{ 
-    "Name": "Big", 
-    "ConfigurationReference": "ShoppingCart:Big" 
-},  
-{ 
-    "Name": "Small", 
-    "ConfigurationValue": {
-        "Size": 300
-    }
-}
-```
-
-Variants are then assigned via Allocation, which is defined as a part of the feature flag. The fields are User, Group, Percentile, and a couple defaults.
-
-```json
-"Allocation": { 
-    "DefaultWhenEnabled": "Small", 
-    "DefaultWhenDisabled": "Small",  
-    "User": [ 
-        { 
-            "Variant": "Big", 
-            "Users": [ 
-                "Marsha" 
-            ] 
-        } 
-    ], 
-    "Group": [],
-    "Percentile": []
-}
-```
-
-A feature with Variants will still have a boolean result when called via `IsEnabledAsync`, following the usual filters. However, when a feature is called with `GetVariantAsync`, it will evaluate the allocation and return a `Variant` object. 
+Variants are a tool that can be used to surface different variations of a feature to different segments of an audience. Previously, this library only worked with flags. The flags were limited to boolean values, as they are either enabled or disabled. Variants have dynamic values. They can be string, int, a complex object, or a reference to a ConfigurationSection.
 
 ```csharp
-Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.FeatureU);
+//
+// Modify view based off multiple possible variants
+Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.BackgroundUrl);
 
-String variation = variant.Name;
-IConfigurationSection variantConfiguration = variant.Configuration;
+model.BackgroundUrl = variant.Configuration.Value;
+
+return View(model);
+```
+
+Variants are defined within a Feature, under a new section named "Variants". Variants are assigned by allocation, defined in a new section named "Allocation".
+
+```json
+"BackgroundUrl": {
+	"Variants": [
+		{
+			"Name": "BlackAndWhite",
+			"ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-get-started-get-started.svg"
+		},
+		{
+			"Name": "WithColor",
+			"ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-host-integration-install-configure.svg"
+		}
+	],
+	"Allocation": { 
+		// Defines Users, Groups, or Percentiles for variant assignment
+	}
+	// Filters and other Feature fields
+}
 ```
 
 For more details on Variants, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#variants).
 
 ### Telemetry
 
-Telemetry offers the ability to emit events containing information about a feature evaluation. This can be used to ensure a flag is running as expected, or to see which users were given which features and why they were given the feature. To enable this functionality, two things need to be done.
+The feature management library now offers the ability to emit events containing information about a feature evaluation. This can be used to ensure a flag is running as expected, or to see which users were given which features and why they were given the feature. To enable this functionality, two things need to be done:
 
 The flag needs to explicitly enable telemetry in its definition.
 
@@ -67,7 +57,7 @@ The flag needs to explicitly enable telemetry in its definition.
 }
 ```
 
-And a telemetry publisher needs to be registered. One is offered out-of-the-box for Application Insights and could be added with a single line.
+And a telemetry publisher needs to be registered. Custom publishers can be defined, but for Application Insights one is already available in the `Microsoft.FeatureManagement.Telemetry.ApplicationInsights` package. Publishers can be added with a single line.
 
 ```csharp
 builder.services
@@ -87,7 +77,7 @@ For more details on Telemetry, see [here](https://github.com/microsoft/FeatureMa
 
 #### Cancellation Tokens
 
-`IVariantFeatureManager` incorporates cancellation tokens into the methods of `IFeatureManager`. To migrate from the old interface, simply use the new one, and adjust calls to `IsEnabledAsync` or `GetFeatureNamesAsync` to include a `CancellationToken`. 
+`IVariantFeatureManager` incorporates cancellation tokens into the methods of `IFeatureManager`. For existing apps to take advantage of cancellation tokens, use the `IVariantFeatureManager` interface instead and adjust calls to `IsEnabledAsync` or `GetFeatureNamesAsync` to include a `CancellationToken`. 
 
 #### Status field
 
