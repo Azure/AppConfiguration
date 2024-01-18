@@ -4,6 +4,89 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 4.0.0-preview - January 4, 2024
+
+### Variants
+
+Variants are a tool that can be used to surface different variations of a feature to different segments of an audience. Previously, this library only worked with flags. The flags were limited to boolean values, as they are either enabled or disabled. Variants have dynamic values. They can be string, int, a complex object, or a reference to a ConfigurationSection.
+
+```csharp
+//
+// Modify view based off multiple possible variants
+Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.BackgroundUrl);
+
+model.BackgroundUrl = variant.Configuration.Value;
+
+return View(model);
+```
+
+Variants are defined within a Feature, under a new section named "Variants". Variants are assigned by allocation, defined in a new section named "Allocation".
+
+```javascript
+"BackgroundUrl": {
+    "Variants": [
+        {
+            "Name": "GetStarted",
+            "ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-get-started-get-started.svg"
+        },
+        {
+            "Name": "InstallConfigure",
+            "ConfigurationValue": "https://learn.microsoft.com/en-us/media/illustrations/biztalk-host-integration-install-configure.svg"
+        }
+    ],
+    "Allocation": { 
+        // Defines Users, Groups, or Percentiles for variant assignment
+    }
+    // Filters and other Feature fields
+}
+```
+
+For more details on Variants, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#variants).
+
+### Telemetry
+
+The feature management library now offers the ability to emit events containing information about a feature evaluation. This can be used to ensure a flag is running as expected, or to see which users were given which features and why they were given the feature. To enable this functionality, two things need to be done:
+
+The flag needs to explicitly enable telemetry in its definition.
+
+```json
+"MyFlag": {
+    "Telemetry": {
+        "Enabled": true
+    }
+}
+```
+
+And a telemetry publisher needs to be registered. Custom publishers can be defined, but for Application Insights one is already available in the `Microsoft.FeatureManagement.Telemetry.ApplicationInsights` package. Publishers can be added with a single line.
+
+```csharp
+builder.services
+    .AddFeatureManagement()
+    .AddTelemetryPublisher<ApplicationInsightsTelemetryPublisher>();
+```
+
+An example is available to demonstrate how to use the new Telemetry in an ASP.NET application. See [the example](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4/examples/EvaluationDataToApplicationInsights) in the examples folder.
+
+For more details on Telemetry, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#telemetry).
+
+### Additional Changes
+
+#### IVariantFeatureManager
+
+`IVariantFeatureManager` has been added as the successor of the existing `IFeatureManager`. It continues to offer the functions of `IFeatureManager`, but offers the new `GetVariantAsync` methods as well.
+
+#### Cancellation Tokens
+
+`IVariantFeatureManager` incorporates cancellation tokens into the methods of `IFeatureManager`. For existing apps to take advantage of cancellation tokens, use the `IVariantFeatureManager` interface instead and adjust calls to `IsEnabledAsync` or `GetFeatureNamesAsync` to include a `CancellationToken`. 
+
+#### Status field
+
+Status is a new optional field on a Feature that controls how a flag's enabled state is evaluated. Flags can set this field to `Disabled`. This will cause the flag to always act disabled, while the rest of the defined schema remains intact. See [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/release/v4?tab=readme-ov-file#status).
+
+### Breaking Changes
+
+There are no breaking changes in this release.
+
 ## 3.1.1 - December 13, 2023
 
 ### Bug Fix
