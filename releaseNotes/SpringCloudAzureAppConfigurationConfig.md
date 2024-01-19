@@ -46,18 +46,6 @@
 
 * Fixed a bug where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error[#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
 
-## 5.4.0 - August 02, 2023
-
-### Bug Fixes
-
-* Fixed a bug where targeting exclusions coming from Azure App Configuration resulted in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
-
-## 4.9.1 - July 19, 2023
-
-### Bug Fixes
-
-* Fixed a bug where targeting exclusions coming from Azure App Configuration resulted in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
-
 ## 5.2.0 - June 01, 2023
 
 ### Bug Fixes
