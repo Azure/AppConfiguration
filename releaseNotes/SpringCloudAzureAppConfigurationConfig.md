@@ -66,7 +66,6 @@
 
 * Fixes issue where credential from Azure Spring global properties was being overridden [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
 * Fixes bug where Http Response wasn't checked before trying to use response [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
-* Fixes Tracing info for ContainerApp [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
 
 ## 4.8.0 - May 25, 2023
 
@@ -74,7 +73,6 @@
 
 * Fixes issue where credential from Azure Spring global properties was being overridden [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
 * Fixes bug where Http Response wasn't checked before trying to use response [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
-* Fixes Tracing info for ContainerApp [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
 
 ## 4.7.0 - April 06, 2023
 
