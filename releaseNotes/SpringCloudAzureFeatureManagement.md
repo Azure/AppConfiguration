@@ -12,8 +12,8 @@
 
 ### Enhancements
 
-* Adds support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://github.com/Azure/azure-sdk-for-java/blob/feature/azconfig-spring/FeatureVariantBeta/sdk/spring/spring-cloud-azure-feature-management/README.md#variants) for more information.
-* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters.
+* Adds support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://github.com/Azure/azure-sdk-for-java/blob/feature/azconfig-spring/FeatureVariantBeta/sdk/spring/spring-cloud-azure-feature-management/README.md#variants) for more information. [#38293](https://github.com/Azure/azure-sdk-for-java/pull/38293)
+* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters. [#29691](https://github.com/Azure/azure-sdk-for-java/issues/29691)
 
 ## 5.4.0 - August 02, 2023
 
