@@ -24,16 +24,14 @@
 
 ### Enhancements
 
-* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#
-7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
+* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
 * Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`.
 
 ## 4.14.0 - December 14, 2023
 
 ### Enhancements
 
-* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#
-7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
+* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
 * Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`.
 
 ## 5.6.0 - October 24, 2023
