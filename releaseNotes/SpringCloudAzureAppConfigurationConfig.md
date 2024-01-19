@@ -40,39 +40,39 @@
 
 ## Bug Fixes
 
-* Fixes an issue where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error [#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
+* Fixed a bug where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error [#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
 
 ## 4.12.0 - October 23, 2023
 
 ## Bug Fixes
 
-* Fixes an issue where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error [#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
+* Fixed a bug where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error[#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
 
 ## 5.4.0 - August 02, 2023
 
 ### Bug Fixes
 
-* Fixes a bug where targeting exclusions don't map correctly resulting in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
+* Fixed a bug where targeting exclusions coming from Azure App Configuration resulted in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
 
 ## 4.9.1 - July 19, 2023
 
 ### Bug Fixes
 
-* Fixes a bug where targeting exclusions don't map correctly resulting in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
+* Fixed a bug where targeting exclusions coming from Azure App Configuration resulted in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
 
 ## 5.2.0 - June 01, 2023
 
 ### Bug Fixes
 
-* Fixes issue where credential from Azure Spring global properties was being overridden [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
-* Fixes bug where Http Response wasn't checked before trying to use response [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
+* Fixed a bug where where credentials from Azure Spring global properties were being ignored [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
+* Fixed a bug where a `NullPointerException` exception was thrown when Azure App Configuration returned an Exception [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
 
 ## 4.8.0 - May 25, 2023
 
 ### Bug Fixes
 
-* Fixes issue where credential from Azure Spring global properties was being overridden [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
-* Fixes bug where Http Response wasn't checked before trying to use response [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
+* Fixed a bug where where credentials from Azure Spring global properties were being ignored [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
+* Fixed a bug where a `NullPointerException` exception was thrown when Azure App Configuration returned an Exception [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
 
 ## 4.7.0 - April 06, 2023
 
