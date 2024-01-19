@@ -1,6 +1,9 @@
 ## Microsoft.Azure.AppConfiguration.Functions.Worker
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.AppConfiguration.Functions.Worker)
 
+### 7.1.0-preview - January 19, 2024
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.1.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ### 7.0.0 - November 21, 2023
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.0.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 

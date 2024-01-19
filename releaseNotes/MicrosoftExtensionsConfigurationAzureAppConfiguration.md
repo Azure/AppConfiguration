@@ -1,6 +1,12 @@
 ## Microsoft.Extensions.Configuration.AzureAppConfiguration
 ### [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration)
 
+### 7.1.0-preview - January 19, 2024
+* The provider will now automatically discover other existing replicas and attempt to connect to them when the AppConfig store and any replicas passed by the user have failed. This is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. [#442](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/442)
+* Added support for the `variants`, `allocation`, and `telemetry` properties for feature flags introduced in version 4.0.0-preview of the Microsoft.FeatureManagement library. [#476](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/476)
+* Fixed a bug where passing a null value for the `key` parameter to `AzureAppConfigurationRefreshOptions.Register` would throw a `NullReferenceException`. [#503](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/503)
+* Fixed a bug with `AzureAppConfigurationOptions.Select`, `FeatureFlagOptions.Select`, and `AzureAppConfigurationOptions.SelectSnapshot` where additional calls with the same filters after the first call were ignored. The provider will now correctly use only the last call with duplicate filters to preserve label precedence. [#490](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/490)
+
 ### 7.0.0 - November 21, 2023
 ### Breaking Changes
 * `AddAzureAppConfiguration` now throws `ArgumentException` for invalid inputs even if the `optional` parameter is equal to `true`. [#318](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/318)
