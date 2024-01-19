@@ -16,107 +16,53 @@
 
 ## 5.9.0-beta.1 - January 11, 2024
 
-### Features Added
+### Enhancements
 
-* Added support for loading Feature Variants from Azure App Configuration.
+* Added support for loading Feature Variants from Azure App Configuration. [#38293](https://github.com/Azure/azure-sdk-for-java/pull/38293)
 
 ## 5.8.0 - December 13, 2023
 
-* This release is compatible with Spring Boot 3.0.0-3.0.13, 3.1.0-3.1.6, 3.2.0-3.2.0.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.4, 2023.0.0-2023.0.0.
+### Enhancements
 
-### Features Added
-
-* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots.
-* Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`. [#
+* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#
 7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
+* Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`.
 
 ## 4.14.0 - December 14, 2023
 
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.18.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
+### Enhancements
 
-### Features Added
-
-* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots.
-* Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`. [#
+* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#
 7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
-
-## 5.7.0 - November 08, 2023
-
-* This release is compatible with Spring Boot 3.0.0-3.1.5.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.4.
-* Now, Spring Boot 3.2.0-RC1 and Spring Cloud 2023.0.0-RC1 are compatible with this release.
-
-## 4.13.0 - November 08, 2023
-
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.17.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
+* Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`.
 
 ## 5.6.0 - October 24, 2023
 
-* This release is compatible with Spring Boot 3.0.0-3.1.3.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.4.
-
-## Bugs Fix
+## Bug Fixes
 
 * Fixes an issue where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error [#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
 
 ## 4.12.0 - October 23, 2023
 
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.16.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
-
-## Bugs Fix
+## Bug Fixes
 
 * Fixes an issue where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error [#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
 
-## 5.5.0 - August 28, 2023
-
-* This release is compatible with Spring Boot 3.0.0-3.1.2.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.4.
-
-## 4.11.0 - August 25, 2023
-
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.14.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.8.
-
 ## 5.4.0 - August 02, 2023
 
-* This release is compatible with Spring Boot 3.0.0-3.1.0.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.3.
-
-### Bugs Fixed
+### Bug Fixes
 
 * Fixes a bug where targeting exclusions don't map correctly resulting in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
-
-## 4.10.0 - August 01, 2023
-
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.13.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.7.
 
 ## 4.9.1 - July 19, 2023
 
-### Bugs Fixed
+### Bug Fixes
 
 * Fixes a bug where targeting exclusions don't map correctly resulting in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
 
-## 5.3.0 - June 28, 2023
-
-* This release is compatible with Spring Boot 3.0.0-3.1.0.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.3.
-
-## 4.9.0 - June 29, 2023
-
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.11.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.7.
-
 ## 5.2.0 - June 01, 2023
 
-* This release is compatible with Spring Boot 3.0.0-3.0.5.
-* This release is compatible with Spring Cloud 2022.0.0-2022.0.2.
-
-### Bugs Fixed
+### Bug Fixes
 
 * Fixes issue where credential from Azure Spring global properties was being overridden [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
 * Fixes bug where Http Response wasn't checked before trying to use response [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
@@ -124,19 +70,11 @@
 
 ## 4.8.0 - May 25, 2023
 
-* This release is compatible with Spring Boot 2.5.0-2.5.15, 2.6.0-2.6.15, 2.7.0-2.7.11.
-* This release is compatible with Spring Cloud 2020.0.3-2020.0.6, 2021.0.0-2021.0.7.
-
-### Bugs Fixed
+### Bug Fixes
 
 * Fixes issue where credential from Azure Spring global properties was being overridden [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
 * Fixes bug where Http Response wasn't checked before trying to use response [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
 * Fixes Tracing info for ContainerApp [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
-
-## 5.1.0 - April 26, 2023
-
-This release is compatible with Spring Boot 3.0.0-3.0.5.
-This release is compatible with Spring Cloud 2022.0.0-2022.0.2.
 
 ## 4.7.0 - April 06, 2023
 
