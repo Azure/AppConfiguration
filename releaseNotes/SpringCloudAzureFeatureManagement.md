@@ -8,6 +8,83 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 5.9.0-beta.1 - January 11, 2024
+
+### Enhancements
+
+* Adds support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://github.com/Azure/azure-sdk-for-java/blob/feature/azconfig-spring/FeatureVariantBeta/sdk/spring/spring-cloud-azure-feature-management/README.md#variants) for more information. [#38293](https://github.com/Azure/azure-sdk-for-java/pull/38293)
+* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters. [#29691](https://github.com/Azure/azure-sdk-for-java/issues/29691)
+
+## 5.4.0 - August 02, 2023
+
+### Bug Fixes
+
+* Fixed a bug where targeting exclusions coming from Azure App Configuration resulted in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
+
+## 4.9.1 - July 19, 2023
+
+### Bug Fixes
+
+* Fixed a bug where targeting exclusions coming from Azure App Configuration resulted in a java.lang.ClassCastException [#35823](https://github.com/Azure/azure-sdk-for-java/issues/35823).
+
+## 5.2.0 - June 01, 2023
+
+### Enhancements
+
+* Added support for Deny List in the `Microsoft.Targeting` filter. [#34437](https://github.com/Azure/azure-sdk-for-java/pull/34437)
+
+```yml
+feature-management:
+  TargetingTest:
+    enabled-for:
+      -
+        name: Microsoft.Targeting
+        parameters:
+          users:
+            - Jeff
+            - Alicia
+          groups:
+            -
+              name: Ring0
+              rolloutPercentage: 100
+            -
+              name: Ring1
+              rolloutPercentage: 100
+          defaultRolloutPercentage: 50
+          exclusion:
+            users:
+              - Ross
+```
+
+## 4.8.0 - May 25, 2023
+
+### Enhancements
+
+* Added support for Deny List in the `Microsoft.Targeting` filter. [#34437](https://github.com/Azure/azure-sdk-for-java/pull/34437)
+
+```yml
+feature-management:
+  TargetingTest:
+    enabled-for:
+      -
+        name: Microsoft.Targeting
+        parameters:
+          users:
+            - Jeff
+            - Alicia
+          groups:
+            -
+              name: Ring0
+              rolloutPercentage: 100
+            -
+              name: Ring1
+              rolloutPercentage: 100
+          defaultRolloutPercentage: 50
+          exclusion:
+            users:
+              - Ross
+```
+
 ## 4.7.0 - April 06, 2023
 
 ### Breaking Changes

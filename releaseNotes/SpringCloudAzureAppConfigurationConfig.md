@@ -14,6 +14,52 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 5.9.0-beta.1 - January 11, 2024
+
+### Enhancements
+
+* Added support for loading Feature Variants from Azure App Configuration. [#38293](https://github.com/Azure/azure-sdk-for-java/pull/38293)
+
+## 5.8.0 - December 13, 2023
+
+### Enhancements
+
+* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
+* Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`.
+
+## 4.14.0 - December 14, 2023
+
+### Enhancements
+
+* Added support for Azure App Configuration Snapshots. Snapshots can be loaded by setting `spring.cloud.azure.appconfiguration.stores[0].snapshot-name` to the snapshot name. Snapshots can be created using the Azure CLI or the Azure Portal. See [here](https://docs.microsoft.com/azure/azure-app-configuration/concept-snapshots) for more information on snapshots. [#7598](https://github.com/Azure/azure-sdk-for-java/pull/37598)
+* Added support for trimming prefixes from keys,the default value is the key-filter when key-filter is used. The configuration is `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefix` and `spring.cloud.azure.appconfiguration.stores[0].trim-key-prefixes`.
+
+## 5.6.0 - October 24, 2023
+
+## Bug Fixes
+
+* Fixed a bug where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error [#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
+
+## 4.12.0 - October 23, 2023
+
+## Bug Fixes
+
+* Fixed a bug where Web Hook authorization was validated incorrectly, resulting in an Unauthorized error[#37141](https://github.com/Azure/azure-sdk-for-java/pull/37141).
+
+## 5.2.0 - June 01, 2023
+
+### Bug Fixes
+
+* Fixed a bug where where credentials from Azure Spring global properties were being ignored [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
+* Fixed a bug where a `NullPointerException` exception was thrown when Azure App Configuration returned an Exception [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
+
+## 4.8.0 - May 25, 2023
+
+### Bug Fixes
+
+* Fixed a bug where where credentials from Azure Spring global properties were being ignored [#34694](https://github.com/Azure/azure-sdk-for-java/pull/34694).
+* Fixed a bug where a `NullPointerException` exception was thrown when Azure App Configuration returned an Exception [#35086](https://github.com/Azure/azure-sdk-for-java/pull/35086).
+
 ## 4.7.0 - April 06, 2023
 
 ### Features Added
