@@ -6,7 +6,6 @@
 * For App Configuration stores with geo-replication enabled, the provider will now automatically discover any additional replicas and attempt to connect to them when it fails to connect to user-provided endpoints in code. This capability allows applications to leverage geo-replication for enhanced resiliency without code change and redeployment. Replica discovery is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. [#442](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/442).
 
 ### Enhancements
-* The provider will now automatically discover other existing replicas and attempt to connect to them when the App Configuration store and any replicas passed by the user have failed. This is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. 
 * Added support for the `variants`, `allocation`, and `telemetry` properties for feature flags introduced in version 4.0.0-preview of the [Microsoft.FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet/releases/tag/4.0.0-preview) library. [#476](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/476)
 
 ### Bug Fixes
