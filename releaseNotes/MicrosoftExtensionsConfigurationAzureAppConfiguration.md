@@ -2,13 +2,16 @@
 [Source code][source_code] | [Package (NuGet)][package]
 
 ## 7.1.0-preview - January 19, 2024
+### Replica Auto Discovery
+* For App Configuration stores with geo-replication enabled, the provider will now automatically discover any additional replicas and attempt to connect to them when it fails to connect to user-provided endpoints in code. This capability allows applications to leverage geo-replication for enhanced resiliency without code change and redeployment. Replica discovery is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. [#442](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/442).
+
 ### Enhancements
-* The provider will now automatically discover other existing replicas and attempt to connect to them when the AppConfig store and any replicas passed by the user have failed. This is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. [#442](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/442)
+* The provider will now automatically discover other existing replicas and attempt to connect to them when the App Configuration store and any replicas passed by the user have failed. This is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. 
 * Added support for the `variants`, `allocation`, and `telemetry` properties for feature flags introduced in version 4.0.0-preview of the [Microsoft.FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet/releases/tag/4.0.0-preview) library. [#476](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/476)
 
 ### Bug Fixes
 * Fixed a bug where passing a null value for the `key` parameter to `AzureAppConfigurationRefreshOptions.Register` would throw a `NullReferenceException`. [#503](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/503)
-* Fixed a bug with `AzureAppConfigurationOptions.Select`, `FeatureFlagOptions.Select`, and `AzureAppConfigurationOptions.SelectSnapshot` where additional calls with the same filters after the first call were ignored. The provider will now correctly use only the last call with duplicate filters to preserve label precedence. [#490](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/490)
+* Fixed a bug with `AzureAppConfigurationOptions.Select`, `FeatureFlagOptions.Select`, and `AzureAppConfigurationOptions.SelectSnapshot` where additional calls with the same filters after the first call were ignored. The provider will now correctly use only the last call with duplicate filters to preserve the expected precedence. [#490](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/490)
 
 ## 7.0.0 - November 21, 2023
 ### Breaking Changes
@@ -59,7 +62,7 @@
 * Removed .NET 5 as a target framework as .NET 5 is out of support. [#391](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/391)
 * Feature Management V2 schema support, which was introduced in 5.2.0-preview release, has been removed from this stable release. [#315](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/315)
 * Removed `IConfigurationRefresher.LoggerFactory` API, but refresh logs are still available through standard ASP.NET Core logging if `services.AddAzureAppConfiguration()` is invoked in your `ConfigureServices` method. [#367](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/367)
-* `IConfigurationRefresher.ProcessPushNotification` now validates that the push notification was triggered for one of the registered AppConfig stores. If no matching AppConfig store is registered, the push notification is ignored and the refresh operation will not be triggered. [#319](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/319)
+* `IConfigurationRefresher.ProcessPushNotification` now validates that the push notification was triggered for one of the registered App Configuration stores. If no matching App Configuration store is registered, the push notification is ignored and the refresh operation will not be triggered. [#319](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/319)
 
 ### Enhancements
 * This is the first stable release of the following API introduced in 5.3.0-preview release. [#178](https://github.com/Azure/AppConfiguration/issues/178)
