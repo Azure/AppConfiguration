@@ -59,9 +59,9 @@ Module | Platform | Sample | Release Notes
 [azure/app-configuration](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/appconfiguration/app-configuration)<br/>[![npm](https://img.shields.io/npm/v/@azure/app-configuration.svg?color=blue)](https://www.npmjs.com/package/@azure/app-configuration) | JavaScript | [Sample](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/appconfiguration/app-configuration/samples) | [Release Notes](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/appconfiguration/app-configuration/CHANGELOG.md)
 [azure-appconfiguration](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration)<br/>[![pypi](https://img.shields.io/pypi/v/azure-appconfiguration.svg?color=blue)](https://pypi.org/project/azure-appconfiguration/) | Python | [Sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-appconfiguration/samples) | [Release Notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/appconfiguration/azure-appconfiguration/CHANGELOG.md)
 
-## Kubernetes Integration
+## Platform Integration
 
-Bring your data in Azure App Configuration down to your Kubernetes cluster, available as ConfigMaps and Secrets and ready to be consumed by any workload.
+Integrate Azure App Configuration to commonly used platforms.
 
 Module | Platform | Sample | Release Notes
 ------ | -------- | ------ | -------------
