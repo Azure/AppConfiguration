@@ -2,6 +2,17 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.2.0 - 
+
+### New Features
+* Added support for feature flags, which allows feature flag settings to be saved to a Kubernetes ConfigMap.
+    * Added the `featureFlag.selectors` property for feature flag filtering.
+    * Added the `featureFlag.refresh` property for periodically fetching latest feature flag values and update Kubernetes ConfigMap accordingly.
+
+### Enhancements
+* Added support for setting `nodeSelector`, `affinity` and `tolerations` when use helm to install Azure App Configuration Kubernetes Provider. It's useful to control which nodes the Kubernetes Provider pod can be scheduled. [#858](https://github.com/Azure/AppConfiguration/issues/858)
+* Added support for setting `autoscaling.enabled` when use helm to install Azure App Configuration Kubernetes Provider. It defaults to `false` and must be set to `true` for enabling [HorizontalPodAutoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) to automatically manage scale for Kubernetes Provider.
+
 ## 1.1.0 - December 22, 2023
 
 ### Enhancements
