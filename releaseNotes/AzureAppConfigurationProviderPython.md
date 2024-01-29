@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 1.1.0 - January 29, 2024
+
+### Features
+
+* Added support for dynamically refreshing configuration values with the new `refresh` method on `AzureAppConfigurationProvider`. This enables the runtime change of configuration values without restarting the application. A `WatchKey` can be set to trigger when a refresh can now occur.
+  * Added `refresh_on` parameter to the load method, selets which keys chaning should cause a refresh.
+  * Added `refresh_interval` parameter to the load method, the minimum time between refreshes.
+  * Added `on_refresh_success` and `on_refresh_error` parameter to the load method, callbacks for when a refresh is successful/failes.
+* Added support for `keyvault_credential`, `keyvault_client_configs`, and `secret_resolver` as `kwargs` instead of using `AzureAppConfigurationKeyVaultOptions`.
+
 ## 1.0.0 - March 9, 2023
 
 ### Features
