@@ -6,7 +6,7 @@
 
 ### Features
 
-* Added support for dynamically refreshing configuration values with the new `refresh` method on `AzureAppConfigurationProvider`. This enables the runtime change of configuration values without restarting the application. A `WatchKey` can be set to trigger when a refresh can now occur.
+* Added support for dynamically refreshing configuration values with the new `refresh` method on `AzureAppConfigurationProvider`. This enables the runtime change of configuration values without restarting the application. A `WatchKey` is a configuration setting, that is checked for changes. When a change in it occurs all configuration settings are refreshed. For more information see [here](https://learn.microsoft.com/azure/azure-app-configuration/enable-dynamic-configuration-python).
   * Added `refresh_on` parameter to the load method, selets which keys chaning should cause a refresh.
   * Added `refresh_interval` parameter to the load method, the minimum time between refreshes.
   * Added `on_refresh_success` and `on_refresh_error` parameter to the load method, callbacks for when a refresh is successful/failes.
