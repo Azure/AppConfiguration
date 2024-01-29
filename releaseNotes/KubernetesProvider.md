@@ -4,14 +4,10 @@
 
 ## 1.2.0 - 
 
-### New Features
-* Added support for feature flags, which allows feature flag settings to be saved to a Kubernetes ConfigMap.
-    * Added the `featureFlag.selectors` property for feature flag filtering.
-    * Added the `featureFlag.refresh` property for periodically fetching latest feature flag values and update Kubernetes ConfigMap accordingly.
-
 ### Enhancements
-* Added support for setting `nodeSelector`, `affinity` and `tolerations` when use helm to install Azure App Configuration Kubernetes Provider. It's useful to control which nodes the Kubernetes Provider pod can be scheduled. [#858](https://github.com/Azure/AppConfiguration/issues/858)
-* Added support for setting `autoscaling.enabled` when use helm to install Azure App Configuration Kubernetes Provider. It defaults to `false` and must be set to `true` for enabling [HorizontalPodAutoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) to automatically manage scale for Kubernetes Provider.
+* Added support for feature flags, which allows projecting feature flags to the target ConfigMap using [Microsoft Feature Flag schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). The ConfigMap can be consumed by [Feature Management libraries](https://github.com/Azure/AppConfiguration?tab=readme-ov-file#feature-management-libraries) in all languages. It allows you to keep feature flags outside the application and manage them separately.
+* Added support for setting `nodeSelector`, `affinity` and `tolerations` when using helm to install Azure App Configuration Kubernetes Provider. It's useful for node assignment management. [#858](https://github.com/Azure/AppConfiguration/issues/858)
+* Added support for setting `autoscaling` when using helm to install Azure App Configuration Kubernetes Provider. Setting `autoscaling.enabled` to `true` to use [HorizontalPodAutoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for managing pod autoscaling of Kubernetes Provider. `autoscaling` is disabled by default.
 
 ## 1.1.0 - December 22, 2023
 
