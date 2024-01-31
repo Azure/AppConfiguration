@@ -2,10 +2,9 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.2.0 - 
+## 1.1.1 - 
 
 ### Enhancements
-* Added support for feature flags, which allows projecting feature flags to the target ConfigMap using [Microsoft Feature Flag schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). The ConfigMap can be consumed by [Feature Management libraries](https://github.com/Azure/AppConfiguration?tab=readme-ov-file#feature-management-libraries) in all languages. It allows you to keep feature flags outside the application and manage them separately.
 * Added support for setting `nodeSelector`, `affinity` and `tolerations` when using helm to install Azure App Configuration Kubernetes Provider. It's useful for node assignment management. [#858](https://github.com/Azure/AppConfiguration/issues/858)
 * Added support for setting `autoscaling` when using helm to install Azure App Configuration Kubernetes Provider. Setting `autoscaling.enabled` to `true` to use [HorizontalPodAutoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for managing pod autoscaling of Kubernetes Provider. `autoscaling` is disabled by default.
 
