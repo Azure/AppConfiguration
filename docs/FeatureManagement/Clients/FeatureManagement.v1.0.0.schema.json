@@ -9,7 +9,7 @@
     ],
     "properties": {
         "FeatureManagement":{
-            "$id": "#/properties/feature-management",
+            "$id": "#/properties/FeatureManagement",
             "type": "object",
             "title": "The Feature Management Schema",
             "required": [
@@ -17,6 +17,7 @@
             ],
             "properties": {
                 "FeatureFlags": {
+                    "$id": "#/properties/FeatureManagement/properties/FeatureFlags",
                     "type": "array",
                     "title": "Feature Flags",
                     "description": "Declares feature flags based on Microsoft Feature Flag schema.",
