@@ -1,0 +1,30 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://azconfig.io/schemas/FeatureManagement/v1.0.0/FeatureManagement.json",
+    "type": "object",
+    "title": "An Azure App Configuration Feature Management Configuration",
+    "required": [
+        "FeatureManagement"
+    ],
+    "properties": {
+        "FeatureManagement":{
+            "$id": "#/properties/feature-management",
+            "type": "object",
+            "title": "The Feature Management Schema",
+            "required": [
+                "FeatureFlags"
+            ],
+            "properties": {
+                "FeatureFlags": {
+                    "type": "array",
+                    "title": "Feature Flags",
+                    "description": "Declares feature flags based on Microsoft Feature Flag schema.",
+                    "items": {
+                        "$ref": "http://azconfig.io/schemas/FeatureManagement/v1.1.0/FeatureFlag.json"
+                    }
+                }
+            }
+        }
+    }
+}
