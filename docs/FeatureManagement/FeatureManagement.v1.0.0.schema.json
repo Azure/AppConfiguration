@@ -5,19 +5,19 @@
     "type": "object",
     "title": "A Microsoft Feature Management Configuration",
     "required": [
-        "FeatureManagement"
+        "feature_management"
     ],
     "properties": {
-        "FeatureManagement":{
-            "$id": "#/properties/FeatureManagement",
+        "feature_management":{
+            "$id": "#/properties/feature_management",
             "type": "object",
             "title": "The Feature Management Schema",
             "required": [
-                "FeatureFlags"
+                "feature_flags"
             ],
             "properties": {
-                "FeatureFlags": {
-                    "$id": "#/properties/FeatureManagement/properties/FeatureFlags",
+                "feature_flags": {
+                    "$id": "#/properties/feature_management/properties/feature_flags",
                     "type": "array",
                     "title": "Feature Flags",
                     "description": "Declares feature flags based on Microsoft Feature Flag schema.",
