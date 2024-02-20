@@ -12,6 +12,7 @@
             "$id": "#/properties/feature_management",
             "type": "object",
             "title": "The Feature Management Schema",
+            "description": "Declares feature management configuration.",
             "required": [
                 "feature_flags"
             ],
