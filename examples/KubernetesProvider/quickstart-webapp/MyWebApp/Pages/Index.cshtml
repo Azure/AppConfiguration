@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    h1 {
+        color: @Configuration["Settings:FontColor"];
+    }
+</style>
+
+<div class="text-center">
+    <h1>@Configuration["Settings:Message"]</h1>
+</div>
