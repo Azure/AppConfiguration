@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.2.0" /> // requires version 3.2.0 or later
   </ItemGroup>
 
 </Project>
