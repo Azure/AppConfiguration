@@ -6,8 +6,8 @@
 
 ### Enhancements
 * Added support for feature flags, which allows projecting feature flags to the target ConfigMap using [Microsoft Feature Flag schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v1.1.0.schema.json). The ConfigMap can be consumed by Feature Management libraries in all languages.
-    * [.NET Feature Management](https://github.com/microsoft/FeatureManagement-Dotnet) v3.2.0
-    * [Spring Cloud Azure Feature Management](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-feature-management) v5.9.0-beta.1
+    * [.NET Feature Management](https://github.com/microsoft/FeatureManagement-Dotnet) (version 3.2.0 or later)
+    * [Spring Cloud Azure Feature Management](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-feature-management) (version 5.9.0 or later)
 * Added support for setting `nodeSelector`, `affinity` and `tolerations` when using helm to install Azure App Configuration Kubernetes Provider. It's useful for node assignment management. [#858](https://github.com/Azure/AppConfiguration/issues/858)
 * Added support for setting `autoscaling` when using helm to install Azure App Configuration Kubernetes Provider. By default, `autoscaling` is disabled. However, if you have multiple `AzureAppConfigurationProvider` resources to produce multiple ConfigMaps/Secrets, you can enable horizontal pod autoscaling by setting `autoscaling.enabled` to `true`.
 
