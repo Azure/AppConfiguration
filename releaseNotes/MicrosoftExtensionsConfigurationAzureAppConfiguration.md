@@ -1,6 +1,13 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 7.1.0 - February 26, 2024
+### Enhancements
+* This is the first stable release of the **Replica Auto-Discovery** enhancement that was introduced in 7.1.0-preview.
+
+### Bug Fixes
+* Fixed a bug where the provider would throw a `KeyVaultReferenceException` for transient errors while connecting to Key Vault during startup, even if the startup timeout had not elapsed. [#516](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/516)
+
 ## 7.1.0-preview - January 19, 2024
 ### Enhancements
 * **Replica Auto-Discovery**: For App Configuration stores with geo-replication enabled, the provider will now automatically discover any additional replicas and attempt to connect to them when it fails to connect to user-provided endpoints in code. This capability allows applications to leverage geo-replication for enhanced resiliency without code change and redeployment. Replica discovery is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. [#442](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/442).
