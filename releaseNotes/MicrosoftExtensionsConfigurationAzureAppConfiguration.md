@@ -6,7 +6,7 @@
 * This is the first stable release of the **Replica Auto-Discovery** enhancement that was introduced in 7.1.0-preview.
 
 ### Bug Fixes
-* Fixed a bug where the provider would throw a `KeyVaultReferenceException` for transient errors while connecting to Key Vault during startup, even if the startup timeout had not elapsed. [#516](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/516)
+* Fixed a bug where the provider would throw a `KeyVaultReferenceException` instead of retrying for transient errors while connecting to Key Vault during startup, even if the startup timeout had not elapsed. [#516](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/516)
 
 ## 7.1.0-preview - January 19, 2024
 ### Enhancements
