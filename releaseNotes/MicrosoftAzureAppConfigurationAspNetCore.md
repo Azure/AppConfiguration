@@ -1,6 +1,9 @@
 # Microsoft.Azure.AppConfiguration.AspNetCore
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.0.0-preview - February 28, 2024
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.0.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ## 7.1.0 - February 26, 2024
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.1.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
