@@ -1,6 +1,13 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.0.0-preview - February 26, 2024
+### Enhancements
+* Added new fields to feature flag telemetry metadata, including `FeatureFlagId`, `FeatureFlagReference`, and `ETag`. []()
+
+### Bug Fixes
+* Fixed a bug where a feature flag would not be parsed correctly by the `Microsoft.FeatureManagement` library if the flag was enabled but had no filters. [#525](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/525)
+
 ## 7.1.0 - February 26, 2024
 ### Enhancements
 * This is the first stable release of the **Replica Auto-Discovery** enhancement that was introduced in 7.1.0-preview.
