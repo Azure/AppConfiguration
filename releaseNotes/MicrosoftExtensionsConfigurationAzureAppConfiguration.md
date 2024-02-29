@@ -1,7 +1,7 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
-## 8.0.0-preview - February 26, 2024
+## 8.0.0-preview - February 28, 2024
 ### Enhancements
 * Added new fields to feature flag telemetry metadata, including `FeatureFlagId`, `FeatureFlagReference`, and `ETag`. [#517](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/517)
 
