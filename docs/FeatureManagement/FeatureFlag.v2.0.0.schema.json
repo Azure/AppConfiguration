@@ -158,7 +158,7 @@
                   "type": "string",
                   "title": "Variant Configuration Reference",
                   "description": "The path to a configuration section used as the configuration value for this feature variant.",
-                  "pattern": "^[a-zA-Z0-9]+(:[a-zA-Z0-9]+)*$"
+                  "pattern": "^(.+)$"
               },
               "status_override": {
                   "$id": "#/properties/variants/items/properties/status_override",
