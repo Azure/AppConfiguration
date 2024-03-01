@@ -4,6 +4,16 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 3.2.0 - February 29, 2024
+
+### Enhancements
+
+* Supported declaring feature flags with [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v1.0.0.schema.json)
+
+### Breaking Changes
+
+There are no breaking changes in this release.
+
 ## 4.0.0-preview - January 4, 2024
 
 ### Variants
