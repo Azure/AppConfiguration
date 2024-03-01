@@ -1,6 +1,20 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.0.0-preview - February 28, 2024
+### Enhancements
+* Added new fields to feature flag telemetry metadata, including `FeatureFlagId`, `FeatureFlagReference`, and `ETag`. [#517](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/517)
+
+### Bug Fixes
+* Fixed a bug where a feature flag would not be parsed correctly by the `Microsoft.FeatureManagement` library if the flag was enabled but had no filters. [#525](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/525)
+
+## 7.1.0 - February 26, 2024
+### Enhancements
+* This is the first stable release of the **Replica Auto-Discovery** enhancement that was introduced in 7.1.0-preview.
+
+### Bug Fixes
+* Fixed a bug where the provider would throw a `KeyVaultReferenceException` instead of retrying for transient errors while connecting to Key Vault during startup, even if the startup timeout had not elapsed. [#516](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/516)
+
 ## 7.1.0-preview - January 19, 2024
 ### Enhancements
 * **Replica Auto-Discovery**: For App Configuration stores with geo-replication enabled, the provider will now automatically discover any additional replicas and attempt to connect to them when it fails to connect to user-provided endpoints in code. This capability allows applications to leverage geo-replication for enhanced resiliency without code change and redeployment. Replica discovery is enabled by default and can be disabled by setting the new `AzureAppConfigurationOptions.ReplicaDiscoveryEnabled` property equal to `false`. [#442](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/442).
