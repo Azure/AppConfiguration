@@ -2,6 +2,13 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.2.0 - 
+
+### Enhancements
+* Added support for downloading feature flags from Azure App Configuration.
+* Added support for setting `nodeSelector`, `affinity` and `tolerations` when using helm to install Azure App Configuration Kubernetes Provider. It's useful for node assignment management. [#858](https://github.com/Azure/AppConfiguration/issues/858)
+* Added support for setting `autoscaling` when using helm to install Azure App Configuration Kubernetes Provider. By default, `autoscaling` is disabled. However, if you have multiple `AzureAppConfigurationProvider` resources to produce multiple ConfigMaps/Secrets, you can enable horizontal pod autoscaling by setting `autoscaling.enabled` to `true`.
+
 ## 1.1.0 - December 22, 2023
 
 ### Enhancements
