@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.2.0 - 
+## 1.2.0 - March 1, 2024
 
 ### Enhancements
 * Added support for downloading feature flags from Azure App Configuration.
