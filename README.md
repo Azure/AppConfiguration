@@ -61,11 +61,15 @@ Module | Platform | Sample | Release Notes
 
 ## Platform Integration
 
-Integrate Azure App Configuration to commonly used platforms.
+Leverage App Configuration from the platforms you are already using with minimum effort.
 
-Module | Platform | Sample | Release Notes
------- | -------- | ------ | -------------
-[Azure App Configuration Kubernetes Provider](https://github.com/Azure/AppConfiguration-KubernetesProvider)<br/>[![MAR](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAppConfiguration-KubernetesProvider%2Fmain%2Fversion.json&query=%24.version&prefix=v&label=mar)](https://mcr.microsoft.com/en-us/product/azure-app-configuration/kubernetes-provider/about) | Kubernetes | [Sample](https://learn.microsoft.com/azure/azure-app-configuration/quickstart-azure-kubernetes-service) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/KubernetesProvider.md)
+Name | Platform | Document | Release Notes
+---- | -------- | -------- | -------------
+[Azure App Configuration Kubernetes Provider](https://github.com/Azure/AppConfiguration-KubernetesProvider)<br/>[![MAR](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAppConfiguration-KubernetesProvider%2Fmain%2Fversion.json&query=%24.version&prefix=v&label=mar)](https://mcr.microsoft.com/en-us/product/azure-app-configuration/kubernetes-provider/about) | Kubernetes | [Document](https://learn.microsoft.com/azure/azure-app-configuration/quickstart-azure-kubernetes-service) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/KubernetesProvider.md)
+App Configuration reference | App Service & Azure Functions | [Document](https://learn.microsoft.com/en-us/azure/app-service/app-service-configuration-references) |
+Azure App Configuration | Azure Pipeline | [Document](https://learn.microsoft.com/en-us/azure/azure-app-configuration/pull-key-value-devops-pipeline) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/AzureDevOpsPipelineExtension.md)
+Azure App Configuration Push | Azure Pipeline | [Document](https://learn.microsoft.com/en-us/azure/azure-app-configuration/push-kv-devops-pipeline) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/AzureDevOpsPushPipelineExtension.md)
+[Github Action](https://github.com/Azure/AppConfiguration-Sync) | Github | [Document](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-github-action) | [Release Notes](https://github.com/Azure/AppConfiguration-Sync/releases)
 
 ## Contributing
 
