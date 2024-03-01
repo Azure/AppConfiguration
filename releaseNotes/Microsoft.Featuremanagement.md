@@ -8,11 +8,7 @@
 
 ### Enhancements
 
-* Supported declaring feature flags with [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v1.0.0.schema.json)
-
-### Breaking Changes
-
-There are no breaking changes in this release.
+* Added support for feature flags defined using [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v1.0.0.schema.json)
 
 ## 4.0.0-preview - January 4, 2024
 
