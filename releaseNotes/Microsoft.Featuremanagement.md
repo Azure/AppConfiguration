@@ -54,7 +54,7 @@ IVariantServiceProvider<IAlgorithm> algorithmServiceProvider;
 IAlgorithm forecastAlgorithm = await algorithmServiceProvider.GetServiceAsync(cancellationToken);
 ```
 
-The ReadMe will be updated to fully describe the new functionality.
+The readme will be updated to fully describe the new functionality.
 
 ### Telemetry & Targeting
 
