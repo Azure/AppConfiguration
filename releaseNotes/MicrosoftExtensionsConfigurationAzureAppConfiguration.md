@@ -1,6 +1,10 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.0.0-preview.2 - March 18, 2024
+### Bug Fixes
+* Fixed a bug where the provider would throw a `FormatException` while parsing a feature flag if a variant's configuration value was not set to a string or `null`. [#531](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/531)
+
 ## 8.0.0-preview - February 28, 2024
 ### Enhancements
 * Added new fields to feature flag telemetry metadata, including `FeatureFlagId`, `FeatureFlagReference`, and `ETag`. [#517](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/517)
