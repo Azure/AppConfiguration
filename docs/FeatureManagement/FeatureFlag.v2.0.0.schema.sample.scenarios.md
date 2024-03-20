@@ -19,7 +19,7 @@ The following test scenarios use FeatureFlag.v2.0.0.schema.sample.json as the ba
 | 13     | Eta               | user="Chad" groups=["Stage2"]     | False           | Targeting Filter, Chad is neither part of the default rollout or part of the first 50% of Stage 2            |
 | 14     | Eta               | groups=["Stage3"]                 | False           | Targeting Filter, the Stage 3 is group is on the exclusion list            |
 | 15     | Eta               | user="Alice" groups=["Stage3"]    | False           | Targeting Filter, Alice who is targeted is excluded because she is part of the Stage 3 group           |
-| 16     | Eta               | user="Ellie" groups=["Stage3"]    | False           | Targeting Tilter Ellie who was enabled by the default rollout is now excluded as part of the Stage 3 group            |
+| 16     | Eta               | user="Ellie" groups=["Stage3"]    | False           | Targeting Filter, Ellie who was enabled by the default rollout is now excluded as part of the Stage 3 group            |
 | 17     | Eta               | user="Dave" groups=["Stage1"]     | False           | Targeting Filter, Dave is on the exclusion list, is still excluded even though he is part of the 100% rolled out Stage 1            |
 | 18     | Theta             | user="Adam"                       | True            | Targeting Filter, 74% default rollout Adam is part of it.            |
 | 19     | Theta             | user="Adam" groups=["Stage1"]     | True            | Targeting Filter, group is not part of default rollout calculation, no change            |
