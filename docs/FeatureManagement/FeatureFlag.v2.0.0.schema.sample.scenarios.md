@@ -33,7 +33,7 @@ The following test scenarios use FeatureFlag.v2.0.0.schema.sample.json as the ba
 | 27     | Kappa             | N/A                               | True            | Feature Flag with two feature filters, second returns true, so it's enabled.            |
 | 28     | Lambda            | N/A                               | True            | Feature Flag with two feature filters and requirement type specified as Any. Second filter returns true            |
 | 29     | Mu                | N/A                               | False           | Feature Flag with two feature filters and requirement type specified as Any. Neither filter returns true            |
-| 30     | Nu                | user="Adam"                       | False           | Feature Flag with two feature filters and requirement type specified as All. Only the first fitler returns true          |
+| 30     | Nu                | user="Adam"                       | False           | Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true          |
 | 31     | Xi                | user="Adam"                       | True            | Feature Flag with two feature filters and requirement type specified as All. Both filters return true            |
 
 ## Extra Test Scenario
