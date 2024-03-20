@@ -38,4 +38,4 @@ The following test scenarios use FeatureFlag.v2.0.0.schema.sample.json as the ba
 
 ## Extra Test Scenario
 
-Update the json to have the default rollout percentage of Theta to be 75% instead of 74% and run the test scenarios again. The expected result for tests 22-25 should now be True, this validates we are using the same fomula for our rollout calculation.
+Update the json to have the default rollout percentage of Theta to be 75% instead of 74% and run the test scenarios again. The expected result for tests 22-25 should now be True, this validates we are using the same formula for our rollout calculation.
