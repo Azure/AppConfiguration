@@ -6,7 +6,7 @@ The following test scenarios use FeatureFlag.v2.0.0.schema.sample.json as the ba
 |--------|-------------------|-----------------------------------|-----------------|-------------|
 | 1      | Alpha             | N/A                               | True            | An Enabled Feature Flag with no Filtered            |
 | 2      | Beta              | N/A                               | False           | A Disabled Feature Flag with no Filters             |
-| 3      | Gamma             | N/A                               | False           | Time Window filter where both Start and End have yet to happen            |
+| 3      | Gamma             | N/A                               | False           | Time Window filter where both Start and End have already passed           |
 | 4      | Delta             | N/A                               | False           | Time Window filter where neither Start nor End have happened            |
 | 5      | Epsilon           | N/A                               | True            | Time Window filter with a Start that has passed            |
 | 6      | Zeta              | N/A                               | True            | Time Window filter where the End hasn't passed             |
