@@ -202,7 +202,7 @@
             },
             {
                 "id": "Mu",
-                "description": "Same as Kappa, but requirement type is specified. Will always return true.",
+                "description": "Same as Lambda, but neither filter enables the flag. Will always return false.",
                 "enabled": "true",
                 "conditions": {
                     "client_filters": [
