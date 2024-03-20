@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Feature Management with Python</title>
+    <title>Feature Management with Spring Cloud Azure</title>
 
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,20 +23,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-            </li>
-            {% if beta %}
             <li class="nav-item">
-                <a class="nav-link" href="/beta">Beta</a>
+            <a class="nav-link" href="/">Home</a>
             </li>
-            {% endif %}
+            <li class="nav-item active">
+            <a class="nav-link" href="/beta">Beta<span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         </div>
     </nav>
     </header>
     <div class="container body-content">
-        <h1 class="mt-5">Welcome</h1>
+        <h1 class="mt-5">Beta Feature</h1>
+        <p>The Beta tab only shows to users when the Beta feature flag is true.</p>
+
     </div>
     <footer class="footer">
         <div class="container">

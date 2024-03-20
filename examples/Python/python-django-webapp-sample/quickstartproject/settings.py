@@ -16,6 +16,7 @@ from pathlib import Path
 from azure.appconfiguration.provider import SettingSelector, WatchKey
 from azure.appconfiguration.provider.aio import load
 from azure.identity import DefaultAzureCredential
+from featuremanagement.aio import FeatureManager
 
 c_parser = configparser.ConfigParser()
 c_parser.read("static/config.ini")
@@ -38,16 +39,17 @@ def callback():
     # Update Django settings with the app configuration key-values
     CONFIG.update(AZURE_APP_CONFIG)
 
-
-AZURE_APP_CONFIG = load(
-    endpoint=ENDPOINT,
-    selects=[selects, selects_secret],
-    credential=credential,
-    keyvault_credential=credential,
-    trim_prefixes=["testapp_settings_"],
-    refresh_on=[WatchKey("sentinel")],
-    on_refresh_success=callback,
-)
+async def setup():
+    AZURE_APP_CONFIG = await load(
+        endpoint=ENDPOINT,
+        selects=[selects, selects_secret],
+        credential=credential,
+        keyvault_credential=credential,
+        trim_prefixes=["testapp_settings_"],
+        refresh_on=[WatchKey("sentinel")],
+        on_refresh_success=callback,
+    )
+    FEATURE_MANAGER = FeatureManager(AZURE_APP_CONFIG)
 
 
 # Updates the config object with the app configuration key-values and resolved key vault reference values.
