@@ -6,63 +6,20 @@
 
 ## 4.0.0-preview2 - March 7, 2024
 
-### Feature Service Injector
+### Use flags to enable different service implementations in dependency injection
 
-Dependency injection can be wired up with a variant feature flag. Different implementations of a service interface can be considered as variant services. Using the newly provided `IVariantServiceProvider<TService>`, the appropriate service can be injected.
+It is now possible to use variant feature flags to control which implementation of a service is used in dependency injection. This enables different implementations to be used for different audiences of the application. After using the newly provided `WithVariantService<TService>` builder method, a `IVariantServiceProvider<TService>` can be injected which will supply the appropriate variation of `TService` determined by allocation.
 
-To use it, a variant service needs to be declared
-
-``` C#
-services.AddFeatureManagement() 
-        .WithVariantService<IAlgorithm>("ForecastAlgorithm");
-```
-
-The different options of the service need to extend a shared interface
-
-``` C#
-public class AlgorithmAlpha : IAlgorithm
-{
-    ...
-}
-
-public class AlgorithmBeta : IAlgorithm
-{
-    ...
-}
-```
-
-And the appropriate variant flag needs to exist
-
-```json
-    "ForecastAlgorithm": {
-        "Variants": [ 
-            { 
-                "Name": "AlgorithmAlpha" 
-            },
-            { 
-                "Name": "AlgorithmBeta" 
-            }
-        ] 
-    }
-```
-
-Lastly, the provider is ready to be used and grab the appropriate service for the variant.
-
-``` C#
-IVariantServiceProvider<IAlgorithm> algorithmServiceProvider;
-...
-IAlgorithm forecastAlgorithm = await algorithmServiceProvider.GetServiceAsync(cancellationToken);
-```
-
-The readme will be updated to fully describe the new functionality.
+For more details, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
 
 ### Telemetry & Targeting
 
-This preview release includes some additional mechanisms to track targeting within telemetry. There's been some changes to the telemetry publisher fields, and a couple classes are now offered/have been updated: `TargetingTelemetryInitializer` in `Microsoft.FeatureManagement.Telemetry.AspNetCore` and `TargetingHttpContextMiddleware` in `Microsoft.FeatureManagement.Telemetry.AspNetCore`. 
+This preview release includes some additional mechanisms to track targeting within telemetry. There's been some changes to the telemetry publisher fields and classes to manage it:
 
-These changes introduce the field `TargetingId`, which tracks the id used by TargetingFilters and Allocation. This allows telemetry to connect events by the target to the evaluation events for the target, rather than relying on built in app insights fields that may or may not exist in a project.
+* `TargetingHttpContextMiddleware` (added) in `Microsoft.FeatureManagement.AspNetCore`
+* `TargetingTelemetryInitializer` (updated) in `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore`
 
-Currently the classes need to be explicitly added:
+Currently these classes need to be explicitly added:
 
 ``` C#
 builder.Service.AddSingleton<ITelemetryInitializer, TargetingTelemetryInitializer>();
@@ -70,19 +27,9 @@ builder.Service.AddSingleton<ITelemetryInitializer, TargetingTelemetryInitialize
 app.UseMiddleware<TargetingHttpContextMiddleware>();
 ```
 
-### Additional Changes
+### Net8 support
 
-#### BlazorServerApp
-
-An example for Blazor has been added named `BlazorServerApp`. This app demonstrates how to handle FeatureMangement setup, use, and targeting context accessors in Blazor.
-
-#### Schema
-
-A schema file has been introduced to explicitly declare [the Feature Flag schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/release/v4/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json).
-
-#### Net8 build target
-
-Net8 was added as a build target.
+Added support for Net8 applications by adding Net8 as a build target.
 
 ### Breaking Changes
 
