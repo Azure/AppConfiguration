@@ -1,0 +1,22 @@
+{
+    "feature_management": {
+        "feature_flags": [
+            {
+                "id": "EnabledFeatureFlag",
+                "description": "A simple feature flag, that always returns true.",
+                "enabled": "true",
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "DisabledFeatureFlag",
+                "description": "A simple feature flag, that always returns false.",
+                "enabled": "false",
+                "conditions": {
+                    "client_filters": []
+                }
+            }
+        ]
+    }
+}
