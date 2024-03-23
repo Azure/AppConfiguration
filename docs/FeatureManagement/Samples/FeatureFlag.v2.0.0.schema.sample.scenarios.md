@@ -4,10 +4,16 @@
 
 The following test scenarios use NoFilters.sample.json as the baseline file for testing the Feature Management libraries.
 
-| Test # | Feature Flag Name   | Expected Result | Description                              |
-|--------|---------------------|-----------------|------------------------------------------|
-| 1      | EnabledFeatureFlag  | True            | An Enabled Feature Flag with no Filtered |
-| 2      | DisabledFeatureFlag | False           | A Disabled Feature Flag with no Filters  |
+| Test # | Feature Flag Name         | Expected Result | Description                                          |
+|--------|---------------------------|-----------------|------------------------------------------------------|
+| 1      | BooleanTrueFeatureFlag    | True            | An Enabled Feature Flag with no Filtered             |
+| 2      | BooleanFalseFeatureFlag   | False           | A Disabled Feature Flag with no Filters              |
+| 3      | StringTrueFeatureFlag     | True            | An Enabled Feature Flag with no Filtered             |
+| 4      | StringFalseFeatureFlag    | False           | A Disabled Feature Flag with no Filters              |
+| 5      | InvalidEnabledFeatureFlag | Exception       | A Feature Flag with an invalid Enabled Value         |
+| 6      | MinimalFeatureFlag        | True            | A Feature Flag with just a key and enabled           |
+| 7      | NoEnabled                 | False           | Validates that the default value of enabled is False |
+| 8      | NoConditions              | True            | A Disabled Feature Flag with no Conditions           |
 
 ## Time Window Filter Test Scenarios
 

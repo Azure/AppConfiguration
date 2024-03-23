@@ -2,19 +2,57 @@
     "feature_management": {
         "feature_flags": [
             {
-                "id": "EnabledFeatureFlag",
+                "id": "BooleanTrueFeatureFlag",
                 "description": "A simple feature flag, that always returns true.",
+                "enabled": true,
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "BooleanFalseFeatureFlag",
+                "description": "A simple feature flag, that always returns false.",
+                "enabled": false,
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "StringTrueFeatureFlag",
+                "description": "A simple feature flag, that always returns false.",
                 "enabled": "true",
                 "conditions": {
                     "client_filters": []
                 }
             },
             {
-                "id": "DisabledFeatureFlag",
-                "description": "A simple feature flag, that always returns false.",
+                "id": "StringFalseFeatureFlag",
+                "description": "A simple feature flag, that always returns true.",
                 "enabled": "false",
                 "conditions": {
                     "client_filters": []
+                }
+            },
+            {
+                "id": "InvalidEnabledFeatureFlag",
+                "description": "A simple feature flag, that has an invalid enabled field.",
+                "enabled": "invalid",
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "MinimalFeatureFlag",
+                "enabled": true
+            },
+            {
+                "id": "NoEnabled"
+            },
+            {
+                "id": "NoConditions",
+                "description": "A simple feature flag, where conditions is empty.",
+                "enabled": true,
+                "conditions": {
                 }
             }
         ]

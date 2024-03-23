@@ -4,7 +4,7 @@
             {
                 "id": "ComplexTargeting",
                 "description": "A feature flag using a targeting filter, that will return true for Alice, Stage1, and 50% of Stage2, and false for Dave and Stage3. The default rollout percentage is 25%.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
@@ -38,7 +38,7 @@
             {
                 "id": "RolloutPercentageUpdate",
                 "description": "A feature flag using a targeting filter, that will return true 74% of the time. Changing to 75% makes the user Brittney true.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {

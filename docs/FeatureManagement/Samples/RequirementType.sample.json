@@ -4,7 +4,7 @@
             {
                 "id": "FirstOrFeatureFlag",
                 "description": "A feature flag that has multiple filters, but doesn't specify any requirement type, which is the default. Will always return true.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
@@ -26,7 +26,7 @@
             {
                 "id": "SecondOrFeatureFlag",
                 "description": "Same as Iota, but filter order is switched. Will always return true.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
@@ -48,7 +48,7 @@
             {
                 "id": "FristRequirementTypeAnyFeatureFlag",
                 "description": "Same as Kappa, but requirement type is specified. Will always return true.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
@@ -71,7 +71,7 @@
             {
                 "id": "SecondtRequirementTypeAnyFeatureFlag",
                 "description": "Same as Kappa, but requirement type is specified. Will always return true.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
@@ -94,7 +94,7 @@
             {
                 "id": "TrueRequirementTypeAllFeatureFlag",
                 "description": "Requirement type All. Will always return false.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
@@ -118,7 +118,7 @@
             {
                 "id": "FalseRequirementTypeAllFeatureFlag",
                 "description": "Requirement type All. Will always return false.",
-                "enabled": "true",
+                "enabled": true,
                 "conditions": {
                     "client_filters": [
                         {
