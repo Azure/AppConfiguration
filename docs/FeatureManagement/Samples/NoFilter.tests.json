@@ -2,7 +2,7 @@
     "1": {
         "Feature Flag Name": "BooleanTrueFeatureFlag",
         "Expected Result": true,
-        "Description": "An Enabled Feature Flag with no Filtered"
+        "Description": "An Enabled Feature Flag with no Filters"
     },
     "2": {
         "Feature Flag Name": "BooleanFalseFeatureFlag",
@@ -12,7 +12,7 @@
     "3": {
         "Feature Flag Name": "StringTrueFeatureFlag",
         "Expected Result": true,
-        "Description": "An Enabled Feature Flag with no Filtered"
+        "Description": "An Enabled Feature Flag with no Filters"
     },
     "4": {
         "Feature Flag Name": "StringFalseFeatureFlag",
