@@ -1,37 +1,33 @@
 {
     "1": {
         "Feature Flag Name": "FirstOrFeatureFlag",
-        "Inputs": "N/A",
         "Expected Result": true,
         "Description": "Feature Flag with two feature filters, first returns true, so it's enabled."
     },
     "2": {
         "Feature Flag Name": "SecondOrFeatureFlag",
-        "Inputs": "N/A",
         "Expected Result": true,
         "Description": "Feature Flag with two feature filters, second returns true, so it's enabled."
     },
     "3": {
         "Feature Flag Name": "FristRequirementTypeAnyFeatureFlag",
-        "Inputs": "N/A",
         "Expected Result": true,
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Second filter returns true"
     },
     "4": {
         "Feature Flag Name": "SecondtRequirementTypeAnyFeatureFlag",
-        "Inputs": "N/A",
         "Expected Result": false,
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Neither filter returns true"
     },
     "5": {
         "Feature Flag Name": "TrueRequirementTypeAllFeatureFlag",
-        "Inputs": "user=\"Adam\"",
+        "Inputs": {"user":"Adam"},
         "Expected Result": false,
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true"
     },
     "6": {
         "Feature Flag Name": "FalseRequirementTypeAllFeatureFlag",
-        "Inputs": "user=\"Adam\"",
+        "Inputs": {"user":"Adam"},
         "Expected Result": true,
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Both filters return true"
     }
