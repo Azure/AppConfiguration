@@ -1,0 +1,27 @@
+{
+    "1": {
+        "Feature Flag Name": "PastTimeWindow",
+        "Expected Result": "False",
+        "Description": "Time Window filter where both Start and End have already passed"
+    },
+    "2": {
+        "Feature Flag Name": "FutureTimeWindow",
+        "Expected Result": "False",
+        "Description": "Time Window filter where neither Start nor End have happened"
+    },
+    "3": {
+        "Feature Flag Name": "PresentTimeWindow",
+        "Expected Result": "True",
+        "Description": "Time Window filter where Start has happend but End hasn't happend"
+    },
+    "4": {
+        "Feature Flag Name": "StartedTimeWindow",
+        "Expected Result": "True",
+        "Description": "Time Window filter with a Start that has passed"
+    },
+    "5": {
+        "Feature Flag Name": "WillEndTimeWindow",
+        "Expected Result": "True",
+        "Description": "Time Window filter where the End hasn't passed"
+    }
+}

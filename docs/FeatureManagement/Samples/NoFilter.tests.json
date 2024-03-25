@@ -1,0 +1,42 @@
+{
+    "1": {
+        "Feature Flag Name": "BooleanTrueFeatureFlag",
+        "Expected Result": true,
+        "Description": "An Enabled Feature Flag with no Filtered"
+    },
+    "2": {
+        "Feature Flag Name": "BooleanFalseFeatureFlag",
+        "Expected Result": false,
+        "Description": "A Disabled Feature Flag with no Filters"
+    },
+    "3": {
+        "Feature Flag Name": "StringTrueFeatureFlag",
+        "Expected Result": true,
+        "Description": "An Enabled Feature Flag with no Filtered"
+    },
+    "4": {
+        "Feature Flag Name": "StringFalseFeatureFlag",
+        "Expected Result": false,
+        "Description": "A Disabled Feature Flag with no Filters"
+    },
+    "5": {
+        "Feature Flag Name": "InvalidEnabledFeatureFlag",
+        "Expected Result": "Exception",
+        "Description": "A Feature Flag with an invalid Enabled Value"
+    },
+    "6": {
+        "Feature Flag Name": "MinimalFeatureFlag",
+        "Expected Result": true,
+        "Description": "A Feature Flag with just a key and enabled"
+    },
+    "7": {
+        "Feature Flag Name": "NoEnabled",
+        "Expected Result": false,
+        "Description": "Validates that the default value of enabled is False"
+    },
+    "8": {
+        "Feature Flag Name": "NoConditions",
+        "Expected Result": true,
+        "Description": "A Disabled Feature Flag with no Conditions"
+    }
+}

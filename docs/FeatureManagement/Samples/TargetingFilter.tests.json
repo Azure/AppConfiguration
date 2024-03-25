@@ -1,0 +1,116 @@
+{
+    "1": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Aiden\"",
+        "Enabled": false,
+        "Notes": "Targeting Filter, Aiden is not part of the default rollout"
+    },
+    "2": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Blossom\"",
+        "Enabled": true,
+        "Notes": "Targeting Filter, Blossom is part of the default rollout"
+    },
+    "3": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Alice\"",
+        "Enabled": true,
+        "Notes": "Targeting Filter, Alice is a targeted user"
+    },
+    "4": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Aiden\" groups=[\"Stage1\"]",
+        "Enabled": true,
+        "Notes": "Targeting Filter, Aiden now part of the 100% rolled out group Stage1 is now targeted"
+    },
+    "5": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "groups=[\"Stage2\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, no user Stage 2 is 50% rolloued out."
+    },
+    "6": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Aiden\" groups=[\"Stage2\"]",
+        "Enabled": true,
+        "Notes": "Targeting Filter, Aiden who is not part of the default rollout is part of the first 50% of Stage 2"
+    },
+    "7": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Chad\" groups=[\"Stage2\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, Chad is neither part of the default rollout or part of the first 50% of Stage 2"
+    },
+    "8": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "groups=[\"Stage3\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, the Stage 3 is group is on the exclusion list"
+    },
+    "9": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Alice\" groups=[\"Stage3\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, Alice who is targeted is excluded because she is part of the Stage 3 group"
+    },
+    "10": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Blossom\" groups=[\"Stage3\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, Blossom who was enabled by the default rollout is now excluded as part of the Stage 3 group"
+    },
+    "11": {
+        "Scenario": "ComplexTargeting",
+        "Parameters": "user=\"Dave\" groups=[\"Stage1\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, Dave is on the exclusion list, is still excluded even though he is part of the 100% rolled out Stage 1"
+    },
+    "12": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Aiden\"",
+        "Enabled": true,
+        "Notes": "Targeting Filter, 62% default rollout Aiden is part of it."
+    },
+    "13": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Aiden\" groups=[\"Stage1\"]",
+        "Enabled": true,
+        "Notes": "Targeting Filter, group is not part of default rollout calculation, no change"
+    },
+    "14": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Aiden\" groups=[\"Stage2\"]",
+        "Enabled": true,
+        "Notes": "Targeting Filter, group is not part of default rollout calculation, no change"
+    },
+    "15": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Aiden\" groups=[\"Stage3\"]",
+        "Enabled": true,
+        "Notes": "Targeting Filter, group is not part of default rollout calculation, no change"
+    },
+    "16": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Brittney\"",
+        "Enabled": false,
+        "Notes": "Targeting Filter, 62% default rollout Brittney is not part of it"
+    },
+    "17": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Brittney\" groups=[\"Stage1\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, group is not part of default rollout calculation, no change"
+    },
+    "18": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Brittney\" groups=[\"Stage2\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, group is not part of default rollout calculation, no change"
+    },
+    "19": {
+        "Scenario": "RolloutPercentageUpdate",
+        "Parameters": "user=\"Brittney\" groups=[\"Stage3\"]",
+        "Enabled": false,
+        "Notes": "Targeting Filter, group is not part of default rollout calculation, no change"
+    }
+}
