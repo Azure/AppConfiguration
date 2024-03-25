@@ -2,6 +2,11 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 1.0.0-preview.3 - March 21, 2023
+### Enhancements
+- Added support for dynamic configuration refresh. See an example [here](https://github.com/Azure/AppConfiguration-JavaScriptProvider/blob/main/examples/refresh.mjs). [#21](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/21)
+- Added support for consuming configuration as an object. A new API, `constructConfigurationObject`, has been added to construct a configuration object based on the key-values loaded from Azure App Configuration. It minimizes necessary code changes for applications that were using JSON configuration file to adopt Azure App Configuration. [#49](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/49)
+
 ## 1.0.0-preview.2 - December 15, 2023
 ### Breaking Changes
 - The label filter in a selector is restricted to a single label. An error will be thrown if a label filter contains `*` or `,`. This change is to avoid the ambiguity when multiple values are loaded for the same key. Key-values with different labels can still be loaded using separate selectors for proper configuration composition. [#22](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/22)
