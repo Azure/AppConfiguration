@@ -1,50 +1,58 @@
-{
-    "12": {
+[
+    {
+        "Test ID": "TargetingFilterModified1",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden"},
         "Expected Result": true,
         "Description": "Targeting Filter, 62% default rollout Aiden is part of it."
     },
-    "13": {
+    {
+        "Test ID": "TargetingFilterModified2",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage1"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "14": {
+    {
+        "Test ID": "TargetingFilterModified3",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage2"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "15": {
+    {
+        "Test ID": "TargetingFilterModified4",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage3"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "16": {
+    {
+        "Test ID": "TargetingFilterModified5",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney"},
         "Expected Result": true,
         "Description": "Targeting Filter, 62% default rollout Brittney is not part of it"
     },
-    "17": {
+    {
+        "Test ID": "TargetingFilterModified6",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage1"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "18": {
+    {
+        "Test ID": "TargetingFilterModified7",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage2"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "19": {
+    {
+        "Test ID": "TargetingFilterModified8",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage3"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     }
-}
+]

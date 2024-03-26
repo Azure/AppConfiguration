@@ -1,116 +1,135 @@
-{
-    "1": {
+[
+    {
+        "Test ID": "TargetingFilter1",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Aiden"},
         "Expected Result": false,
         "Description": "Targeting Filter, Aiden is not part of the default rollout"
     },
-    "2": {
+    {
+        "Test ID": "TargetingFilter2",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Blossom"},
         "Expected Result": true,
         "Description": "Targeting Filter, Blossom is part of the default rollout"
     },
-    "3": {
+    {
+        "Test ID": "TargetingFilter3",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Alice"},
         "Expected Result": true,
         "Description": "Targeting Filter, Alice is a targeted user"
     },
-    "4": {
+    {
+        "Test ID": "TargetingFilter4",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Aiden", "groups":["Stage1"]},
         "Expected Result": true,
         "Description": "Targeting Filter, Aiden now part of the 100% rolled out group Stage1 is now targeted"
     },
-    "5": {
+    {
+        "Test ID": "TargetingFilter5",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"groups":["Stage2"]},
         "Expected Result": false,
         "Description": "Targeting Filter, no user Stage 2 is 50% rolloued out."
     },
-    "6": {
+    {
+        "Test ID": "TargetingFilter6",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Aiden", "groups":["Stage2"]},
         "Expected Result": true,
         "Description": "Targeting Filter, Aiden who is not part of the default rollout is part of the first 50% of Stage 2"
     },
-    "7": {
+    {
+        "Test ID": "TargetingFilter7",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Chad", "groups":["Stage2"]},
         "Expected Result": false,
         "Description": "Targeting Filter, Chad is neither part of the default rollout or part of the first 50% of Stage 2"
     },
-    "8": {
+    {
+        "Test ID": "TargetingFilter8",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"groups":["Stage3"]},
         "Expected Result": false,
         "Description": "Targeting Filter, the Stage 3 is group is on the exclusion list"
     },
-    "9": {
+    {
+        "Test ID": "TargetingFilter9",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Alice", "groups":["Stage3"]},
         "Expected Result": false,
         "Description": "Targeting Filter, Alice who is targeted is excluded because she is part of the Stage 3 group"
     },
-    "10": {
+    {
+        "Test ID": "TargetingFilter10",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Blossom", "groups":["Stage3"]},
         "Expected Result": false,
         "Description": "Targeting Filter, Blossom who was Expected Result by the default rollout is now excluded as part of the Stage 3 group"
     },
-    "11": {
+    {
+        "Test ID": "TargetingFilter11",
         "Feature Flag Name": "ComplexTargeting",
         "Inputs": {"user":"Dave", "groups":["Stage1"]},
         "Expected Result": false,
         "Description": "Targeting Filter, Dave is on the exclusion list, is still excluded even though he is part of the 100% rolled out Stage 1"
     },
-    "12": {
+    {
+        "Test ID": "TargetingFilter12",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden"},
         "Expected Result": true,
         "Description": "Targeting Filter, 62% default rollout Aiden is part of it."
     },
-    "13": {
+    {
+        "Test ID": "TargetingFilter13",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage1"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "14": {
+    {
+        "Test ID": "TargetingFilter14",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage2"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "15": {
+    {
+        "Test ID": "TargetingFilter15",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage3"]},
         "Expected Result": true,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "16": {
+    {
+        "Test ID": "TargetingFilter16",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney"},
         "Expected Result": false,
         "Description": "Targeting Filter, 62% default rollout Brittney is not part of it"
     },
-    "17": {
+    {
+        "Test ID": "TargetingFilter17",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage1"]},
         "Expected Result": false,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "18": {
+    {
+        "Test ID": "TargetingFilter18",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage2"]},
         "Expected Result": false,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     },
-    "19": {
+    {
+        "Test ID": "TargetingFilter19",
         "Feature Flag Name": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage3"]},
         "Expected Result": false,
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change"
     }
-}
+]
