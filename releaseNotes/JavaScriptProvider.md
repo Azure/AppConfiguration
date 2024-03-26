@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
-## 1.0.0-preview.3 - March 21, 2023
+## 1.0.0-preview.3 - March 21, 2024
 ### Enhancements
 - Added support for dynamic configuration refresh. See an example [here](https://github.com/Azure/AppConfiguration-JavaScriptProvider/blob/main/examples/refresh.mjs). [#21](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/21)
 - Added support for consuming configuration as an object. A new API, `constructConfigurationObject`, has been added to construct a configuration object based on the key-values loaded from Azure App Configuration. It minimizes necessary code changes for applications that were using JSON configuration file to adopt Azure App Configuration. [#49](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/49)
