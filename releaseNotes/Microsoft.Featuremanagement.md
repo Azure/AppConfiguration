@@ -4,6 +4,37 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 4.0.0-preview2 - March 7, 2024
+
+### Use flags to enable different service implementations in dependency injection ([#335](https://github.com/microsoft/FeatureManagement-Dotnet/pull/335))
+
+It is now possible to use variant feature flags to control which implementation of a service is used in dependency injection. This enables different implementations to be used for different audiences of the application. After using the newly provided `WithVariantService<TService>` builder method, a `IVariantServiceProvider<TService>` can be injected which will supply the appropriate variation of `TService` determined by allocation.
+
+For more details, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
+
+### Telemetry & Targeting ([#350](https://github.com/microsoft/FeatureManagement-Dotnet/pull/350))
+
+This preview release includes some additional mechanisms to track targeting within telemetry. There's been some changes to the telemetry publisher fields and classes to manage it:
+
+* `TargetingHttpContextMiddleware` (added) in `Microsoft.FeatureManagement.AspNetCore`
+* `TargetingTelemetryInitializer` (updated) in `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore`
+
+Currently these classes need to be explicitly added:
+
+``` C#
+builder.Service.AddSingleton<ITelemetryInitializer, TargetingTelemetryInitializer>();
+
+app.UseMiddleware<TargetingHttpContextMiddleware>();
+```
+
+### Net8 support
+
+Added support for Net8 applications by adding Net8 as a build target.
+
+### Breaking Changes
+
+There are no breaking changes in this release.
+
 ## 3.2.0 - February 29, 2024
 
 ### Enhancements
