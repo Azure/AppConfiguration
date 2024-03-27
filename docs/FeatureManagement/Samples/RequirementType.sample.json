@@ -25,7 +25,7 @@
             },
             {
                 "id": "SecondOrFeatureFlag",
-                "description": "Same as Iota, but filter order is switched. Will always return true.",
+                "description": "Same as FirstOrFeatureFlag, but filter order is switched. Will always return true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
@@ -47,7 +47,30 @@
             },
             {
                 "id": "FristRequirementTypeAnyFeatureFlag",
-                "description": "Same as Kappa, but requirement type is specified. Will always return true.",
+                "description": "Same as FirstOrFeatureFlag, but requirement type is specified. Will always return true.",
+                "enabled": true,
+                "conditions": {
+                    "client_filters": [
+                        {
+                            "name": "Microsoft.TimeWindow",
+                            "parameters": {
+                                "Start": "Tue, 27 Jun 2023 06:00:00 GMT"
+                            }
+                        },
+                        {
+                            "name": "Microsoft.TimeWindow",
+                            "parameters": {
+                                "Start": "Thu, 29 Jun 2023 07:00:00 GMT",
+                                "End": "Wed, 30 Aug 2023 07:00:00 GMT"
+                            }
+                        }
+                    ],
+                    "requirement_type": "Any"
+                }
+            },
+            {
+                "id": "SecondRequirementTypeAnyFeatureFlag",
+                "description": "Same as SecondOrFeatureFlag, but requirement type is specified. Will always return true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
@@ -62,29 +85,6 @@
                             "name": "Microsoft.TimeWindow",
                             "parameters": {
                                 "Start": "Tue, 27 Jun 2023 06:00:00 GMT"
-                            }
-                        }
-                    ],
-                    "requirement_type": "Any"
-                }
-            },
-            {
-                "id": "SecondtRequirementTypeAnyFeatureFlag",
-                "description": "Same as Kappa, but requirement type is specified. Will always return true.",
-                "enabled": true,
-                "conditions": {
-                    "client_filters": [
-                        {
-                            "name": "Microsoft.TimeWindow",
-                            "parameters": {
-                                "Start": "Thu, 29 Jun 2023 07:00:00 GMT",
-                                "End": "Wed, 30 Aug 2023 07:00:00 GMT"
-                            }
-                        },
-                        {
-                            "name": "Microsoft.TimeWindow",
-                            "parameters": {
-                                "End": "Tue, 27 Jun 2023 06:00:00 GMT"
                             }
                         }
                     ],
@@ -108,7 +108,7 @@
                         {
                             "name": "Microsoft.TimeWindow",
                             "parameters": {
-                                "End": "Tue, 27 Jun 2023 06:00:00 GMT"
+                                "Start": "Tue, 27 Jun 2023 06:00:00 GMT"
                             }
                         }
                     ],
@@ -132,7 +132,7 @@
                         {
                             "name": "Microsoft.TimeWindow",
                             "parameters": {
-                                "Start": "Tue, 27 Jun 2023 06:00:00 GMT"
+                                "End": "Tue, 27 Jun 2023 06:00:00 GMT"
                             }
                         }
                     ],

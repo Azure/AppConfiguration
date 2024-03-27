@@ -3,7 +3,7 @@
         "feature_flags": [
             {
                 "id": "BooleanTrueFeatureFlag",
-                "description": "A simple feature flag, that always returns true.",
+                "description": "An Enabled Feature Flag with no Filters.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": []
@@ -11,7 +11,7 @@
             },
             {
                 "id": "BooleanFalseFeatureFlag",
-                "description": "A simple feature flag, that always returns false.",
+                "description": "A Disabled Feature Flag with no Filters.",
                 "enabled": false,
                 "conditions": {
                     "client_filters": []
@@ -19,7 +19,7 @@
             },
             {
                 "id": "StringTrueFeatureFlag",
-                "description": "A simple feature flag, that always returns false.",
+                "description": "An Enabled Feature Flag with no Filters.",
                 "enabled": "true",
                 "conditions": {
                     "client_filters": []
@@ -27,7 +27,7 @@
             },
             {
                 "id": "StringFalseFeatureFlag",
-                "description": "A simple feature flag, that always returns true.",
+                "description": "A Disabled Feature Flag with no Filters.",
                 "enabled": "false",
                 "conditions": {
                     "client_filters": []
@@ -35,7 +35,7 @@
             },
             {
                 "id": "InvalidEnabledFeatureFlag",
-                "description": "A simple feature flag, that has an invalid enabled field.",
+                "description": "A Feature Flag with an invalid 'enabled' Value.",
                 "enabled": "invalid",
                 "conditions": {
                     "client_filters": []
@@ -49,8 +49,8 @@
                 "id": "NoEnabled"
             },
             {
-                "id": "NoConditions",
-                "description": "A simple feature flag, where conditions is empty.",
+                "id": "EmptyConditionsFeatureFlag",
+                "description": "A Disabled Feature Flag with no Conditions.",
                 "enabled": true,
                 "conditions": {
                 }
