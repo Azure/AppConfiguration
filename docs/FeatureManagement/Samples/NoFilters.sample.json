@@ -1,0 +1,60 @@
+{
+    "feature_management": {
+        "feature_flags": [
+            {
+                "id": "BooleanTrueFeatureFlag",
+                "description": "An Enabled Feature Flag with no Filters.",
+                "enabled": true,
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "BooleanFalseFeatureFlag",
+                "description": "A Disabled Feature Flag with no Filters.",
+                "enabled": false,
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "StringTrueFeatureFlag",
+                "description": "An Enabled Feature Flag with no Filters.",
+                "enabled": "true",
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "StringFalseFeatureFlag",
+                "description": "A Disabled Feature Flag with no Filters.",
+                "enabled": "false",
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "InvalidEnabledFeatureFlag",
+                "description": "A Feature Flag with an invalid 'enabled' Value.",
+                "enabled": "invalid",
+                "conditions": {
+                    "client_filters": []
+                }
+            },
+            {
+                "id": "MinimalFeatureFlag",
+                "enabled": true
+            },
+            {
+                "id": "NoEnabled"
+            },
+            {
+                "id": "EmptyConditionsFeatureFlag",
+                "description": "A Disabled Feature Flag with no Conditions.",
+                "enabled": true,
+                "conditions": {
+                }
+            }
+        ]
+    }
+}
