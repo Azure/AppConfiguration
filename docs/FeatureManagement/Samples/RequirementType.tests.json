@@ -1,40 +1,40 @@
 [
     {
-        "Test ID": "RequirementType1",
-        "Feature Flag Name": "FirstOrFeatureFlag",
-        "Expected Result": true,
+        "TestID": "RequirementType1",
+        "FeatureFlagName": "FirstOrFeatureFlag",
+        "ExpectedResult": true,
         "Description": "Feature Flag with two feature filters, first returns true, so it's enabled."
     },
     {
-        "Test ID": "RequirementType2",
-        "Feature Flag Name": "SecondOrFeatureFlag",
-        "Expected Result": true,
+        "TestID": "RequirementType2",
+        "FeatureFlagName": "SecondOrFeatureFlag",
+        "ExpectedResult": true,
         "Description": "Feature Flag with two feature filters, second returns true, so it's enabled."
     },
     {
-        "Test ID": "RequirementType3",
-        "Feature Flag Name": "FristRequirementTypeAnyFeatureFlag",
-        "Expected Result": true,
+        "TestID": "RequirementType3",
+        "FeatureFlagName": "FristRequirementTypeAnyFeatureFlag",
+        "ExpectedResult": true,
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Second filter returns true."
     },
     {
-        "Test ID": "RequirementType4",
-        "Feature Flag Name": "SecondRequirementTypeAnyFeatureFlag",
-        "Expected Result": true,
+        "TestID": "RequirementType4",
+        "FeatureFlagName": "SecondRequirementTypeAnyFeatureFlag",
+        "ExpectedResult": true,
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Neither filter returns true."
     },
     {
-        "Test ID": "RequirementType5",
-        "Feature Flag Name": "TrueRequirementTypeAllFeatureFlag",
+        "TestID": "RequirementType5",
+        "FeatureFlagName": "TrueRequirementTypeAllFeatureFlag",
         "Inputs": {"user":"Adam"},
-        "Expected Result": true,
+        "ExpectedResult": true,
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true."
     },
     {
-        "Test ID": "RequirementType6",
-        "Feature Flag Name": "FalseRequirementTypeAllFeatureFlag",
+        "TestID": "RequirementType6",
+        "FeatureFlagName": "FalseRequirementTypeAllFeatureFlag",
         "Inputs": {"user":"Adam"},
-        "Expected Result": false,
+        "ExpectedResult": false,
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Both filters return true."
     }
 ]

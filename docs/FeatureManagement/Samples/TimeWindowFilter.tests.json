@@ -1,32 +1,32 @@
 [
     {
-        "Test ID": "TimeWindowFilter1",
-        "Feature Flag Name": "PastTimeWindow",
-        "Expected Result": false,
+        "TestID": "TimeWindowFilter1",
+        "FeatureFlagName": "PastTimeWindow",
+        "ExpectedResult": false,
         "Description": "Time Window filter where both Start and End have already passed."
     },
     {
-        "Test ID": "TimeWindowFilter2",
-        "Feature Flag Name": "FutureTimeWindow",
-        "Expected Result": false,
+        "TestID": "TimeWindowFilter2",
+        "FeatureFlagName": "FutureTimeWindow",
+        "ExpectedResult": false,
         "Description": "Time Window filter where neither Start nor End have happened."
     },
     {
-        "Test ID": "TimeWindowFilter3",
-        "Feature Flag Name": "PresentTimeWindow",
-        "Expected Result": true,
+        "TestID": "TimeWindowFilter3",
+        "FeatureFlagName": "PresentTimeWindow",
+        "ExpectedResult": true,
         "Description": "Time Window filter where Start has happend but End hasn't happend."
     },
     {
-        "Test ID": "TimeWindowFilter4",
-        "Feature Flag Name": "StartedTimeWindow",
-        "Expected Result": true,
+        "TestID": "TimeWindowFilter4",
+        "FeatureFlagName": "StartedTimeWindow",
+        "ExpectedResult": true,
         "Description": "Time Window filter with a Start that has passed."
     },
     {
-        "Test ID": "TimeWindowFilter5",
-        "Feature Flag Name": "WillEndTimeWindow",
-        "Expected Result": true,
+        "TestID": "TimeWindowFilter5",
+        "FeatureFlagName": "WillEndTimeWindow",
+        "ExpectedResult": true,
         "Description": "Time Window filter where the End hasn't passed."
     }
 ]
