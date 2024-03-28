@@ -37,7 +37,7 @@
             },
             {
                 "id": "RolloutPercentageUpdate",
-                "description": "A feature flag using a targeting filter, that will return true 61% of the time. Changing to 62% makes the user Brittney true.",
+                "description": "A feature flag using a targeting filter, that will return true 62% of the time.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
