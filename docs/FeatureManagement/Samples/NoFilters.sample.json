@@ -2,7 +2,7 @@
     "feature_management": {
         "feature_flags": [
             {
-                "id": "BooleanTrueFeatureFlag",
+                "id": "BooleanTrue",
                 "description": "An Enabled Feature Flag with no Filters.",
                 "enabled": true,
                 "conditions": {
@@ -10,7 +10,7 @@
                 }
             },
             {
-                "id": "BooleanFalseFeatureFlag",
+                "id": "BooleanFalse",
                 "description": "A Disabled Feature Flag with no Filters.",
                 "enabled": false,
                 "conditions": {
@@ -18,7 +18,7 @@
                 }
             },
             {
-                "id": "StringTrueFeatureFlag",
+                "id": "StringTrue",
                 "description": "An Enabled Feature Flag with no Filters.",
                 "enabled": "true",
                 "conditions": {
@@ -26,7 +26,7 @@
                 }
             },
             {
-                "id": "StringFalseFeatureFlag",
+                "id": "StringFalse",
                 "description": "A Disabled Feature Flag with no Filters.",
                 "enabled": "false",
                 "conditions": {
@@ -34,7 +34,7 @@
                 }
             },
             {
-                "id": "InvalidEnabledFeatureFlag",
+                "id": "InvalidEnabled",
                 "description": "A Feature Flag with an invalid 'enabled' Value.",
                 "enabled": "invalid",
                 "conditions": {
@@ -42,14 +42,14 @@
                 }
             },
             {
-                "id": "MinimalFeatureFlag",
+                "id": "Minimal",
                 "enabled": true
             },
             {
                 "id": "NoEnabled"
             },
             {
-                "id": "EmptyConditionsFeatureFlag",
+                "id": "EmptyConditions",
                 "description": "A Disabled Feature Flag with no Conditions.",
                 "enabled": true,
                 "conditions": {

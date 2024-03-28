@@ -1,40 +1,68 @@
 [
     {
         "TestID": "RequirementType1",
-        "FeatureFlagName": "FirstOrFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "FirstOr",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Feature Flag with two feature filters, first returns true, so it's enabled."
     },
     {
         "TestID": "RequirementType2",
-        "FeatureFlagName": "SecondOrFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "SecondOr",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Feature Flag with two feature filters, second returns true, so it's enabled."
     },
     {
         "TestID": "RequirementType3",
-        "FeatureFlagName": "FristRequirementTypeAnyFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "FristRequirementTypeAny",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Second filter returns true."
     },
     {
         "TestID": "RequirementType4",
-        "FeatureFlagName": "SecondRequirementTypeAnyFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "SecondRequirementTypeAny",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Neither filter returns true."
     },
     {
         "TestID": "RequirementType5",
-        "FeatureFlagName": "TrueRequirementTypeAllFeatureFlag",
+        "FeatureFlagName": "TrueRequirementTypeAll",
         "Inputs": {"user":"Adam"},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true."
     },
     {
         "TestID": "RequirementType6",
-        "FeatureFlagName": "FalseRequirementTypeAllFeatureFlag",
+        "FeatureFlagName": "FalseRequirementTypeAll",
         "Inputs": {"user":"Adam"},
-        "ExpectedResult": false,
+        "ExpectedResult": {
+            "IsEnabled": "false",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Both filters return true."
     }
 ]

@@ -2,7 +2,7 @@
     "feature_management": {
         "feature_flags": [
             {
-                "id": "FirstOrFeatureFlag",
+                "id": "FirstOr",
                 "description": "A feature flag that has multiple filters, but doesn't specify any requirement type, which is the default. Will always return true.",
                 "enabled": true,
                 "conditions": {
@@ -24,7 +24,7 @@
                 }
             },
             {
-                "id": "SecondOrFeatureFlag",
+                "id": "SecondOr",
                 "description": "Same as FirstOrFeatureFlag, but filter order is switched. Will always return true.",
                 "enabled": true,
                 "conditions": {
@@ -46,7 +46,7 @@
                 }
             },
             {
-                "id": "FristRequirementTypeAnyFeatureFlag",
+                "id": "FristRequirementTypeAny",
                 "description": "Same as FirstOrFeatureFlag, but requirement type is specified. Will always return true.",
                 "enabled": true,
                 "conditions": {
@@ -69,7 +69,7 @@
                 }
             },
             {
-                "id": "SecondRequirementTypeAnyFeatureFlag",
+                "id": "SecondRequirementTypeAny",
                 "description": "Same as SecondOrFeatureFlag, but requirement type is specified. Will always return true.",
                 "enabled": true,
                 "conditions": {
@@ -92,7 +92,7 @@
                 }
             },
             {
-                "id": "TrueRequirementTypeAllFeatureFlag",
+                "id": "TrueRequirementTypeAll",
                 "description": "Requirement type All. Will always return false.",
                 "enabled": true,
                 "conditions": {
@@ -116,7 +116,7 @@
                 }
             },
             {
-                "id": "FalseRequirementTypeAllFeatureFlag",
+                "id": "FalseRequirementTypeAll",
                 "description": "Requirement type All. Will always return false.",
                 "enabled": true,
                 "conditions": {

@@ -3,56 +3,88 @@
         "TestID": "TargetingFilterModified1",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden"},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, 62% default rollout Aiden is part of it."
     },
     {
         "TestID": "TargetingFilterModified2",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage1"]},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change."
     },
     {
         "TestID": "TargetingFilterModified3",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage2"]},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change."
     },
     {
         "TestID": "TargetingFilterModified4",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Aiden", "groups":["Stage3"]},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change."
     },
     {
         "TestID": "TargetingFilterModified5",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney"},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, 62% default rollout Brittney is not part of it."
     },
     {
         "TestID": "TargetingFilterModified6",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage1"]},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change."
     },
     {
         "TestID": "TargetingFilterModified7",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage2"]},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change."
     },
     {
         "TestID": "TargetingFilterModified8",
         "FeatureFlagName": "RolloutPercentageUpdate",
         "Inputs": {"user":"Brittney", "groups":["Stage3"]},
-        "ExpectedResult": true,
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Targeting Filter, group is not part of default rollout calculation, no change."
     }
 ]

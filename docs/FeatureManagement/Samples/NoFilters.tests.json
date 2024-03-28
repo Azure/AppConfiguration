@@ -1,50 +1,92 @@
 [
     {
         "TestID": "NoFilters1",
-        "FeatureFlagName": "BooleanTrueFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "BooleanTrue",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "An Enabled Feature Flag with no Filters."
     },
     {
         "TestID": "NoFilters2",
-        "FeatureFlagName": "BooleanFalseFeatureFlag",
-        "ExpectedResult": false,
+        "FeatureFlagName": "BooleanFalse",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "false",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "A Disabled Feature Flag with no Filters."
     },
     {
         "TestID": "NoFilters3",
-        "FeatureFlagName": "StringTrueFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "StringTrue",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "An Enabled Feature Flag with no Filters."
     },
     {
         "TestID": "NoFilters4",
-        "FeatureFlagName": "StringFalseFeatureFlag",
-        "ExpectedResult": false,
+        "FeatureFlagName": "StringFalse",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "false",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "A Disabled Feature Flag with no Filters."
     },
     {
         "TestID": "NoFilters5",
-        "FeatureFlagName": "InvalidEnabledFeatureFlag",
-        "ExpectedResult": "Exception",
+        "FeatureFlagName": "InvalidEnabled",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "Exception",
+            "Variant": {}
+        },
+        "Exception": {
+            "message": ""
+        },
         "Description": "A Feature Flag with an invalid Enabled Value."
     },
     {
         "TestID": "NoFilters6",
-        "FeatureFlagName": "MinimalFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "Minimal",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "A Feature Flag with just a key and enabled."
     },
     {
         "TestID": "NoFilters7",
         "FeatureFlagName": "NoEnabled",
-        "ExpectedResult": false,
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "false",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "Validates that the default value of enabled is False."
     },
     {
         "TestID": "NoFilters8",
-        "FeatureFlagName": "EmptyConditionsFeatureFlag",
-        "ExpectedResult": true,
+        "FeatureFlagName": "EmptyConditions",
+        "Inputs": {},
+        "ExpectedResult": {
+            "IsEnabled": "true",
+            "Variant": {}
+        },
+        "Exception": {},
         "Description": "A Disabled Feature Flag with no Conditions."
     }
 ]
