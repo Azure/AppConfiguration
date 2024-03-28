@@ -52,7 +52,7 @@
             "Variant": {}
         },
         "Exception": {
-            "message": ""
+            "Message": ""
         },
         "Description": "A Feature Flag with an invalid Enabled Value."
     },
