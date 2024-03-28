@@ -4,6 +4,18 @@
 # Microsoft.FeatureManagement.AspNetCore
 [Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
 
+## 4.0.0-preview2 - March 7, 2024
+
+### Enchancements
+
+* Use flags to enable different service implementations in dependency injection. ([#39](https://github.com/microsoft/FeatureManagement-Dotnet/issues/39)). See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
+* Additional mechanisms to track targeting within telemetry to improve the connection between published events and metrics. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
+* Added support for Net8 applications by adding Net8 as a build target. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
+
+### Breaking Changes
+
+No breaking changes in this release.
+
 ## 3.2.0 - February 29, 2024
 
 ### Enhancements
