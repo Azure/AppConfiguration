@@ -6,34 +6,17 @@
 
 ## 4.0.0-preview2 - March 7, 2024
 
-### Use flags to enable different service implementations in dependency injection ([#335](https://github.com/microsoft/FeatureManagement-Dotnet/pull/335))
+### Enchancements
 
-It is now possible to use variant feature flags to control which implementation of a service is used in dependency injection. This enables different implementations to be used for different audiences of the application. After using the newly provided `WithVariantService<TService>` builder method, a `IVariantServiceProvider<TService>` can be injected which will supply the appropriate variation of `TService` determined by allocation.
+* Use flags to enable different service implementations in dependency injection. ([#39](https://github.com/microsoft/FeatureManagement-Dotnet/issues/39)). See more details [#here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
 
-For more details, see [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
+* Additional mechanisms to track targeting within telemetry to improve the connection between published events and metrics. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 
-### Telemetry & Targeting ([#350](https://github.com/microsoft/FeatureManagement-Dotnet/pull/350))
-
-This preview release includes some additional mechanisms to track targeting within telemetry. There's been some changes to the telemetry publisher fields and classes to manage it:
-
-* `TargetingHttpContextMiddleware` (added) in `Microsoft.FeatureManagement.AspNetCore`
-* `TargetingTelemetryInitializer` (updated) in `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore`
-
-Currently these classes need to be explicitly added:
-
-``` C#
-builder.Service.AddSingleton<ITelemetryInitializer, TargetingTelemetryInitializer>();
-
-app.UseMiddleware<TargetingHttpContextMiddleware>();
-```
-
-### Net8 support
-
-Added support for Net8 applications by adding Net8 as a build target.
+* Added support for Net8 applications by adding Net8 as a build target. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
 
 ### Breaking Changes
 
-There are no breaking changes in this release.
+No breaking changes in this release.
 
 ## 3.2.0 - February 29, 2024
 
