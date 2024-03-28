@@ -1,6 +1,6 @@
 [
     {
-        "TestID": "RequirementType1",
+        "TestID": "RequirementType-DefaultRequirementTypeFirstFilterPassed",
         "FeatureFlagName": "DefaultRequirementTypeFirstFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
@@ -11,7 +11,7 @@
         "Description": "Feature Flag with two feature filters, first returns true, so it's enabled."
     },
     {
-        "TestID": "RequirementType2",
+        "TestID": "RequirementType-DefaultRequirementTypeLastFilterPassed",
         "FeatureFlagName": "DefaultRequirementTypeLastFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
@@ -22,7 +22,7 @@
         "Description": "Feature Flag with two feature filters, second returns true, so it's enabled."
     },
     {
-        "TestID": "RequirementType3",
+        "TestID": "RequirementType-RequirementTypeAnyFirstFilterPassed",
         "FeatureFlagName": "RequirementTypeAnyFirstFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
@@ -33,7 +33,7 @@
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Second filter returns true."
     },
     {
-        "TestID": "RequirementType4",
+        "TestID": "RequirementType-RequirementTypeAnyLastFilterPassed",
         "FeatureFlagName": "RequirementTypeAnyLastFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
@@ -44,7 +44,7 @@
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Neither filter returns true."
     },
     {
-        "TestID": "RequirementType5",
+        "TestID": "RequirementType-RequirementTypeAllPassed",
         "FeatureFlagName": "RequirementTypeAllPassed",
         "Inputs": {"user":"Adam"},
         "ExpectedResult": {
@@ -55,7 +55,7 @@
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true."
     },
     {
-        "TestID": "RequirementType6",
+        "TestID": "RequirementType-RequirementTypeAllLastFilterFailed",
         "FeatureFlagName": "RequirementTypeAllLastFilterFailed",
         "Inputs": {"user":"Adam"},
         "ExpectedResult": {

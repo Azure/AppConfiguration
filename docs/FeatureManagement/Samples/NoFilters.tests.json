@@ -1,6 +1,6 @@
 [
     {
-        "TestID": "NoFilters1",
+        "TestID": "NoFilters-BooleanTrue",
         "FeatureFlagName": "BooleanTrue",
         "Inputs": {},
         "ExpectedResult": {
@@ -11,7 +11,7 @@
         "Description": "An Enabled Feature Flag with no Filters."
     },
     {
-        "TestID": "NoFilters2",
+        "TestID": "NoFilters-BooleanFalse",
         "FeatureFlagName": "BooleanFalse",
         "Inputs": {},
         "ExpectedResult": {
@@ -22,7 +22,7 @@
         "Description": "A Disabled Feature Flag with no Filters."
     },
     {
-        "TestID": "NoFilters3",
+        "TestID": "NoFilters-StringTrue",
         "FeatureFlagName": "StringTrue",
         "Inputs": {},
         "ExpectedResult": {
@@ -33,7 +33,7 @@
         "Description": "An Enabled Feature Flag with no Filters."
     },
     {
-        "TestID": "NoFilters4",
+        "TestID": "NoFilters-StringFalse",
         "FeatureFlagName": "StringFalse",
         "Inputs": {},
         "ExpectedResult": {
@@ -44,7 +44,7 @@
         "Description": "A Disabled Feature Flag with no Filters."
     },
     {
-        "TestID": "NoFilters5",
+        "TestID": "NoFilters-InvalidEnabled",
         "FeatureFlagName": "InvalidEnabled",
         "Inputs": {},
         "ExpectedResult": {
@@ -57,7 +57,7 @@
         "Description": "A Feature Flag with an invalid Enabled Value."
     },
     {
-        "TestID": "NoFilters6",
+        "TestID": "NoFilters-Minimal",
         "FeatureFlagName": "Minimal",
         "Inputs": {},
         "ExpectedResult": {
@@ -68,7 +68,7 @@
         "Description": "A Feature Flag with just a key and enabled."
     },
     {
-        "TestID": "NoFilters7",
+        "TestID": "NoFilters-NoEnabled",
         "FeatureFlagName": "NoEnabled",
         "Inputs": {},
         "ExpectedResult": {
@@ -79,7 +79,7 @@
         "Description": "Validates that the default value of enabled is False."
     },
     {
-        "TestID": "NoFilters8",
+        "TestID": "NoFilters-EmptyConditions",
         "FeatureFlagName": "EmptyConditions",
         "Inputs": {},
         "ExpectedResult": {
