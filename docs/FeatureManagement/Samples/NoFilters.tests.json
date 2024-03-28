@@ -52,7 +52,7 @@
             "Variant": {}
         },
         "Exception": {
-            "Message": ""
+            "Message": "Invalid setting Enabled with value invalid for feature InvalidEnabled."
         },
         "Description": "A Feature Flag with an invalid Enabled Value."
     },
