@@ -1,7 +1,7 @@
 [
     {
         "TestID": "RequirementType1",
-        "FeatureFlagName": "FirstOr",
+        "FeatureFlagName": "DefaultRequirementTypeFirstFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
             "IsEnabled": "true",
@@ -12,7 +12,7 @@
     },
     {
         "TestID": "RequirementType2",
-        "FeatureFlagName": "SecondOr",
+        "FeatureFlagName": "DefaultRequirementTypeLastFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
             "IsEnabled": "true",
@@ -23,7 +23,7 @@
     },
     {
         "TestID": "RequirementType3",
-        "FeatureFlagName": "FristRequirementTypeAny",
+        "FeatureFlagName": "RequirementTypeAnyFirstFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
             "IsEnabled": "true",
@@ -34,7 +34,7 @@
     },
     {
         "TestID": "RequirementType4",
-        "FeatureFlagName": "SecondRequirementTypeAny",
+        "FeatureFlagName": "RequirementTypeAnyLastFilterPassed",
         "Inputs": {},
         "ExpectedResult": {
             "IsEnabled": "true",
@@ -45,7 +45,7 @@
     },
     {
         "TestID": "RequirementType5",
-        "FeatureFlagName": "TrueRequirementTypeAll",
+        "FeatureFlagName": "RequirementTypeAllPassed",
         "Inputs": {"user":"Adam"},
         "ExpectedResult": {
             "IsEnabled": "true",
@@ -56,7 +56,7 @@
     },
     {
         "TestID": "RequirementType6",
-        "FeatureFlagName": "FalseRequirementTypeAll",
+        "FeatureFlagName": "RequirementTypeAllLastFilterFailed",
         "Inputs": {"user":"Adam"},
         "ExpectedResult": {
             "IsEnabled": "false",

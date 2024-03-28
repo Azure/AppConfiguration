@@ -2,7 +2,7 @@
     "feature_management": {
         "feature_flags": [
             {
-                "id": "FirstOr",
+                "id": "DefaultRequirementTypeFirstFilterPassed",
                 "description": "A feature flag that has multiple filters, but doesn't specify any requirement type, which is the default. Will always return true.",
                 "enabled": true,
                 "conditions": {
@@ -24,8 +24,8 @@
                 }
             },
             {
-                "id": "SecondOr",
-                "description": "Same as FirstOrFeatureFlag, but filter order is switched. Will always return true.",
+                "id": "DefaultRequirementTypeLastFilterPassed",
+                "description": "Same as DefaultRequirementTypeFirstFilterPassed, but filter order is switched. Will always return true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
@@ -46,8 +46,8 @@
                 }
             },
             {
-                "id": "FristRequirementTypeAny",
-                "description": "Same as FirstOrFeatureFlag, but requirement type is specified. Will always return true.",
+                "id": "RequirementTypeAnyFirstFilterPassed",
+                "description": "Same as DefaultRequirementTypeFirstFilterPassed, but requirement type is specified. Will always return true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
@@ -69,8 +69,8 @@
                 }
             },
             {
-                "id": "SecondRequirementTypeAny",
-                "description": "Same as SecondOrFeatureFlag, but requirement type is specified. Will always return true.",
+                "id": "RequirementTypeAnyLastFilterPassed",
+                "description": "Same as DefaultRequirementTypeLastFilterPassed, but requirement type is specified. Will always return true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
@@ -92,7 +92,7 @@
                 }
             },
             {
-                "id": "TrueRequirementTypeAll",
+                "id": "RequirementTypeAllPassed",
                 "description": "Requirement type All. Will always return false.",
                 "enabled": true,
                 "conditions": {
