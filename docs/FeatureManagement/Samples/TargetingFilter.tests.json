@@ -85,7 +85,7 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Targeting Filter, the Stage 3 is group is on the exclusion list."
+        "Description": "Targeting Filter, the Stage 3 is the group on the exclusion list."
     },
     {
         "TestID": "TargetingFilter-ComplexTargeting-ExcludedGroupTargetedUser",
