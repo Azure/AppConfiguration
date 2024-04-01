@@ -41,7 +41,7 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Targeting Filter, Aiden now part of the 100% rolled out group Stage1 is now targeted."
+        "Description": "Targeting Filter, Aiden is now targeted because Stage1 is 100% rolled out."
     },
     {
         "TestID": "TargetingFilter-ComplexTargeting-DisabledTargetedGroup",
@@ -52,7 +52,7 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Targeting Filter, no user Stage 2 is 50% rolloued out."
+        "Description": "empty/no user will hit the 50% rollout of group stage 2, so it is targeted."
     },
     {
         "TestID": "TargetingFilter-ComplexTargeting-EnabledTargetedGroup50",
@@ -96,7 +96,7 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Targeting Filter, Alice who is targeted is excluded because she is part of the Stage 3 group."
+        "Description": "Alice is excluded because she is part of the Stage 3 group, even if she is an included user. "
     },
     {
         "TestID": "TargetingFilter-ComplexTargeting-ExcludedGroupDefaultRollout",
