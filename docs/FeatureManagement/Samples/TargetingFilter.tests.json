@@ -74,7 +74,7 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Targeting Filter, Chad is neither part of the default rollout or part of the first 50% of Stage 2."
+        "Description": "Targeting Filter, Chad is neither part of the default rollout nor part of the first 50% of Stage 2."
     },
     {
         "TestID": "TargetingFilter-ComplexTargeting-ExcludedGroup",
