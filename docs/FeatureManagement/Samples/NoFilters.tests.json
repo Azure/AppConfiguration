@@ -87,6 +87,6 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "A Disabled Feature Flag with no Conditions."
+        "Description": "A feature flag with no Conditions, returns true as it's enabled."
     }
 ]
