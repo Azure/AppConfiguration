@@ -93,7 +93,7 @@
             },
             {
                 "id": "RequirementTypeAllPassed",
-                "description": "Requirement type All. Will always return false.",
+                "description": "Requirement type All. Will always return true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [

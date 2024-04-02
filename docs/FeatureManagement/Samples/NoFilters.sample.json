@@ -3,7 +3,7 @@
         "feature_flags": [
             {
                 "id": "BooleanTrue",
-                "description": "An Enabled Feature Flag with no Filters.",
+                "description": "A feature flag with no Filters, that returns true.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": []
@@ -11,7 +11,7 @@
             },
             {
                 "id": "BooleanFalse",
-                "description": "A Disabled Feature Flag with no Filters.",
+                "description": "A feature flag with no Filters, that returns false.",
                 "enabled": false,
                 "conditions": {
                     "client_filters": []
@@ -19,7 +19,7 @@
             },
             {
                 "id": "StringTrue",
-                "description": "An Enabled Feature Flag with no Filters.",
+                "description": "A feature flag with no Filters where enabled is a string, that returns true.",
                 "enabled": "true",
                 "conditions": {
                     "client_filters": []
@@ -27,7 +27,7 @@
             },
             {
                 "id": "StringFalse",
-                "description": "A Disabled Feature Flag with no Filters.",
+                "description": "A feature flag with no Filters where enabled is a string, that returns false.",
                 "enabled": "false",
                 "conditions": {
                     "client_filters": []
@@ -35,7 +35,7 @@
             },
             {
                 "id": "InvalidEnabled",
-                "description": "A Feature Flag with an invalid 'enabled' Value.",
+                "description": "A feature flag with an invalid 'enabled' value, that returns false.",
                 "enabled": "invalid",
                 "conditions": {
                     "client_filters": []
@@ -50,7 +50,7 @@
             },
             {
                 "id": "EmptyConditions",
-                "description": "A Disabled Feature Flag with no Conditions.",
+                "description": "A feature flag with no values in conditions, that returns true.",
                 "enabled": true,
                 "conditions": {
                 }

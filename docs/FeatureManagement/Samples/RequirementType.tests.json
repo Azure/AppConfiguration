@@ -52,7 +52,7 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true."
+        "Description": "Feature Flag with two feature filters and requirement type specified as All. Both filters return true."
     },
     {
         "TestID": "RequirementType-RequirementTypeAllLastFilterFailed",
@@ -63,6 +63,6 @@
             "Variant": {}
         },
         "Exception": {},
-        "Description": "Feature Flag with two feature filters and requirement type specified as All. Both filters return true."
+        "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true."
     }
 ]
