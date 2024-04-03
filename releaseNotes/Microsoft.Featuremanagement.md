@@ -10,7 +10,7 @@
 
 * Added support for variant feature flag-based service provider in dependency injection. It allows different service implementations to be injected automatically for different targeted audiences based on their variant assignment. ([#39](https://github.com/microsoft/FeatureManagement-Dotnet/issues/39)). See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
 * Additional mechanisms to track targeting within telemetry to improve the connection between published events and metrics. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
-* Added support for Net8 applications by adding Net8 as a build target. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
+* Added support for .NET 8 target framework to the `Microsoft.FeatureManagement.AspNetCore` package. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
 
 ### Breaking Changes
 
