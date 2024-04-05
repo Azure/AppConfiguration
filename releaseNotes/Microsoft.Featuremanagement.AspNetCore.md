@@ -14,6 +14,7 @@
 No breaking changes in this release.
 
 <!-- LINKS -->
+[docs]: https://github.com/microsoft/FeatureManagement-Dotnet
 [package]: https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore
 [samples]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples/FeatureFlagDemo
 [source_code]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/src/Microsoft.FeatureManagement.AspNetCore

@@ -1,4 +1,4 @@
-# Microsoft.FeatureManagement
+# Microsoft.FeatureManagement.Telemetry.ApplicationInsights
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
