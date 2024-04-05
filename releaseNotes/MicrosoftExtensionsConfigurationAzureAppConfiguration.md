@@ -3,7 +3,7 @@
 
 ## 8.0.0-preview.2 - March 18, 2024
 ### Bug Fixes
-* Fixed a bug where the provider would throw a `FormatException` while parsing a feature flag if a variant's configuration value was not set to a string or `null`. [#531](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/531)
+* Fixed a bug where a `FormatException` may be thrown for a variant feature flag when the configuration value was not set to a string or `null`. With this fix, the configuration value of a variant can be a string, number, boolean, array, or JSON object. [#531](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/531)
 
 ## 8.0.0-preview - February 28, 2024
 ### Enhancements
