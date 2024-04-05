@@ -1,8 +1,6 @@
 # Microsoft.FeatureManagement
-[Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-# Microsoft.FeatureManagement.AspNetCore
-[Source code ][source_code_web] | [Package (NuGet)][package_web] | [Samples][samples_web] | [Product documentation][docs]
+[Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
 ## 4.0.0-preview2 - March 7, 2024
 
@@ -10,7 +8,6 @@
 
 * Added support for variant feature flag-based service provider in dependency injection. It allows different service implementations to be injected automatically for different targeted audiences based on their variant assignment. ([#39](https://github.com/microsoft/FeatureManagement-Dotnet/issues/39)). See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
 * Additional mechanisms to track targeting within telemetry to improve the connection between published events and metrics. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
-* Added support for .NET 8 target framework to the `Microsoft.FeatureManagement.AspNetCore` package. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
 
 ### Breaking Changes
 
@@ -510,7 +507,3 @@ A cache for feature settings has been added which respects the reload token of t
 [package]: https://www.nuget.org/packages/Microsoft.FeatureManagement
 [samples]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples/ConsoleApp
 [source_code]: https://github.com/microsoft/FeatureManagement-Dotnet
-
-[package_web]: https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore
-[samples_web]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/examples/FeatureFlagDemo
-[source_code_web]: https://github.com/microsoft/FeatureManagement-Dotnet/tree/master/src/Microsoft.FeatureManagement.AspNetCore
