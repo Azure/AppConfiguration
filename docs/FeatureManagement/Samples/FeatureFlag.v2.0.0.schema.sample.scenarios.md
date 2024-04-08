@@ -26,7 +26,7 @@ The following tests are the baseline file for testing the Feature Management lib
 
 ### Validation of Rollout Percentage
 
-The following tests are the baseline file for testing the Feature Management libraries. These tests validate that the same formula is being used to caluclate the rollout percentage. The modified files has a roolout percentage 1 higher than the original which takes Brittnety from being disabled to enabled. So, the results of tests 12 through 19 should be True.
+The following tests are the baseline file for testing the Feature Management libraries. These tests validate that the same formula is being used to calculate the rollout percentage. The modified files have a rollout percentage 1 higher than the original which takes Brittney from being disabled to enabled. So, the results of tests 12 through 19 should be True.
 
 [Targeting Filter Tests](TargetingFilter.modified.tests.json)
 
