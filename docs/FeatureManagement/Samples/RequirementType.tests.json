@@ -1,68 +1,68 @@
 [
     {
-        "TestID": "RequirementType-DefaultRequirementTypeFirstFilterPassed",
         "FeatureFlagName": "DefaultRequirementTypeFirstFilterPassed",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Feature Flag with two feature filters, first returns true, so it's enabled."
     },
     {
-        "TestID": "RequirementType-DefaultRequirementTypeLastFilterPassed",
         "FeatureFlagName": "DefaultRequirementTypeLastFilterPassed",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Feature Flag with two feature filters, second returns true, so it's enabled."
     },
     {
-        "TestID": "RequirementType-RequirementTypeAnyFirstFilterPassed",
         "FeatureFlagName": "RequirementTypeAnyFirstFilterPassed",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Second filter returns true."
     },
     {
-        "TestID": "RequirementType-RequirementTypeAnyLastFilterPassed",
         "FeatureFlagName": "RequirementTypeAnyLastFilterPassed",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Feature Flag with two feature filters and requirement type specified as Any. Neither filter returns true."
     },
     {
-        "TestID": "RequirementType-RequirementTypeAllPassed",
         "FeatureFlagName": "RequirementTypeAllPassed",
         "Inputs": {"user":"Adam"},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Both filters return true."
     },
     {
-        "TestID": "RequirementType-RequirementTypeAllLastFilterFailed",
         "FeatureFlagName": "RequirementTypeAllLastFilterFailed",
         "Inputs": {"user":"Adam"},
-        "ExpectedResult": {
-            "IsEnabled": "false",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "false"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Feature Flag with two feature filters and requirement type specified as All. Only the first filter returns true."
     }
 ]

@@ -1,57 +1,57 @@
 [
     {
-        "TestID": "TimeWindowFilter-PastTimeWindow",
         "FeatureFlagName": "PastTimeWindow",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "false",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "false"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Time Window filter where both Start and End have already passed."
     },
     {
-        "TestID": "TimeWindowFilter-FutureTimeWindow",
         "FeatureFlagName": "FutureTimeWindow",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "false",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "false"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Time Window filter where neither Start nor End have happened."
     },
     {
-        "TestID": "TimeWindowFilter-PresentTimeWindow",
         "FeatureFlagName": "PresentTimeWindow",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Time Window filter where Start has happend but End hasn't happend."
     },
     {
-        "TestID": "TimeWindowFilter-StartedTimeWindow",
         "FeatureFlagName": "StartedTimeWindow",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Time Window filter with a Start that has passed."
     },
     {
-        "TestID": "TimeWindowFilter-WillEndTimeWindow",
         "FeatureFlagName": "WillEndTimeWindow",
         "Inputs": {},
-        "ExpectedResult": {
-            "IsEnabled": "true",
-            "Variant": {}
+        "IsEnabled": {
+            "Result": "true"
         },
-        "Exception": {},
+        "Variant": {
+            "Result": null
+        },
         "Description": "Time Window filter where the End hasn't passed."
     }
 ]
