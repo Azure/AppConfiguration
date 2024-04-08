@@ -3,7 +3,7 @@
         "feature_flags": [
             {
                 "id": "ComplexTargeting",
-                "description": "A feature flag using a targeting filter, that will return true for Alice, Stage1, and 50% of Stage2, and false for Dave and Stage3. The default rollout percentage is 25%.",
+                "description": "A feature flag using a targeting filter, that will return true for Alice, Stage1, and 50% of Stage2. Dave and Stage3 are excluded. The default rollout percentage is 25%.",
                 "enabled": true,
                 "conditions": {
                     "client_filters": [
