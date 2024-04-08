@@ -8,10 +8,6 @@
 
 * Added a property to published telemetry named `TargetingId`. This is a more reliable way to connect evaluated feature flags to other telemetry events for a given target. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 
-### Breaking Changes
-
-No breaking changes in this release.
-
 <!-- LINKS -->
 [docs]: https://github.com/microsoft/FeatureManagement-Dotnet
 [package]: https://www.nuget.org/packages/Microsoft.FeatureManagement.Telemetry.ApplicationInsights

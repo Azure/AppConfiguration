@@ -9,10 +9,6 @@
 * Added `TargetingHttpContextMiddleware`, which ensures TargetingContext is available for syncronous functions, like `TargetingTelemetryInitializer` in the `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 * Added support for .NET 8 target framework. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
 
-### Breaking Changes
-
-No breaking changes in this release.
-
 <!-- LINKS -->
 [docs]: https://github.com/microsoft/FeatureManagement-Dotnet
 [package]: https://www.nuget.org/packages/Microsoft.FeatureManagement.AspNetCore

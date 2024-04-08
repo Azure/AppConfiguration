@@ -7,11 +7,7 @@
 ### Enhancements
 
 * Added support for variant feature flag-based service provider in dependency injection. It allows different service implementations to be injected automatically for different targeted audiences based on their variant assignment. ([#39](https://github.com/microsoft/FeatureManagement-Dotnet/issues/39)). See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet/tree/preview?tab=readme-ov-file#variants-in-dependency-injection).
-* Added `TargetingContext` to evaluation events. This allows events to accuratly represent what the targeting context was at the time of feature evaluation. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
-
-### Breaking Changes
-
-No breaking changes in this release.
+* Added a `TargetingContext` property to the `EvaluationEvent`. This allows feature evaluation events to accurately represent what the targeting context was at the time of feature evaluation. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 
 ## 3.2.0 - February 29, 2024
 

@@ -8,10 +8,6 @@
 
 * Added `TargetingTelemetryInitializer`, which appends targeting information to all outgoing telemetry to Application Insights. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 
-### Breaking Changes
-
-No breaking changes in this release.
-
 <!-- LINKS -->
 [docs]: https://github.com/microsoft/FeatureManagement-Dotnet
 [package]: https://www.nuget.org/packages/Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore
