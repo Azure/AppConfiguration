@@ -74,14 +74,14 @@
     {
         "FriendlyName": "DisabledTargetedGroup50",
         "FeatureFlagName": "ComplexTargeting",
-        "Inputs": {"user":"Chad", "groups":["Stage2"]},
+        "Inputs": {"user":"Chris", "groups":["Stage2"]},
         "IsEnabled": {
             "Result": "false"
         },
         "Variant": {
             "Result": null
         },
-        "Description": "Targeting Filter, Chad is neither part of the default rollout nor part of the first 50% of Stage 2."
+        "Description": "Targeting Filter, Chris is neither part of the default rollout nor part of the first 50% of Stage 2."
     },
     {
         "FriendlyName": "ExcludedGroup",
