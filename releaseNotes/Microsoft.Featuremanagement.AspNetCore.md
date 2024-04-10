@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added `TargetingHttpContextMiddleware`, which ensures TargetingContext is available for syncronous functions, like `TargetingTelemetryInitializer` in the `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
+* Introduced a new ASP.NET Core middleware called `TargetingHttpContextMiddleware`. It makes targeting information available from `HttpContext` on each request. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 * Added support for .NET 8 target framework. ([#364](https://github.com/microsoft/FeatureManagement-Dotnet/issues/364))
 
 <!-- LINKS -->
