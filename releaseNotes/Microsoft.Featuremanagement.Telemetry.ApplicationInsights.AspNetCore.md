@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added `TargetingTelemetryInitializer`, which appends targeting information to all outgoing telemetry to Application Insights. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
+* Introduced a telemetry initializer named `TargetingTelemetryInitializer`. It automatically adds targeting information to telemetry data your application sends to Application Insights. This can be used to correlate your telemetry data with feature evaluation events based on the targeting information during your telemetry analysis. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 
 <!-- LINKS -->
 [docs]: https://github.com/microsoft/FeatureManagement-Dotnet
