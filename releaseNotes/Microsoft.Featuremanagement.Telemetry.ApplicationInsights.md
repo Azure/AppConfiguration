@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added a property to published telemetry named `TargetingId`. This is a more reliable way to connect evaluated feature flags to other telemetry events for a given target. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
+* Added a `TargetingId` property to the feature evaluation events sent to Application Insights. The `TargetingId` is the identifier of a targeted user during feature evaluation. This new property allows you to correlate feature evaluation events with other telemetry data your application sends to Application Insights, as long as they share the same `TargetingId`. ([#409](https://github.com/microsoft/FeatureManagement-Dotnet/issues/409))
 
 <!-- LINKS -->
 [docs]: https://github.com/microsoft/FeatureManagement-Dotnet
