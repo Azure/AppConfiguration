@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview3 - April 10, 2024
+
+* Updated the namespace for `ApplicationInsightsTelemetryPublisher` to `Microsoft.FeatureManagement.Telemetry`. In the future, developers using any of our offered telemetry publishers will no longer need to specify the service specific namespaces like `using Microsoft.FeatureManagement.Telemetry.ApplicationInsights`.
+
+* Updated the namespace for `TrackEvent` extension method of `TelemetryClient` to `Microsoft.ApplicationInsights`. The previous directive `using Microsoft.FeatureManagement.Telemetry.ApplicationInsights` is no longer required when calling the `TrackEvent` method.
+
 ## 4.0.0-preview2 - March 7, 2024
 
 ### Enhancements
