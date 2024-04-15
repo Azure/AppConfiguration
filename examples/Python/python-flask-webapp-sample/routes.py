@@ -38,6 +38,11 @@ def index():
     return render_template("index.html", **context)
 
 
+@app.route("/privacy", methods=["GET", "POST"])
+def privacy():
+    return render_template("privacy.html")
+
+
 @login_manager.user_loader
 def loader_user(user_id):
     return Users.query.get(user_id)
