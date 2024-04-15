@@ -1,0 +1,87 @@
+html {
+    font-size: 14px;
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  }
+  
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    margin-bottom: 60px;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.quote-container {
+    background-color: #fff;
+    margin: 2em auto;
+    padding: 2em;
+    border-radius: 8px;
+    max-width: 750px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    position: relative;
+}
+
+.login-container {
+  background-color: #fff;
+  margin: 2em auto;
+  padding: 2em;
+  border-radius: 8px;
+  max-width: 750px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  align-items: start;
+  position: relative;
+}
+
+.vote-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 0em;
+}
+
+    .vote-container .btn {
+        background-color: #ffffff; /* White background */
+        border-color: #ffffff; /* Light blue border */
+        color: #333
+    }
+
+        .vote-container .btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .vote-container .btn:hover {
+            background-color: #F0F0F0; /* Light gray background */
+        }
+
+.greeting-content {
+    font-family: 'Georgia', serif; /* More artistic font */
+}
+
+.quote-content p.quote {
+    font-size: 2em; /* Bigger font size */
+    font-family: 'Georgia', serif; /* More artistic font */
+    font-style: italic; /* Italic font */
+    color: #4EC2F7; /* Medium-light blue color */
+}

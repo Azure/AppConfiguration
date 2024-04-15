@@ -1,26 +1,44 @@
-<!doctype html>
+{% extends 'base.html' %}
 
-<head>
-  <title>Hello App Configuration - Python Flask Example</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-</head>
-<html>
-
-<style>
-  h1 {
-    font-size: {{font_size}};
-  }
-</style>
-
-<body style="background-color:{{color}}">
-  <main>
-    <div class="px-4 py-3 my-2 text-center">
-      <h1>{{message}}</h1>
-      <p class="fs-5">
-        Resolved Key vault value: <b>{{key}}</b> (For demonstration purposes only)
-      </p>
+{% block content %}
+<div class="quote-container">
+    <div class="quote-content">
+       {% if model.show_greeting %}
+            <h3 class="greeting-content">Hi <b>{{user}}</b>, hope this makes your day!</h3>
+        {% else %}
+            <h3 class="greeting-content">Quote of the day</h3>
+        {% endif %}
+        <br />
+        <p class="quote">“{{model.quote.message}}”</p>
+        <p>- <b>{{model.quote.author}}</b></p>
     </div>
-  </main>
-</body>
 
-</html>
+    <div class="vote-container">
+        <button class="btn btn-primary" onclick="heartClicked(this)">
+            <i class="far fa-heart"></i> <!-- Heart icon -->
+        </button>
+    </div>
+
+    <form action="/" method="post">
+    </form>
+</div>
+
+<script>
+    function heartClicked(button) {
+        var icon = button.querySelector('i');
+        icon.classList.toggle('far');
+        icon.classList.toggle('fas');
+
+        // If the quote is hearted
+        if (icon.classList.contains('fas')) {
+            // Send a request to the server to save the vote
+            fetch('/?handler=HeartQuote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+        }
+    }
+</script>
+{% endblock %}
