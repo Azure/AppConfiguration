@@ -6,6 +6,7 @@ from featuremanagement.appinsights import send_telemetry
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import trace
 from opentelemetry.trace import get_tracer_provider
+from flask_bcrypt import Bcrypt
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -15,6 +16,8 @@ configure_azure_monitor(connection_string=os.getenv("APPLICATIONINSIGHTS_CONNECT
 from flask import Flask
 
 app = Flask(__name__)
+
+bcrypt = Bcrypt(app)
 
 tracer = trace.get_tracer(__name__, tracer_provider=get_tracer_provider())
 
@@ -27,7 +30,7 @@ def callback():
     app.config.update(azure_app_config)
 
 
-global azure_app_config, feature_manager
+global azure_app_config
 azure_app_config = load(
     endpoint=ENDPOINT,
     credential=credential,
@@ -47,6 +50,12 @@ db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
+from model import Users
+
+@login_manager.user_loader
+def loader_user(user_id):
+    return Users.query.get(user_id)
 
 with app.app_context():
     db.create_all()

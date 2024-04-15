@@ -3,7 +3,7 @@ import random
 from featuremanagement.appinsights import track_event
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user
-from app import app, azure_app_config, feature_manager, login_manager, db
+from app import app, azure_app_config, feature_manager, db, bcrypt
 from model import Quote, Users
 
 
@@ -37,21 +37,24 @@ def index():
 
     return render_template("index.html", **context)
 
-
-@app.route("/privacy", methods=["GET", "POST"])
+@app.route("/privacy", methods=["GET"])
 def privacy():
-    return render_template("privacy.html")
-
-
-@login_manager.user_loader
-def loader_user(user_id):
-    return Users.query.get(user_id)
-
+    context = {}
+    user = ""
+    if current_user.is_authenticated:
+        user = current_user.username
+        context["user"] = user
+    else:
+        context["user"] = "Guest"
+    context["isAuthenticated"] = current_user.is_authenticated
+    return render_template("privacy.html", **context)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        user = Users(username=request.form.get("username"), password=request.form.get("password"))
+        password = request.form.get("password")
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        user = Users(request.form.get("username"), hashed_password)
         try:
             db.session.add(user)
             db.session.commit()
@@ -68,7 +71,8 @@ def register():
 def login():
     if request.method == "POST":
         user = Users.query.filter_by(username=request.form.get("username")).first()
-        if user.password == request.form.get("password"):
+        password = request.form.get("password")
+        if user and bcrypt.check_password_hash(user.password_hash, password):
             login_user(user)
             return redirect(url_for("index"))
     return render_template("login.html")
