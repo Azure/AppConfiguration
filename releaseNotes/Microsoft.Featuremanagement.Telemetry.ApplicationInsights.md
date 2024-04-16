@@ -4,6 +4,8 @@
 
 ## 4.0.0-preview3 - April 10, 2024
 
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview3`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
 ### Breaking Changes
 
 * Updated the namespace for `ApplicationInsightsTelemetryPublisher` to `Microsoft.FeatureManagement.Telemetry`. In the future, developers using any of our offered telemetry publishers will no longer need to specify the service specific namespaces like `using Microsoft.FeatureManagement.Telemetry.ApplicationInsights`.
