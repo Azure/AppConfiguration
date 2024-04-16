@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview3 - April 10, 2024
+
+### Enhancements
+
+* Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v1.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). The Microsoft Feature Management schema is designed to be language agnostic, which enables you to apply a consistent feature management configuration across Microsoft feature management libraries of different programming languages.
+
 ## 4.0.0-preview2 - March 7, 2024
 
 ### Enhancements
