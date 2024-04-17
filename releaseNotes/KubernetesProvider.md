@@ -2,6 +2,13 @@
 
 [Image][image] | [Sample][sample]
 
+## 1.3.0 - April 17, 2024
+
+### Enhancements
+* Added support for replica auto-discovery. For App Configuration stores with geo-replication enabled, the Kubernetes provider will now automatically discover replicas and attempt to connect to them when it fails to connect to user-provided endpoint. This capability allows workloads to leverage geo-replication for enhanced resiliency without redeployment. Replica discovery is enabled by default and can be disabled by setting `replicaDiscoveryEnabled` to `false`.
+* Added support for storing Key Vault references of TLS certificates to [Kubernetes TLS Secrets](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets). [#821](https://github.com/Azure/AppConfiguration/issues/821)
+* Added support for downloading snapshot's key-values from Azure App Configuration, which is useful to safely deploy configuration changes.
+
 ## 1.2.0 - March 1, 2024
 
 ### Enhancements
