@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 1.3.0 - 
+## 1.3.0 - April 17, 2024
 
 ### Enhancements
 * Added support for replica auto-discovery. For App Configuration stores with geo-replication enabled, the Kubernetes provider will now automatically discover replicas and attempt to connect to them when it fails to connect to user-provided endpoint. This capability allows workloads to leverage geo-replication for enhanced resiliency without redeployment. Replica discovery is enabled by default and can be disabled by setting `replicaDiscoveryEnabled` to `false`.
