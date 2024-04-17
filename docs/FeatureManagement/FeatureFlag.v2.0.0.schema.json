@@ -5,8 +5,7 @@
   "type": "object",
   "title": "An Azure App Configuration Feature Declaration",
   "required": [
-    "id",
-    "enabled"
+    "id"
   ],
   "properties": {
     "id": {
