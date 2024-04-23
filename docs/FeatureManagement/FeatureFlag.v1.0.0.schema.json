@@ -76,8 +76,8 @@
                 "description": "The name used to refer to and require a client filter.",
                 "default": "",
                 "examples": [
-                  "Percentage",
-                  "TimeWindow"
+                  "Microsoft.Targeting",
+                  "Microsoft.TimeWindow"
                 ],
                 "pattern": "^(.*)$"
               },

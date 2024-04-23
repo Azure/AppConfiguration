@@ -1,0 +1,160 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/FeatureManagement/v2.0.0/TimeWindowFilter.json",
+  "type": "object",
+  "title": "A Microsoft Time Window Filter Declaration",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "Time Window Filter Name",
+      "enum": [
+        "Microsoft.TimeWindow"
+      ]
+    },
+    "parameters": {
+      "$id": "#/properties/parameters",
+      "type": "object",
+      "title": "Time Window Filter Parameters",
+      "properties": {
+        "Start": {
+          "$id": "#/properties/parameter/properties/Start",
+          "type": "string",
+          "title": "Time Window Filter Start Parameter",
+          "examples": [
+            "Wed, 1 May 2024 12:00:00 GMT",
+            "Wed, 1 May 2024 20:00:00 +0800"
+          ]
+        },
+        "End": {
+          "$id": "#/properties/parameters/properties/End",
+          "type": "string",
+          "title": "Time Window Filter End Parameter",
+          "examples": [
+            "Wed, 1 May 2024 12:00:00 GMT",
+            "Wed, 1 May 2024 20:00:00 +0800"
+          ]
+        },
+        "Recurrence": {
+          "$id": "#/properties/parameters/properties/Recurrence",
+          "type": "object",
+          "title": "Time Window Filter Recurrence Parameter",
+          "properties": {
+            "Pattern": {
+              "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern",
+              "type": "object",
+              "title": "Time Window Filter Recurrence Pattern Parameter",
+              "required": [
+                "Type"
+              ],
+              "properties": {
+                "Type": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern/properties/Type",
+                  "type": "string",
+                  "title": "Time Window Filter Recurrence Pattern Type Parameter",
+                  "enum": [
+                    "Daily",
+                    "Weekly"
+                  ]
+                },
+                "Interval": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern/properties/Interval",
+                  "type": "number",
+                  "title": "Time Window Filter Recurrence Pattern Interval Parameter",
+                  "default": 1
+                },
+                "DaysOfWeek": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern/properties/DaysOfWeek",
+                  "type": "array",
+                  "title": "Time Window Filter Recurrence Weekly Pattern DaysOfWeek Parameter",
+                  "items": {
+                    "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern/properties/DaysOfWeek/items",
+                    "type": "string",
+                    "title": "DayOfWeek",
+                    "enum": [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                      "Saturday",
+                      "Sunday"
+                    ]
+                  }
+                },
+                "FirstDayOfWeek": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern/properties/FirstDayOfWeek",
+                  "type": "string",
+                  "title": "Time Window Filter Recurrence Weekly Pattern FirstDayOfWeek Parameter",
+                  "enum": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                  ]
+                }
+              }
+            },
+            "Range": {
+              "required": [
+                "Type"
+              ],
+              "properties": {
+                "Type": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Range/properties/Type",
+                  "type": "string",
+                  "title": "Time Window Filter Recurrence Range Type Parameter",
+                  "enum": [
+                    "NoEnd",
+                    "EndDate",
+                    "Numbered"
+                  ]
+                },
+                "EndDate": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Range/properties/EndDate",
+                  "type": "string",
+                  "title": "Time Window Filter Recurrence End Date Parameter",
+                  "examples": [
+                    "Wed, 1 May 2024 12:00:00 GMT",
+                    "Wed, 1 May 2024 20:00:00 +0800"
+                  ]
+                },
+                "NumberOfOccurrences": {
+                  "$id": "#/properties/parameters/properties/Recurrence/properties/Range/properties/NumberOfOccurrences",
+                  "type": "number",
+                  "title": "Time Window Filter Recurrence Number Of Occurrences Parameter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "anyOf": [
+        { 
+          "required": [
+            "Start"
+          ] 
+        },
+        { 
+          "required": [
+            "End"
+          ] 
+        },
+        { 
+          "required": [
+            "Start", 
+            "End", 
+            "Recurrence"
+          ] 
+        }
+      ]
+    }
+  }
+}
