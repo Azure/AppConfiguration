@@ -5,7 +5,7 @@
 ## 1.3.1 - April 25, 2024
 
 ### Bug fixes
-* Fixed a regression that may cause the target Secret can't be created while getting an empty list of Key Vault reference. [#32](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/32)
+* Fixed a regression bug in version 1.3.0 where an empty Kubernetes Secret was not created as specified by the `spec.secret.target property` when no Key Vault references were loaded. [#32](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/32)
 
 ## 1.3.0 - April 17, 2024
 
