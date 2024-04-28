@@ -53,7 +53,7 @@
                   "Name": {
                     "$id": "#/properties/parameters/properties/Audience/properties/Groups/items/Group/Name",
                     "type": "string",
-                    "title": "Targeting Filter Group Name Parameter",
+                    "title": "Targeting Filter Group Name Parameter"
                   },
                   "RolloutPercentage": {
                     "$id": "#/properties/parameters/properties/Audience/properties/Groups/items/Group/RolloutPercentage",
@@ -89,7 +89,7 @@
                   "items": {
                     "type": "string"
                   }
-                },
+                }
               }
             }
           },
@@ -98,7 +98,9 @@
           ]
         }
       },
-      "required": ["Audience"]
+      "required": [
+        "Audience"
+      ]
     }
   }
 }

@@ -33,14 +33,20 @@
           "type": "string",
           "title": "Time Window Filter End Parameter",
           "examples": [
-            "Wed, 1 May 2024 12:00:00 GMT",
-            "Wed, 1 May 2024 20:00:00 +0800"
+            "Thu, 2 May 2024 12:00:00 GMT",
+            "Thu, 2 May 2024 20:00:00 +0800"
           ]
         }
       },
       "anyOf": [
-        { "required": ["Start"] },
-        { "required": ["End"] }
+        { "required": [
+          "Start"
+          ] 
+        },
+        { "required": [
+          "End"
+          ] 
+        }
       ]
     }
   }

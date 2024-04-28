@@ -84,8 +84,8 @@
                 "title": "Client Filter Name",
                 "description": "The name used to refer to a client filter.",
                 "examples": [
-                  "Microsoft.Targeting",
-                  "Microsoft.TimeWindow"
+                  "Percentage",
+                  "TimeWindow"
                 ],
                 "pattern": "^(.*)$"
               },
