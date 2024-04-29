@@ -98,7 +98,8 @@
                     "Friday",
                     "Saturday",
                     "Sunday"
-                  ]
+                  ],
+                  "default": "Sunday"
                 }
               }
             },
