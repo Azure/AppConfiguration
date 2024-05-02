@@ -1,6 +1,14 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 7.2.0 - May 2, 2024
+### Enhancements
+* Added support for .NET 8 as a target framework. [#530](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/530)
+* Removed all usage of reflection for JSON parsing, allowing native AOT applications to use JSON key-values from Azure App Configuration with the .NET provider. [#537](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/537)
+
+### Bug Fixes
+* Updated `Azure.Data.AppConfiguration` reference to `1.4.1` to fix a bug where responses from Azure App Configuration with status code 304 would show up as failures in Application Insights. [#514](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/514).
+
 ## 8.0.0-preview.2 - March 18, 2024
 ### Bug Fixes
 * Fixed a bug where a `FormatException` may be thrown for a variant feature flag when the configuration value was not set to a string or `null`. With this fix, the configuration value of a variant can be a string, number, boolean, array, or JSON object. [#531](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/531)
