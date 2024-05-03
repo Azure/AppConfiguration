@@ -7,7 +7,7 @@
 * Removed all usage of reflection for JSON parsing, allowing native AOT applications to use JSON key-values from Azure App Configuration with the .NET provider. [#537](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/537)
 
 ### Bug Fixes
-* Updated `Azure.Data.AppConfiguration` reference to `1.4.1` to fix a bug where responses from Azure App Configuration with status code 304 would show up as failures in Application Insights. [#514](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/514).
+* Updated `Azure.Data.AppConfiguration` reference to `1.4.1`. [#514](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/514).
 
 ## 8.0.0-preview.2 - March 18, 2024
 ### Bug Fixes
