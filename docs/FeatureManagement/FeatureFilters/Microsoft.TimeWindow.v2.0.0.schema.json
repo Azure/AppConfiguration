@@ -130,7 +130,7 @@
                 "NumberOfOccurrences": {
                   "$id": "#/properties/parameters/properties/Recurrence/properties/Range/properties/NumberOfOccurrences",
                   "type": "number",
-                  "title": "Time Window Filter Recurrence Number Of Occurrences Parameter"
+                  "title": "Time Window Filter Recurrence NumberOfOccurrences Parameter"
                 }
               }
             }
