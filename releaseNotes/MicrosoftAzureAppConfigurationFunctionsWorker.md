@@ -1,6 +1,11 @@
 # Microsoft.Azure.AppConfiguration.Functions.Worker
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 7.2.0 - May 2, 2024
+### Enhancements
+* Added support for .NET 8 as a target framework. [#530](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/530)
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `7.2.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ## 8.0.0-preview.2 - March 18, 2024
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.0.0-preview.2`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
