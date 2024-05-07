@@ -14,6 +14,10 @@ This example is a .NET isolated process Function App, which runs out-of-process 
 
 This example demonstrates how to enable dynamic configuration from App Configuration in a console app written in .NET Core.
 
+### [QuoteOfTheDay](./DotNetCore/QuoteOfTheDay)
+
+This ASP.NET Core app demonstrates how to use variant feature flags from Azure App Configuration, integrated with Application Insights telemetry, to carry out feature experimentation.
+
 ### [WebDemo (.NET 6)](./DotNetCore/WebDemoNet6)
 
 This example is an ASP.NET Core app, which uses the modernized project template introduced in .NET 6. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
@@ -33,14 +37,6 @@ This ASP.NET web application is a .NET Framework MVC 5 app. It leverages the [co
 ### [WebFormApp (.NET Framework)](./DotNetFramework/WebFormApp)
 
 This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates how to leverage the App Configuration [.NET Standard provider library](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) to achieve dynamic configuration and control feature launches with feature flags. The same technique applies to .NET Framework MVC apps.
-
-### [QuoteOfTheDayQuickStart](./Experimentation/Dotnet/QuoteOfTheDayQuickStart)
-
-This example is an ASP .NET Core app that demonstrates how to use the [Microsoft .NET Feature Management library](https://www.nuget.org/packages/Microsoft.FeatureManagement/) to do experimentation with feature flags.
-
-### [QuoteOfTheDaySimulator](./Experimentation/Dotnet/QuoteOfTheDaySimulator)
-
-This example is a .NET Core application that simulates user traffic for experimentation with the QuoteOfTheDayQuickStart example.
 
 ## Spring Samples
 
