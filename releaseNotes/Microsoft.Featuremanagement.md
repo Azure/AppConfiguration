@@ -11,7 +11,7 @@
 
 ### Bug fixes
 
-* Previously, refreshing while enumerating the async enumerable returned by `GetFeatureNamesAsync` could cause a null pointer exception. Now, enumeration will skip the flag if the definition is suddenly missing. ([#438](https://github.com/microsoft/FeatureManagement-Dotnet/pull/438))
+* Fixed a possible null-reference exception when enumerating `GetFeatureNamesAsync`. ([#438](https://github.com/microsoft/FeatureManagement-Dotnet/pull/438))
 
 ## 4.0.0-preview3 - April 10, 2024
 
