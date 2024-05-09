@@ -2,6 +2,17 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 3.3.0 - May 8, 2024
+
+### Enhancements
+
+* Added a `Recurrence` option to the `TimeWindow` filter to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet?tab=readme-ov-file#recurrence-pattern). ([#266](https://github.com/microsoft/FeatureManagement-Dotnet/pull/266))
+* A `LoggerFactory` is no longer required when constructing built-in filters. ([#386](https://github.com/microsoft/FeatureManagement-Dotnet/pull/386))
+
+### Bug fixes
+
+* Fixed a possible null-reference exception when enumerating `GetFeatureNamesAsync`. ([#438](https://github.com/microsoft/FeatureManagement-Dotnet/pull/438))
+
 ## 4.0.0-preview3 - April 10, 2024
 
 ### Enhancements
