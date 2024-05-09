@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added a `Recurrence` option to the `TimeWindow` filter to support recurring time windows. This enables scenarios such as enabling the flag every day after five PM or enabling the flag on Fridays. See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet?tab=readme-ov-file#recurrence-pattern). ([#266](https://github.com/microsoft/FeatureManagement-Dotnet/pull/266))
+* Added a `Recurrence` option to the `TimeWindow` filter to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet?tab=readme-ov-file#recurrence-pattern). ([#266](https://github.com/microsoft/FeatureManagement-Dotnet/pull/266))
 * A `LoggerFactory` is no longer required when constructing built-in filters. ([#386](https://github.com/microsoft/FeatureManagement-Dotnet/pull/386))
 
 ### Bug fixes
