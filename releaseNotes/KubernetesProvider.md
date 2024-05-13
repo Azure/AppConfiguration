@@ -2,6 +2,11 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.0.0-preview - 
+
+### Enhancements
+* Added support for [multi-architecture images](https://docs.docker.com/build/building/multi-platform/), the Kubernetes provider can be deployed to `linux/amd` and `linux/arm64` platform. [#892](https://github.com/Azure/AppConfiguration/issues/892)
+
 ## 1.3.1 - April 25, 2024
 
 ### Bug fixes
