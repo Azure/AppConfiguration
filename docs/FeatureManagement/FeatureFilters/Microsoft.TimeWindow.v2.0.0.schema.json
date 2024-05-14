@@ -43,6 +43,10 @@
           "$id": "#/properties/parameters/properties/Recurrence",
           "type": "object",
           "title": "Time Window Filter Recurrence Parameter",
+          "required": [
+            "Pattern",
+            "Range"
+          ],
           "properties": {
             "Pattern": {
               "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern",
