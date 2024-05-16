@@ -2,6 +2,11 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.0.0-preview - May 15, 2024
+
+### Enhancements
+* Added support for [multi-platform images](https://docs.docker.com/build/building/multi-platform/). The Kubernetes provider supports `linux/amd` and `linux/arm64` platforms. [#892](https://github.com/Azure/AppConfiguration/issues/892)
+
 ## 1.3.1 - April 25, 2024
 
 ### Bug fixes
