@@ -8,8 +8,8 @@ Initial Beta Release of the Feature Management for Python
 
 ### New Features
 
-* Loading of feature flags from a file, see [feature management schema]
-* Loading of feature flags from Azure App Configuration.
+* Loading of feature flags from a file, see [feature management schema].
+* Loading of feature flags from Azure App Configuration provider.
 * Checking if a feature is enabled.
 * Default feature filters: TimeWindowFilter, TargetingFilter.
 * Custom feature filters.
