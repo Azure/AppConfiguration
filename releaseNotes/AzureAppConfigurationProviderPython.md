@@ -2,6 +2,19 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 1.2.0 - May 23, 2024
+
+### Features
+
+* Added support for the App Configuration Feature Management V2.0.0 schema. This allows for the loading of feature flags from an App Configuration provider. For more information see [here](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json)
+  * Added `feature_flags_enabled` method to the `load` method, to enable loading of feature flags, by default when enabled all feature flags with no label are loaded.
+  * Added `feature_flag_selectors` which works similar to `SettingSelector` but for feature flags.
+  * Added `feature_flag_refresh_enabled` to the `load` method, to enable the refreshing of feature flags. Feature flags are refreshed with the same refresh method as configuration settings, though they are refreshed separatetly, so a change in a feature flag will not cause a refresh of configuration settings.
+
+### Bug Fixes
+
+* Fixed an bug where loading configuration settings could be slower to return than expected.
+
 ## 1.1.0 - January 29, 2024
 
 ### Features
