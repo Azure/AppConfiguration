@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 3.3.1 - May 23, 2024
+
+### Bug fixes
+
+* Fixed a bug that `TimeWindowFilter` would be registered repeatedly when calling `AddFeatureFilter<TimeWindowFilter>` after the call of `AddFeatureManagement()`. [#447](https://github.com/microsoft/FeatureManagement-Dotnet/issues/447)
+
 ## 3.3.0 - May 8, 2024
 
 ### Enhancements
