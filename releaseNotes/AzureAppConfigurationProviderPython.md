@@ -10,7 +10,7 @@
 
 ### Enhancement
 
-* Updated the reterival of configuration settings from provider to be more efficient.
+* Improved the performance of configuration loading time.
 
 ## 1.1.0 - January 29, 2024
 
