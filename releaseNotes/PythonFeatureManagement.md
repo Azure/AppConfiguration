@@ -2,16 +2,15 @@
 
 [Source code][source_code] | [Samples][samples]
 
-## 1.0.0b1 - May 22, 2024
+## 1.0.0b1 - May 24, 2024
 
-Initial Beta Release of the Feature Management for Python
+### Enhancement
 
-### New Features
+Initial release of the feature management support for Python.
 
-* Loading of feature flags from a file, see [feature management schema].
-* Loading of feature flags from Azure App Configuration provider.
-* Checking if a feature is enabled.
-* Default feature filters: TimeWindowFilter, TargetingFilter.
+* Loading of feature flags from a dictionary.
+* Support for basic feature flags with boolean states.
+* Support for feature filters including built-in filters `TimeWindowFilter` and `TargetingFilter`.
 * Custom feature filters.
 
 [samples]: https://github.com/microsoft/FeatureManagement-Python/tree/main/samples
