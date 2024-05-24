@@ -10,7 +10,7 @@
 
 ### Enhancement
 
-* Improved the performance of configuration loading time.
+* Improved the performance of data loading from Azure App Configuration, especially when you have a large set of key-values.
 
 ## 1.1.0 - January 29, 2024
 
