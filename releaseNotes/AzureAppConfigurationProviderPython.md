@@ -11,9 +11,9 @@
   * Added `feature_flag_selectors` which works similar to `SettingSelector` but for feature flags.
   * Added `feature_flag_refresh_enabled` to the `load` method, to enable the refreshing of feature flags. Feature flags are refreshed with the same refresh method as configuration settings, though they are refreshed separatetly, so a change in a feature flag will not cause a refresh of configuration settings.
 
-### Bug Fixes
+### Enhancement
 
-* Fixed an bug where loading configuration settings could be slower to return than expected.
+* Updated the reterival of configuration settings from provider to be more efficient.
 
 ## 1.1.0 - January 29, 2024
 
