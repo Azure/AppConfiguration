@@ -2,6 +2,10 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 3.3.1 - May 23, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `3.3.1`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
 ## 3.3.0 - May 8, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `3.3.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.

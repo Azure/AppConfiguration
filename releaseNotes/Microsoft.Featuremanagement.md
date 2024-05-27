@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 3.3.1 - May 23, 2024
+
+### Bug fixes
+
+* Fixed a bug that caused the time window filter to be unusable if `AddFeatureFilter<TimeWindowFilter>` was called.`. [#447](https://github.com/microsoft/FeatureManagement-Dotnet/issues/447)
+
 ## 3.3.0 - May 8, 2024
 
 ### Enhancements
