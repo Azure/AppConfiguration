@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 1.2.0 - May 24, 2024
+
+### Features
+
+* Added support for loading feature flags from Azure App Configuration.
+
+### Enhancement
+
+* Improved the performance of data loading from Azure App Configuration, especially when you have a large set of key-values.
+
 ## 1.1.0 - January 29, 2024
 
 ### Features
