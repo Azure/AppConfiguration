@@ -18,22 +18,6 @@
                 }
             },
             {
-                "id": "StringTrue",
-                "description": "A feature flag with no Filters where enabled is a string, that returns true.",
-                "enabled": "true",
-                "conditions": {
-                    "client_filters": []
-                }
-            },
-            {
-                "id": "StringFalse",
-                "description": "A feature flag with no Filters where enabled is a string, that returns false.",
-                "enabled": "false",
-                "conditions": {
-                    "client_filters": []
-                }
-            },
-            {
                 "id": "InvalidEnabled",
                 "description": "A feature flag with an invalid 'enabled' value, that returns false.",
                 "enabled": "invalid",
