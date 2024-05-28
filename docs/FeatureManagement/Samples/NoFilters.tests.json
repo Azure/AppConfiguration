@@ -22,28 +22,6 @@
         "Description": "A Disabled Feature Flag with no Filters."
     },
     {
-        "FeatureFlagName": "StringTrue",
-        "Inputs": {},
-        "IsEnabled": {
-            "Result": "true"
-        },
-        "Variant": {
-            "Result": null
-        },
-        "Description": "An Enabled Feature Flag with no Filters."
-    },
-    {
-        "FeatureFlagName": "StringFalse",
-        "Inputs": {},
-        "IsEnabled": {
-            "Result": "false"
-        },
-        "Variant": {
-            "Result": null
-        },
-        "Description": "A Disabled Feature Flag with no Filters."
-    },
-    {
         "FeatureFlagName": "InvalidEnabled",
         "Inputs": {},
         "IsEnabled": {
