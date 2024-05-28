@@ -6,7 +6,7 @@
 
 ### Enhancement
 
-Initial release of the feature management support for Python.
+Initial release of the feature management support for Python. Note that, version 1.2.0 or later of `azure-appconfiguration-provider` is required for loading feature flags from Azure App Configuration.
 
 * Loading of feature flags from a dictionary.
 * Support for basic feature flags with boolean states.
@@ -14,4 +14,3 @@ Initial release of the feature management support for Python.
 
 [samples]: https://github.com/microsoft/FeatureManagement-Python/tree/main/samples
 [source_code]: https://github.com/microsoft/FeatureManagement-Python
-[feature management schema]:https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json
