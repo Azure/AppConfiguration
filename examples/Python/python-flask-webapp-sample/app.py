@@ -31,8 +31,6 @@ azure_app_config = load(
 feature_manager = FeatureManager(azure_app_config)
 app.config.update(azure_app_config)
 
-breakpoint()
-
 @app.route("/")
 def index():
     global azure_app_config
