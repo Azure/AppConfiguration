@@ -23,6 +23,7 @@ az appconfig kv set --name <config-store-name> --key testapp_settings_message --
 az appconfig kv set --name <config-store-name> --key testapp_settings_font_size --value "30px"
 az appconfig kv set --name <config-store-name> --key testapp_settings_color --value "azure"
 az appconfig kv set --name <config-store-name> --key sentinel --value "1"
+az appconfig feature set --name <config-store-name> --feature Beta
 ```
 
 ### Create Key Vault Reference
@@ -73,9 +74,10 @@ To refresh your configuration, you first update the value in Azure App Configura
 ```Powershell
 az appconfig kv set --name <config-store-name> --key testapp_settings_color --value "violet"
 az appconfig kv set --name <config-store-name> --key sentinel --value "2"
+az appconfig feature enable --name <config-store-name> --feature Beta
 ```
 
-Refresh the page in your browser to see the updated value.
+Refresh the page in your browser to see the updated value, along with a now visable Beta page.
 
 NOTE: By default refresh can only be triggered every 30 seconds. You might have to wait up to 30 seconds and refresh the page again in order to see a change.
 
