@@ -13,15 +13,15 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import configparser
 from pathlib import Path
-from azure.appconfiguration.provider import SettingSelector, WatchKey
-from azure.appconfiguration.provider.aio import load
+from azure.appconfiguration.provider import load, SettingSelector, WatchKey
 from azure.identity import DefaultAzureCredential
-from featuremanagement.aio import FeatureManager
+from featuremanagement import FeatureManager
 
 c_parser = configparser.ConfigParser()
 c_parser.read("static/config.ini")
 
-CONFIG = c_parser["DEFAULT"]
+# Geting a dict of the default section, configparser only allows primitive types
+CONFIG = dict(c_parser["DEFAULT"])
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
 
@@ -39,18 +39,19 @@ def callback():
     # Update Django settings with the app configuration key-values
     CONFIG.update(AZURE_APP_CONFIG)
 
-async def setup():
-    AZURE_APP_CONFIG = await load(
-        endpoint=ENDPOINT,
-        selects=[selects, selects_secret],
-        credential=credential,
-        keyvault_credential=credential,
-        trim_prefixes=["testapp_settings_"],
-        refresh_on=[WatchKey("sentinel")],
-        on_refresh_success=callback,
-    )
-    FEATURE_MANAGER = FeatureManager(AZURE_APP_CONFIG)
+AZURE_APP_CONFIG = load(
+    endpoint=ENDPOINT,
+    selects=[selects, selects_secret],
+    credential=credential,
+    keyvault_credential=credential,
+    trim_prefixes=["testapp_settings_"],
+    refresh_on=[WatchKey("sentinel")],
+    feature_flag_enabled=True,
+    feature_flag_refresh_enabled=True,
+    on_refresh_success=callback,
+)
 
+FEATURE_MANAGER = FeatureManager(AZURE_APP_CONFIG)
 
 # Updates the config object with the app configuration key-values and resolved key vault reference values.
 # This will override any values in the config object with the same key.
