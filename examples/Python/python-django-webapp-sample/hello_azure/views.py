@@ -16,6 +16,5 @@ async def index(request):
     return render(request, "hello_azure/index.html", context)
 
 async def beta(request):
-    context = {
-    }
+    context = {}
     return render(request, "hello_azure/beta.html", context)
