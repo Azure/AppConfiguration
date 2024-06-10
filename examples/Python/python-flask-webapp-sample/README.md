@@ -77,7 +77,7 @@ az appconfig kv set --name <config-store-name> --key sentinel --value "2"
 az appconfig feature enable --name <config-store-name> --feature Beta
 ```
 
-Refresh the page in your browser to see the updated value, along with a now visable Beta page.
+Refresh the page in your browser to see the updated value, along with a now visible Beta page.
 
 NOTE: By default refresh can only be triggered every 30 seconds. You might have to wait up to 30 seconds and refresh the page again in order to see a change.
 

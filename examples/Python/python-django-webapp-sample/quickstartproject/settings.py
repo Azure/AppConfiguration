@@ -20,7 +20,7 @@ from featuremanagement import FeatureManager
 c_parser = configparser.ConfigParser()
 c_parser.read("static/config.ini")
 
-# Geting a dict of the default section, configparser only allows primitive types
+# Getting a dict of the default section, configparser only allows primitive types
 CONFIG = dict(c_parser["DEFAULT"])
 
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
