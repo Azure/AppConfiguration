@@ -11,5 +11,10 @@ async def index(request):
         "key": settings.CONFIG.get("secret_key"),
         "color": settings.CONFIG.get("color"),
         "font_size": settings.CONFIG.get("font_size"),
+        "beta": settings.FEATURE_MANAGER.is_enabled("Beta"),
     }
     return render(request, "hello_azure/index.html", context)
+
+async def beta(request):
+    context = {}
+    return render(request, "hello_azure/beta.html", context)
