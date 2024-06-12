@@ -2,6 +2,15 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 1.0.0 - June 6, 2024
+
+**Release of the stable API version `v1`**.
+
+## 1.0.0-preview.4 - April 11, 2024
+
+### Breaking Changes
+- Excluded feature flags from loaded settings. For example, if you attempt to load all settings by specifying a selector with `keyFilter: "*"`, only configuration settings are included now, whereas previously feature flags were also loaded. [#55](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/55)
+
 ## 1.0.0-preview.3 - March 21, 2024
 ### Enhancements
 - Added support for dynamic configuration refresh. See an example [here](https://github.com/Azure/AppConfiguration-JavaScriptProvider/blob/main/examples/refresh.mjs). [#21](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/21)
