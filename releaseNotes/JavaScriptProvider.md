@@ -6,11 +6,11 @@
 
 This is the first stable release of the following features.
 - Loading and composing configuration with key-value selectors.
-- Authenticating with connection string or Microsoft Entra Id.
-- Loading key-values as either a `Map` or an object based on needs.
+- Authentication with connection string or Microsoft Entra Id.
+- Loading key-values as either a `Map` or an object.
 - Trimming prefixes from keys.
-- Loading key-values with JSON content type direct as an object.
-- Resolving Key Vault reference.
+- Loading key-values with JSON content type as configuration objects.
+- Key Vault reference resolution.
 - Support for dynamic configuration refresh.
 
 Get started with the [quickstart](https://learn.microsoft.com/en-us/azure/azure-app-configuration/quickstart-javascript-provider).
