@@ -4,7 +4,16 @@
 
 ## 1.0.0 - June 6, 2024
 
-**Release of the stable API version `v1`**.
+This is the first stable release of the following features.
+- Loading and composing configuration with key-value selectors.
+- Authenticating with connection string or Microsoft Entra Id.
+- Loading key-values as either a `Map` or an object based on needs.
+- Trimming prefixes from keys.
+- Loading key-values with JSON content type direct as an object.
+- Resolving Key Vault reference.
+- Support for dynamic configuration refresh.
+
+Get started with the [quickstart](https://learn.microsoft.com/en-us/azure/azure-app-configuration/quickstart-javascript-provider).
 
 ## 1.0.0-preview.4 - April 11, 2024
 
