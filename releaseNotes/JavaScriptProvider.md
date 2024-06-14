@@ -2,6 +2,24 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 1.0.0 - June 6, 2024
+
+This is the first stable release of the following features.
+- Loading and composing configuration with key-value selectors.
+- Authentication with connection string or Microsoft Entra Id.
+- Loading key-values as either a `Map` or a configuration object.
+- Trimming prefixes from keys.
+- Loading key-values with JSON content type as configuration objects.
+- Key Vault reference resolution.
+- Support for dynamic configuration refresh.
+
+Get started with the [quickstart](https://learn.microsoft.com/en-us/azure/azure-app-configuration/quickstart-javascript-provider).
+
+## 1.0.0-preview.4 - April 11, 2024
+
+### Breaking Changes
+- Excluded feature flags from loaded settings. For example, if you attempt to load all settings by specifying a selector with `keyFilter: "*"`, only configuration settings are included now, whereas previously feature flags were also loaded. [#55](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/55)
+
 ## 1.0.0-preview.3 - March 21, 2024
 ### Enhancements
 - Added support for dynamic configuration refresh. See an example [here](https://github.com/Azure/AppConfiguration-JavaScriptProvider/blob/main/examples/refresh.mjs). [#21](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/21)
