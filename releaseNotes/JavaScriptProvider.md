@@ -7,7 +7,7 @@
 This is the first stable release of the following features.
 - Loading and composing configuration with key-value selectors.
 - Authentication with connection string or Microsoft Entra Id.
-- Loading key-values as either a `Map` or an object.
+- Loading key-values as either a `Map` or a configuration object.
 - Trimming prefixes from keys.
 - Loading key-values with JSON content type as configuration objects.
 - Key Vault reference resolution.
