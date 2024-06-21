@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 3.4.0 - Jun 21, 2024
+
+### Enhancements
+
+- All public classes no longer use init-only setters, ensureing compatibility with application using C# 7 or earlier. [#450](https://github.com/microsoft/FeatureManagement-Dotnet/pull/450)
+
 ## 3.3.1 - May 23, 2024
 
 ### Bug fixes
