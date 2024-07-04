@@ -1,0 +1,106 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/FeatureManagement/v1.0.0/TargetingFilter.json",
+  "type": "object",
+  "title": "A Microsoft Targeting Filter Declaration",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "Targeting Filter Name",
+      "enum": [
+        "Microsoft.Targeting"
+      ]
+    },
+    "parameters": {
+      "$id": "#/properties/parameters",
+      "type": "object",
+      "title": "Targeting Filter Parameters",
+      "properties": {
+        "Audience": {
+          "$id": "#/properties/parameters/properties/Audience",
+          "type": "object",
+          "title": "Targeting Filter Audience Parameter",
+          "properties": {
+            "DefaultRolloutPercentage": {
+              "$id": "#/properties/parameters/properties/Audience/properties/DefaultRolloutPercentage",
+              "type": "number",
+              "title": "Targeting Filter Default Rollout Percentage Parameter",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "Users": {
+              "$id": "#/properties/parameters/properties/Audience/properties/Users",
+              "type": "array",
+              "title": "Targeting Filter Users Parameter",
+              "items": {
+                "type": "string"
+              }
+            },
+            "Groups": {
+              "$id": "#/properties/parameters/properties/Audience/properties/Groups",
+              "type": "array",
+              "title": "Targeting Filter Groups Parameter",
+              "items": {
+                "$id": "#/properties/parameters/properties/Audience/properties/Groups/items/Group",
+                "type": "object",
+                "title": "Targeting Filter Group Parameter",
+                "properties": {
+                  "Name": {
+                    "$id": "#/properties/parameters/properties/Audience/properties/Groups/items/Group/Name",
+                    "type": "string",
+                    "title": "Targeting Filter Group Name Parameter"
+                  },
+                  "RolloutPercentage": {
+                    "$id": "#/properties/parameters/properties/Audience/properties/Groups/items/Group/RolloutPercentage",
+                    "type": "number",
+                    "title": "Targeting Filter Group RolloutPercentage Parameter",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "Name", 
+                  "RolloutPercentage"
+                ]
+              }
+            },
+            "Exclusion": {
+              "$id": "#/properties/parameters/properties/Audience/properties/Exclusion",
+              "type": "object",
+              "title": "Targeting Filter Exclusion Parameter",
+              "properties": {
+                "Users": {
+                  "$id": "#/properties/parameters/properties/Audience/properties/Exclusion/Users",
+                  "type": "array",
+                  "title": "Targeting Filter Exclusion Users Parameter",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "Groups": {
+                  "$id": "#/properties/parameters/properties/Audience/properties/Exclusion/Groups",
+                  "type": "array",
+                  "title": "Targeting Filter Exclusion Groups Parameter",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "DefaultRolloutPercentage"
+          ]
+        }
+      },
+      "required": [
+        "Audience"
+      ]
+    }
+  }
+}

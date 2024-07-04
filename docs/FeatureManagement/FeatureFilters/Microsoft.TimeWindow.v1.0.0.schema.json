@@ -1,0 +1,53 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/FeatureManagement/v1.0.0/TimeWindowFilter.json",
+  "type": "object",
+  "title": "A Microsoft Time Window Filter Declaration",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "Time Window Filter Name",
+      "enum": ["Microsoft.TimeWindow"]
+    },
+    "parameters": {
+      "$id": "#/properties/parameters",
+      "type": "object",
+      "title": "Time Window Filter Parameters",
+      "properties": {
+        "Start": {
+          "$id": "#/properties/parameters/properties/Start",
+          "type": "string",
+          "title": "Time Window Filter Start Parameter",
+          "examples": [
+            "Wed, 1 May 2024 12:00:00 GMT",
+            "Wed, 1 May 2024 20:00:00 +0800"
+          ]
+        },
+        "End": {
+          "$id": "#/properties/parameters/properties/End",
+          "type": "string",
+          "title": "Time Window Filter End Parameter",
+          "examples": [
+            "Thu, 2 May 2024 12:00:00 GMT",
+            "Thu, 2 May 2024 20:00:00 +0800"
+          ]
+        }
+      },
+      "anyOf": [
+        { "required": [
+          "Start"
+          ] 
+        },
+        { "required": [
+          "End"
+          ] 
+        }
+      ]
+    }
+  }
+}
