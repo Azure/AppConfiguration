@@ -2,6 +2,15 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.0.0 -
+
+### Enhancements
+* Added support for namespaced service account. It can establish federated identity credential between the workload identity and the namespaced service account subject, which is useful to control access to configuration between apps and namespaces.
+* Added support for collecting information about your use of Azure App Configuration Kubernetes Provider. Telemetry is enabled by default and can be disabled by setting `requestTracing.enabled` to `false` during installation.
+
+### Bug fixes
+* Fixed a bug where a feature flag was duplicated in the ConfigMap when selected by both `featureFlag.selector.keyFilter` and `featureFlag.selector.snapshotName`.
+
 ## 2.0.0-preview - May 15, 2024
 
 ### Enhancements
