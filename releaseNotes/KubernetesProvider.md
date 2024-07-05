@@ -8,7 +8,7 @@
 * Added an enhancement that supports using custom service accounts for workload identity authentication. This is useful for permission management isolation between different namespaces.
 
 ### Bug fixes
-* Fixed a bug where a feature flag was duplicated in the ConfigMap when selected by both `featureFlag.selector.keyFilter` and `featureFlag.selector.snapshotName`.
+* Fixed a bug where feature flags with the same key were repeatedly added to the ConfigMap when selected by different selectors.
 
 ## 2.0.0-preview - May 15, 2024
 
