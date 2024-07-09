@@ -2,7 +2,7 @@ import os
 from azure.appconfiguration.provider import load, WatchKey
 from azure.identity import AzureCliCredential
 from featuremanagement import FeatureManager
-from featuremanagement.appinsights import send_telemetry
+from featuremanagement.azuremonitor import publish_telemetry
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import trace
 from opentelemetry.trace import get_tracer_provider
@@ -42,7 +42,7 @@ azure_app_config = load(
     feature_flag_refresh_enabled=True,
 )
 app.config.update(azure_app_config)
-feature_manager = FeatureManager(azure_app_config, telemetry=send_telemetry)
+feature_manager = FeatureManager(azure_app_config, telemetry=publish_telemetry)
 
 db = SQLAlchemy()
 db.init_app(app)

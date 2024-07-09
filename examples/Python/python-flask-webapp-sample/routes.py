@@ -1,6 +1,6 @@
 import random
 
-from featuremanagement.appinsights import track_event
+from featuremanagement.azuremonitor import track_event
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user
 from app import app, azure_app_config, feature_manager, db, bcrypt
