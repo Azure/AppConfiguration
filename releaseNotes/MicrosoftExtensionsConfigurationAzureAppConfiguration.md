@@ -1,6 +1,13 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 7.3.0 - July 16th, 2024
+### Bug Fixes
+* Fixed a bug where the provider would throw instead of handling a `FormatException` when the optional parameter was set to `true` in the `AddAzureAppConfiguration` method, or when calling `TryRefreshAsync`. [#551](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/551)
+
+### Enhancements
+* Upgraded the package reference for `Azure.Security.KeyVault.Secrets` to `4.6.0`. [#572](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/572)
+
 ## 7.2.0 - May 2, 2024
 ### Enhancements
 * Added support for .NET 8 as a target framework. [#530](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/530)
