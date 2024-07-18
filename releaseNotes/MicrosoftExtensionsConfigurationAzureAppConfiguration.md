@@ -1,6 +1,15 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.0.0-preview.3 - July 18th, 2024
+### Breaking Changes
+* Removed .NET 7 as a target framework as .NET 7 is out of support. [#567](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/567)
+* The provider now uses the [Microsoft feature flag schema v2.0.0](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json) to output feature flags containing any of the `variants`, `allocation` or `telemetry` properties to configuration. [#543](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/543)
+
+### Enhancements
+* Added deprecation warnings to `AzureAppConfigurationRefreshOptions.SetCacheExpiration` and `FeatureFlagOptions.CacheExpirationInterval`. The `AzureAppConfigurationRefreshOptions.SetRefreshInterval` and `FeatureFlagOptions.SetRefreshInterval` APIs should be used instead to set the minimum interval between consecutive refresh operations. [#350](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/350)
+* The provider can now evenly distribute requests across any available replicas, allowing your application to proactively take advantage of replicas for higher volume and scalability. Load balancing can be enabled by setting the new `AzureAppConfigurationOptions.LoadBalancingEnabled` property equal to true. [#535](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/535)
+
 ## 7.3.0 - July 16th, 2024
 ### Enhancements
 * Upgraded the package reference for `Azure.Security.KeyVault.Secrets` to `4.6.0`. [#572](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/572)
