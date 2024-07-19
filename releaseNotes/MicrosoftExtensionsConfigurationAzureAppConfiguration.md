@@ -5,10 +5,10 @@
 ### Breaking Changes
 * Removed .NET 7 as a target framework as .NET 7 is out of support. [#567](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/567)
 * The provider now uses the [Microsoft feature flag schema v2.0.0](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json) to output feature flags containing any of the `variants`, `allocation` or `telemetry` properties to configuration. Flags without these properties will not change in configuration. [#543](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/543)
+* The APIs `AzureAppConfigurationRefreshOptions.SetCacheExpiration` and `FeatureFlagOptions.CacheExpirationInterval` have been deprecated and will be removed in a future release. They are replaced with `AzureAppConfigurationRefreshOptions.SetRefreshInterval` and `FeatureFlagOptions.SetRefreshInterval`, respectively. This change does not affect functionality but aims to eliminate confusion regarding cache expiration implied by the previous API names. [#350](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/350)
 
 ### Enhancements
-* Added deprecation warnings to `AzureAppConfigurationRefreshOptions.SetCacheExpiration` and `FeatureFlagOptions.CacheExpirationInterval`. The `AzureAppConfigurationRefreshOptions.SetRefreshInterval` and `FeatureFlagOptions.SetRefreshInterval` APIs should be used instead to set the minimum interval between consecutive refresh operations. [#350](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/350)
-* The provider can now evenly distribute requests across any available replicas, allowing your application to proactively take advantage of replicas for higher volume and scalability. Load balancing can be enabled by setting the new `AzureAppConfigurationOptions.LoadBalancingEnabled` property equal to true. [#535](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/535)
+* A load balancing mode has been introduced, enabling your application to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is off by default and can be activated by setting the new `AzureAppConfigurationOptions.LoadBalancingEnabled` property to `true`. [#535](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/535)
 
 ## 7.3.0 - July 16th, 2024
 ### Enhancements
