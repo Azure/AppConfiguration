@@ -2,6 +2,20 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview4 - Jul 19, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
+### Breaking Changes
+
+* `TargetingHttpContextMiddleware` now uses `Activity.Baggage` to store targeting information. Previously, it used `HttpContext.Items`. [#467](https://github.com/microsoft/FeatureManagement-Dotnet/pull/467)
+
+## 3.5.0 - Jul 19, 2024
+
+### Enhancements
+
+* Developers using ASP.NET Core will now have a new extension method `WithTargeting()` which registers a default `ITargetingContextAccessor`. This default accessor will extract the targeting info from `HttpContext.User`. `UserId` will be taken from the Identity.Name field. `Groups` will be extracted from claims of type `Role`. [#466](https://github.com/microsoft/FeatureManagement-Dotnet/pull/466)
+
 ## 3.4.0 - Jun 24, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `3.4.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.

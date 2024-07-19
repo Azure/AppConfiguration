@@ -2,11 +2,29 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview4 - Jul 19, 2024
+
+### Enhancements
+
+* Feature flags declared in the [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json) will also be recognized when they appears together with [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json). [#470](https://github.com/microsoft/FeatureManagement-Dotnet/pull/470)
+
+* Feature manager now publish telemetry through `Activity`. If telemetry is enabled for a feature flag, whenever the feature flag is evaluated, feature manager will start an `Activity` and add an `ActivityEvent` with tags contains feature evaluation information.  [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
+### Breaking Changes
+
+* Variant and telemetry are no longer supported for [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json). Please use [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json) to declare variant feature flag instead. [#421](https://github.com/microsoft/FeatureManagement-Dotnet/pull/421)
+
+* `AddTelemetryPublisher` API and `ITelemetryPublisher` interface were removed. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
+## 3.5.0 - Jul 19, 2024
+
+See the [release notes](./Microsoft.Featuremanagement.AspNetCore.md) for more information on the changes.
+
 ## 3.4.0 - Jun 21, 2024
 
 ### Enhancements
 
-- All public classes no longer use init-only setters, ensuring compatibility with application using C# 7 or earlier. [#450](https://github.com/microsoft/FeatureManagement-Dotnet/pull/450)
+* All public classes no longer use init-only setters, ensuring compatibility with application using C# 7 or earlier. [#450](https://github.com/microsoft/FeatureManagement-Dotnet/pull/450)
 
 ## 3.3.1 - May 23, 2024
 

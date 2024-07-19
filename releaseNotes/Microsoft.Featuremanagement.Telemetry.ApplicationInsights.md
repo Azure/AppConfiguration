@@ -2,6 +2,26 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview4 - Jul 19, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
+### Enhancements
+
+* Added new `AddApplicationInsightsTelemetryPublisher` API to register an event publisher which listens to activity events from feature management and sends them to Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
+``` C#
+builder.Services.AddFeatureManagement()
+    .WithTargeting()
+    .AddApplicationInsightsTelemetryPublisher();
+```
+
+* The `TargetingTelemetryInitializer` has been moved to the namespace `Microsoft.FeatureManagement.Telemetry.ApplicationInsights`. Deverlopers no longer need to install `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package for it. [#467](https://github.com/microsoft/FeatureManagement-Dotnet/pull/467) The `TargetingTelemetryInitializer` now gets targeting information from current activity's baggage instead of `HttpContext.Items`.
+
+## Breaking Changes
+
+* The `ApplicationInsightsTelemetryPublisher` has been removed since `ITelemetryPublisher` interface was removed from `Microsoft.FeatureManagement` package.
+
 ## 4.0.0-preview3 - April 10, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview3`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
