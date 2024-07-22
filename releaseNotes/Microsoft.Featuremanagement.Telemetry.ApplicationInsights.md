@@ -8,7 +8,7 @@
 
 ### Enhancements
 
-* Added new `AddApplicationInsightsTelemetryPublisher` API to register an event publisher which listens to activity events from feature management and sends them to Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+* Added new `AddApplicationInsightsTelemetryPublisher` API to register a telemetry publisher to send events to Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ``` C#
 builder.Services.AddFeatureManagement()
@@ -20,7 +20,7 @@ builder.Services.AddFeatureManagement()
 
 ## Breaking Changes
 
-* The `ApplicationInsightsTelemetryPublisher` has been removed since `ITelemetryPublisher` interface was removed from `Microsoft.FeatureManagement` package.
+* The `ApplicationInsightsTelemetryPublisher` has been removed since `ITelemetryPublisher` interface was removed from `Microsoft.FeatureManagement` package. The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ## 4.0.0-preview3 - April 10, 2024
 

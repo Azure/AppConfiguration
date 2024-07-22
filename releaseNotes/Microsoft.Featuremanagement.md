@@ -6,19 +6,17 @@
 
 ### Enhancements
 
-* Feature flags declared in the [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json) will also be recognized when they appears together with [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json). [#470](https://github.com/microsoft/FeatureManagement-Dotnet/pull/470)
-
-* Feature manager now publish telemetry through `Activity`. If telemetry is enabled for a feature flag, whenever the feature flag is evaluated, feature manager will start an `Activity` and add an `ActivityEvent` with tags contains feature evaluation information.  [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+* Feature manager now publishes telemetry through `Activity`. The feature management creates an `AcitvitySource` called "Microsoft.FeatureManagement". If telemetry is enabled for a feature flag, whenever the feature flag is evaluated, feature manager will start an `Activity` and add an `ActivityEvent` with tags contains feature evaluation information.  [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ### Breaking Changes
 
 * Variant and telemetry are no longer supported for [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json). Please use [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json) to declare variant feature flag instead. [#421](https://github.com/microsoft/FeatureManagement-Dotnet/pull/421)
 
-* `AddTelemetryPublisher` API and `ITelemetryPublisher` interface were removed. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+* `AddTelemetryPublisher` API and `ITelemetryPublisher` interface were removed. The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ## 3.5.0 - Jul 19, 2024
 
-See the [release notes](./Microsoft.Featuremanagement.AspNetCore.md) for more information on the changes.
+* No visible changes or new features in this version.
 
 ## 3.4.0 - Jun 21, 2024
 
