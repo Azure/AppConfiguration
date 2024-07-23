@@ -16,7 +16,7 @@
 
 ## 3.5.0 - Jul 19, 2024
 
-* No visible changes or new features in this version.
+* No changes in this version.
 
 ## 3.4.0 - Jun 21, 2024
 
