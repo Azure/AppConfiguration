@@ -5,16 +5,29 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>3.2.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>app.config</groupId>
 	<artifactId>QuickStart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>QuickStart</name>
-	<description>Demo project</description>
+	<description>Demo project for Spring Boot</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,7 +52,7 @@
 			<dependency>
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-dependencies</artifactId>
-			<version>4.19.0</version>
+			<version>5.8.0</version>
 			<type>pom</type>
 			<scope>import</scope>
 			</dependency>
@@ -51,11 +64,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
