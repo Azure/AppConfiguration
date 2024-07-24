@@ -2,6 +2,15 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.0.0 -
+
+### Enhancements
+* Added support for binding a managed identity with a custom service account within a namespace. This feature enhances security isolation by namespaces when using workload identity authentication.
+* Added support for [multi-platform images](https://docs.docker.com/build/building/multi-platform/). The Kubernetes provider supports `linux/amd` and `linux/arm64` platforms. [#892](https://github.com/Azure/AppConfiguration/issues/892)
+
+### Bug fixes
+* Fixed a bug where a feature flag could be repeatedly added to a ConfigMap if included in multiple feature flag selectors or snapshots.
+
 ## 2.0.0-preview - May 15, 2024
 
 ### Enhancements
