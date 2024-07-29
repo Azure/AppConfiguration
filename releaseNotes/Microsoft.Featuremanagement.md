@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. Feature manager now has an `AcitvitySource` called "Microsoft.FeatureManagement". If telemetry is enabled for a feature flag, whenever the feature flag is evaluated, feature manager will start an `Activity` and add an `ActivityEvent` with tags contains feature evaluation information.  [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+* The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. Feature manager now has an `AcitvitySource` called "Microsoft.FeatureManagement". If telemetry is enabled for a feature flag, whenever the feature flag is evaluated, feature manager will start an `Activity` and add an `ActivityEvent` with tags containing feature evaluation information.  [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ### Breaking Changes
 
@@ -16,7 +16,7 @@
 
 ## 3.5.0 - Jul 19, 2024
 
-* No changes in this version.
+* No changes in this release.
 
 ## 3.4.0 - Jun 21, 2024
 

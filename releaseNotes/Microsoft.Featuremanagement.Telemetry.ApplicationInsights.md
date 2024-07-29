@@ -16,11 +16,11 @@ builder.Services.AddFeatureManagement()
                 .AddApplicationInsightsTelemetryPublisher();
 ```
 
-* The `TargetingTelemetryInitializer` has been moved to the namespace `Microsoft.FeatureManagement.Telemetry.ApplicationInsights`. Developers no longer need to install `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package for it. [#467](https://github.com/microsoft/FeatureManagement-Dotnet/pull/467) The `TargetingTelemetryInitializer` now gets targeting information from current activity's baggage instead of `HttpContext.Items`.
-
 ## Breaking Changes
 
-* The `ApplicationInsightsTelemetryPublisher` has been removed since `ITelemetryPublisher` interface was removed from `Microsoft.FeatureManagement` package. The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+* The `TargetingTelemetryInitializer` type has been moved to this package from the now-deprecated `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package. This change simplifies the utilization of feature flag telemetry.
+
+* The type `ApplicationInsightsTelemetryPublisher` has been removed as its functionality has been replaced with the new API `AddApplicationInsightsTelemetryPublisher` for publishing feature flag telemetry to Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ## 4.0.0-preview3 - April 10, 2024
 
