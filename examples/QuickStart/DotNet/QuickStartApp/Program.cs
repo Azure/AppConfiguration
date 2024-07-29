@@ -3,7 +3,7 @@
 var builder = new ConfigurationBuilder();
 builder.AddAzureAppConfiguration(options =>
 {
-    options.Connect(Environment.GetEnvironmentVariable("ConnectionString"))
+    options.Connect(Environment.GetEnvironmentVariable("AZURE_APPCONFIG_CONNECTION_STRING"))
         .Select("QuickStartApp*");
 });
 
