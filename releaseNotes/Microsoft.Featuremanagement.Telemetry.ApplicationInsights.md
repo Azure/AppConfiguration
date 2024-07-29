@@ -8,12 +8,12 @@
 
 ### Enhancements
 
-* Added new `AddApplicationInsightsTelemetryPublisher` API to register a telemetry publisher to send events to Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+* Introduced a new API `AddApplicationInsightsTelemetryPublisher` to register a feature flag telemetry publisher for Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
 ``` C#
 builder.Services.AddFeatureManagement()
-    .WithTargeting()
-    .AddApplicationInsightsTelemetryPublisher();
+                .WithTargeting()
+                .AddApplicationInsightsTelemetryPublisher();
 ```
 
 * The `TargetingTelemetryInitializer` has been moved to the namespace `Microsoft.FeatureManagement.Telemetry.ApplicationInsights`. Developers no longer need to install `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package for it. [#467](https://github.com/microsoft/FeatureManagement-Dotnet/pull/467) The `TargetingTelemetryInitializer` now gets targeting information from current activity's baggage instead of `HttpContext.Items`.
