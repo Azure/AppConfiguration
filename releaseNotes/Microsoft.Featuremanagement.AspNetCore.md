@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview4 - Jul 19, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
+## 3.5.0 - Jul 19, 2024
+
+### Enhancements
+
+* Introduced an overloaded extension method `WithTargeting()` for ASP.NET Core applications. It registers a default `ITargetingContextAccessor` that constructs user context based on the authenticated user of a request. [#466](https://github.com/microsoft/FeatureManagement-Dotnet/pull/466)
+
 ## 3.4.0 - Jun 24, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `3.4.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.

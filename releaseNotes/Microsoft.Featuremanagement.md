@@ -2,11 +2,27 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview4 - Jul 19, 2024
+
+### Enhancements
+
+* The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. Feature manager now has an `AcitvitySource` called "Microsoft.FeatureManagement". If telemetry is enabled for a feature flag, whenever the feature flag is evaluated, feature manager will start an `Activity` and add an `ActivityEvent` with tags containing feature evaluation information.  [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
+### Breaking Changes
+
+* If you were using earlier preview versions of this package and configuration files to define variant feature flags, they are no longer supported in the [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json). Instead, please use the [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json) to define variant feature flags. [#421](https://github.com/microsoft/FeatureManagement-Dotnet/pull/421).
+
+* `AddTelemetryPublisher` API and `ITelemetryPublisher` interface were removed. The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
+## 3.5.0 - Jul 19, 2024
+
+* No changes in this release.
+
 ## 3.4.0 - Jun 21, 2024
 
 ### Enhancements
 
-- All public classes no longer use init-only setters, ensuring compatibility with application using C# 7 or earlier. [#450](https://github.com/microsoft/FeatureManagement-Dotnet/pull/450)
+* All public classes no longer use init-only setters, ensuring compatibility with application using C# 7 or earlier. [#450](https://github.com/microsoft/FeatureManagement-Dotnet/pull/450)
 
 ## 3.3.1 - May 23, 2024
 

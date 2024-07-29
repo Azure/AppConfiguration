@@ -2,6 +2,26 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview4 - Jul 19, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
+### Enhancements
+
+* Introduced a new API `AddApplicationInsightsTelemetryPublisher` to register a feature flag telemetry publisher for Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
+  ``` C#
+  builder.Services.AddFeatureManagement()
+                  .WithTargeting()
+                  .AddApplicationInsightsTelemetryPublisher();
+  ```
+
+## Breaking Changes
+
+* The `TargetingTelemetryInitializer` type has been moved to this package from the now-deprecated `Microsoft.FeatureManagement.Telemetry.ApplicationInsights.AspNetCore` package. This change simplifies the utilization of feature flag telemetry.
+
+* The type `ApplicationInsightsTelemetryPublisher` has been removed as its functionality has been replaced with the new API `AddApplicationInsightsTelemetryPublisher` for publishing feature flag telemetry to Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
+
 ## 4.0.0-preview3 - April 10, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview3`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
