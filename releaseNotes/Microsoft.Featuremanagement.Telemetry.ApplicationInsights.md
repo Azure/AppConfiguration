@@ -10,11 +10,11 @@
 
 * Introduced a new API `AddApplicationInsightsTelemetryPublisher` to register a feature flag telemetry publisher for Application Insights. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
-``` C#
-builder.Services.AddFeatureManagement()
-                .WithTargeting()
-                .AddApplicationInsightsTelemetryPublisher();
-```
+  ``` C#
+  builder.Services.AddFeatureManagement()
+                  .WithTargeting()
+                  .AddApplicationInsightsTelemetryPublisher();
+  ```
 
 ## Breaking Changes
 

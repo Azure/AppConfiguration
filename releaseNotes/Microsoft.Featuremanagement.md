@@ -10,7 +10,7 @@
 
 ### Breaking Changes
 
-* Variant and telemetry are no longer supported for [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json). Please use [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json) to declare variant feature flag instead. [#421](https://github.com/microsoft/FeatureManagement-Dotnet/pull/421)
+* If you were using earlier preview versions of this package and configuration files to define variant feature flags, they are no longer supported in the [.NET Feature Management schema](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/schemas/FeatureManagement.Dotnet.v1.0.0.schema.json). Instead, please use the [Microsoft Feature Management schema](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureManagement.v2.0.0.schema.json) to define variant feature flags. [#421](https://github.com/microsoft/FeatureManagement-Dotnet/pull/421).
 
 * `AddTelemetryPublisher` API and `ITelemetryPublisher` interface were removed. The feature flag telemetry pipeline is now integrated with .NET `Acitivity` instrumentation. [#455](https://github.com/microsoft/FeatureManagement-Dotnet/pull/455)
 
