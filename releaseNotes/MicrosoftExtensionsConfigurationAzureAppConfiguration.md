@@ -8,7 +8,7 @@
 
 ### Enhancements
 * A load balancing mode has been introduced, enabling your application to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is off by default and can be activated by setting the new `AzureAppConfigurationOptions.LoadBalancingEnabled` property to `true`. [#535](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/535)
-* Now uses the [Microsoft feature flag schema v2.0.0](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json) to output feature flags containing any of the `variants`, `allocation` or `telemetry` properties to configuration. Flags without these properties will not change in configuration. [#543](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/543)
+* Variant feature flags are now output using the [Microsoft feature flag schema v2.0.0](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json), while the output of configuration for classic feature flags remains unchanged. [#543](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/543)
 
 ## 7.3.0 - July 16th, 2024
 ### Enhancements
