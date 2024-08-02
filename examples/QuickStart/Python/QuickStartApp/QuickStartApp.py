@@ -11,10 +11,3 @@ config = load(connection_string=connection_string)
 
 # Find the key "message" and print its value.
 print(config["message"])
-
-# Connect to Azure App Configuration using SettingSelector.
-selects = {SettingSelector(key_filter="message*", label_filter="\0")}
-config = load(connection_string=connection_string, selects=selects)
-
-# Print True or False to indicate if "message" is found in Azure App Configuration.
-print("message found: " + str("message" in config))
