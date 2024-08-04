@@ -14,6 +14,10 @@ This example is a .NET isolated process Function App, which runs out-of-process 
 
 This example demonstrates how to enable dynamic configuration from App Configuration in a console app written in .NET Core.
 
+### [QuoteOfTheDay](./DotNetCore/QuoteOfTheDay)
+
+This ASP.NET Core app demonstrates how to use variant feature flags from Azure App Configuration, integrated with Application Insights telemetry, to carry out feature experimentation.
+
 ### [WebDemo (.NET 6)](./DotNetCore/WebDemoNet6)
 
 This example is an ASP.NET Core app, which uses the modernized project template introduced in .NET 6. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.

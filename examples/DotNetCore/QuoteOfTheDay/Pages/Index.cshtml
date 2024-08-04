@@ -1,0 +1,107 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["Username"] = User.Identity.Name;
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .quote-container {
+        background-color: #fff;
+        margin: 2em auto;
+        padding: 2em;
+        border-radius: 8px;
+        max-width: 750px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        position: relative;
+    }
+
+    .vote-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        gap: 0em;
+    }
+
+        .vote-container .btn {
+            background-color: #ffffff; /* White background */
+            border-color: #ffffff; /* Light blue border */
+            color: #333
+        }
+
+            .vote-container .btn:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+            .vote-container .btn:hover {
+                background-color: #F0F0F0; /* Light gray background */
+            }
+
+    .greeting-content {
+        font-family: 'Georgia', serif; /* More artistic font */
+    }
+
+    .quote-content p.quote {
+        font-size: 2em; /* Bigger font size */
+        font-family: 'Georgia', serif; /* More artistic font */
+        font-style: italic; /* Italic font */
+        color: #4EC2F7; /* Medium-light blue color */
+    }
+</style>
+
+<div class="quote-container">
+    <div class="quote-content">
+        @if (Model.ShowGreeting)
+        {
+            <h3 class="greeting-content">Hi <b>@User.Identity.Name</b>, hope this makes your day!</h3>
+        }
+        else
+        {
+            <h3 class="greeting-content">Quote of the day</h3>
+        }
+        <br />
+        <p class="quote">“@Model.Quote.Message”</p>
+        <p>- <b>@Model.Quote.Author</b></p>
+    </div>
+
+    <div class="vote-container">
+        <button class="btn btn-primary" onclick="heartClicked(this)">
+            <i class="far fa-heart"></i> <!-- Heart icon -->
+        </button>
+    </div>
+
+    <form action="/" method="post">
+        @Html.AntiForgeryToken()
+    </form>
+</div>
+
+<script>
+    function heartClicked(button) {
+        var icon = button.querySelector('i');
+        icon.classList.toggle('far');
+        icon.classList.toggle('fas');
+
+        // If the quote is hearted
+        if (icon.classList.contains('fas')) {
+            // Send a request to the server to save the vote
+            fetch('/Index?handler=HeartQuote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                }
+            });
+        }
+    }
+</script>
