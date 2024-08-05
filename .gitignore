@@ -341,3 +341,9 @@ ASALocalRun/
 
 # Python env
 env/
+
+examples/QuickStart/JavaSpring/QuickStart/.mvn/
+examples/QuickStart/JavaSpring/QuickStart/mvn
+examples/QuickStart/JavaSpring/QuickStart/mvn.cmd
+
+
