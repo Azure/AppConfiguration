@@ -137,7 +137,7 @@
                 },
                 "NumberOfOccurrences": {
                   "$id": "#/properties/parameters/properties/Recurrence/properties/Range/properties/NumberOfOccurrences",
-                  "type": "number",
+                  "type": "integer",
                   "title": "Time Window Filter Recurrence NumberOfOccurrences Parameter",
                   "description": "The number of times to repeat the time window, which only applies to the Numbered recurrence range type."
                 }
