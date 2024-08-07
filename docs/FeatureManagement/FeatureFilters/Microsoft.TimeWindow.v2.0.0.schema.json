@@ -67,7 +67,7 @@
                 },
                 "Interval": {
                   "$id": "#/properties/parameters/properties/Recurrence/properties/Pattern/properties/Interval",
-                  "type": "number",
+                  "type": "integer",
                   "title": "Time Window Filter Recurrence Pattern Interval Parameter",
                   "description": "The number of units between occurrences, where units can be in days or weeks depending on the recurrence pattern type.",
                   "default": 1
