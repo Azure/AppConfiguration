@@ -4,8 +4,10 @@
 
 ## 2.0.0 -
 
+### Breaking changes
+* Added `auth.workloadIdentity.serviceAccountName` property for workload identity. By default, the Kubernetes Provider uses custom per namespace service account to access Azure App Configuration and Key Vaults, which enhances security isolation. If you want to use global service account, `workloadIdentity.globalServiceAccountEnabled` must be set to `true` at installation time. (see [Use service account](https://learn.microsoft.com/en-us/azure/azure-app-configuration/reference-kubernetes-provider?tabs=default#use-workload-identity) for workload identity authentication)
+
 ### Enhancements
-* Added support for binding a managed identity with a custom service account within a namespace. This feature enhances security isolation by namespaces when using workload identity authentication.
 * Added support for [multi-platform images](https://docs.docker.com/build/building/multi-platform/). The Kubernetes provider supports `linux/amd` and `linux/arm64` platforms. [#892](https://github.com/Azure/AppConfiguration/issues/892)
 
 ### Bug fixes
