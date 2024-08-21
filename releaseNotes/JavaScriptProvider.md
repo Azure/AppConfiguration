@@ -12,7 +12,7 @@
 
 ### Bug Fixes
 
-- Fixed a possible reference error when sending request in Web Worker environment. [#81](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/81)
+- Fixed a bug that caused the error ‘ReferenceError: WorkerNavigator is not defined’ when running the application in a browser. [#81](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/81)
 
 ## 1.0.0 - June 6, 2024
 
