@@ -2,6 +2,13 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.1.0 - 
+
+### Enhancements
+* Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `loadBalancingEnabled` to `true`.
+* Added support for refreshing ConfigMap without using sentinel keys. The Kubernetes provider will monitor the changes of selected key-values/feature flags and refresh the target ConfigMap only if the data updates. [#40](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/40)
+* Added support for refreshing Secrets only if data from Key Vault is updated. This enhancement can reduce the overall resource overhead and improve the performance of your workload.
+
 ## 2.0.0 - September 11, 2024
 
 ### Breaking changes
