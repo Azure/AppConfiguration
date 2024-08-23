@@ -153,13 +153,6 @@
                   "description": "The configuration value for this feature variant.",
                   "default": null
               },
-              "configuration_reference": {
-                  "$id": "#/properties/variants/items/properties/configuration_reference",
-                  "type": "string",
-                  "title": "Variant Configuration Reference",
-                  "description": "The path to a configuration section used as the configuration value for this feature variant.",
-                  "pattern": "^(.+)$"
-              },
               "status_override": {
                   "$id": "#/properties/variants/items/properties/status_override",
                   "type": "string",
