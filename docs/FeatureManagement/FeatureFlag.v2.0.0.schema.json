@@ -16,7 +16,7 @@
       "examples": [
         "fancy-background"
       ],
-      "pattern": "^(.*)$"
+      "pattern": "^[^:%]*$"
     },
     "description": {
       "$id": "#/properties/description",
@@ -27,7 +27,7 @@
       "examples": [
         "This will display a fancy background on the home page."
       ],
-      "pattern": "^[a-zA-Z0-9_\\-\\.]*$"
+      "pattern": "^(.*)$"
     },
     "display_name": {
       "$id": "#/properties/display_name",
