@@ -5,7 +5,7 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
 ### v8.0.0 - July, 3, 2024
-- Updated the task to support Node.js 20. It previously required Node 16 and now requires Node.js 16 or Node.js 20.
+- Updated the task to support Node.js 20. It now requires either Node.js 16 or Node.js 20, whereas previously it required Node.js 16.
 
 ### v7.0.0 - November, 20 2023
 **Breaking changes**
