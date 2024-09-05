@@ -2,6 +2,9 @@
 Azure App Configuration Push extension for Azure DevOps pipeline can be installed from the [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version information can be found in the console when the task is executed:
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
+### v7.0.0 - July, 3, 2024
+- Updated the task to support Node.js 20. It previously required Node 16 and now requires Node.js 16 or Node.js 20.
+
 ### v6.4.0 - November, 20 2023
 * Added support for a feature that allows users to add a prefix to the key name of feature flags. This will provide more flexibility and better organization of feature flags. [#810](https://github.com/Azure/AppConfiguration/issues/810).
 

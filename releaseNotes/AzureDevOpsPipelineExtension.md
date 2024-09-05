@@ -4,6 +4,9 @@ The Azure App Configuration extension in Azure DevOps pipeline has been publishe
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)
 
+### v8.0.0 - July, 3, 2024
+- Updated the task to support Node.js 20. It previously required Node 16 and now requires Node.js 16 or Node.js 20.
+
 ### v7.0.0 - November, 20 2023
 **Breaking changes**
   - Updated to fail the task if any Key Vault references cannot be resolved or if the resolved values are unable to be set as a pipeline secret. To avoid failing the task due to Key Vault errors, you can enable the new option to treat these errors as warnings detailed below.
