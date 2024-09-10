@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 1.3.0 - September 09, 2024
+
+### Features
+
+* Added support for auto discovery of Azure App Configuration store replicas.
+  * Enabled by default, can be disabled by setting `replica_discovery_enabled` to `False`.
+* Added support for auto failover between replicas.
+
+From more information see [Geo-Replication](https://learn.microsoft.com/azure/azure-app-configuration/howto-geo-replication).
+
 ## 1.2.0 - May 24, 2024
 
 ### Features
