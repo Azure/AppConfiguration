@@ -1,4 +1,4 @@
 Flask==2.3.2
 azure-identity==1.16.1
-azure-appconfiguration-provider==1.2.0
+azure-appconfiguration-provider==1.3.0
 featuremanagement==1.0.0b1
