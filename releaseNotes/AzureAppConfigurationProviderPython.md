@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.0.0b1 - Sepeter 12, 2024
+
+### Features
+
+* Added support for Azure App Configuration Feature Flag Telemetry.
+
 ## 1.3.0 - September 09, 2024
 
 ### Features
