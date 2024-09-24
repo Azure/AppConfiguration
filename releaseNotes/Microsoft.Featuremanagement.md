@@ -2,6 +2,50 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0 - September 24, 2024
+
+### Enhancements
+
+#### Variants
+
+```csharp
+Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.HelpText);
+
+model.Text = variant.Configuration.Value;
+```
+
+Variants are a tool that can be used to surface different variations of a feature to different segments of an audience. Previously, this library only worked with flags. The flags were limited to boolean values, as they are either enabled or disabled. Variants have dynamic values. They can be any valid json value- like a string, int, or complex object.
+
+For more details on Variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants).
+
+#### Telemetry
+
+```json
+{
+    "id": "ImageRating",
+    "enabled": true,
+    "telemetry": {
+        "enabled": true
+    }
+}
+```
+
+Telemetry provides observability into flag evaluations, offering insights into which users received specific flag results. This enables more powerful metric analysis, such as experimentation.
+
+For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#telemetry).
+
+### Migration
+
+**No changes are required** When migrating from 3.5.0 to 4.0.0.
+
+1. In order to use variants or cancellation tokens, change references from `IFeatureManager` to `IVariantFeatureManager`.
+
+### Additional Changes
+
+* Added `IVariantFeatureManager` which is the successor of the existing `IFeatureManager`. It continues to offer the functions of `IFeatureManager`, but offers the new `GetVariantAsync` methods and offers `CancellationToken` on all methods.
+* Added `IVariantServiceProvider` which enables variants to control which service is added in DI. See more details [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants-in-dependency-injection).
+* Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/examples/VariantAndTelemetryDemo/appsettings.json#L12).
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 ### Enhancements
