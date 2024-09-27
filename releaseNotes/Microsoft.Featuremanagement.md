@@ -36,8 +36,7 @@ For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azur
 
 ### Migration
 
-**No changes are required** When migrating from 3.5.0 to 4.0.0.
-
+1. It should be uncommon, but when manually constructing `FeatureTagHelper`, you'll now need to pass both an `IFeatureManager` and an `IVariantFeatureManager`.
 1. In order to use variants or cancellation tokens, change references from `IFeatureManager` to `IVariantFeatureManager`.
 
 ### Additional Changes
