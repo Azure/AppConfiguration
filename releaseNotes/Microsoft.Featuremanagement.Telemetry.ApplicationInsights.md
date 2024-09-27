@@ -2,6 +2,21 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0 - September 24, 2024
+
+### Enhancements
+
+#### Application Insights
+
+```csharp
+builder.Services.AddFeatureManagement()
+    .AddApplicationInsightsTelemetry();
+```
+
+To export telemetry to Application Insights as custom events, we offer a new builder method `IFeatureManagementBuilder.AddApplicationInsightsTelemetry()`. This causes outgoing Application Insights telemetry to be tagged with TargetingId and will emit evaluation events to the custom events table- using the `TelemetryClient` if available in DI.
+
+For more details on Application Insights Publishing, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#application-insights-telemetry-publisher)
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.

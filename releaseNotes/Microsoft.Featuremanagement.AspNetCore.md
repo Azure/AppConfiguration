@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0 - September 24, 2024
+
+### Enhancements
+
+* Adjusted the `.WithTargeting()` builder method to automatically add `HttpContextAccessor` if it's not already added.
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
