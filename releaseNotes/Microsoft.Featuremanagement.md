@@ -6,46 +6,28 @@
 
 ### Enhancements
 
-#### IVariantFeatureManager
+#### Variant Feature Flags
 
-Added `IVariantFeatureManager` which is the successor of the existing `IFeatureManager`. It continues to offer the functions of `IFeatureManager`, but offers the new `GetVariantAsync` methods and offers `CancellationToken` on all methods. It's recommended to switch references from `IFeatureManager` to `IVariantFeatureManager`.
+A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
 
-#### Variants
+The new `IVariantFeatureManager` has been introduced as the successor to the existing `IFeatureManager`. It retains all the functionalities of `IFeatureManager` while adding new `GetVariantAsync` methods and supporting `CancellationToken` for all methods.
 
-```csharp
-Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.HelpText);
-
+``` C#
+IVariantFeatureManager featureManager;
+...
+Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.HelpText, CancellationToken.None);
 model.Text = variant.Configuration.Value;
 ```
-
-This library now supports feature flags with variants. Variants are a tool that can be used to surface different variations of a feature to different segments of an audience. Previously, flags were limited to boolean values, as they are either enabled or disabled. Variants have dynamic values. There can be more than two and they can be any valid JSON value- like a string, int, or complex object.
 
 For more details on Variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants).
 
 #### Variant Service Provider
 
-```csharp
-IVariantServiceProvider<IAlgorithm> algorithmServiceProvider;
-...
-
-IAlgorithm forecastAlgorithm = await algorithmServiceProvider.GetServiceAsync(cancellationToken);
-```
-
-Variant feature flags can be used in conjunction with dependency injection to surface different implementations of a service for different users.
+Variant feature flags can be used in conjunction with dependency injection to surface different implementations of a service for different users. This is accomplished by using the Variant Service Provider.
 
 For more details on Variant Service Provider, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants-in-dependency-injection)
 
 #### Telemetry
-
-```json
-{
-    "id": "ImageRating",
-    "enabled": true,
-    "telemetry": {
-        "enabled": true
-    }
-}
-```
 
 Telemetry provides observability into flag evaluations, offering insights into which users received specific flag results. This enables more powerful metric analysis, such as experimentation.
 
@@ -53,7 +35,7 @@ For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azur
 
 #### Microsoft Feature Management Schema
 
-Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/examples/VariantAndTelemetryDemo/appsettings.json#L12).
+Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). Here is a [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/examples/VariantAndTelemetryDemo/appsettings.json#L12).
 
 ### Breaking Changes
 
