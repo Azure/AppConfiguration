@@ -8,7 +8,7 @@
 
 #### IVariantFeatureManager
 
-Added `IVariantFeatureManager` which is the successor of the existing `IFeatureManager`. It continues to offer the functions of `IFeatureManager`, but offers the new `GetVariantAsync` methods and offers `CancellationToken` on all methods.
+Added `IVariantFeatureManager` which is the successor of the existing `IFeatureManager`. It continues to offer the functions of `IFeatureManager`, but offers the new `GetVariantAsync` methods and offers `CancellationToken` on all methods. It's recommended to switch references from `IFeatureManager` to `IVariantFeatureManager`.
 
 #### Variants
 
@@ -55,10 +55,9 @@ For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azur
 
 Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/examples/VariantAndTelemetryDemo/appsettings.json#L12).
 
-### Migration
+### Breaking Changes
 
-1. It should be uncommon, but when manually constructing `FeatureTagHelper`, you'll now need to pass both an `IFeatureManager` and an `IVariantFeatureManager`.
-1. In order to use variants or cancellation tokens, change references from `IFeatureManager` to `IVariantFeatureManager`.
+1. The constructor of `FeatureTagHelper` has been adjusted to take both an `IFeatureManager` and an `IVariantFeatureManager` for backwards compatability. Most use cases don't directly use the constructor, but if the constructor is directly called, the call will need to be adjusted to pass the additional parameter.
 
 ## 4.0.0-preview4 - Jul 19, 2024
 
