@@ -6,7 +6,7 @@
 * Increased the default maximum retry count when resolving Key Vault references and increased the minimum refresh interval to 1 minute. This helps prevent throttled requests to Key Vault and will reduce the chance of failing to resolve a secret due to momentary failures. [#589](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/589)
 
 ### Enhancements
-* This is the first stable release with support for the `variants`, `allocation`, and `telemetry` properties for feature flags that were introduced in 7.1.0-preview.
+* **Experimentation**: This is the first stable release with support for the `variants`, `allocation`, and `telemetry` properties for feature flags that were introduced in 7.1.0-preview. This enables [experimentation with Azure App Configuration](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-experimentation), which opens up possibilities for improving user experience or software functionality using data from your feature flags.
 * This is the first stable release of the load balancing mode introduced in 8.0.0-preview.3.
 * Added the ability to configure options used to connect to Key Vault resources that have no registered `SecretClient` with the following new API. [#274](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/274)
 
@@ -15,9 +15,6 @@
    ```
 
    This API can be called from within the `AzureAppConfigurationOptions.ConfigureKeyVault` method.
-
-### Bug Fixes
-* 
 
 ## 8.0.0-preview.3 - July 18th, 2024
 ### Breaking Changes
