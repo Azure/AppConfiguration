@@ -19,6 +19,8 @@ Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.HelpText, 
 model.Text = variant.Configuration.Value;
 ```
 
+*Note: If reading variant flags from App Configuration, version `8.0.0` or above for the `Microsoft.Azure.AppConfiguration` or `Microsoft.Azure.AppConfiguration.AspNetCore` package is required.*
+
 For more details on Variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants).
 
 #### Variant Service Provider

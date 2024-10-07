@@ -2,13 +2,7 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-## 4.0.0 - September 24, 2024
-
-### Enhancements
-
-#### Application Insights
-
-### Deprecated
+## Deprecated
 
 This package has been deprecated and it's functionality is now available as a part of the [Microsoft.FeatureManagement.ApplicationInsights](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/Microsoft.Featuremanagement.Telemetry.ApplicationInsights.md) package.
 

@@ -8,12 +8,12 @@
 
 #### Application Insights
 
+Added support for Application Insights telemetry. To publish feature flag evaluation data and tag outgoing events with targeting information, register the Application Insights telemetry publisher as shown below.
+
 ```csharp
 builder.Services.AddFeatureManagement()
     .AddApplicationInsightsTelemetry();
 ```
-
-To export telemetry to Application Insights as custom events, we offer a new builder method `IFeatureManagementBuilder.AddApplicationInsightsTelemetry()`. This causes outgoing Application Insights telemetry to be tagged with TargetingId and will emit evaluation events to the custom events table- using the `TelemetryClient` if available in DI.
 
 For more details on Application Insights Publishing, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#application-insights-telemetry-publisher)
 
