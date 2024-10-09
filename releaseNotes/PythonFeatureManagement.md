@@ -6,9 +6,11 @@
 
 ### Enhancement
 
-* Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureFlag.v2.0.0.schema.json). The Microsoft Feature Management schema is designed to be language agnostic, which enables you to apply a consistent feature management configuration across Microsoft feature management libraries of different programming languages.
+Added support for variant feature flags. A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
 
-See our [documentation](https://learn.microsoft.com/azure/azure-app-configuration/feature-management-python-reference#variants) for more information.
+For more information, see the [feature reference document](https://learn.microsoft.com/azure/azure-app-configuration/feature-management-python-reference#variants).
+
+Added support for telemetry in feature flags. Telemetry is a powerful feature that allows you to track how your feature flags are being used. It provides insights into the effectiveness of your feature flags and helps you make data-driven decisions. Telemetry is particularly useful for feature experimentation (also known as A/B testing) and feature rollouts.
 
 An example is available to demonstrate how to use the new Telemetry in Python See [the example](https://github.com/microsoft/FeatureManagement-Python/blob/main/samples/feature_variant_sample_with_telemetry.py) in the examples folder.
 
