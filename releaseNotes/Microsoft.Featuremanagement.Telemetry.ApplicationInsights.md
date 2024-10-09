@@ -6,16 +6,14 @@
 
 ### Enhancements
 
-#### Application Insights
+* Added support for Application Insights telemetry. To publish feature flag evaluation data and tag outgoing events with targeting information, register the Application Insights telemetry publisher as shown below.
 
-Added support for Application Insights telemetry. To publish feature flag evaluation data and tag outgoing events with targeting information, register the Application Insights telemetry publisher as shown below.
+    ```csharp
+    builder.Services.AddFeatureManagement()
+        .AddApplicationInsightsTelemetry();
+    ```
 
-```csharp
-builder.Services.AddFeatureManagement()
-    .AddApplicationInsightsTelemetry();
-```
-
-For more details on Application Insights Publishing, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#application-insights-telemetry-publisher)
+    For more details on Application Insights Publishing, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#application-insights-telemetry-publisher)
 
 ## 4.0.0-preview4 - Jul 19, 2024
 

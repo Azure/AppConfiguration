@@ -37,7 +37,7 @@ For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azur
 
 #### Microsoft Feature Management Schema
 
-Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/Azure/AppConfiguration/blob/main/docs/FeatureManagement/FeatureFlag.v2.0.0.schema.json). Here is a [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/main/examples/VariantAndTelemetryDemo/appsettings.json#L12).
+Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureFlag.v2.0.0.schema.json). Here is a [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/f47e188babea0a91488d2e6a0b2ab4c9405d0794/examples/VariantAndTelemetryDemo/appsettings.json#L12).
 
 ### Breaking Changes
 
