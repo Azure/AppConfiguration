@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Samples][samples]
 
+## 2.0.0b2 - October 14, 2024
+
+### Features
+
+* Added VariantAllocationPercentage, DefaultWhenEnabled to telemetry data when using `publish_telemetry`.
+
 ## 2.0.0b1 - September 10, 2024
 
 ### Enhancement
