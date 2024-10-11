@@ -19,7 +19,7 @@ Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.HelpText, 
 model.Text = variant.Configuration.Value;
 ```
 
-*Note: If reading variant flags from App Configuration, version `8.0.0` or above for the `Microsoft.Azure.AppConfiguration` or `Microsoft.Azure.AppConfiguration.AspNetCore` package is required.*
+*Note: If reading variant flags from App Configuration, version `8.0.0` or above for the `Microsoft.Extensions.Configuration.AzureAppConfiguration` or `Microsoft.Azure.AppConfiguration.AspNetCore` package is required.*
 
 For more details on Variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants).
 
@@ -38,10 +38,6 @@ For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azur
 #### Microsoft Feature Management Schema
 
 Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureFlag.v2.0.0.schema.json). Here is a [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/f47e188babea0a91488d2e6a0b2ab4c9405d0794/examples/VariantAndTelemetryDemo/appsettings.json#L12).
-
-### Breaking Changes
-
-1. The constructor of `FeatureTagHelper` has been adjusted to take both an `IFeatureManager` and an `IVariantFeatureManager` for backwards compatability. Most use cases don't directly use the constructor, but if the constructor is directly called, the call will need to be adjusted to pass the additional parameter.
 
 ## 4.0.0-preview4 - Jul 19, 2024
 
