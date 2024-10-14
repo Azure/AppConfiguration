@@ -6,7 +6,7 @@
 
 ### Features
 
-* Added VariantAllocationPercentage, DefaultWhenEnabled to telemetry data when using `publish_telemetry`.
+* Added VariantAllocationPercentage and DefaultWhenEnabled to telemetry data when using `publish_telemetry`.
 
 ## 2.0.0b1 - September 10, 2024
 
