@@ -4,7 +4,7 @@
 
 ## 2.0.0b2 - October 14, 2024
 
-### Features
+### Enhancement
 
 * Added VariantAssignmentPercentage, DefaultWhenEnabled to telemetry data when using `publish_telemetry`.
 
