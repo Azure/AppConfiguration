@@ -4,9 +4,9 @@
 
 ## 2.0.0b2 - October 14, 2024
 
-### Features
+### Enhancement
 
-* Added AllocationId to Feature Flags when they have telemetry enabled.
+* Added support for including AllocationId to feature flag telemetry metadata when telemetry is enabled.
 
 ### Bug Fixes
 
