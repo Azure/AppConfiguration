@@ -1,6 +1,14 @@
-# Microsoft Feature Management for JavaScript
+# Microsoft Feature Management Application Insights for Browser
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
+
+## 2.0.0-preview.1 - Oct 15, 2024
+
+### Enhancement
+
+* Added support for variant feature flags. A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
+
+* Added support for telemetry in feature flags. Telemetry is a powerful feature that allows you to track how your feature flags are being used. It provides insights into the effectiveness of your feature flags and helps you make data-driven decisions. Telemetry is particularly useful for feature experimentation (also known as A/B testing) and feature rollouts.
 
 ## 1.0.0 - Sep 26, 2024
 
