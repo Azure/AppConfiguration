@@ -1,10 +1,10 @@
-# Microsoft Feature Management Application Insights for Browser
+# Microsoft Feature Management for JavaScript
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
 ## 2.0.0-preview.1 - Oct 15, 2024
 
-### Enhancement
+### Enhancements
 
 * Added support for variant feature flags. A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
 
