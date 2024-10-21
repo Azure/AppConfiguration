@@ -16,11 +16,6 @@ This is the first stable release of the following features.
 - Loading of feature flags from object and map.
 - Feature flag evaluation with ambient context or user-provided context.
 - Built-in feature filters [`Microsoft.TimeWindow`](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureFilters/Microsoft.TimeWindow.v1.0.0.schema.json) and [`Microsoft.Targeting`](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureFilters/Microsoft.Targeting.v1.0.0.schema.json).
-- The feature flag provider handles duplicate flags by using the last flag instead of the first. [#40](https://github.com/microsoft/FeatureManagement-JavaScript/pull/40)
-
-### Enhancements
-
-* The targeting filter can work properly in non-Node.js environments. [#25](https://github.com/microsoft/FeatureManagement-JavaScript/pull/25)
 
 ## 1.0.0-preview.1 - May 17, 2024
 
