@@ -6,7 +6,7 @@
 
 ### Enhancement
 
-Added support for including `VariantAssignmentPercentage` and `DefaultWhenEnabled` properties to telemetry when telemetry is enabled and published to Azure Monitor.
+* Added support for including `VariantAssignmentPercentage` and `DefaultWhenEnabled` properties to telemetry when telemetry is enabled and published to Azure Monitor.
 
 ## 2.0.0b1 - September 10, 2024
 
