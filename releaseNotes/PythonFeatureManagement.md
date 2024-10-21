@@ -10,7 +10,7 @@
 
 ## 2.0.0b1 - September 10, 2024
 
-### Enhancement
+### Enhancements
 
 * Added support for variant feature flags. A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
 
