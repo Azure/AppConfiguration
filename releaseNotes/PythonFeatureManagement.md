@@ -4,7 +4,7 @@
 
 ## 2.0.0b2 - October 14, 2024
 
-### Enhancement
+### Enhancements
 
 * Added support for including `VariantAssignmentPercentage` and `DefaultWhenEnabled` properties to telemetry when telemetry is enabled and published to Azure Monitor.
 
@@ -30,7 +30,7 @@ GA Release of the feature management support for Python. Note that, version 1.2.
 
 ## 1.0.0b1 - May 24, 2024
 
-### Enhancement
+### Enhancements
 
 Initial release of the feature management support for Python. Note that, version 1.2.0 or later of `azure-appconfiguration-provider` is required for loading feature flags from Azure App Configuration.
 
