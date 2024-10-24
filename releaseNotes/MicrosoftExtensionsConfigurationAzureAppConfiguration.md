@@ -1,6 +1,11 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.1.0-preview - October 24th, 2024
+### Enhancements
+* Adds additional telemetry metadata field to feature flags
+  * `AllocationId` is a hash that represents the state of allocation on the flag. When the hash changes, users may receieve a different variant or variant value than before.
+
 ## 8.0.0 - October 3rd, 2024
 ### Breaking Changes
 * Increased the default maximum retry count when resolving Key Vault references and increased the minimum refresh interval to 1 minute. This helps prevent requests to Key Vault from being throttled and will reduce the chance of failing to resolve a secret due to momentary failures. [#589](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/589)

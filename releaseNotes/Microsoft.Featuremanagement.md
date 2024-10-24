@@ -9,7 +9,6 @@
 * Adds additional telemetry fields on FeatureEvaluation events.
   * `DefaultWhenEnabled` reflects what the DefaultWhenEnabled variant on the flag is.
   * `VariantAssignmentPercentage` shows what percentage of users will be allocated the given Variant for the given Reason.
-  * `AllocationId` is a hash that represents the state of allocation on the flag. When the hash changes, users may receieve a different variant or variant value than before.
 
 ## 4.0.0-preview4 - Jul 19, 2024
 
