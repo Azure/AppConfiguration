@@ -10,11 +10,11 @@
 
 * Fixed the bug that request tracing cannot be diabled when running in the browser environment. [#114](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/114)
 
-Now you can manually disable request tracing with the `requestTracingOptions`:
+    Now you can manually disable request tracing with the `requestTracingOptions`:
 
-``` javascript
-const config = await load("CONNECTION-STRING", {requestTracingOptions: {enabled: false}});
-```
+    ``` javascript
+    const config = await load("CONNECTION-STRING", {requestTracingOptions: {enabled: false}});
+    ```
 
 ## 1.1.0 - August 13, 2024
 
