@@ -2,6 +2,10 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0-preview.2 - Oct 24, 2024
+
+* No changes in this release.
+
 ## 2.0.0-preview.1 - Oct 15, 2024
 
 ### Enhancements

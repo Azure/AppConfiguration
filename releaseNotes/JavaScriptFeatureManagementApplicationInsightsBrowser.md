@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0-preview.2 - Oct 24, 2024
+
+### Bug Fix
+
+* Fixed a bug that caused `TargetingId` in telemetry to be "undefined". [#59](https://github.com/microsoft/FeatureManagement-JavaScript/pull/59)
+
 ## 2.0.0-preview.1 - Oct 15, 2024
 
 ### Enhancements
