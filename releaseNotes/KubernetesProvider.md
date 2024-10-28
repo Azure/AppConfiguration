@@ -6,11 +6,11 @@
 
 ### Enhancements
 * Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `loadBalancingEnabled` to `true`. [#55](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/55)
-* Added support for refreshing ConfigMap without using sentinel keys. The Kubernetes provider will monitor the changes of selected key-values/feature flags and refresh the target ConfigMap only if the data updates. [#40](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/40)
-* Added support for refreshing Secrets only if data from Key Vault is updated. This enhancement can reduce the overall resource overhead and improve the performance of your workload.
+* Added support for refreshing configMap by watching all key-values. The Kubernetes provider will monitor the changes of selected key-values/feature flags and refresh the target ConfigMap only if the data updates. Watching sentinel key to refresh is still supported, it's optional now. [#40](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/40)
+* Added support for refreshing ConfigMaps and Secrets only if their data is really updated.
 
 ### Bug fixes
-* Fixed a bug where empty string label filter is not converted to a null label. [#67](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/67)
+* Fixed a bug where empty string label filter is not converted to a null label. [#76](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/76)
 
 ## 2.0.0 - September 11, 2024
 
