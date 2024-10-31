@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Adds additional telemetry fields on FeatureEvaluation events.
+* Added support for injecting additional telemetry fields on feature evaluation events if telemetry is enabled.
   * `DefaultWhenEnabled` reflects what the DefaultWhenEnabled variant on the flag is.
   * `VariantAssignmentPercentage` shows what percentage of users will be allocated the given Variant for the given Reason.
 

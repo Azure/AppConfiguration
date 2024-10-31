@@ -3,8 +3,8 @@
 
 ## 8.1.0-preview - October 24th, 2024
 ### Enhancements
-* Adds additional telemetry metadata field to feature flags
-  * `AllocationId` is a hash that represents the state of allocation on the flag. When the hash changes, users may receieve a different variant or variant value than before.
+* Added support for injecting additional telemetry metadata to feature flags if telemetry is enabled
+  * `AllocationId` represents the version of an allocation on a feature flag. The `AllocationId` changes when there are essential modifications to the allocation, such as adjustments to the percentile or variant configuration, but not for non-essential changes like feature flag descriptions.
 
 ## 8.0.0 - October 3rd, 2024
 ### Breaking Changes
