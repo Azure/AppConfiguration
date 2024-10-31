@@ -2,6 +2,14 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0-preview5 - Oct 24, 2024
+
+### Enhancements
+
+* Added support for injecting additional telemetry fields on feature evaluation events if telemetry is enabled.
+  * `DefaultWhenEnabled` reflects what the DefaultWhenEnabled variant on the flag is.
+  * `VariantAssignmentPercentage` shows what percentage of users will be allocated the given Variant for the given Reason.
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 ### Enhancements
