@@ -23,6 +23,10 @@
 
 * The `FeatureTagHelper` constructor now requires an `IVariantFeatureManager` to support new variant functionality. While this class is typically not instantiated directly, any direct instantiation will need to be updated.
 
+## 4.0.0-preview5 - Oct 24, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview5`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.

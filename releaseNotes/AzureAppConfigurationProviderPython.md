@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.0.0b2 - October 14, 2024
+
+### Enhancements
+
+* Added support for including AllocationId to feature flag telemetry metadata when telemetry is enabled.
+
+### Bug Fixes
+
+* Fixed an issue where snake case was used for telemetry metadata instead of pascal case.
+
 ## 2.0.0b1 - Sepeter 12, 2024
 
 ### Features

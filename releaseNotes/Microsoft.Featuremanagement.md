@@ -39,6 +39,14 @@ For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azur
 
 Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureFlag.v2.0.0.schema.json). Here is a [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/f47e188babea0a91488d2e6a0b2ab4c9405d0794/examples/VariantAndTelemetryDemo/appsettings.json#L12).
 
+## 4.0.0-preview5 - Oct 24, 2024
+
+### Enhancements
+
+* Added support for injecting additional telemetry fields on feature evaluation events if telemetry is enabled.
+  * `DefaultWhenEnabled` reflects what the DefaultWhenEnabled variant on the flag is.
+  * `VariantAssignmentPercentage` shows what percentage of users will be allocated the given Variant for the given Reason.
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 ### Enhancements
