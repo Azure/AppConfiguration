@@ -22,6 +22,7 @@
 ### Breaking Change
 
 * The `FeatureTagHelper` constructor now requires an `IVariantFeatureManager` to support new variant functionality. While this class is typically not instantiated directly, any direct instantiation will need to be updated.
+* Removed direct support for .NET 7. The .NET 6 library will continue to work in .NET 7 applications.
 
 ## 4.0.0-preview5 - Oct 24, 2024
 
