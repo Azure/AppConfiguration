@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-## 4.0.0 - September 24, 2024
+## 4.0.0 - November 1, 2024
 
 ### Enhancements
 
@@ -18,6 +18,7 @@
 
     For more details on ASP.NET views and variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#view).
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+* Added support for .NET 9 as a target framework.
 
 ### Breaking Change
 

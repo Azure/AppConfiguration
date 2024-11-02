@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-## 4.0.0 - September 24, 2024
+## 4.0.0 - November 1, 2024
 
 ### Enhancements
 
