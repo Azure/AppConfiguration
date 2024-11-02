@@ -2,6 +2,47 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0 - November 1, 2024
+
+### Enhancements
+
+#### Variant Feature Flags
+
+A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
+
+The new `IVariantFeatureManager` has been introduced as the successor to the existing `IFeatureManager`. It retains all the functionalities of `IFeatureManager` while adding new `GetVariantAsync` methods and supporting `CancellationToken` for all methods.
+
+``` C#
+IVariantFeatureManager featureManager;
+...
+Variant variant = await featureManager.GetVariantAsync(MyFeatureFlags.HelpText, CancellationToken.None);
+model.Text = variant.Configuration.Value;
+```
+
+*Note: If reading variant flags from App Configuration, version `8.0.0` or above for the `Microsoft.Extensions.Configuration.AzureAppConfiguration` or `Microsoft.Azure.AppConfiguration.AspNetCore` package is required.*
+
+For more details on Variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants).
+
+#### Variant Service Provider
+
+Variant feature flags can be used in conjunction with dependency injection to surface different implementations of a service for different users. This is accomplished by using the Variant Service Provider.
+
+For more details on Variant Service Provider, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#variants-in-dependency-injection)
+
+#### Telemetry
+
+Telemetry provides observability into flag evaluations, offering insights into which users received specific flag results. This enables more powerful metric analysis, such as experimentation.
+
+For more details on Telemetry, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#telemetry).
+
+#### Microsoft Feature Management Schema
+
+Added support for variant feature flags defined using [Microsoft Feature Management schema](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureManagement.v2.0.0.schema.json). Variants and telemetry can be declared using [Microsoft Feature Flag schema v2](https://github.com/microsoft/FeatureManagement/blob/c5fab16dbf1450dce0bbfe7c4207da735ff31916/Schema/FeatureFlag.v2.0.0.schema.json). Here is a [Sample](https://github.com/microsoft/FeatureManagement-Dotnet/blob/f47e188babea0a91488d2e6a0b2ab4c9405d0794/examples/VariantAndTelemetryDemo/appsettings.json#L12).
+
+#### Performance Optimizations
+
+* The performance of the feature flag state evaluation has been improved by up to 20%, with a memory reduction of up to 30% for .NET 8 applications compared to the version 3.5.0 release.
+
 ## 4.0.0-preview5 - Oct 24, 2024
 
 ### Enhancements
