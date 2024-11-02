@@ -42,8 +42,6 @@ Added support for variant feature flags defined using [Microsoft Feature Managem
 #### Additional Changes
 
 * Optimized memory allocation for calls to `IsEnabledAsync` and `GetVariantAsync`.
-* Added support for .NET 9
-* Removed support for .NET 7
 
 ## 4.0.0-preview5 - Oct 24, 2024
 
