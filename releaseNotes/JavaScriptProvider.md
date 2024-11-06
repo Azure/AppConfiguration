@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 1.1.2 - November 5, 2024
+
+### Bug Fix
+
+* Fixed a bug that caused `ReferenceError` of optional chaining when `process` is undefined. [#104](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/104)
+
 ## 1.1.0 - August 13, 2024
 
 ### Enhancements
