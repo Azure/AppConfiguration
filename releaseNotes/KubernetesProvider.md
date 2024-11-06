@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 2.1.0 - 
+## 2.1.0 - November 6, 2024
 
 ### Enhancements
 * Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `loadBalancingEnabled` to `true`. [#55](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/55)
