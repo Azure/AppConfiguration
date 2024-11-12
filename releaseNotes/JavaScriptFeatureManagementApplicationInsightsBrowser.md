@@ -2,6 +2,10 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0-preview.3 - Nov 8, 2024
+
+* Updated `@microsoft/feature-management` dependency to `2.0.0-preview.3`. See the [release notes](./JavaScriptFeatureManagement.md) for more information on the changes.
+
 ## 2.0.0-preview.2 - Oct 24, 2024
 
 ### Bug Fix
