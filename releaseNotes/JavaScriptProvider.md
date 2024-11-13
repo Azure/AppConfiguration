@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added new fields to feature flag telemetry metadata, including `FeatureFlagId`, `FeatureFlagReference`,`ETag` and `AllocationId`. [101](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/101), [#111](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/111)
+* Added support for injecting additional telemetry metadata `FeatureFlagId`, `FeatureFlagReference`,`ETag` and `AllocationId` to feature flags if telemetry is enabled. [101](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/101), [#111](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/111)
 
 ## 1.1.2 - November 5, 2024
 
