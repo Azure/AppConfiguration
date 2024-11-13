@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0-preview.3 - Oct 24, 2024
+
+### Enhancements
+
+* Added validation for feature flag properties. [#17](https://github.com/microsoft/FeatureManagement-JavaScript/pull/17)
+
 ## 2.0.0-preview.2 - Oct 24, 2024
 
 * No changes in this release.
