@@ -6,7 +6,7 @@
 
 ### Bug Fixes
 
-* Changed the method in which allocation id is generated for feature flags.
+* Updated the method for generating allocation IDs for feature flag telemetry to ensure consistency across different languages of App Configuration providers.
 
 ## 2.0.0b2 - October 14, 2024
 
