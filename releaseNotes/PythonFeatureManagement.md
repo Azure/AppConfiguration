@@ -6,7 +6,7 @@
 
 ### Bug Fixes
 
-* Fixed an issue where targeted users that are exactly equal to 100 in allocation had the assignment reason of `None` instead of `Allocation` in telemetry.
+* Fixed a bug where users exactly at the 100th percentile in allocation were incorrectly assigned a reason of `None` instead of `Allocation` in feature evaluation telemetry.
 
 ## 2.0.0b2 - October 14, 2024
 
