@@ -2,6 +2,23 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0 - November 1, 2024
+
+### Enhancements
+
+* Added support for Application Insights telemetry. To publish feature flag evaluation data and tag outgoing events with targeting information, register the Application Insights telemetry publisher as shown below.
+
+    ```csharp
+    builder.Services.AddFeatureManagement()
+        .AddApplicationInsightsTelemetry();
+    ```
+
+    For more details on Application Insights Publishing, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#application-insights-telemetry-publisher)
+
+## 4.0.0-preview5 - Oct 24, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview5`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
