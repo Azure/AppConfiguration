@@ -4,7 +4,7 @@
 
 ## 2.0.0b3 - November 14, 2024
 
-### Breaking Changes
+### Bug Fixes
 
 * Changed the method in which allocation id is generated for feature flags.
 
