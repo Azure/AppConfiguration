@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.0.0b3 - November 14, 2024
+
+### Breaking Changes
+
+* Changed the method in which allocation id is generated for feature flags.
+
 ## 2.0.0b2 - October 14, 2024
 
 ### Enhancements

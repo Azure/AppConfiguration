@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Samples][samples]
 
+## 2.0.0b3 - November 14, 2024
+
+### Bug Fixes
+
+* Fixed an issue where targeted users that are exactly equal to 100 in allocation had the assignment reason of `None` instead of `Allocation` in telemetry.
+
 ## 2.0.0b2 - October 14, 2024
 
 ### Enhancements
