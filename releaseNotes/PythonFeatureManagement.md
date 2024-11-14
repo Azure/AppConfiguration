@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Samples][samples]
 
+## 2.0.0b3 - November 14, 2024
+
+### Bug Fixes
+
+* Fixed a bug where users exactly at the 100th percentile in allocation were incorrectly assigned a reason of `None` instead of `Allocation` in feature evaluation telemetry.
+
 ## 2.0.0b2 - October 14, 2024
 
 ### Enhancements

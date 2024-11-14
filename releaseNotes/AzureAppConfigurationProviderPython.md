@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.0.0b3 - November 14, 2024
+
+### Bug Fixes
+
+* Updated the method for generating allocation IDs for feature flag telemetry to ensure consistency across different languages of App Configuration providers.
+
 ## 2.0.0b2 - October 14, 2024
 
 ### Enhancements
