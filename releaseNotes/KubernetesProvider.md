@@ -2,6 +2,27 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.1.0 - November 6, 2024
+
+### Enhancements
+* Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `loadBalancingEnabled` to `true`. [#55](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/55)
+* Added support for monitoring all selected key-values. The target ConfigMaps and Secrets will be refreshed if any of key-values are updated. Watching the sentinel key for refresh helps ensure data integrity of configuration changes but it's now optional. [#40](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/40)
+
+### Bug fixes
+* Fixed a bug where ConfigMaps and Secrets may be regenerated even if there is no data change. [#75](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/75)
+* Fixed a bug where key-values with no label are not loaded if the label filter is specified as empty string. [#76](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/76)
+
+## 2.0.0 - September 11, 2024
+
+### Breaking changes
+* Starting with version 2.0.0, a user-provided service account is required for authenticating with Azure App Configuration using workload identity. This change enhances security through namespace isolation. Previously, a Kubernetes provider's service account was used for all namespaces. For updated instructions, see the documentation on [using workload identity](https://learn.microsoft.com/en-us/azure/azure-app-configuration/reference-kubernetes-provider?tabs=default#use-workload-identity). If you need time to migrate when upgrading to version 2.0.0, you can temporarily set `workloadIdentity.globalServiceAccountEnabled=true` during provider installation. Please note that support for using the provider's service account will be deprecated in a future release.
+
+### Enhancements
+* Added support for [multi-platform images](https://docs.docker.com/build/building/multi-platform/). The Kubernetes provider supports `linux/amd` and `linux/arm64` platforms. [#892](https://github.com/Azure/AppConfiguration/issues/892)
+
+### Bug fixes
+* Fixed a bug where a feature flag could be repeatedly added to a ConfigMap if included in multiple feature flag selectors or snapshots.
+
 ## 2.0.0-preview - May 15, 2024
 
 ### Enhancements

@@ -2,6 +2,33 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.0.0 - November 1, 2024
+
+### Enhancements
+
+* Adjusted the `.WithTargeting()` builder method to automatically add `HttpContextAccessor` if it's not already added.
+* Added `TargetingHttpContextMiddleware` which persists targeting context in the current activity. This is used when setting up [Telemetry](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#telemetry).
+* Added support for variants in `FeatureTagHelper`. This allows MVC views to use the `<feature>` tag to conditionally render content based on whether a specific variant of a feature is assigned.
+
+    ``` HTML+Razor
+    <feature name="FeatureX" variant="Alpha">
+      <p>This can only be seen if variant 'Alpha' of 'FeatureX' is assigned.</p>
+    </feature>
+    ```
+
+    For more details on ASP.NET views and variants, see [here](https://learn.microsoft.com/en-us/azure/azure-app-configuration/feature-management-dotnet-reference#view).
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+* Added support for .NET 9 as a target framework.
+
+### Breaking Change
+
+* The `FeatureTagHelper` constructor now requires an `IVariantFeatureManager` to support new variant functionality. While this class is typically not instantiated directly, any direct instantiation will need to be updated.
+* Removed .NET 7 as a target framework as .NET 7 is out of support.
+
+## 4.0.0-preview5 - Oct 24, 2024
+
+* Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview5`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
 ## 4.0.0-preview4 - Jul 19, 2024
 
 * Updated `Microsoft.FeatureManagement` reference to `4.0.0-preview4`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
