@@ -1,4 +1,4 @@
-Django==4.2.16
+Django==4.2.17
 whitenoise==6.4.0
 azure-appconfiguration-provider==1.3.0
 azure-identity==1.16.1
