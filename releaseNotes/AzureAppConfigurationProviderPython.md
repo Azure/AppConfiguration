@@ -2,6 +2,11 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.0.0 - January 6, 2025
+
+* Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `load_balancing_enabled` to `true`.
+* Added support for including FeatureFlagReference, FeatureFlagId, Etag to feature flag telemetry metadata when telemetry is enabled.
+
 ## 2.0.0b3 - November 14, 2024
 
 ### Bug Fixes
