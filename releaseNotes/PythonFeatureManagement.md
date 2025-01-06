@@ -10,7 +10,7 @@
 
   For more information, see the [feature reference document](https://learn.microsoft.com/azure/azure-app-configuration/feature-management-python-reference#variants).
 
-* Added support for telemetry in feature flags. Telemetry allows you to track how your feature are being used. It provides insights into the effectiveness of your feature flags and helps you make data-driven decisions. Telemetry is particularly useful for feature experimentation (also known as A/B testing) and feature rollouts.
+* Added support for telemetry in feature flags. Telemetry allows you to track how your features are being used. It provides insights into the effectiveness of your feature flags and helps you make data-driven decisions. Telemetry is particularly useful for feature experimentation (also known as A/B testing) and feature rollouts.
 
   An example is available to demonstrate how to use the new Telemetry in Python See [the example](https://github.com/microsoft/FeatureManagement-Python/blob/main/samples/feature_variant_sample_with_telemetry.py) in the examples folder.
 
