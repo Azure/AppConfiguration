@@ -2,11 +2,27 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+# 1.1.3 - January 8, 2025
+
+### Bug Fix
+
+* Fixed a bug that trigger multiple refresh requests within one refresh interval. [#136](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/136)
+
+## 2.0.0-preview.2 - January 8, 2025
+
+### Enhancements
+
+* Supported replica auto-discovery for node.js applications. For App Configuration stores with geo-replication enabled, the provider will now automatically discover any additional replicas and attempt to connect to them when it fails to connect to user-provided endpoints in code. This capability allows applications to leverage geo-replication for enhanced resiliency without code change and redeployment. [#98](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/98)
+
+* Supported load balancing mode which enables your application to distribute requests to App Configuration across all available replicas. [#135](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/135)
+
+* Introduced a new way to refresh key-value. Instead of watching any sentinel key, the configuration provider will pull the latest key values if there is any change happened to the key value collection. This refresh behavior will be enabled when you do not specify any watched setting in `AzureAppConfigurationOptions.refreshOptions` [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
+
 ## 2.0.0-preview.1 - November 8, 2024
 
 ### Enhancements
 
-* Added support for injecting additional telemetry metadata `FeatureFlagId`, `FeatureFlagReference`,`ETag` and `AllocationId` to feature flags if telemetry is enabled. [101](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/101), [#111](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/111)
+* Added support for injecting additional telemetry metadata `FeatureFlagId`, `FeatureFlagReference`,`ETag` and `AllocationId` to feature flags if telemetry is enabled. [#101](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/101), [#111](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/111)
 
 ## 1.1.2 - November 5, 2024
 
