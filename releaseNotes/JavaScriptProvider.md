@@ -16,7 +16,7 @@
 
 * Supported load balancing mode which enables your application to distribute requests to App Configuration across all available replicas. [#135](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/135)
 
-* Introduced a new way to refresh key-value. Instead of watching any sentinel key, the configuration provider will pull the latest key values if there is any change happened to the key value collection. This refresh behavior will be enabled when you do not specify any watched setting in `AzureAppConfigurationOptions.refreshOptions` [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
+* Introduced keyvalue collection monitoring based refresh. Instead of watching any sentinel key, the configuration provider will pull the latest key values if there is any change happened to the key value collection. This refresh behavior will be enabled when you do not specify any watched setting in `AzureAppConfigurationOptions.refreshOptions` [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
 
 ## 2.0.0-preview.1 - November 8, 2024
 
