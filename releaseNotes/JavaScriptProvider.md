@@ -6,17 +6,17 @@
 
 ### Bug Fix
 
-* Fixed a bug that trigger multiple refresh requests within one refresh interval. [#136](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/136)
+* Fixed a bug that could trigger concurrent data refresh. [#136](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/136)
 
 ## 2.0.0-preview.2 - January 8, 2025
 
 ### Enhancements
 
-* Supported replica auto-discovery for node.js applications. For App Configuration stores with geo-replication enabled, the provider will now automatically discover any additional replicas and attempt to connect to them when it fails to connect to user-provided endpoints in code. This capability allows applications to leverage geo-replication for enhanced resiliency without code change and redeployment. [#98](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/98)
+* Added support for automatic replica discovery for geo-replication enabled App Configuration stores, enhancing resiliency and scalability for non-browser-based applications. The feature is not available for browser-based applications due to the restriction of browser security sandbox. [#98](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/98)
 
-* Supported load balancing mode which enables your application to distribute requests to App Configuration across all available replicas. [#135](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/135)
+* Added support for load balancing mode which enables your application to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting the new `AzureAppConfigurationOptions.loadBalancingEnabled` property to true. [#135](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/135)
 
-* Introduced keyvalue collection monitoring based refresh. Instead of watching any sentinel key, the configuration provider will pull the latest key values if there is any change happened to the key value collection. This refresh behavior will be enabled when you do not specify any watched setting in `AzureAppConfigurationOptions.refreshOptions` [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
+* Added support for monitoring all selected key-values. Configuration will be refreshed if any of key-values are updated. Watching the sentinel key for refresh helps ensure data integrity of configuration changes, but it is now optional. This behavior is activated when you enable the refresh but do not specify any watched keys in `AzureAppConfigurationOptions.refreshOptions`. [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
 
 ## 2.0.0-preview.1 - November 8, 2024
 
