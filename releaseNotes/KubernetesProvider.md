@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Upgraded packages. [#86](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/86), [#90](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/90) 
+* Upgraded dependent packages. [#86](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/86), [#90](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/90) 
 
 ## 2.1.0 - November 6, 2024
 
