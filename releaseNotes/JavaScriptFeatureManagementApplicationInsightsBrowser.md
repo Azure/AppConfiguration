@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0 - Jan 14, 2025
+
+### Enhancements
+
+This is the first stable release of the following features.
+
+* `createTelemetryPublisher` API that enables feature evaluation telemetry to be published to Application Insights.
+
+* `TrackEvent` API that allows users to replace existing Application Insights TrackEvent calls to include targeting information in custom events sent to Application Insights.
+
 ## 2.0.0-preview.3 - Nov 8, 2024
 
 * Updated `@microsoft/feature-management` dependency to `2.0.0-preview.3`. See the [release notes](./JavaScriptFeatureManagement.md) for more information on the changes.

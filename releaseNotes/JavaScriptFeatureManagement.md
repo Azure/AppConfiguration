@@ -2,6 +2,28 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0 - Jan 14, 2025
+
+### Enhancements
+
+This is the first stable release of the following features.
+
+* __Variant Feature Flags__
+
+  A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
+
+  The new `getVariant` API has been introduced to evaluate the assigned variant based on the variant feature flag configuration and targeting context.
+
+* __Telemetry__
+
+  Telemetry provides observability into flag evaluations, offering insights into which users received specific flag results. This enables more powerful metric analysis, such as experimentation.
+  
+  The new `onFeatureEvaluated` constructor parameter of `FeatureManager` allows you to set a custom callback for all feature evaluations. This hook can be used to publish telemetry. You can call `createTelemetryPublisher` API from `@microsoft/feature-management-applicationinsights-browser` and `@microsoft/feature-management-applicationinsights-node` packages to publish feature evaluation event to Application Insights.
+
+### Bug Fix
+
+* Fixed a bug that caused error when calling `getFeatureFlags` and `listFeatureNames`.
+
 ## 2.0.0-preview.3 - Oct 24, 2024
 
 ### Enhancements
