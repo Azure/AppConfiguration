@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
-# 1.1.3 - January 8, 2025
+## 1.1.3 - January 8, 2025
 
 ### Bug Fix
 
