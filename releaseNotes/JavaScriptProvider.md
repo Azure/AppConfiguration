@@ -4,7 +4,7 @@
 
 # 1.1.3 - January 8, 2025
 
-### Bug Fix
+### Bug Fixes
 
 * Fixed a bug that could trigger concurrent data refresh. [#136](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/136)
 
@@ -26,7 +26,7 @@
 
 ## 1.1.2 - November 5, 2024
 
-### Bug Fix
+### Bug Fixes
 
 * Fixed a bug that caused `ReferenceError` of optional chaining when `process` is undefined. [#104](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/104)
 
@@ -82,7 +82,7 @@ Get started with the [quickstart](https://learn.microsoft.com/en-us/azure/azure-
 
 ## 1.0.0-preview.1 - October 24, 2023
 
-### Bug fixes
+### Bug Fixes
 
 - Updated the reference of `@azure/identity` to `3.3.2`, addressing [CVE-2023-36415](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36415)
 

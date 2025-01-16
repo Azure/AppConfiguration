@@ -8,9 +8,9 @@
 
 This is the first stable release of the following features.
 
-* `createTelemetryPublisher` API that enables feature evaluation telemetry to be published to Application Insights.
+* A `createTelemetryPublisher` function that has been added that enables feature evaluation telemetry to be published to Application Insights.
 
-* `TrackEvent` API that allows users to replace existing Application Insights TrackEvent calls to include targeting information in custom events sent to Application Insights.
+* A `TrackEvent` function has been added to enable sending custom events embedded with targeting information to Application Insights. This function is meant to be used in place of the Application Insights package's standard `TrackEvent` call.
 
 ## 2.0.0-preview.3 - Nov 8, 2024
 
@@ -18,7 +18,7 @@ This is the first stable release of the following features.
 
 ## 2.0.0-preview.2 - Oct 24, 2024
 
-### Bug Fix
+### Bug Fixes
 
 * Fixed a bug that caused `TargetingId` in telemetry to be "undefined". [#59](https://github.com/microsoft/FeatureManagement-JavaScript/pull/59)
 
