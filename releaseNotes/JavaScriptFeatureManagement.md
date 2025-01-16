@@ -18,7 +18,7 @@ This is the first stable release of the following features.
 
   Telemetry provides observability into flag evaluations, offering insights into which users received specific flag results. This enables more powerful metric analysis, such as experimentation.
   
-  The new `onFeatureEvaluated` constructor parameter of `FeatureManager` allows you to set a custom callback for all feature evaluations. This hook can be used to publish telemetry. You can call `createTelemetryPublisher` API from `@microsoft/feature-management-applicationinsights-browser` and `@microsoft/feature-management-applicationinsights-node` packages to publish feature evaluation event to Application Insights. [#36](https://github.com/microsoft/FeatureManagement-JavaScript/pull/36)
+  The new `onFeatureEvaluated` property of `FeatureManagerOptions` allows you to set a custom callback for all feature evaluations. This hook can be used to publish telemetry. You can call `createTelemetryPublisher` API from `@microsoft/feature-management-applicationinsights-browser` and `@microsoft/feature-management-applicationinsights-node` packages to publish feature evaluation event to Application Insights. [#36](https://github.com/microsoft/FeatureManagement-JavaScript/pull/36)
 
 ### Bug Fixes
 
