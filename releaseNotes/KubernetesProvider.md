@@ -14,7 +14,7 @@
 * Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `loadBalancingEnabled` to `true`. [#55](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/55)
 * Added support for monitoring all selected key-values. The target ConfigMaps and Secrets will be refreshed if any of key-values are updated. Watching the sentinel key for refresh helps ensure data integrity of configuration changes but it's now optional. [#40](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/40)
 
-### Bug fixes
+### Bug Fixes
 * Fixed a bug where ConfigMaps and Secrets may be regenerated even if there is no data change. [#75](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/75)
 * Fixed a bug where key-values with no label are not loaded if the label filter is specified as empty string. [#76](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/76)
 
@@ -26,7 +26,7 @@
 ### Enhancements
 * Added support for [multi-platform images](https://docs.docker.com/build/building/multi-platform/). The Kubernetes provider supports `linux/amd` and `linux/arm64` platforms. [#892](https://github.com/Azure/AppConfiguration/issues/892)
 
-### Bug fixes
+### Bug Fixes
 * Fixed a bug where a feature flag could be repeatedly added to a ConfigMap if included in multiple feature flag selectors or snapshots.
 
 ## 2.0.0-preview - May 15, 2024
@@ -36,7 +36,7 @@
 
 ## 1.3.1 - April 25, 2024
 
-### Bug fixes
+### Bug Fixes
 * Fixed a regression bug in version 1.3.0 where an empty Kubernetes Secret was not created as specified by the `spec.secret.target property` when no Key Vault references were loaded. [#32](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/32)
 
 ## 1.3.0 - April 17, 2024
@@ -59,7 +59,7 @@
 * Added the `auth.workloadIdentity.managedIdentityClientIdReference` property for workloadIdentity authentication. It enables the retrieval of the client ID of a user-assigned managed identity from a ConfigMap. [#812](https://github.com/Azure/AppConfiguration/issues/812)
 * Added support for outputting the ConfigMap data in hierarchical format by specifying the new property `configMapData.separator` if the ConfigMap is consumed as a mounted file. This feature is useful if the configuration file loader used in your application can't load keys without converting them to the hierarchical format. [#834](https://github.com/Azure/AppConfiguration/issues/834)
 
-### Bug fixes
+### Bug Fixes
 * Fixed a bug that may cause the Kubernetes provider to crash with an `invalid memory address or nil pointer dereference` error when a key-value pulled from App Configuration has a `null` value. [#848](https://github.com/Azure/AppConfiguration/issues/848)
 
 ## 1.0.0 - November 15, 2023

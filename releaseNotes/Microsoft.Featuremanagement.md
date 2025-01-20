@@ -75,7 +75,7 @@ The performance of the feature flag state evaluation has been improved by up to 
 
 ## 3.3.1 - May 23, 2024
 
-### Bug fixes
+### Bug Fixes
 
 * Fixed a bug that caused the time window filter to be unusable if `AddFeatureFilter<TimeWindowFilter>` was called.`. [#447](https://github.com/microsoft/FeatureManagement-Dotnet/issues/447)
 
@@ -86,7 +86,7 @@ The performance of the feature flag state evaluation has been improved by up to 
 * Added a `Recurrence` option to the `TimeWindow` filter to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See more details [here](https://github.com/microsoft/FeatureManagement-Dotnet?tab=readme-ov-file#recurrence-pattern). ([#266](https://github.com/microsoft/FeatureManagement-Dotnet/pull/266))
 * A `LoggerFactory` is no longer required when constructing built-in filters. ([#386](https://github.com/microsoft/FeatureManagement-Dotnet/pull/386))
 
-### Bug fixes
+### Bug Fixes
 
 * Fixed a possible null-reference exception when enumerating `GetFeatureNamesAsync`. ([#438](https://github.com/microsoft/FeatureManagement-Dotnet/pull/438))
 
@@ -194,7 +194,7 @@ There are no breaking changes in this release.
 
 ## 3.1.1 - December 13, 2023
 
-### Bug Fix
+### Bug Fixes
 * Fixed a bug where feature manager will fail to add cache entry if the shared memory cache sets `SizeLimit`. ([#325](https://github.com/microsoft/FeatureManagement-Dotnet/issues/325)) 
 
 ## 3.1.0 - November 23, 2023
@@ -296,7 +296,7 @@ If all of three filters are registered:
 
 ## 2.6.1 - June 28, 2023
 
-### Bug fix
+### Bug Fixes
 
 * Fixed an edge case for EvaluateAsync call that doesn't use context from FeatureManager. ([#244](https://github.com/microsoft/FeatureManagement-Dotnet/issues/244))
 
@@ -420,7 +420,7 @@ For more details read [here](https://github.com/microsoft/FeatureManagement-Dotn
 
 ## 2.5.1 - April 6, 2022
 
-### Bug fix
+### Bug Fixes
 
 * Updated summary on `FeatureGateAttribute` to mention that it is usable on Razor pages. [#170](https://github.com/microsoft/FeatureManagement-Dotnet/pull/170)
 
@@ -430,7 +430,7 @@ For more details read [here](https://github.com/microsoft/FeatureManagement-Dotn
 
 * Updated `FeatureGateAttribute` to support Razor pages. This attribute can be placed on Razor page handlers to control access to the page based on whether a feature flag is on or off. [#166](https://github.com/microsoft/FeatureManagement-Dotnet/pull/166)
 
-### Bug fix
+### Bug Fixes
 
 * Fixed an issue in `PercentageFilter` where a feature may occasionally be considered as on even when the filter is set to 0 percent. [#156](https://github.com/microsoft/FeatureManagement-Dotnet/pull/156)
 
@@ -441,7 +441,7 @@ For more details read [here](https://github.com/microsoft/FeatureManagement-Dotn
 * Added option to throw when attempting to evaluate a missing feature. [#140](https://github.com/microsoft/FeatureManagement-Dotnet/pull/140)
 * `IFeatureManagementSnapshot` is now thread-safe. [#141](https://github.com/microsoft/FeatureManagement-Dotnet/pull/141)
 
-### Bug fix
+### Bug Fixes
 
 * `FilterAliasAttribute` now uses the proper parameter name in an `ArgumentNullException` if `alias` is null.
 
@@ -451,7 +451,7 @@ For more details read [here](https://github.com/microsoft/FeatureManagement-Dotn
 
 The net5.0 framework has been added to the list of target frameworks. This change resolves dependency issues for ASP.NET Core 5.0 applications.
 
-### Bug fix
+### Bug Fixes
 
 * The license URL for these packages has been fixed.
 
