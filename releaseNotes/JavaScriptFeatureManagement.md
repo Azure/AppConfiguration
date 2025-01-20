@@ -14,7 +14,7 @@ This is the first stable release of the following features.
 
   The new `getVariant` method of `FeatureManager` has been introduced to evaluate the assigned variant based on the variant feature flag configuration and targeting context. [#13](https://github.com/microsoft/FeatureManagement-JavaScript/pull/13)
 
-* __Telemetry__
+* __Feature Evaluation Telemetry__
 
   Telemetry provides observability into flag evaluations, offering insights into which users received specific flag results. This enables more powerful metric analysis, such as experimentation.
   
