@@ -3,13 +3,13 @@
 
 ## 8.1.0 - February 13th, 2025
 ### Enhancements
-* Added the ability to monitor all loaded key-values for refresh with the following new API. [#536](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/536)
+* Added the ability to monitor all selected key-values for refresh with the following new API. [#536](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/536)
 
    ```cs
    public AzureAppConfigurationRefreshOptions RegisterAll()
    ```
 
-   When this API is called, changes to any loaded key-values will cause a reload of the configuration.
+   When this API is called, changes to any selected key-values will cause a reload of the configuration.
 * Added the ability to check if the type of an `IConfigurationSource` is `AzureAppConfigurationSource` with the following new extension. [#456](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/456)
 
    ```cs
