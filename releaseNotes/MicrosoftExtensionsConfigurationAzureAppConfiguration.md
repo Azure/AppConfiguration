@@ -17,8 +17,7 @@
    ```
 
 ### Bug Fixes
-* Fixed a bug where changing a feature flag would always override an already loaded feature flag with the same key but different label. 
-Feature flags are also now always refreshed as a collection, meaning a change in any selected flag will result in a reload of all selected feature flags on refresh. [#317](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/317)
+* Fixed a bug where changing a feature flag would always override an already loaded feature flag with the same key but different label on refresh. As part of this change, feature flags are now always refreshed as a collection, meaning a change in any selected flag will result in a reload of all selected feature flags on refresh. [#317](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/317)
 * Fixed a bug where an unnecessary refresh could occur when getting a cached value while requesting App Configuration. [#606](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/606)
 
 ### Other Changes
