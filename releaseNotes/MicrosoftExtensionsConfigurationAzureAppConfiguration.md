@@ -1,6 +1,30 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.1.0 - February 13th, 2025
+### Enhancements
+* Added the ability to monitor all loaded key-values for refresh with the following new API. []()
+
+   ```cs
+   public AzureAppConfigurationRefreshOptions RegisterAll()
+   ```
+
+   When this API is called, changes to any loaded key-values will cause a reload of the configuration.
+* Added the ability to check if the type of an `IConfigurationSource` is `AzureAppConfigurationSource` with the following new extension. [#456](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/456)
+
+   ```cs
+   public static bool IsAzureAppConfigurationSource(this IConfigurationSource source)
+   ```
+
+### Bug Fixes
+* Fixed a bug where changing a feature flag would always override an already loaded feature flag with the same key but different label. 
+Feature flags are also now always refreshed as a collection, meaning a change in any selected flag will result in a reload of all selected feature flags on refresh. [#317](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/317)
+* Fixed a bug where an unnecessary refresh could occur when getting a cached value while requesting App Configuration. [#606](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/606)
+
+### Other Changes
+* Removed support for the `configuration_reference` property in feature flags. [#614](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/614)
+* Removed support for `AllocationId` in telemetry metadata. [#600](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/600)
+
 ## 8.1.0-preview - October 24th, 2024
 ### Enhancements
 * Added support for injecting additional telemetry metadata to feature flags if telemetry is enabled
