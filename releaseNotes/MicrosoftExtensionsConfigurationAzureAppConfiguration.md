@@ -3,7 +3,7 @@
 
 ## 8.1.0 - February 13th, 2025
 ### Enhancements
-* Added the ability to monitor all loaded key-values for refresh with the following new API. []()
+* Added the ability to monitor all loaded key-values for refresh with the following new API. [#536](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/536)
 
    ```cs
    public AzureAppConfigurationRefreshOptions RegisterAll()
