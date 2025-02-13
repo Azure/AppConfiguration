@@ -22,7 +22,7 @@
 
 ### Other Changes
 * Removed support for the `configuration_reference` property in feature flags. [#614](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/614)
-* Removed support for `AllocationId` in telemetry metadata. [#600](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/600)
+* `AllocationId` from feature flag telemetry metadata, which was introduced in 8.1.0-preview version, has been removed in this stable version. [#600](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/600)
 
 ## 8.1.0-preview - October 24th, 2024
 ### Enhancements
