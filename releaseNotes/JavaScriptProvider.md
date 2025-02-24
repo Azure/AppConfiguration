@@ -2,6 +2,18 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.0 - February 13, 2025
+
+### Enhancements
+
+* Added support for automatic replica discovery for geo-replication enabled App Configuration stores, enhancing resiliency and scalability for non-browser-based applications. The feature is not available for browser-based applications due to the restriction of browser security sandbox. [#98](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/98)
+
+* Added support for load balancing mode which enables your application to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting the new `AzureAppConfigurationOptions.loadBalancingEnabled` property to true. [#135](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/135)
+
+* Added support for monitoring all selected key-values. Configuration will be refreshed if any of key-values are updated. Watching the sentinel key for refresh helps ensure data integrity of configuration changes, but it is now optional. This behavior is activated when you enable the refresh but do not specify any watched keys in `AzureAppConfigurationOptions.refreshOptions`. [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
+
+* Added support for loading all feature flags with no label when no selector is specified under `AzureAppConfigurationOptions.featureFlagOptions`. [#158](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/158)
+
 ## 1.1.3 - January 8, 2025
 
 ### Bug Fixes
@@ -74,6 +86,7 @@ Get started with the [quickstart](https://learn.microsoft.com/en-us/azure/azure-
 ### Breaking Changes
 
 - The label filter in a selector is restricted to a single label. An error will be thrown if a label filter contains `*` or `,`. This change is to avoid the ambiguity when multiple values are loaded for the same key. Key-values with different labels can still be loaded using separate selectors for proper configuration composition. [#22](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/22)
+
 - Fixed a bug where the last selector may not take precedence if multiple selectors with the same key and label filters are provided. After applying the fix, the resulting configuration of an application may change. To ensure the intended configuration composition, remove any duplicated selectors.[#23](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/23)
 
 ### Bug Fixes
