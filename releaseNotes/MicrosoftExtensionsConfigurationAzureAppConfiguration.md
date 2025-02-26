@@ -1,7 +1,11 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
-## 8.1.0 - February 13th, 2025
+## 8.1.1 - February 26th, 2025
+### Bug Fixes
+* Fixed a bug introduced in the 8.1.0 release where calls to `FeatureFlagOptions.Select` were ignored if they were followed by a call to either `AzureAppConfigurationOptions.Select` or `AzureAppConfigurationOptions.SelectSnapshot`. [#628](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/628)
+
+## 8.1.0 - February 24th, 2025
 ### Enhancements
 * Added the ability to monitor all selected key-values for refresh with the following new API. [#536](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/536)
 
