@@ -4,7 +4,7 @@
 ## 8.1.1 - February 26th, 2025
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.1.1`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
-## 8.1.0 - February 13th, 2025
+## 8.1.0 - February 24th, 2025
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.1.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
 ## 8.1.0-preview - October 24th, 2024
