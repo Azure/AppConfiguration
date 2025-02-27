@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.1 - February 27, 2025
+
+### Bug Fixes
+
+* Fixed a bug where the load operation would be interrupted if searching for replicas failed. [#170](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/170)
+
 ## 2.0.0 - February 13, 2025
 
 ### Enhancements
@@ -13,6 +19,8 @@
 * Added support for monitoring all selected key-values. Configuration will be refreshed if any of key-values are updated. Watching the sentinel key for refresh helps ensure data integrity of configuration changes, but it is now optional. This behavior is activated when you enable the refresh but do not specify any watched keys in `AzureAppConfigurationOptions.refreshOptions`. [#133](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/133)
 
 * Added support for loading all feature flags with no label when no selector is specified under `AzureAppConfigurationOptions.featureFlagOptions`. [#158](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/158)
+
+* Added support for injecting additional telemetry metadata `FeatureFlagId`, `FeatureFlagReference` and `ETag` to feature flags if telemetry is enabled.
 
 ## 1.1.3 - January 8, 2025
 
