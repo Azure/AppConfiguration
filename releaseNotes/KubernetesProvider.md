@@ -6,15 +6,15 @@
 
 ### Enhancements
 
-* Added support for on-demand refresh, which enables you to trigger an on-demand refresh to get the latest data from App Configuration and Key Vault by modifying `metadata.annotations` section. This enhancement makes the refresh process more flexible and responsive to real-time needs. [#87](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/87)
-* Added support for the `variants`, `allocation`, and `telemetry` properties for feature flags added by the [Microsoft.FeatureManagement.*](https://github.com/Azure/AppConfiguration?tab=readme-ov-file#feature-management-libraries) libraries. While variant feature flags can still be toggled on or off, they also allow for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing).
+* Added support for on-demand refresh of ConfigMap and Secret. While you can set up automatic data refresh, there are times when you might want to trigger an on-demand refresh to get the latest data from App Configuration and Key Vault. To do this, you can modify the `metadata.annotations` section. This enhancement makes the refresh process more flexible and better suited to your workflow. [#87](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/87)
+* Added support for variant feature flags.
 * Added support for injecting additional telemetry metadata to feature flags if telemetry is enabled, including `FeatureFlagId`, `FeatureFlagReference`, and `ETag`. [#94](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/94)
 *  Upgraded dependent packages. [#96](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/96)
 
 ### Bug Fixes
 
-* Fixed a bug that the order of feature flags is inconsistent in every refresh. [#75](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/75)
-* Fixed a regression bug in version 2.1.0 that may cause the Kubernetes provider to crash with an `invalid memory address or nil pointer dereference` error when specified `selectors.snapshotName`. [#93](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/93)
+* Fixed a bug where the order of feature flags might not be retained between refreshes. [#75](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/75)
+* Fixed a regression bug in version 2.1.0 that may cause the Kubernetes provider to crash with an `invalid memory address or nil pointer dereference` error when `selectors.snapshotName` is specified. [#93](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/93)
 
 
 ## 2.1.1 - January 8, 2025
