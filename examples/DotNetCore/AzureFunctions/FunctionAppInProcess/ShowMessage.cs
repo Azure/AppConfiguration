@@ -23,7 +23,7 @@ namespace FunctionAppInProcess
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             // Signal to refresh the configuration if the registered key(s) is modified.
-            // This will be a no-op if the refresh interval time window is not reached.
+            // This will be a no-op if the refresh interval has not elapsed.
             // The configuration is refreshed asynchronously without blocking the execution of the current function.
             _ = _configurationRefresher.TryRefreshAsync();
 

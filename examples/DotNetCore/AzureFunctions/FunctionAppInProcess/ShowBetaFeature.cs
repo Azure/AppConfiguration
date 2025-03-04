@@ -23,7 +23,7 @@ namespace FunctionAppInProcess
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             // Signal to refresh the feature flags from Azure App Configuration.
-            // This will be a no-op if the refresh interval time window is not reached.
+            // This will be a no-op if the refresh interval has not elapsed.
             // Remove the 'await' operator if it's preferred to refresh without blocking.
             await _configurationRefresher.TryRefreshAsync();
 
