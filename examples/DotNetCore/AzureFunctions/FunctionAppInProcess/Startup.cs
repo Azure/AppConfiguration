@@ -15,7 +15,8 @@ namespace FunctionAppInProcess
             // Add Azure App Configuration as additional configuration source
             builder.ConfigurationBuilder.AddAzureAppConfiguration(options =>
             {
-                Uri endpoint = new(Environment.GetEnvironmentVariable("AZURE_APPCONFIG_ENDPOINT") ?? string.Empty);
+                Uri endpoint = new(Environment.GetEnvironmentVariable("AZURE_APPCONFIG_ENDPOINT") ?? 
+                    throw new InvalidOperationException("The environment variable 'AZURE_APPCONFIG_ENDPOINT' is not set or is empty."));
                 options.Connect(endpoint, new DefaultAzureCredential())
                        // Load all keys that start with `TestApp:` and have no label
                        .Select("TestApp:*")
