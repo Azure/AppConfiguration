@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 2.2.0 - MM DD, 2025
+## 2.2.0 - March 11, 2025
 
 ### Enhancements
 
