@@ -29,7 +29,7 @@ namespace FunctionAppInProcess
 
             // Read feature flag
             string featureName = "Beta";
-            bool featureEnabled = await _featureManager.IsEnabledAsync(featureName);
+            bool featureEnabled = await _featureManager.IsEnabledAsync(featureName, req.HttpContext.RequestAborted);
 
             return new OkObjectResult(featureEnabled
                 ? $"{featureName} feature is On"

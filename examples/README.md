@@ -1,14 +1,14 @@
 # Azure App Configuration Examples
 
-## DotNet Samples
+## .NET Samples
 
-### [Azure Functions (In-process)](./DotNetCore/AzureFunction/FunctionApp)
+### [Azure Functions (Isolated worker model)](./DotNetCore/AzureFunctions/FunctionAppIsolated)
 
-This example is a .NET class library Function App, which runs in-process with the runtime of Azure Functions. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration. It also shows how to leverage App Configuration for a queue triggered function with the trigger settings stored in App Configuration.
+This example showcases a .NET isolated worker model Function App, which operates out-of-process in Azure Functions. It demonstrates how to enable dynamic configuration and utilize feature flags from App Configuration. Additionally, it illustrates how to leverage the App Configuration references feature in Azure Functions to manage trigger parameters within App Configuration.
 
-### [Azure Functions (Out-of-process)](./DotNetCore/AzureFunction/FunctionAppIsolatedMode)
+### [Azure Functions (In-process model)](./DotNetCore/AzureFunctions/FunctionAppInProcess)
 
-This example is a .NET isolated process Function App, which runs out-of-process in Azure Functions. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
+This example showcases a .NET class library Function App, which runs in-process with the Azure Functions runtime. It demonstrates how to enable dynamic configuration and utilize feature flags from App Configuration. Additionally, it illustrates how to leverage App Configuration for a queue-triggered function, with the trigger settings stored in App Configuration.
 
 ### [ConsoleApplication](./DotNetCore/ConsoleApplication)
 
