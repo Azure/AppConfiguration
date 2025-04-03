@@ -2,6 +2,12 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.2.2 - April 3, 2025
+
+### Enhancements
+
+* Upgraded dependent packages. [#103](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/103)
+
 ## 2.2.1 - March 19, 2025
 
 ### Enhancements
