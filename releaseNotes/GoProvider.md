@@ -13,5 +13,5 @@ Added support for
 - returning key-values as raw json bytes
 
 [source_code]: https://github.com/Azure/AppConfiguration-GoProvider
-[package]: https://pkg.go.dev/github.com/Azure/AppConfiguation-GoProvider/azureappconfiguration
+[package]: https://pkg.go.dev/github.com/Azure/AppConfiguration-GoProvider/azureappconfiguration
 [samples]: https://github.com/Azure/AppConfiguration-GoProvider/tree/main/example
