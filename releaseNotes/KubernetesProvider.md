@@ -7,6 +7,7 @@
 ### Bug Fixes
 
 * Fixed a bug with incorrect `toYaml` usage in service account templates. [#106](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/106)
+* Fixed an issue where `FeatureFlagId` was not injected when feature flag telemetry was enabled.
 
 ## 2.2.2 - April 3, 2025
 
