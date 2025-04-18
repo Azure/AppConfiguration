@@ -2,6 +2,12 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.2.3 - April 16, 2025
+
+### Bug Fixes
+
+* Fixed a bug with incorrect `toYaml` usage in service account templates. [#106](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/106)
+
 ## 2.2.2 - April 3, 2025
 
 ### Enhancements
