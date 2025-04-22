@@ -1,6 +1,10 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.1.2 - April 22nd, 2025
+### Bug Fixes
+* Calling `IServiceCollection.AddAzureAppConfiguration` now correctly adds an instance of `IConfigurationRefresherProvider` to the service collection only the first time it is called instead of adding an instance on each invocation. [#611](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/611)
+
 ## 8.2.0-preview - March 21st, 2025
 ### Enhancements
 * Added the ability to set a client factory used for creating ConfigurationClient instances. [#380](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/380)
