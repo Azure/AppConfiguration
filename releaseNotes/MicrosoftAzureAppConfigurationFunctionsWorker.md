@@ -1,6 +1,9 @@
 # Microsoft.Azure.AppConfiguration.Functions.Worker
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.1.2 - April 22nd, 2025
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.1.2`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ## 8.2.0-preview - March 21st, 2025
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.2.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
