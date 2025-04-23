@@ -2,6 +2,10 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.0.2 - April 22, 2025
+
+- `FeatureFlagId` will no longer be added to telemetry metadata of a feature flag with `telemetry` enabled. [#183](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/183)
+
 ## 2.0.1 - February 27, 2025
 
 ### Bug Fixes
