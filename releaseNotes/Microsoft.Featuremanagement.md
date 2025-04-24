@@ -43,6 +43,10 @@ Added support for variant feature flags defined using [Microsoft Feature Managem
 
 The performance of the feature flag state evaluation has been improved by up to 20%, with a memory reduction of up to 30% for .NET 8 applications compared to the version 3.5.0 release.
 
+### Other Changes
+
+* `DefaultWhenEnabled` and `VariantAssignmentPercentage` were removed from the feature evaluation event. These were introduced in 4.0.0-preview5 version, but have been removed in this stable version.
+
 ## 4.0.0-preview5 - Oct 24, 2024
 
 ### Enhancements
