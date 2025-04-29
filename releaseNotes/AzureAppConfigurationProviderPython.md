@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.1.0 - April 29, 2025
+
+### Features
+
+* Added support for including AllocationId to feature flag telemetry metadata when telemetry is enabled.
+
 ## 2.0.0 - January 6, 2025
 
 * Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `load_balancing_enabled` to `true`.
