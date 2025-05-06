@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.1.0-preview.1 - April 22, 2025
+
+### Enhancements
+
+* Introduced `ITargetingContextAccessor` to allow `FeatureManager` to get ambient targeting context in the server scenario. You can configure a targeting context accessor when initializing the `FeatureManager` through `FeatureManagerOptions.targetingContextAccessor`. [#93](https://github.com/microsoft/FeatureManagement-JavaScript/pull/93) 
+
 ## 2.0.0 - Jan 14, 2025
 
 ### Enhancements
