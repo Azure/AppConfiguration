@@ -2,6 +2,23 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.2.3 - April 16, 2025
+
+### Breaking changes
+
+* Starting with version 2.2.3, `FeatureFlagId` is no longer injected when feature flag telemetry is enabled.
+
+### Bug Fixes
+
+* Fixed a bug that caused installation to fail when custom annotations were specified for the service account. [#106](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/106)
+
+
+## 2.2.2 - April 3, 2025
+
+### Enhancements
+
+* Upgraded dependent packages. [#103](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/103)
+
 ## 2.2.1 - March 19, 2025
 
 ### Enhancements
