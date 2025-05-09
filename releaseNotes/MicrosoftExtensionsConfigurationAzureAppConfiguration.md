@@ -1,6 +1,23 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.2.0 - May 9th, 2025
+### Enhancements
+* Updated the existing `Select` APIs with the new parameter `tagFilters` to support filtering key-values and feature flags by tags.
+
+   ```cs
+   public AzureAppConfigurationOptions Select(string keyFilter, string labelFilter = LabelFilter.Null, IEnumerable<string> tagFilters = null)
+   ```
+
+   ```cs
+   public FeatureFlagOptions Select(string featureFlagFilter, string labelFilter = LabelFilter.Null, IEnumerable<string> tagFilters = null)
+   ```
+* Added an `ActivitySource` for load and refresh operations to support OpenTelemetry-based tracing. [#645](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/645)
+
+### Other Changes
+* Removed the `FeatureFlagId` property from feature flag telemetry. [#655](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/655)
+* Shortened default network timeout for requests to App Configuration to improve failover speed and retry responsiveness. [#657](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/657)
+
 ## 8.1.2 - April 22nd, 2025
 ### Bug Fixes
 * Calling `IServiceCollection.AddAzureAppConfiguration` now correctly adds an instance of `IConfigurationRefresherProvider` to the service collection only the first time it is called instead of adding an instance on each invocation. [#611](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/611)
