@@ -12,7 +12,7 @@
    ```cs
    public FeatureFlagOptions Select(string featureFlagFilter, string labelFilter = LabelFilter.Null, IEnumerable<string> tagFilters = null)
    ```
-* Added an `ActivitySource` for load and refresh operations to support OpenTelemetry-based tracing. [#645](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/645)
+* Added an `ActivitySource` called `Microsoft.Extensions.Configuration.AzureAppConfiguration` to support instrumentation. A `Load` activity will start when configuration is initially built and the `Refresh` activity will start when when a refresh is triggered. [#645](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/645)
 
 ### Other Changes
 * Removed the `FeatureFlagId` property from feature flag telemetry. [#655](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/655)
