@@ -22,6 +22,7 @@
 ### Other Changes
 * Removed the `FeatureFlagId` property from feature flag telemetry. [#655](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/655)
 * Shortened default network timeout for requests to App Configuration to improve failover speed and retry responsiveness. [#657](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/657)
+* This is the first stable release of `AllocationId` from feature flag telemetry metadata, which was introduced in 8.1.0-preview. [#600](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/600)
 
 ## 8.1.2 - April 22nd, 2025
 ### Bug Fixes
