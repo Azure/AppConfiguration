@@ -1,7 +1,7 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
-## 8.2.0 - May 9th, 2025
+## 8.2.0 - May 14th, 2025
 ### Enhancements
 * Updated the existing `Select` APIs with the new parameter `tagFilters` to support filtering key-values and feature flags by tags.
 
