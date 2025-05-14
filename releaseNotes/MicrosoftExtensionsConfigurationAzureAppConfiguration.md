@@ -12,7 +12,7 @@
    ```cs
    public FeatureFlagOptions Select(string featureFlagFilter, string labelFilter = LabelFilter.Null, IEnumerable<string> tagFilters = null)
    ```
-* Added an `ActivitySource` called `Microsoft.Extensions.Configuration.AzureAppConfiguration` to support instrumentation. A `Load` activity will start when configuration is initially built and the `Refresh` activity will start when when a refresh is triggered. [#645](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/645)
+* Added an `ActivitySource` called `Microsoft.Extensions.Configuration.AzureAppConfiguration` to support instrumentation. A `Load` activity will start when configuration is initially built and the `Refresh` activity will start when a refresh is triggered. [#645](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/645)
 * This is the first stable release of the `AzureAppConfigurationOptions.SetClientFactory` API introduced in 8.2.0-preview. [#380](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/380)
 
    ```cs
