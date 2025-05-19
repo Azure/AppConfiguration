@@ -62,9 +62,7 @@ public class ConfigureTenantSettings : IConfigureOptions<TenantSettings>
             
             //
             // Initialize from config section by TenantId
-            _configuration
-                  .GetSection(tenantId)
-                  .Bind(options);
+            _configuration.GetSection(tenantId).Bind(options);
         }
 }
 ```
