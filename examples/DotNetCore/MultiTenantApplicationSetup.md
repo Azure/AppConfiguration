@@ -82,8 +82,7 @@ public class MyController : Controller
 {
         private readonly IOptionsSnapshot<TenantSettings> _tenantSettings;
 
-        public MyController(
-            IOptionsSnapshot<TenantSettings> tenantSettings)
+        public MyController(IOptionsSnapshot<TenantSettings> tenantSettings)
         {
             _tenantSettings = tenantSettings;
         }
