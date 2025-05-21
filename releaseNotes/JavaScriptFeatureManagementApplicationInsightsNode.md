@@ -2,6 +2,15 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.1.0 - May 20, 2025
+
+### Enhancements
+
+* Updated `@microsoft/feature-management` dependency to `2.1.0`.
+
+* Stablized `createTargetingTelemetryProcessor` function to enable targeting id to be attached to Application Insights telemetry. [#98](https://github.com/microsoft/FeatureManagement-JavaScript/pull/98) 
+
+
 ## 2.1.0-preview.1 - April 22, 2025
 
 * Updated `@microsoft/feature-management` dependency to `2.1.0-preview.1`. See the [release notes](./JavaScriptFeatureManagement.md) for more information on the changes.
