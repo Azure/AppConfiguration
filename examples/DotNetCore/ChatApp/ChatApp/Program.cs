@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using OpenAI.Chat;
 
 TokenCredential credential = new DefaultAzureCredential();
-IConfigurationRefresher _refresher = null;
+IConfigurationRefresher refresher = null;
 
 // Load configuration from Azure App Configuration
 IConfiguration configuration = new ConfigurationBuilder()
@@ -28,7 +28,7 @@ IConfiguration configuration = new ConfigurationBuilder()
                    refreshOptions.RegisterAll();
                });
 
-        _refresher = options.GetRefresher();
+        refresher = options.GetRefresher();
     })
     .Build();
 
@@ -43,7 +43,7 @@ ChatClient chatClient = azureClient.GetChatClient(deploymentName);
 while (true)
 {
     // Refresh the configuration from Azure App Configuration
-    await _refresher.TryRefreshAsync();
+    await refresher.TryRefreshAsync();
 
     // Configure chat completion with AI configuration
     var modelConfiguration = configuration.GetSection("ChatApp:Model").Get<ModelConfiguration>();
