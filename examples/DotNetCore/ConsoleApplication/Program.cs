@@ -1,93 +1,66 @@
-﻿namespace Microsoft.Extensions.Configuration.AzureAppConfiguration.Examples.ConsoleApplication
+﻿using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+
+// Setup configuration builder
+var builder = new ConfigurationBuilder();
+
+// Load base configuration from appsettings.json and environment variables
+builder.AddJsonFile("appsettings.json")
+       .AddEnvironmentVariables();
+
+// Build initial configuration
+var initialConfig = builder.Build();
+
+// Check for App Configuration endpoint
+string? endpoint = initialConfig["AppConfigEndpoint"];
+if (string.IsNullOrEmpty(endpoint))
 {
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-    using System;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
+    Console.WriteLine("App Configuration endpoint not found.");
+    Console.WriteLine("Please set the 'AppConfigEndpoint' environment variable to a valid Azure App Configuration endpoint URL and re-run this example.");
+    return 1;
+}
 
-    class Program
-    {
-        static IConfiguration Configuration { get; set; }
-        static IConfigurationRefresher _refresher;
+// Connect to Azure App Configuration
+IConfigurationRefresher refresher = null!;
+builder.AddAzureAppConfiguration(options =>
+{
+    // Use DefaultAzureCredential for Microsoft Entra ID authentication
+    options.Connect(new Uri(endpoint), new DefaultAzureCredential())
+           // Load all keys that start with "Settings:" and have no label.
+           .Select("Settings:*")
+           .TrimKeyPrefix("Settings:")
+           .ConfigureRefresh(refreshOptions =>
+           {
+               // Reload configuration if any selected key-values have changed.
+               refreshOptions.RegisterAll()
+                             .SetRefreshInterval(TimeSpan.FromSeconds(10));
+           });
 
-        static void Main(string[] args)
-        {
-            Configure();
+    // Get an instance of the refresher that can be used to refresh data
+    refresher = options.GetRefresher();
+});
 
-            var cts = new CancellationTokenSource();
-            _ = Run(cts.Token);
+// Build the final configuration
+IConfiguration configuration = builder.Build();
 
-            // Finish on key press
-            Console.ReadKey();
-            cts.Cancel();
-        }
+// Application main loop
+while (true)
+{
+    // Trigger and wait for an async refresh for configuration settings
+    await refresher.TryRefreshAsync();
 
-        private static void Configure()
-        {
-            var builder = new ConfigurationBuilder();
+    Console.Clear();
+        
+    Console.WriteLine($"{configuration["AppName"]} has been configured to run in {configuration["Language"]}");
+    Console.WriteLine();
 
-            // Load a subset of the application's configuration from a json file and environment variables
-            builder.AddJsonFile("appsettings.json")
-                   .AddEnvironmentVariables();
+    Console.WriteLine(string.Equals(configuration["Language"], "Spanish", StringComparison.OrdinalIgnoreCase)
+        ? "Buenos Dias."
+        : "Good morning");
+    Console.WriteLine();
+        
+    Console.WriteLine("Press CTRL+C to exit...");
 
-            IConfiguration configuration = builder.Build();
-
-            if (string.IsNullOrEmpty(configuration["ConnectionString"]))
-            {
-                Console.WriteLine("Connection string not found.");
-                Console.WriteLine("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
-                return;
-            }
-
-            // Augment the configuration builder with Azure App Configuration
-            // Pull the connection string from an environment variable
-            builder.AddAzureAppConfiguration(options =>
-            {
-                options.Connect(configuration["ConnectionString"])
-                       .Select("*")
-                       .ConfigureRefresh(refresh =>
-                       {
-                           refresh.Register("AppName")
-                                  .Register("Language", refreshAll: true)
-                                  .SetCacheExpiration(TimeSpan.FromSeconds(10));
-                       });
-
-                // Get an instance of the refresher that can be used to refresh data
-                _refresher = options.GetRefresher();
-            });
-
-            Configuration = builder.Build();
-        }
-
-        private static async Task Run(CancellationToken token)
-        {
-            string display = string.Empty;
-            StringBuilder sb = new StringBuilder();
-
-            do
-            {
-                sb.Clear();
-
-                // Trigger and wait for an async refresh for registered configuration settings
-                await _refresher.TryRefreshAsync();
-
-                sb.AppendLine($"{Configuration["AppName"]} has been configured to run in {Configuration["Language"]}");
-                sb.AppendLine();
-
-                sb.AppendLine(string.Equals(Configuration["Language"], "spanish", StringComparison.OrdinalIgnoreCase) ? "Buenos Dias." : "Good morning");
-                sb.AppendLine();
-
-                sb.AppendLine("Press any key to exit...");
-
-                display = sb.ToString();
-
-                Console.Clear();
-                Console.Write(display);
-                
-                await Task.Delay(1000);                
-            } while (!token.IsCancellationRequested);
-        }
-    }
+    await Task.Delay(10000);
 }
