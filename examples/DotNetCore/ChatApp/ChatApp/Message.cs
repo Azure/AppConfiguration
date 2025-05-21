@@ -1,13 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
+using Microsoft.Extensions.Configuration;
 
 namespace ChatApp
 {
     internal class Message
     {
         [ConfigurationKeyName("role")]
-        public string Role { get; set; }
+        public required string Role { get; set; }
 
         [ConfigurationKeyName("content")]
-        public string Content { get; set; }
+        public string? Content { get; set; }
     }
 }

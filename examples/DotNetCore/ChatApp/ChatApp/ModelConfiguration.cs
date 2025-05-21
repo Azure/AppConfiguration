@@ -1,15 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
-using OpenAI.Chat;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
+using Microsoft.Extensions.Configuration;
 
 namespace ChatApp
 {
     internal class ModelConfiguration
     {
         [ConfigurationKeyName("model")]
-        public string Model { get; set; }
+        public string? Model { get; set; }
 
         [ConfigurationKeyName("messages")]
-        public List<Message> Messages { get; set; }
+        public List<Message>? Messages { get; set; }
 
         [ConfigurationKeyName("max_tokens")]
         public int MaxTokens { get; set; }
@@ -19,14 +21,5 @@ namespace ChatApp
 
         [ConfigurationKeyName("top_p")]
         public float TopP { get; set; }
-
-        public IEnumerable<ChatMessage> ChatMessages =>
-            Messages.Select<Message, ChatMessage>(message => message.Role switch
-            {
-                "system" => ChatMessage.CreateSystemMessage(message.Content),
-                "user" => ChatMessage.CreateUserMessage(message.Content),
-                "assistant" => ChatMessage.CreateAssistantMessage(message.Content),
-                _ => throw new ArgumentException($"Unknown role: {message.Role}", nameof(message.Role))
-            });
     }
 }
