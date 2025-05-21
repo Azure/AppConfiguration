@@ -2,6 +2,10 @@
 
 ## .NET Samples
 
+### [AI Chat App](./DotNetCore/ChatApp)
+
+This example showcases a .NET console application that retrieves chat responses from Azure OpenAI. It demonstrates how to configure chat completion using AI Configuration from Azure App Configuration, enabling rapid prompt iteration and frequent tuning of model parameters—without requiring application restarts, rebuilds, or redeployments.
+
 ### [Azure Functions (Isolated worker model)](./DotNetCore/AzureFunctions/FunctionAppIsolated)
 
 This example showcases a .NET isolated worker model Function App, which operates out-of-process in Azure Functions. It demonstrates how to enable dynamic configuration and utilize feature flags from App Configuration. Additionally, it illustrates how to leverage the App Configuration references feature in Azure Functions to manage trigger parameters within App Configuration.
