@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.1.0 - May 22, 2025
+
+### Enhancements
+
+* Added `DefaultWhenEnabled` and `VariantAssignmentPercentage` fields to the `FeatureEvaluation` event. [#495](https://github.com/microsoft/FeatureManagement-Dotnet/pull/495)
+
 ## 4.0.0 - November 1, 2024
 
 ### Enhancements
