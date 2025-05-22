@@ -1,14 +1,13 @@
 # Azure App Configuration - Python ChatApp Sample
 
-This sample demonstrates using Azure App Configuration to configure Azure OpenAI settings for a chat application built with Python and Flask.
+This sample demonstrates using Azure App Configuration to configure Azure OpenAI settings for a chat application built with Python.
 
 ## Features
 
-- Built with Python and Flask
+- Built with Python
 - Uses azure-appconfiguration-provider for configuration management
 - Integrates with Azure OpenAI for chat completions
 - Dynamically refreshes configuration from Azure App Configuration
-- Supports both web interface and console-like views
 
 ## Prerequisites
 
@@ -49,18 +48,13 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
 
 ## Running the Application
 
-Start the Flask application:
+Start the console application:
 ```bash
 python app.py
 ```
 
-The application will be available at http://localhost:5000/
-
-## Views
-
-- **Chat Interface** (/) - A web interface for chatting with the AI
-- **Console Mode** (/console) - A view that mimics the .NET Core console application experience
+The application will display the configured messages and the AI's response. Press Enter to continue and refresh the configuration from Azure App Configuration.
 
 ## Configuration Refresh
 
-The application refreshes the configuration on each request, so any changes made in Azure App Configuration will be reflected immediately in the app.
+The application refreshes the configuration on each loop iteration, so any changes made in Azure App Configuration will be reflected in the next response after you press Enter.
