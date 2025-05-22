@@ -20,23 +20,18 @@ credential = DefaultAzureCredential()
 chat_app_selector = SettingSelector(key_filter="ChatApp:*")
 
 # Load configuration from Azure App Configuration
-def callback():
-    """Callback function for configuration refresh"""
-    print("Configuration refreshed successfully")
-
 global config
 config = load(
     endpoint=ENDPOINT,
     selects=[chat_app_selector],
     credential=credential,
-    keyvault_credential=credential,
-    on_refresh_success=callback,
+    trim_prefixes=["ChatApp:"],
 )
 
 # Get OpenAI configuration
 def get_openai_client():
     """Create and return an Azure OpenAI client"""
-    endpoint = config.get("ChatApp:AzureOpenAI:Endpoint")
+    endpoint = config.get("AzureOpenAI:Endpoint")
     api_key = os.environ.get("AZURE_OPENAI_API_KEY") # Using environment variable for API key
     
     # For DefaultAzureCredential auth
@@ -59,16 +54,16 @@ def get_model_configuration():
     model_config = {}
     
     # Extract model configuration from config
-    prefix = "ChatApp:Model:"
+    model_prefix = "Model:"
     for key in config:
-        if key.startswith(prefix):
+        if key.startswith(model_prefix):
             # Get the part of the key after the prefix
-            config_key = key[len(prefix):].lower()
+            config_key = key[len(model_prefix):].lower()
             model_config[config_key] = config[key]
     
     # Handle messages specially (they're nested)
     messages = []
-    messages_prefix = "ChatApp:Model:messages:"
+    messages_prefix = "Model:messages:"
     
     # Group message configs by index
     message_configs = {}
@@ -100,7 +95,7 @@ def main():
     client = get_openai_client()
     
     # Get deployment name
-    deployment_name = config.get("ChatApp:AzureOpenAI:DeploymentName")
+    deployment_name = config.get("AzureOpenAI:DeploymentName")
     
     while True:
         # Refresh configuration from Azure App Configuration
@@ -131,9 +126,12 @@ def main():
         # Display the response
         print(f"AI response: {assistant_message}")
         
-        # Wait for user to continue
-        print("Press Enter to continue...")
-        input()
+        # Wait for user to continue or exit
+        print("Press Enter to continue or 'exit' to quit...")
+        user_input = input().strip().lower()
+        if user_input == 'exit':
+            print("Exiting application...")
+            break
 
 if __name__ == '__main__':
     main()
