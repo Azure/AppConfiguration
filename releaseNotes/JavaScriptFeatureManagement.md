@@ -4,6 +4,12 @@
 
 ## 2.1.0 - May 20, 2025
 
+### Enhancements
+
+* Stablized the targeting context accessor. You can configure an `ITargetingContextAccessor` when initializing the `FeatureManager` through `FeatureManagerOptions.targetingContextAccessor`. [#93](https://github.com/microsoft/FeatureManagement-JavaScript/pull/93)
+
+* Stablized the feature evaluation event properties. The shape of the object returned by `createFeatureEvaluationEventProperties` contains the following fields:  `"Version"`, `"FeatureName"`, `"Enabled"`, `"TargetingId"`,  `"Variant`", `"VariantAssignmentReason"`, `"DefaultWhenEnabled"` and `"VariantAssignmentPercentage"`.
+
 ## 2.1.0-preview.1 - April 22, 2025
 
 ### Enhancements
