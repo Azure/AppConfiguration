@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
+using System;
 using Azure.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;

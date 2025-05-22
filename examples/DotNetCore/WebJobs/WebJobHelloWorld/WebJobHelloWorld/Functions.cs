@@ -1,4 +1,7 @@
-﻿using Microsoft.Azure.WebJobs;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
 namespace WebJobHelloWorld;
