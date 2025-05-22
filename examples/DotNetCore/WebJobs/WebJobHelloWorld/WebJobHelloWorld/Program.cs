@@ -1,4 +1,5 @@
 ﻿using System;
+using Azure.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
@@ -33,18 +34,21 @@ class Program
     {
         //
         // This application attempts to connect to Azure App Configuration to retrieve Azure Blob Storage name, and Queue Name for the Azure Web Job.
-        // It reads the ConnectionString for the App Configuration Service from environment variables.
+        // It reads the Endpoint URI for the App Configuration Service from environment variables.
         configBuilder.AddEnvironmentVariables();
 
         var config = configBuilder.Build();
-        if (string.IsNullOrEmpty(config["ConnectionString"]))
+        if (string.IsNullOrEmpty(config["AppConfigEndpoint"]))
         {
-            throw new ArgumentNullException("Please set the 'ConnectionString' environment variable to a valid Azure App Configuration connection string and re-run this example.");
+            throw new ArgumentNullException("Please set the 'AppConfigEndpoint' environment variable to a valid Azure App Configuration endpoint URI and re-run this example.");
         }
 
         configBuilder.AddAzureAppConfiguration(options =>
         {
-            options.Connect(config["ConnectionString"])
+            var endpoint = config["AppConfigEndpoint"] ?? 
+                throw new ArgumentNullException("AppConfigEndpoint", "The AppConfigEndpoint environment variable cannot be null or empty.");
+            
+            options.Connect(new Uri(endpoint), new DefaultAzureCredential())
                 .Select("WebJob:*")
                 .TrimKeyPrefix("WebJob:");
         });
