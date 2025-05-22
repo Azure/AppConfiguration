@@ -38,15 +38,15 @@ class Program
         configBuilder.AddEnvironmentVariables();
 
         var config = configBuilder.Build();
-        if (string.IsNullOrEmpty(config["AppConfigEndpoint"]))
+        if (string.IsNullOrEmpty(config["AppConfigurationEndpoint"]))
         {
-            throw new ArgumentNullException("Please set the 'AppConfigEndpoint' environment variable to a valid Azure App Configuration endpoint URI and re-run this example.");
+            throw new ArgumentNullException("Please set the 'AppConfigurationEndpoint' environment variable to a valid Azure App Configuration endpoint URI and re-run this example.");
         }
 
         configBuilder.AddAzureAppConfiguration(options =>
         {
-            var endpoint = config["AppConfigEndpoint"] ?? 
-                throw new ArgumentNullException("AppConfigEndpoint", "The AppConfigEndpoint environment variable cannot be null or empty.");
+            var endpoint = config["AppConfigurationEndpoint"] ?? 
+                throw new ArgumentNullException("AppConfigurationEndpoint", "The AppConfigurationEndpoint environment variable cannot be null or empty.");
             
             options.Connect(new Uri(endpoint), new DefaultAzureCredential())
                 .Select("WebJob:*")

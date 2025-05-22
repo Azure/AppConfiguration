@@ -15,14 +15,14 @@ This sample WebJob connects to Azure App Configuration using DefaultAzureCredent
 
 ## Getting Started
 
-1. Set the environment variable `AppConfigEndpoint` to your Azure App Configuration endpoint URI:
+1. Set the environment variable `AppConfigurationEndpoint` to your Azure App Configuration endpoint URI:
 
    ```bash
    # Windows
-   set AppConfigEndpoint=https://<your-appconfig-name>.azconfig.io
+   set AppConfigurationEndpoint=https://<your-appconfig-name>.azconfig.io
    
    # Linux/macOS
-   export AppConfigEndpoint=https://<your-appconfig-name>.azconfig.io
+   export AppConfigurationEndpoint=https://<your-appconfig-name>.azconfig.io
    ```
 
 2. Make sure you have the following configuration values set in your Azure App Configuration instance:
