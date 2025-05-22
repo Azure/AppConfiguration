@@ -13,11 +13,11 @@ builder.AddJsonFile("appsettings.json")
 var initialConfig = builder.Build();
 
 // Check for App Configuration endpoint
-string? endpoint = initialConfig["AppConfigEndpoint"];
+string? endpoint = initialConfig["AppConfigurationEndpoint"];
 if (string.IsNullOrEmpty(endpoint))
 {
     Console.WriteLine("App Configuration endpoint not found.");
-    Console.WriteLine("Please set the 'AppConfigEndpoint' environment variable to a valid Azure App Configuration endpoint URL and re-run this example.");
+    Console.WriteLine("Please set the 'AppConfigurationEndpoint' environment variable to a valid Azure App Configuration endpoint URL and re-run this example.");
     return 1;
 }
 
@@ -33,8 +33,8 @@ builder.AddAzureAppConfiguration(options =>
            .ConfigureRefresh(refreshOptions =>
            {
                // Reload configuration if any selected key-values have changed.
-               refreshOptions.RegisterAll()
-                             .SetRefreshInterval(TimeSpan.FromSeconds(10));
+               // Use the default refresh interval of 30 seconds. It can be overridden via refreshOptions.SetRefreshInterval.
+               refreshOptions.RegisterAll();
            });
 
     // Get an instance of the refresher that can be used to refresh data
