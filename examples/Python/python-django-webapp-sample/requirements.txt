@@ -1,5 +1,5 @@
-Django==4.2.21
+Django~=4.2.21
 whitenoise==6.4.0
-azure-appconfiguration-provider==1.3.0
+azure-appconfiguration-provider~=2.1.0
 azure-identity==1.16.1
-featuremanagement==1.0.0
+featuremanagement~=2.1.0
