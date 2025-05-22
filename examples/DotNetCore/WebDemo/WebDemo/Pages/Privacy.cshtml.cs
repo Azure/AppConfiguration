@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebDemo.Pages

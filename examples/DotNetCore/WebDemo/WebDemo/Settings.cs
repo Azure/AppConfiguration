@@ -1,4 +1,7 @@
-﻿namespace WebDemo
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
+namespace WebDemo
 {
     public class Settings
     {

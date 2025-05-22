@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
 using Azure.Identity;
 using Microsoft.FeatureManagement;
 using WebDemo;
