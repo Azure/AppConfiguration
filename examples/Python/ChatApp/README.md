@@ -15,7 +15,7 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
   - Azure OpenAI service
 - Required environment variables:
   - `AZURE_APPCONFIG_ENDPOINT`: URL of your Azure App Configuration instance
-  - `AZURE_OPENAI_API_KEY`: API key for Azure OpenAI (optional if using Azure App Configuration or DefaultAzureCredential)
+  - `AZURE_OPENAI_API_KEY`: API key for Azure OpenAI (optional if stored in Azure App Configuration)
 
 ## Setup
 
@@ -36,12 +36,32 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
      - temperature - Temperature parameter (e.g., 0.7)
      - top_p - Top p parameter (e.g., 0.95)
      - messages - An array of messages with role and content for each message
+
+   Example JSON object for ChatApp:Model:
+   ```json
+   {
+     "model": "gpt-35-turbo",
+     "max_tokens": 1000,
+     "temperature": 0.7,
+     "top_p": 0.95,
+     "messages": [
+       {
+         "role": "system",
+         "content": "You are a helpful assistant."
+       },
+       {
+         "role": "user",
+         "content": "Tell me about Azure App Configuration."
+       }
+     ]
+   }
+   ```
    ```
 
 4. Set the required environment variables:
    ```bash
    export AZURE_APPCONFIG_ENDPOINT="https://your-appconfig.azconfig.io"
-   export AZURE_OPENAI_API_KEY="your-openai-api-key"  # Optional if using App Configuration or DefaultAzureCredential
+   export AZURE_OPENAI_API_KEY="your-openai-api-key"  # Optional if stored in Azure App Configuration
    ```
 
 ## Running the Application
