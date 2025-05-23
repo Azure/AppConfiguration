@@ -2,6 +2,16 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.1.0 - May 22, 2025
+
+### Enhancements
+
+* Updated `Microsoft.FeatureManagement` reference to `4.1.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
+### Bug Fix
+
+* Fixed a bug that caused duplicated dimension in Application Insights telemetry. [#542](https://github.com/microsoft/FeatureManagement-Dotnet/pull/542)
+
 ## 4.0.0 - November 1, 2024
 
 ### Enhancements
