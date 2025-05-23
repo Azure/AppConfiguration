@@ -26,7 +26,7 @@ config = load(
     endpoint=ENDPOINT,
     selects=[chat_app_selector],
     credential=credential,
-    key_vault_credential=credential,  # Use the same credential for Key Vault references
+    keyvault_credential=credential,  # Use the same credential for Key Vault references
     trim_prefixes=["ChatApp:"],
 )
 
