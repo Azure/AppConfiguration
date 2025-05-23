@@ -85,12 +85,13 @@ def get_openai_client():
     """Create and return an Azure OpenAI client"""
     endpoint = config.get("AzureOpenAI:Endpoint")
     api_key = os.environ.get("AZURE_OPENAI_API_KEY") # Using environment variable for API key
+    api_version = config.get("AzureOpenAI:ApiVersion", "2023-05-15")  # Read API version from config or use default
     
     # For DefaultAzureCredential auth
     if not api_key:
         return AzureOpenAI(
             azure_endpoint=endpoint, 
-            api_version="2023-05-15",
+            api_version=api_version,
             azure_ad_token_provider=credential
         )
     
@@ -98,7 +99,7 @@ def get_openai_client():
     return AzureOpenAI(
         azure_endpoint=endpoint,
         api_key=api_key,
-        api_version="2023-05-15"
+        api_version=api_version
     )
 
 def get_chat_messages(model_config):

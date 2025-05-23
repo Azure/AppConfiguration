@@ -28,6 +28,7 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
    ```
    ChatApp:AzureOpenAI:Endpoint - Your Azure OpenAI endpoint URL
    ChatApp:AzureOpenAI:DeploymentName - Your Azure OpenAI deployment name
+   ChatApp:AzureOpenAI:ApiVersion - API version for Azure OpenAI (e.g., "2023-05-15")
    ChatApp:Model - An AI configuration entry containing the following settings:
      - model - Model name (e.g., "gpt-35-turbo")
      - max_tokens - Maximum tokens for completion (e.g., 1000)
