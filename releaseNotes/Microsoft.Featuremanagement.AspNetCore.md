@@ -10,7 +10,7 @@
 
 ### Bug Fix
 
-* Fixed a bug caused duplicated dimensions in Application Insights telemetry. [#542](https://github.com/microsoft/FeatureManagement-Dotnet/pull/542)
+* Fixed a bug that caused duplicated dimensions in Application Insights telemetry. [#542](https://github.com/microsoft/FeatureManagement-Dotnet/pull/542)
 
 ## 4.0.0 - November 1, 2024
 
