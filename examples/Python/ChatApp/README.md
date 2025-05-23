@@ -71,8 +71,12 @@ Start the console application:
 python app.py
 ```
 
-The application will display the configured messages and the AI's response. Press Enter to continue and refresh the configuration from Azure App Configuration.
+The application will:
+1. Display the initial configured messages from Azure App Configuration
+2. Generate a response from the AI
+3. Prompt you to enter your message (type 'exit' to quit)
+4. Maintain conversation history during the session
 
 ## Configuration Refresh
 
-The application refreshes the configuration on each loop iteration, so any changes made in Azure App Configuration will be reflected in the next response after you press Enter.
+The application refreshes the configuration at the beginning of each conversation cycle, so any changes made to the base configuration in Azure App Configuration will be incorporated into the model parameters (temperature, max_tokens, etc.) while maintaining your ongoing conversation history.

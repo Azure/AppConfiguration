@@ -5,8 +5,8 @@ import os
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.appconfiguration.provider import load, SettingSelector
 from openai import AzureOpenAI
-from models import ModelConfiguration
-from typing import TypeVar
+from models import ModelConfiguration, Message
+from typing import TypeVar, List
 
 # Get Azure App Configuration endpoint from environment variable
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
@@ -57,9 +57,9 @@ def get_openai_client():
         api_version=api_version
     )
 
-def get_chat_messages(model_config):
-    """Convert from model configuration messages to OpenAI messages format"""
-    return [{"role": msg.role, "content": msg.content} for msg in model_config.messages]
+def get_chat_messages(messages: List[Message]):
+    """Convert from model Message objects to OpenAI messages format"""
+    return [{"role": msg.role, "content": msg.content} for msg in messages]
 
 def main():
     """Main entry point for the console app"""
@@ -69,19 +69,29 @@ def main():
     # Get deployment name
     deployment_name = config.get("AzureOpenAI:DeploymentName")
     
+    # Initialize conversation history with the configuration messages
+    conversation_history = []
+    first_run = True
+    
+    print("Chat Application - type 'exit' to quit\n")
+    
     while True:
         # Refresh configuration from Azure App Configuration
         config.refresh()
         
         # Get model configuration using data binding
-        model_config = ModelConfiguration.from_dict( config.get("Model"))
+        model_config = ModelConfiguration.from_dict(config.get("Model"))
         
-        # Display messages from configuration
-        for msg in model_config.messages:
-            print(f"{msg.role}: {msg.content}")
+        # On first run, initialize conversation history with configuration messages
+        # and display the initial messages
+        if first_run:
+            conversation_history = model_config.messages.copy()
+            for msg in conversation_history:
+                print(f"{msg.role}: {msg.content}")
+            first_run = False
         
         # Get chat messages for the API
-        messages = get_chat_messages(model_config)
+        messages = get_chat_messages(conversation_history)
         
         # Get response from OpenAI
         response = client.chat.completions.create(
@@ -96,14 +106,22 @@ def main():
         assistant_message = response.choices[0].message.content
         
         # Display the response
-        print(f"AI response: {assistant_message}")
+        print(f"assistant: {assistant_message}")
         
-        # Wait for user to continue or exit
-        print("Press Enter to continue or 'exit' to quit...")
-        user_input = input().strip().lower()
-        if user_input == 'exit':
+        # Add assistant response to conversation history
+        conversation_history.append(Message(role="assistant", content=assistant_message))
+        
+        # Get user input for the next message
+        print("\nuser: ", end="")
+        user_input = input().strip()
+        
+        # Check if user wants to exit
+        if user_input.lower() == 'exit':
             print("Exiting application...")
             break
+        
+        # Add user input to conversation history
+        conversation_history.append(Message(role="user", content=user_input))
 
 if __name__ == '__main__':
     main()
