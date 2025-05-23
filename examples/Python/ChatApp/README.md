@@ -4,8 +4,6 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
 
 ## Features
 
-- Built with Python
-- Uses azure-appconfiguration-provider for configuration management
 - Integrates with Azure OpenAI for chat completions
 - Dynamically refreshes configuration from Azure App Configuration
 
@@ -30,14 +28,12 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
    ```
    ChatApp:AzureOpenAI:Endpoint - Your Azure OpenAI endpoint URL
    ChatApp:AzureOpenAI:DeploymentName - Your Azure OpenAI deployment name
-   ChatApp:Model:model - Model name (e.g., "gpt-35-turbo")
-   ChatApp:Model:max_tokens - Maximum tokens for completion (e.g., 1000)
-   ChatApp:Model:temperature - Temperature parameter (e.g., 0.7)
-   ChatApp:Model:top_p - Top p parameter (e.g., 0.95)
-   ChatApp:Model:messages:0:role - Role for message 0 (e.g., "system")
-   ChatApp:Model:messages:0:content - Content for message 0
-   ChatApp:Model:messages:1:role - Role for message 1 (e.g., "user")
-   ChatApp:Model:messages:1:content - Content for message 1
+   ChatApp:Model - An AI configuration entry containing the following settings:
+     - model - Model name (e.g., "gpt-35-turbo")
+     - max_tokens - Maximum tokens for completion (e.g., 1000)
+     - temperature - Temperature parameter (e.g., 0.7)
+     - top_p - Top p parameter (e.g., 0.95)
+     - messages - An array of messages with role and content for each message
    ```
 
 4. Set the required environment variables:
