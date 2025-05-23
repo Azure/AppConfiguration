@@ -7,8 +7,7 @@ from azure.identity import DefaultAzureCredential
 from azure.appconfiguration.provider import load, SettingSelector
 from openai import AzureOpenAI
 from models import ModelConfiguration, Message
-from pydantic import create_model
-from typing import Dict, List, Any, Optional, Type, TypeVar, cast, get_type_hints
+from typing import Dict, List, Any, Optional, Type, TypeVar
 
 # Get Azure App Configuration endpoint from environment variable
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
@@ -34,17 +33,16 @@ T = TypeVar('T')
 
 def bind_config_section(section_prefix: str, model_class: Type[T]) -> T:
     """
-    Bind configuration values to a Pydantic model.
+    Bind configuration values to a model class.
     
     Args:
         section_prefix: The prefix for the configuration section (without trailing colon)
-        model_class: The Pydantic model class to bind to
+        model_class: The model class to bind to
         
     Returns:
         An instance of the model class with values from configuration
     """
     config_data: Dict[str, Any] = {}
-    type_hints = get_type_hints(model_class)
     
     # Extract all keys for this section
     for key in config:
@@ -56,30 +54,31 @@ def bind_config_section(section_prefix: str, model_class: Type[T]) -> T:
                 config_data['value'] = config[key]
     
     # Handle nested structures like messages
-    if 'messages' in type_hints:
-        messages = []
-        messages_prefix = f"{section_prefix}:messages:"
-        
-        # Group message configs by index
-        message_configs: Dict[str, Dict[str, Any]] = {}
-        for key in config:
-            if key.startswith(messages_prefix):
-                # Extract the index and property (e.g., "0:role" -> ("0", "role"))
-                parts = key[len(messages_prefix):].split(':')
-                if len(parts) == 2:
-                    index, prop = parts
-                    if index not in message_configs:
-                        message_configs[index] = {}
-                    message_configs[index][prop.lower()] = config[key]
-        
-        # Create message list in the right order
-        for index in sorted(message_configs.keys()):
-            messages.append(Message(**message_configs[index]))
-        
+    messages = []
+    messages_prefix = f"{section_prefix}:messages:"
+    
+    # Group message configs by index
+    message_configs: Dict[str, Dict[str, Any]] = {}
+    for key in config:
+        if key.startswith(messages_prefix):
+            # Extract the index and property (e.g., "0:role" -> ("0", "role"))
+            parts = key[len(messages_prefix):].split(':')
+            if len(parts) == 2:
+                index, prop = parts
+                if index not in message_configs:
+                    message_configs[index] = {}
+                message_configs[index][prop.lower()] = config[key]
+    
+    # Create message list in the right order
+    for index in sorted(message_configs.keys()):
+        messages.append(Message.from_dict(message_configs[index]))
+    
+    # Add messages to config data if we found any
+    if messages:
         config_data['messages'] = messages
     
-    # Create and return the model instance
-    return model_class(**config_data)
+    # Create and return the model instance using from_dict
+    return model_class.from_dict(config_data)
 
 # Get OpenAI configuration
 def get_openai_client():
