@@ -15,7 +15,7 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
   - Azure OpenAI service
 - Required environment variables:
   - `AZURE_APPCONFIG_ENDPOINT`: URL of your Azure App Configuration instance
-  - `AZURE_OPENAI_API_KEY`: API key for Azure OpenAI (optional if using DefaultAzureCredential)
+  - `AZURE_OPENAI_API_KEY`: API key for Azure OpenAI (optional if using Azure App Configuration or DefaultAzureCredential)
 
 ## Setup
 
@@ -29,6 +29,7 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
    ChatApp:AzureOpenAI:Endpoint - Your Azure OpenAI endpoint URL
    ChatApp:AzureOpenAI:DeploymentName - Your Azure OpenAI deployment name
    ChatApp:AzureOpenAI:ApiVersion - API version for Azure OpenAI (e.g., "2023-05-15")
+   ChatApp:AzureOpenAI:ApiKey - Your Azure OpenAI API key (preferably as a Key Vault reference)
    ChatApp:Model - A JSON object with the content type of application/json; profile="https://azconfig.io/mime-profiles/ai/chat-completion" containing the following settings:
      - model - Model name (e.g., "gpt-35-turbo")
      - max_tokens - Maximum tokens for completion (e.g., 1000)
@@ -40,7 +41,7 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
 4. Set the required environment variables:
    ```bash
    export AZURE_APPCONFIG_ENDPOINT="https://your-appconfig.azconfig.io"
-   export AZURE_OPENAI_API_KEY="your-openai-api-key"  # Optional if using DefaultAzureCredential
+   export AZURE_OPENAI_API_KEY="your-openai-api-key"  # Optional if using App Configuration or DefaultAzureCredential
    ```
 
 ## Running the Application

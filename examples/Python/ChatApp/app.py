@@ -84,10 +84,14 @@ def bind_config_section(section_prefix: str, model_class: Type[T]) -> T:
 def get_openai_client():
     """Create and return an Azure OpenAI client"""
     endpoint = config.get("AzureOpenAI:Endpoint")
-    api_key = os.environ.get("AZURE_OPENAI_API_KEY") # Using environment variable for API key
+    # Try to get API key from App Configuration first (could be a Key Vault reference)
+    api_key = config.get("AzureOpenAI:ApiKey")
+    # Fall back to environment variable if not in App Configuration
+    if not api_key:
+        api_key = os.environ.get("AZURE_OPENAI_API_KEY")
     api_version = config.get("AzureOpenAI:ApiVersion", "2023-05-15")  # Read API version from config or use default
     
-    # For DefaultAzureCredential auth
+    # For DefaultAzureCredential auth if no API key is available
     if not api_key:
         return AzureOpenAI(
             azure_endpoint=endpoint, 
