@@ -2,9 +2,21 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.1.0 - May 22, 2025
+
+### Enhancements
+
+* Added snapshot selector which enables the configuration provider to load configuration snapshots. [#140](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/140)
+
+* Added time-based retry mechanism for the `load` function to handle transient failures. By default, the retry timeout is set to 100 seconds, which can be customized via the `AzureAppConfigurationOptions.startupOptions.timeoutInMs` property. [#166](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/166)
+
+* Added support for configuring `SecretClientOptions` used to connect to an Azure Key Vault that has no registered `SecretClient` via the new `AzureAppConfigurationOptions.keyVaultOptions.clientOptions` property. [#194](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/194)
+
+* Added support for resolving Azure Key Vault secrets in parallel by setting the new `parallelSecretResolutionEnabled` property under `AzureAppConfigurationOptions.keyVaultOptions` to true.  [#192](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/192)
+
 ## 2.0.2 - April 22, 2025
 
-- `FeatureFlagId` is no longer added to telemetry metadata of a feature flag with `telemetry` enabled. [#183](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/183)
+* `FeatureFlagId` is no longer added to telemetry metadata of a feature flag with `telemetry` enabled. [#183](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/183)
 
 ## 2.0.1 - February 27, 2025
 
