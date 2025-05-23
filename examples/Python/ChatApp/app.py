@@ -37,9 +37,6 @@ config = load(
     trim_prefixes=["ChatApp:"],
 )
 
-T = TypeVar("T")
-
-
 # Get OpenAI configuration
 def get_openai_client():
     """Create and return an Azure OpenAI client"""
