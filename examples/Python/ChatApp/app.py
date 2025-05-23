@@ -2,12 +2,11 @@
 # Licensed under the MIT license.
 #
 import os
-import time
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.appconfiguration.provider import load, SettingSelector
 from openai import AzureOpenAI
-from models import ModelConfiguration, Message
-from typing import Dict, List, Any, Optional, Type, TypeVar
+from models import ModelConfiguration
+from typing import TypeVar
 
 # Get Azure App Configuration endpoint from environment variable
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
@@ -42,10 +41,13 @@ def get_openai_client():
     
     # For DefaultAzureCredential auth if no API key is available
     if not api_key:
+        token_provider = get_bearer_token_provider(
+            DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+        )
         return AzureOpenAI(
             azure_endpoint=endpoint, 
             api_version=api_version,
-            azure_ad_token_provider=credential
+            azure_ad_token_provider=token_provider
         )
     
     # For API key auth
