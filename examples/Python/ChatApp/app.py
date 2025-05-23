@@ -1,12 +1,19 @@
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT license.
-#
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+"""
+Azure App Configuration Chat Application using Azure OpenAI.
+This module provides a simple chat application that uses configurations from Azure App Configuration
+and connects to Azure OpenAI services for chat completions.
+"""
 import os
+from typing import TypeVar, List
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.appconfiguration.provider import load, SettingSelector
 from openai import AzureOpenAI
 from models import ModelConfiguration, Message
-from typing import TypeVar, List
 
 # Get Azure App Configuration endpoint from environment variable
 ENDPOINT = os.environ.get("AZURE_APPCONFIG_ENDPOINT")
@@ -22,7 +29,6 @@ credential = DefaultAzureCredential()
 chat_app_selector = SettingSelector(key_filter="ChatApp:*")
 
 # Load configuration from Azure App Configuration
-global config
 config = load(
     endpoint=ENDPOINT,
     selects=[chat_app_selector],

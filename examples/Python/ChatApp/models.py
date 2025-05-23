@@ -1,6 +1,13 @@
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT license.
-#
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+"""
+Model classes for Azure OpenAI Chat Application.
+This module provides data classes for representing chat messages and model configurations
+used in the Azure OpenAI-powered chat application.
+"""
 from typing import List, Optional, Dict, Any
 
 
@@ -11,6 +18,7 @@ class Message:
     """
 
     def __init__(self, role: Optional[str] = None, content: Optional[str] = None):
+        """Initialize a Message instance with role and content."""
         self.role = role
         self.content = content
 
@@ -34,6 +42,7 @@ class ModelConfiguration:
         temperature: float = 0.7,
         top_p: float = 0.95,
     ):
+        """Initialize model configuration with parameters for OpenAI API calls."""
         self.model = model
         self.messages = messages or []
         self.max_tokens = int(max_tokens) if max_tokens is not None else 1024
