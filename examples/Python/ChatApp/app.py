@@ -32,55 +32,6 @@ config = load(
 
 T = TypeVar('T')
 
-def bind_config_section(section_prefix: str, model_class: Type[T]) -> T:
-    """
-    Bind configuration values to a model class.
-    
-    Args:
-        section_prefix: The prefix for the configuration section (without trailing colon)
-        model_class: The model class to bind to
-        
-    Returns:
-        An instance of the model class with values from configuration
-    """
-    config_data: Dict[str, Any] = {}
-    
-    # Extract all keys for this section
-    for key in config:
-        if key.startswith(f"{section_prefix}:") or key == section_prefix:
-            config_key = key[len(section_prefix):].strip(':').lower()
-            if config_key:
-                config_data[config_key] = config[key]
-            elif key == section_prefix:  # Handle the case where the key is exactly the prefix
-                config_data['value'] = config[key]
-    
-    # Handle nested structures like messages
-    messages = []
-    messages_prefix = f"{section_prefix}:messages:"
-    
-    # Group message configs by index
-    message_configs: Dict[str, Dict[str, Any]] = {}
-    for key in config:
-        if key.startswith(messages_prefix):
-            # Extract the index and property (e.g., "0:role" -> ("0", "role"))
-            parts = key[len(messages_prefix):].split(':')
-            if len(parts) == 2:
-                index, prop = parts
-                if index not in message_configs:
-                    message_configs[index] = {}
-                message_configs[index][prop.lower()] = config[key]
-    
-    # Create message list in the right order
-    for index in sorted(message_configs.keys()):
-        messages.append(Message.from_dict(message_configs[index]))
-    
-    # Add messages to config data if we found any
-    if messages:
-        config_data['messages'] = messages
-    
-    # Create and return the model instance using from_dict
-    return model_class.from_dict(config_data)
-
 # Get OpenAI configuration
 def get_openai_client():
     """Create and return an Azure OpenAI client"""
@@ -121,7 +72,7 @@ def main():
         config.refresh()
         
         # Get model configuration using data binding
-        model_config = bind_config_section("Model", ModelConfiguration)
+        model_config = ModelConfiguration.from_dict( config.get("Model"))
         
         # Display messages from configuration
         for msg in model_config.messages:
