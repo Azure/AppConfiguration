@@ -15,8 +15,8 @@ The .NET Azure App Configuration Provider delivers configuration settings to the
 
     | Key | Value |
     |---- |-------|
-    | ExampleTenant:Name | Example Tenant, Inc. |
-    | ExampleTenant:Color | Green |
+    | Fabrikam:Name | Fabrikam, Inc. |
+    | Fabrikam:Color | Green |
 
 2. Setup the options pattern by creating the following classes.
 
