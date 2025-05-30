@@ -2,6 +2,13 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## 1.0.0-beta.2 - May 29, 2025
+
+### New Features
+
+* Added support for dynamic configuration so the selected key-values will be automatically updated when data is changed in Azure App Configuration.
+* Added support for periodically resolving Key Vault references to fetch latest version secret.
+
 ## 1.0.0-beta.1 - April 10, 2025
 
 Added support for
