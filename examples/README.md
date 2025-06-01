@@ -14,13 +14,13 @@ This example showcases a .NET isolated worker model Function App, which operates
 
 This example showcases a .NET class library Function App, which runs in-process with the Azure Functions runtime. It demonstrates how to enable dynamic configuration and utilize feature flags from App Configuration. Additionally, it illustrates how to leverage App Configuration for a queue-triggered function, with the trigger settings stored in App Configuration.
 
-### [ConsoleApplication](./DotNetCore/ConsoleApplication)
+### [Console App](./DotNetCore/ConsoleApplication)
 
-This example demonstrates how to enable dynamic configuration from App Configuration in a console app written in .NET Core.
+This example demonstrates how to enable dynamic configuration from App Configuration in a .NET console app using the minimal project template style.
 
-### [WebDemo (.NET 6)](./DotNetCore/WebDemoNet6)
+### [Web App](./DotNetCore/WebDemo)
 
-This example is an ASP.NET Core app, which uses the modernized project template introduced in .NET 6. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
+This example is an ASP.NET Core web app, which uses the minimal project template style. It demonstrates how to enable dynamic configuration and use feature flags from App Configuration.
 
 ### [WebDemoWithEventHub](./DotNetCore/WebDemoWithEventHub/WebDemoWithEventHub)
 
@@ -30,11 +30,11 @@ This ASP.NET Core app demonstrates how to enable dynamic configuration from App 
 
 This example demonstrates how to enable dynamic configuration from App Configuration in a Web Job app written in .NET Core.
 
-### [WebDemo (.NET Framework)](./DotNetFramework/WebDemo)
+### [MVC Web App (.NET Framework)](./DotNetFramework/WebDemo)
 
 This ASP.NET web application is a .NET Framework MVC 5 app. It leverages the [configuration builder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration/) for App Configuration to load configuration to App Settings and consumes from the `ConfigurationManager`. As is the design of the .NET Framework App Settings, the configuration will only be updated upon app restart.
 
-### [WebFormApp (.NET Framework)](./DotNetFramework/WebFormApp)
+### [WebForm App (.NET Framework)](./DotNetFramework/WebFormApp)
 
 This ASP.NET web application is a .NET Framework Web Forms app. It demonstrates how to leverage the App Configuration [.NET Standard provider library](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureAppConfiguration/) to achieve dynamic configuration and control feature launches with feature flags. The same technique applies to .NET Framework MVC apps.
 
