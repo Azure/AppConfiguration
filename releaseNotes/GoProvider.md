@@ -4,10 +4,11 @@
 
 ## 1.0.0-beta.2 - May 29, 2025
 
-### New Features
+### Enhancement
 
-* Added support for dynamic configuration so the selected key-values will be automatically updated when data is changed in Azure App Configuration.
-* Added support for periodically resolving Key Vault references to fetch latest version secret.
+* Added support for sentinel key-based dynamic configuration refresh from Azure App Configuration.
+* Added support for monitoring all selected key-values for dynamic configuration refresh from Azure App Configuration.
+* Added support for periodically resolving Key Vault references to fetch the latest version of secret.
 
 ## 1.0.0-beta.1 - April 10, 2025
 
