@@ -14,6 +14,27 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 5.16.0 - September 09, 2024
+
+### Bug Fixes
+
+* Fix missing "additional-spring-configuration-metadata.json" in spring-cloud-azure-starter-appconfiguration-config. [#41502](https://github.com/Azure/azure-sdk-for-java/pull/41502).
+
+## 5.13.0 - June 06, 2024
+
+### Bug Fixes
+
+* Fixing App Configuration expose the value of key in error message when parsing invalid JSON. [#40132](https://github.com/Azure/azure-sdk-for-java/pull/40132).
+* Remove final from App Configuration refresh endpoints, which caused errors when creating Spring AOP Aspects. [#40452](https://github.com/Azure/azure-sdk-for-java/pull/40452).
+
+## 5.11.0 - March 29, 2024
+
+### Enhancements
+
+* Add telemetry schema [#38933](https://github.com/Azure/azure-sdk-for-java/pull/38933).
+* Added Auto fail over support. Will automatically find Azure App Configuration replica stores for provided store. The found replica stores will be used as fail over stores after all provided replicas have failed [#38534](https://github.com/Azure/azure-sdk-for-java/pull/38534).
+* Added property to disable auto fail over support `spring.cloud.azure.appconfiguration.stores[0].replica-discovery-enabled` [#38534](https://github.com/Azure/azure-sdk-for-java/pull/38534).
+
 ## 5.9.0-beta.1 - January 11, 2024
 
 ### Enhancements
