@@ -12,11 +12,13 @@
 
 ### Bug Fixes
 
-* Support map and list when parse client_filters parameter. [#41298](https://github.com/Azure/azure-sdk-for-java/pull/41298).
+* Fixed support for map and list when parsing client_filters parameter. [#41298](https://github.com/Azure/azure-sdk-for-java/pull/41298).
 
 ## 5.14.0 - July 05, 2024
 
-* Add "Recurrence" parameter for TimeWindowFilter to support config feature flag recur periodically. [#40093](https://github.com/Azure/azure-sdk-for-java/pull/40093).
+### Enhancements
+
+* Added "Recurrence" parameter for TimeWindowFilter to support configuring feature flags to recur periodically. [#40093](https://github.com/Azure/azure-sdk-for-java/pull/40093).
 
 ## 5.9.0-beta.1 - January 11, 2024
 

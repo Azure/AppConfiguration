@@ -18,14 +18,14 @@
 
 ### Bug Fixes
 
-* Fix missing "additional-spring-configuration-metadata.json" in spring-cloud-azure-starter-appconfiguration-config. [#41502](https://github.com/Azure/azure-sdk-for-java/pull/41502).
+* Fixed missing "additional-spring-configuration-metadata.json" in spring-cloud-azure-starter-appconfiguration-config. [#41502](https://github.com/Azure/azure-sdk-for-java/pull/41502).
 
 ## 5.13.0 - June 06, 2024
 
 ### Bug Fixes
 
-* Fixing App Configuration expose the value of key in error message when parsing invalid JSON. [#40132](https://github.com/Azure/azure-sdk-for-java/pull/40132).
-* Remove final from App Configuration refresh endpoints, which caused errors when creating Spring AOP Aspects. [#40452](https://github.com/Azure/azure-sdk-for-java/pull/40452).
+* Fixed a bug where App Configuration exposed the value of key in error message when parsing invalid JSON. [#40132](https://github.com/Azure/azure-sdk-for-java/pull/40132).
+* Fixed a bug where final modifier on App Configuration refresh endpoints caused errors when creating Spring AOP Aspects. [#40452](https://github.com/Azure/azure-sdk-for-java/pull/40452).
 
 ## 5.11.0 - March 29, 2024
 
