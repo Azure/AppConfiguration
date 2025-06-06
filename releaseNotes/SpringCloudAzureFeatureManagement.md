@@ -8,6 +8,18 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 6.0.0-beta.1 - June 04, 2025
+
+### Breaking Changes
+
+* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts.
+
+### Enhancements
+
+* Added support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://learn.microsoft.com/azure/azure-app-configuration/howto-variant-feature-flags).
+* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters.
+* Added built-in Feature Filters that are now created by default if no filters are provided.
+
 ## 5.16.0 - September 09, 2024
 
 ### Bug Fixes
