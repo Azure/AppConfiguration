@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebDemoNet6.Pages
+namespace WebDemo.Pages
 {
     public class PrivacyModel : PageModel
     {

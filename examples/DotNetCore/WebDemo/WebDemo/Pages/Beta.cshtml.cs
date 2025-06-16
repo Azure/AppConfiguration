@@ -1,7 +1,10 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.FeatureManagement.Mvc;
 
-namespace WebDemoNet6.Pages
+namespace WebDemo.Pages
 {
     [FeatureGate("Beta")]
     public class BetaModel : PageModel
