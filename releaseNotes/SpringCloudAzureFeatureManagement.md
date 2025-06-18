@@ -8,6 +8,30 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 6.0.0-beta.1 - June 04, 2025
+
+### Breaking Changes
+
+* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts.
+
+### Enhancements
+
+* Added support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://learn.microsoft.com/azure/azure-app-configuration/howto-variant-feature-flags).
+* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters.
+* Added built-in Feature Filters that are now created by default if no filters are provided.
+
+## 5.16.0 - September 09, 2024
+
+### Bug Fixes
+
+* Fixed support for map and list when parsing client_filters parameter. [#41298](https://github.com/Azure/azure-sdk-for-java/pull/41298).
+
+## 5.14.0 - July 05, 2024
+
+### Enhancements
+
+* Added "Recurrence" parameter for TimeWindowFilter to support configuring feature flags to recur periodically. [#40093](https://github.com/Azure/azure-sdk-for-java/pull/40093).
+
 ## 5.9.0-beta.1 - January 11, 2024
 
 ### Enhancements
