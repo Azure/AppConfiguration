@@ -2,6 +2,18 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.0.0 - June 19, 2025
+
+This is the first stable release of the following features:
+- authentication with connection string or Microsoft EntraID
+- loading and composing configuration with key-value selectors
+- key prefix trimming
+- Key Vault reference resolution
+- strongly-typed struct data binding 
+- returning key-values as raw json bytes
+- dynamic configuration refresh
+- periodically resolving Key Vault references to fetch the latest version of secret
+
 ## 1.0.0-beta.2 - May 29, 2025
 
 ### Enhancement
