@@ -5,7 +5,7 @@
 ## v1.0.0 - June 19, 2025
 
 This is the first stable release of the following features:
-- Authentication with connection string or Microsoft EntraID
+- Authentication with connection string or Microsoft Entra ID
 - Loading and composing configuration with key-value selectors
 - Key prefix trimming
 - Key Vault reference resolution
@@ -25,7 +25,7 @@ This is the first stable release of the following features:
 ## 1.0.0-beta.1 - April 10, 2025
 
 Added support for
-- Authentication with connection string or Microsoft EntraID
+- Authentication with connection string or Microsoft Entra ID
 - Loading and composing configuration with key-value selectors
 - Key prefix trimming
 - Key Vault reference resolution
