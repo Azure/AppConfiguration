@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.2.0 - June 25, 2025
+
+### Enhancements
+
+* Added support for aggregating feature flags from multiple configuration providers, enabling a layered configuration approach. When the same feature flag is defined in multiple sources, definitions are merged according to configuration provider registration order, with the last registered provider's definition taking precedence in case of conflicts. [#536](https://github.com/microsoft/FeatureManagement-Dotnet/pull/536)
+
 ## 4.1.0 - May 22, 2025
 
 ### Enhancements
