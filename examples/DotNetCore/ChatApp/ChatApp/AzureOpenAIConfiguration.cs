@@ -4,7 +4,7 @@
 
 namespace ChatApp
 {
-    internal class OpenAIConfiguration
+    internal class AzureOpenAIConfiguration
     {
         public required string Endpoint { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 //
-using Azure;
+
 using Azure.AI.OpenAI;
 using Azure.Core;
 using Azure.Identity;
@@ -39,19 +39,19 @@ IConfiguration configuration = new ConfigurationBuilder()
     .Build();
 
 // Retrieve the OpenAI connection information from the configuration
-var openAIConfiguration = configuration.GetSection("ChatApp:AzureOpenAI").Get<OpenAIConfiguration>();
+var azureOpenAIConfiguration = configuration.GetSection("ChatApp:AzureOpenAI").Get<AzureOpenAIConfiguration>();
 
 // Create a chat client using API key if available, otherwise use the DefaultAzureCredential
 AzureOpenAIClient azureClient;
-if (!string.IsNullOrEmpty(openAIConfiguration.ApiKey))
+if (!string.IsNullOrEmpty(azureOpenAIConfiguration.ApiKey))
 {
-    azureClient = new AzureOpenAIClient(new Uri(openAIConfiguration.Endpoint), new Azure.AzureKeyCredential(openAIConfiguration.ApiKey));
+    azureClient = new AzureOpenAIClient(new Uri(azureOpenAIConfiguration.Endpoint), new Azure.AzureKeyCredential(azureOpenAIConfiguration.ApiKey));
 }
 else
 {
-    azureClient = new AzureOpenAIClient(new Uri(openAIConfiguration.Endpoint), credential);
+    azureClient = new AzureOpenAIClient(new Uri(azureOpenAIConfiguration.Endpoint), credential);
 }
-ChatClient chatClient = azureClient.GetChatClient(openAIConfiguration.DeploymentName);
+ChatClient chatClient = azureClient.GetChatClient(azureOpenAIConfiguration.DeploymentName);
 
 // Initialize chat conversation
 var chatConversation = new List<ChatMessage>();
@@ -62,12 +62,12 @@ while (true)
     await refresher.TryRefreshAsync();
 
     // Configure chat completion with AI configuration
-    var completionConfiguration = configuration.GetSection("ChatApp:Completion").Get<CompletionConfiguration>();
+    var chatCompletionConfiguration = configuration.GetSection("ChatApp:ChatCompletion").Get<ChatCompletionConfiguration>();
     var requestOptions = new ChatCompletionOptions()
     {
-        MaxOutputTokenCount = completionConfiguration.MaxTokens,
-        Temperature = completionConfiguration.Temperature,
-        TopP = completionConfiguration.TopP
+        MaxOutputTokenCount = chatCompletionConfiguration.MaxTokens,
+        Temperature = chatCompletionConfiguration.Temperature,
+        TopP = chatCompletionConfiguration.TopP
     };
 
     // Get user input
@@ -85,22 +85,22 @@ while (true)
     chatConversation.Add(ChatMessage.CreateUserMessage(userInput));
 
     // Get latest system message from AI configuration
-    var chatMessages = new List<ChatMessage>(GetChatMessages(completionConfiguration));
+    var chatMessages = new List<ChatMessage>(GetChatMessages(chatCompletionConfiguration));
     chatMessages.AddRange(chatConversation);
 
-    // Get AI response and update chat conversation
+    // Get AI response and add it to chat conversation
     var response = await chatClient.CompleteChatAsync(chatMessages, requestOptions);
-    var aiResponse = response.Value.Content[0].Text;
-    System.Console.WriteLine($"AI: {aiResponse}");
+    string aiResponse = response.Value.Content[0].Text;
+    Console.WriteLine($"AI: {aiResponse}");
     chatConversation.Add(ChatMessage.CreateAssistantMessage(aiResponse));
 
     Console.WriteLine();
 }
 
 // Helper method to convert configuration messages to ChatMessage objects
-static IEnumerable<ChatMessage> GetChatMessages(CompletionConfiguration completionConfiguration)
+static IEnumerable<ChatMessage> GetChatMessages(ChatCompletionConfiguration chatCompletionConfiguration)
 {
-    return completionConfiguration.Messages.Select<Message, ChatMessage>(message => message.Role switch
+    return chatCompletionConfiguration.Messages.Select<Message, ChatMessage>(message => message.Role switch
     {
         "system" => ChatMessage.CreateSystemMessage(message.Content),
         "user" => ChatMessage.CreateUserMessage(message.Content),
