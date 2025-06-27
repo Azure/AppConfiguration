@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ChatApp
 {
-    internal class ModelConfiguration
+    internal class ChatCompletionConfiguration
     {
         [ConfigurationKeyName("model")]
         public string? Model { get; set; }

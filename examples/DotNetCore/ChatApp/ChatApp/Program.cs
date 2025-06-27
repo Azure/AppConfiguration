@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 //
+
 using Azure.AI.OpenAI;
 using Azure.Core;
 using Azure.Identity;
@@ -16,8 +17,8 @@ IConfigurationRefresher refresher = null;
 IConfiguration configuration = new ConfigurationBuilder()
     .AddAzureAppConfiguration(options =>
     {
-        Uri endpoint = new(Environment.GetEnvironmentVariable("AZURE_APPCONFIG_ENDPOINT") ??
-            throw new InvalidOperationException("The environment variable 'AZURE_APPCONFIG_ENDPOINT' is not set or is empty."));
+        Uri endpoint = new(Environment.GetEnvironmentVariable("AZURE_APPCONFIGURATION_ENDPOINT") ??
+            throw new InvalidOperationException("The environment variable 'AZURE_APPCONFIGURATION_ENDPOINT' is not set or is empty."));
         options.Connect(endpoint, credential)
                // Load all keys that start with "ChatApp:" and have no label.
                .Select("ChatApp:*")
@@ -26,6 +27,11 @@ IConfiguration configuration = new ConfigurationBuilder()
                .ConfigureRefresh(refreshOptions =>
                {
                    refreshOptions.RegisterAll();
+               })
+               .ConfigureKeyVault(keyVaultOptions =>
+               {
+                   // Use the DefaultAzureCredential to access Key Vault secrets.
+                   keyVaultOptions.SetCredential(credential);
                });
 
         refresher = options.GetRefresher();
@@ -33,43 +39,68 @@ IConfiguration configuration = new ConfigurationBuilder()
     .Build();
 
 // Retrieve the OpenAI connection information from the configuration
-Uri openaiEndpoint = new (configuration["ChatApp:AzureOpenAI:Endpoint"]);
-string deploymentName = configuration["ChatApp:AzureOpenAI:DeploymentName"];
+var azureOpenAIConfiguration = configuration.GetSection("ChatApp:AzureOpenAI").Get<AzureOpenAIConfiguration>();
 
-// Create a chat client
-AzureOpenAIClient azureClient = new(openaiEndpoint, credential);
-ChatClient chatClient = azureClient.GetChatClient(deploymentName);
+// Create a chat client using API key if available, otherwise use the DefaultAzureCredential
+AzureOpenAIClient azureClient;
+if (!string.IsNullOrEmpty(azureOpenAIConfiguration.ApiKey))
+{
+    azureClient = new AzureOpenAIClient(new Uri(azureOpenAIConfiguration.Endpoint), new Azure.AzureKeyCredential(azureOpenAIConfiguration.ApiKey));
+}
+else
+{
+    azureClient = new AzureOpenAIClient(new Uri(azureOpenAIConfiguration.Endpoint), credential);
+}
+ChatClient chatClient = azureClient.GetChatClient(azureOpenAIConfiguration.DeploymentName);
 
+// Initialize chat conversation
+var chatConversation = new List<ChatMessage>();
+Console.WriteLine("Chat started! What's on your mind?");
 while (true)
 {
     // Refresh the configuration from Azure App Configuration
     await refresher.TryRefreshAsync();
 
     // Configure chat completion with AI configuration
-    var modelConfiguration = configuration.GetSection("ChatApp:Model").Get<ModelConfiguration>();
+    var chatCompletionConfiguration = configuration.GetSection("ChatApp:ChatCompletion").Get<ChatCompletionConfiguration>();
     var requestOptions = new ChatCompletionOptions()
     {
-        MaxOutputTokenCount = modelConfiguration.MaxTokens,
-        Temperature = modelConfiguration.Temperature,
-        TopP = modelConfiguration.TopP
+        MaxOutputTokenCount = chatCompletionConfiguration.MaxTokens,
+        Temperature = chatCompletionConfiguration.Temperature,
+        TopP = chatCompletionConfiguration.TopP
     };
 
-    foreach (var message in modelConfiguration.Messages)
+    // Get user input
+    Console.Write("You: ");
+    string? userInput = Console.ReadLine();
+
+    // Exit if user input is empty
+    if (string.IsNullOrEmpty(userInput))
     {
-        Console.WriteLine($"{message.Role}: {message.Content}");
+        Console.WriteLine("Exiting chat. Goodbye!");
+        break;
     }
 
-    // Get chat response from AI
-    var response = await chatClient.CompleteChatAsync(GetChatMessages(modelConfiguration), requestOptions);
-    System.Console.WriteLine($"AI response: {response.Value.Content[0].Text}");
+    // Add user message to chat conversation
+    chatConversation.Add(ChatMessage.CreateUserMessage(userInput));
 
-    Console.WriteLine("Press Enter to continue...");
-    Console.ReadLine();
+    // Get latest system message from AI configuration
+    var chatMessages = new List<ChatMessage>(GetChatMessages(chatCompletionConfiguration));
+    chatMessages.AddRange(chatConversation);
+
+    // Get AI response and add it to chat conversation
+    var response = await chatClient.CompleteChatAsync(chatMessages, requestOptions);
+    string aiResponse = response.Value.Content[0].Text;
+    Console.WriteLine($"AI: {aiResponse}");
+    chatConversation.Add(ChatMessage.CreateAssistantMessage(aiResponse));
+
+    Console.WriteLine();
 }
 
-static IEnumerable<ChatMessage> GetChatMessages(ModelConfiguration modelConfiguration)
+// Helper method to convert configuration messages to ChatMessage objects
+static IEnumerable<ChatMessage> GetChatMessages(ChatCompletionConfiguration chatCompletionConfiguration)
 {
-    return modelConfiguration.Messages.Select<Message, ChatMessage>(message => message.Role switch
+    return chatCompletionConfiguration.Messages.Select<Message, ChatMessage>(message => message.Role switch
     {
         "system" => ChatMessage.CreateSystemMessage(message.Content),
         "user" => ChatMessage.CreateUserMessage(message.Content),
