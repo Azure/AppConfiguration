@@ -29,7 +29,7 @@ Set the following environment variable:
 
 Configure the following keys in your Azure App Configuration:
 
-#### OpenAI Connection Settings
+#### Azure OpenAI Connection Settings
 
 - `ChatApp:AzureOpenAI:Endpoint` - Your Azure OpenAI endpoint URL
 - `ChatApp:AzureOpenAI:DeploymentName` - Your Azure OpenAI deployment name
@@ -37,7 +37,7 @@ Configure the following keys in your Azure App Configuration:
 
 #### Chat Completion Configuration
 
-- `ChatApp:Completion` - An AI Configuration entry containing the following settings:
+- `ChatApp:ChatCompletion` - An AI Configuration for chat completion containing the following settings:
   - `model` - Model name (e.g., "gpt-4o")
   - `max_tokens` - Maximum tokens for completion (e.g., 1000)
   - `temperature` - Temperature parameter (e.g., 0.7)
@@ -74,7 +74,7 @@ Exiting chat. Goodbye!
 
 ## Troubleshooting
 
-**"AZURE_APPCONFIG_ENDPOINT environment variable not set"**
+**"AZURE_APPCONFIGURATION_ENDPOINT environment variable not set"**
 - Ensure the environment variable is properly set
 - Verify the endpoint URL is correct
 
