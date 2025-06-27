@@ -2,6 +2,23 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.3.1 - June 25, 2025
+
+### Enhancements
+
+* Upgraded dependent packages. [#122](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/122)
+
+### Bug Fixes
+
+* Fixed a bug that caused the refreshing doesn't honor the change of sentinel key after controller restart. [#119](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/119)
+
+## 2.3.0 - May 30, 2025
+
+### Enhancements
+
+* Added support for outputting the Secret data in hierarchical format by specifying the new property `spec.secret.target.secretData` if the Secret is consumed as a mounted file. See [here](https://learn.microsoft.com/azure/azure-app-configuration/reference-kubernetes-provider?tabs=default#:~:text=spec.secret.target.secretData) for detail. [#111](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/111)
+* Upgraded dependent packages. [#115](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/115)
+
 ## 2.2.4 - May 13, 2025
 
 ### Enhancements
