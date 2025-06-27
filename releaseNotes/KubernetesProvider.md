@@ -10,13 +10,13 @@
 
 ### Bug Fixes
 
-* Fixed a bug that caused the conditional refresh does not work after controller restart. [#119](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/119)
+* Fixed a bug that caused the refreshing doesn't honor the change of sentinel key after controller restart. [#119](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/119)
 
 ## 2.3.0 - May 30, 2025
 
 ### Enhancements
 
-* Added support for outputting the Secret data in hierarchical format by specifying the new property `secretData.separator`. This feature is useful if you'd like to use the Secret in a manner same as the hierarchical format ConfigMap. [#111](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/111)
+* Added support for outputting the Secret data in hierarchical format by specifying the new property `spec.secret.target.secretData` if the Secret is consumed as a mounted file. See [here](https://learn.microsoft.com/azure/azure-app-configuration/reference-kubernetes-provider?tabs=default#:~:text=spec.secret.target.secretData) for detail. [#111](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/111)
 * Upgraded dependent packages. [#115](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/115)
 
 ## 2.2.4 - May 13, 2025
