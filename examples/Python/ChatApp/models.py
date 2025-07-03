@@ -11,6 +11,26 @@ used in the Azure OpenAI-powered chat application.
 from typing import List, Optional, Dict, Any
 
 
+class AzureOpenAIConfiguration:
+    """
+    Represents the configuration for Azure OpenAI service.
+    Maps to configuration values with keys 'api_key', 'endpoint', and 'deployment_name'.
+    """
+
+    def __init__(
+        self,
+        api_key: str,
+        endpoint: str,
+        deployment_name: Optional[str] = None,
+        api_version: Optional[str] = None,
+    ):
+        """Initialize Azure OpenAI configuration with API key and endpoint."""
+        self.api_key = api_key
+        self.endpoint = endpoint
+        self.deployment_name = deployment_name
+        self.api_version = api_version
+
+
 class Message:
     """
     Represents a chat message with a role and content.
