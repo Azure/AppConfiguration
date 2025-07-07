@@ -132,7 +132,9 @@ def _extract_openai_config(config_data: Dict[str, Any]) -> AzureOpenAIConfigurat
     )
 
 
-def _extract_chat_completion_config(config_data: Dict[str, Any]) -> ChatCompletionConfiguration:
+def _extract_chat_completion_config(
+    config_data: Dict[str, Any],
+) -> ChatCompletionConfiguration:
     """
     Extract chat completion configuration from the configuration data.
 
