@@ -30,25 +30,7 @@ class AzureOpenAIConfiguration:
         self.deployment_name = deployment_name
         self.api_version = api_version
 
-
-class Message:
-    """
-    Represents a chat message with a role and content.
-    Maps to configuration values with keys 'role' and 'content'.
-    """
-
-    def __init__(self, role: Optional[str] = None, content: Optional[str] = None):
-        """Initialize a Message instance with role and content."""
-        self.role = role
-        self.content = content
-
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Message":
-        """Create a Message instance from a dictionary."""
-        return cls(role=data.get("role"), content=data.get("content"))
-
-
-class ModelConfiguration:
+class ChatCompletionConfiguration:
     """
     Represents the configuration for an AI model including messages and parameters.
     Maps to configuration values with keys 'model', 'messages', 'max_tokens', 'temperature', and 'top_p'.
@@ -57,7 +39,7 @@ class ModelConfiguration:
     def __init__(
         self,
         model: Optional[str] = None,
-        messages: Optional[List[Message]] = None,
+        messages: Optional[List[Dict[str, str]]] = None,
         max_tokens: int = 1024,
         temperature: float = 0.7,
         top_p: float = 0.95,
@@ -70,9 +52,9 @@ class ModelConfiguration:
         self.top_p = float(top_p) if top_p is not None else 0.95
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "ModelConfiguration":
-        """Create a ModelConfiguration instance from a dictionary."""
-        messages = [Message.from_dict(msg) for msg in data.get("messages", [])]
+    def from_dict(cls, data: Dict[str, Any]) -> "ChatCompletionConfiguration":
+        """Create a ChatCompletionConfiguration instance from a dictionary."""
+        messages = data.get("messages", [])
 
         return cls(
             model=data.get("model"),

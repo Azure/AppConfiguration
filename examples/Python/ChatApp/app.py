@@ -15,13 +15,12 @@ from azure.core.credentials import TokenCredential
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.appconfiguration.provider import load, SettingSelector, WatchKey
 from openai import AzureOpenAI
-from models import AzureOpenAIConfiguration, Message, ModelConfiguration
+from models import AzureOpenAIConfiguration, ChatCompletionConfiguration
 
 
 def main():
     # Create a credential using DefaultAzureCredential
     credential = DefaultAzureCredential()
-    refresher = None
 
     # Get the App Configuration endpoint from environment variables
     app_config_endpoint = os.environ.get("AZURE_APPCONFIGURATION_ENDPOINT")
@@ -35,15 +34,13 @@ def main():
         azure_client = None
 
         def on_refresh_success():
-            azure_openai_config, azure_client = _create_ai_client(provider)
+            azure_openai_config, azure_client = _create_ai_client(appconfig)
 
-        chat_app_selector = SettingSelector(key_filter="ChatApp:*")
-
-        global provider
+        global appconfig
         # Create the configuration provider with refresh settings
-        provider = load(
+        appconfig = load(
             endpoint=app_config_endpoint,
-            selects=[chat_app_selector],
+            selects=[SettingSelector(key_filter="ChatApp:*")],
             credential=credential,
             keyvault_credential=credential,  # Use the same credential for Key Vault references
             trim_prefixes=["ChatApp:"],
@@ -51,7 +48,7 @@ def main():
             on_refresh_success=on_refresh_success,
         )
 
-        azure_openai_config, azure_client = _create_ai_client(provider, credential)
+        azure_openai_config, azure_client = _create_ai_client(appconfig, credential)
 
         # Initialize chat conversation
         chat_conversation = []
@@ -59,10 +56,10 @@ def main():
 
         while True:
             # Refresh the configuration from Azure App Configuration
-            provider.refresh()
+            appconfig.refresh()
 
             # Configure chat completion with AI configuration
-            chat_completion_config = _extract_chat_completion_config(provider)
+            chat_completion_config = _extract_chat_completion_config(appconfig)
 
             # Get user input
             user_input = input("You: ")
@@ -89,21 +86,18 @@ def main():
             )
 
             ai_response = response.choices[0].message.content
+            chat_conversation.append({"role": "assistant", "content": ai_response})
             print(f"AI: {ai_response}")
 
     except Exception as e:
         print(f"Error: {e}")
-    finally:
-        # Stop the refresher when done
-        if refresher:
-            refresher.stop()
 
 
 def _create_ai_client(
     azure_openai_config: AzureOpenAIConfiguration, credential: TokenCredential = None
 ) -> AzureOpenAI:
     # Extract Azure OpenAI configuration
-    azure_openai_config = _extract_openai_config(provider)
+    azure_openai_config = _extract_openai_config(appconfig)
     # Create an Azure OpenAI client
     if azure_openai_config.api_key:
         return azure_openai_config, AzureOpenAI(
@@ -111,15 +105,15 @@ def _create_ai_client(
             api_key=azure_openai_config.api_key,
             api_version=azure_openai_config.api_version,
         )
-    token_provider = get_bearer_token_provider(
-        credential or DefaultAzureCredential(),
-        "https://cognitiveservices.azure.com/.default",
-    )
-    return azure_openai_config, AzureOpenAI(
-        azure_endpoint=azure_openai_config.endpoint,
-        azure_ad_token_provider=token_provider,
-        api_version=azure_openai_config.api_version,
-    )
+    else:
+        return azure_openai_config, AzureOpenAI(
+            azure_endpoint=azure_openai_config.endpoint,
+            azure_ad_token_provider=get_bearer_token_provider(
+                credential or DefaultAzureCredential(),
+                "https://cognitiveservices.azure.com/.default",
+            ),
+            api_version=azure_openai_config.api_version,
+        )
 
 
 def _extract_openai_config(config_data: Dict[str, Any]) -> AzureOpenAIConfiguration:
@@ -138,28 +132,26 @@ def _extract_openai_config(config_data: Dict[str, Any]) -> AzureOpenAIConfigurat
     )
 
 
-def _extract_chat_completion_config(config_data: Dict[str, Any]) -> ModelConfiguration:
+def _extract_chat_completion_config(config_data: Dict[str, Any]) -> ChatCompletionConfiguration:
     """
     Extract chat completion configuration from the configuration data.
 
     :param config_data: The configuration data from Azure App Configuration
     """
-    prefix = "ChatApp:ChatCompletion:"
+    prefix = "ChatCompletion:"
 
     # Extract messages from configuration
-    messages_data = []
+    messages = []
     for i in range(10):  # Assuming a reasonable maximum of 10 messages
         role_key = f"{prefix}Messages:{i}:Role"
         content_key = f"{prefix}Messages:{i}:Content"
 
         if role_key in config_data and content_key in config_data:
-            messages_data.append(
+            messages.append(
                 {"role": config_data[role_key], "content": config_data[content_key]}
             )
 
-    messages = [Message.from_dict(msg) for msg in messages_data]
-
-    return ModelConfiguration(
+    return ChatCompletionConfiguration(
         model=config_data.get(f"{prefix}Model", ""),
         messages=messages,
         max_tokens=config_data.get(f"{prefix}MaxTokens", 1024),
@@ -169,7 +161,7 @@ def _extract_chat_completion_config(config_data: Dict[str, Any]) -> ModelConfigu
 
 
 def _get_chat_messages(
-    chat_completion_config: ModelConfiguration,
+    chat_completion_config: ChatCompletionConfiguration,
 ) -> List[Dict[str, str]]:
     """
     Convert configuration messages to chat message dictionaries.
