@@ -59,7 +59,7 @@ def main():
             appconfig.refresh()
 
             # Configure chat completion with AI configuration
-            chat_completion_config = _extract_chat_completion_config(appconfig)
+            chat_completion_config = ChatCompletionConfiguration(**appconfig["ChatCompletion"])
 
             # Get user input
             user_input = input("You: ")
@@ -131,37 +131,6 @@ def _extract_openai_config(config_data: Dict[str, Any]) -> AzureOpenAIConfigurat
         api_version=config_data.get(f"{prefix}ApiVersion", "2023-05-15"),
     )
 
-
-def _extract_chat_completion_config(
-    config_data: Dict[str, Any],
-) -> ChatCompletionConfiguration:
-    """
-    Extract chat completion configuration from the configuration data.
-
-    :param config_data: The configuration data from Azure App Configuration
-    """
-    prefix = "ChatCompletion:"
-
-    # Extract messages from configuration
-    messages = []
-    for i in range(10):  # Assuming a reasonable maximum of 10 messages
-        role_key = f"{prefix}Messages:{i}:Role"
-        content_key = f"{prefix}Messages:{i}:Content"
-
-        if role_key in config_data and content_key in config_data:
-            messages.append(
-                {"role": config_data[role_key], "content": config_data[content_key]}
-            )
-
-    return ChatCompletionConfiguration(
-        model=config_data.get(f"{prefix}Model", ""),
-        messages=messages,
-        max_tokens=config_data.get(f"{prefix}MaxTokens", 1024),
-        temperature=config_data.get(f"{prefix}Temperature", 0.7),
-        top_p=config_data.get(f"{prefix}TopP", 0.95),
-    )
-
-
 def _get_chat_messages(
     chat_completion_config: ChatCompletionConfiguration,
 ) -> List[Dict[str, str]]:
@@ -174,8 +143,8 @@ def _get_chat_messages(
     chat_messages = []
 
     for message in chat_completion_config.messages:
-        if message.role in ["system", "user", "assistant"]:
-            chat_messages.append({"role": message.role, "content": message.content})
+        if message["role"] in ["system", "user", "assistant"]:
+            chat_messages.append({"role": message["role"], "content": message["content"]})
         else:
             raise ValueError(f"Unknown role: {message.role}")
 
