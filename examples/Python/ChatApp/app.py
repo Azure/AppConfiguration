@@ -16,13 +16,17 @@ from openai import AzureOpenAI
 from models import AzureOpenAIConfiguration, ChatCompletionConfiguration
 
 
-app_config_endpoint_key = "AZURE_APPCONFIGURATION_ENDPOINT"
-chat_app_key = "ChatApp:"
-azure_openai_key = "AzureOpenAI:"
-chat_completion_key = "ChatCompletion"
-bearer_scope =  "https://cognitiveservices.azure.com/.default"
+APP_CONFIG_ENDPOINT_KEY = "AZURE_APPCONFIGURATION_ENDPOINT"
+CHAT_APP_KEY = "ChatApp:"
+AZURE_OPENAI_KEY = "AzureOpenAI:"
+CHAT_COMPLETION_KEY = "ChatCompletion"
+BEARER_SCOPE = "https://cognitiveservices.azure.com/.default"
+
 
 class ChatApp:
+    """
+    Chat Application using Azure OpenAI and Azure App Configuration.
+    """
 
     def __init__(self):
         # Initialize credential and config
@@ -33,35 +37,38 @@ class ChatApp:
         self._chat_conversation = []
 
         # Load configuration
-        self.appconfig = self._load_config()
+        self._appconfig = self._load_config()
         self.configure_app()
 
     def _get_app_config_endpoint(self):
-        app_config_endpoint = os.environ.get(app_config_endpoint_key)
+        app_config_endpoint = os.environ.get(APP_CONFIG_ENDPOINT_KEY)
         if not app_config_endpoint:
             raise ValueError(
-                f"The environment variable '{app_config_endpoint_key}' is not set or is empty."
+                f"The environment variable '{APP_CONFIG_ENDPOINT_KEY}' is not set or is empty."
             )
         return app_config_endpoint
 
     def _load_config(self):
         return load(
             endpoint=self._get_app_config_endpoint(),
-            selects=[SettingSelector(key_filter=f"{chat_app_key}:*")],
+            selects=[SettingSelector(key_filter=f"{CHAT_APP_KEY}:*")],
             credential=self._credential,
             keyvault_credential=self._credential,
-            trim_prefixes=[chat_app_key],
-            refresh_on=[WatchKey(key=f"{chat_app_key}{chat_completion_key}")],
+            trim_prefixes=[CHAT_APP_KEY],
+            refresh_on=[WatchKey(key=f"{CHAT_APP_KEY}{CHAT_COMPLETION_KEY}")],
             on_refresh_success=self.configure_app,
         )
 
     def configure_app(self):
+        """
+        Configure the chat application with settings from Azure App Configuration.
+        """
         self.azure_openai_config = self._extract_openai_config()
         self.azure_client = self._create_ai_client()
 
         # Configure chat completion with AI configuration
         self.chat_completion_config = ChatCompletionConfiguration(
-            **self.appconfig[chat_completion_key]
+            **self._appconfig[CHAT_COMPLETION_KEY]
         )
         self._chat_messages = self.chat_completion_config.messages
 
@@ -78,7 +85,7 @@ class ChatApp:
                 azure_endpoint=self.azure_openai_config.endpoint,
                 azure_ad_token_provider=get_bearer_token_provider(
                     self._credential or DefaultAzureCredential(),
-                    bearer_scope,
+                    BEARER_SCOPE,
                 ),
                 api_version=self.azure_openai_config.api_version,
             )
@@ -91,20 +98,30 @@ class ChatApp:
         :return: An AzureOpenAIConfiguration object
         """
         return AzureOpenAIConfiguration(
-            api_key=self.appconfig.get(f"{azure_openai_key}ApiKey", ""),
-            endpoint=self.appconfig.get(f"{azure_openai_key}Endpoint", ""),
-            deployment_name=self.appconfig.get(f"{azure_openai_key}DeploymentName", ""),
-            api_version=self.appconfig.get(f"{azure_openai_key}ApiVersion", "2023-05-15"),
+            api_key=self._appconfig.get(f"{AZURE_OPENAI_KEY}ApiKey", ""),
+            endpoint=self._appconfig.get(f"{AZURE_OPENAI_KEY}Endpoint", ""),
+            deployment_name=self._appconfig.get(
+                f"{AZURE_OPENAI_KEY}DeploymentName", ""
+            ),
+            api_version=self._appconfig.get(
+                f"{AZURE_OPENAI_KEY}ApiVersion", "2023-05-15"
+            ),
         )
 
     def ask(self):
+        """
+        Ask a question to the chat application.
+        """
+        # Refresh the configuration from Azure App Configuration
+        self._appconfig.refresh()
+
         # Get user input
         user_input = input("You: ")
 
         # Exit if user input is empty
         if not user_input.strip():
             print("Exiting chat. Goodbye!")
-            exit()
+            return False  # Stop the conversation
 
         # Add user message to chat conversation
         self._chat_conversation.append({"role": "user", "content": user_input})
@@ -124,6 +141,7 @@ class ChatApp:
         ai_response = response.choices[0].message.content
         self._chat_conversation.append({"role": "assistant", "content": ai_response})
         print(f"AI: {ai_response}")
+        return True
 
 
 def main():
@@ -131,11 +149,9 @@ def main():
 
     print("Chat started! What's on your mind?")
 
-    while True:
-        # Refresh the configuration from Azure App Configuration
-        chat_app.appconfig.refresh()
-
-        chat_app.ask()
+    continue_chat = True
+    while continue_chat:
+        continue_chat = chat_app.ask()
 
 
 if __name__ == "__main__":
