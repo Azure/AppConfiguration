@@ -21,7 +21,7 @@ class AzureOpenAIConfiguration:
 
     api_key: str
     endpoint: str
-    deployment_name: Optional[str] = None
+    deployment_name: str
     api_version: Optional[str] = None
 
 
