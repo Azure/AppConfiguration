@@ -51,7 +51,7 @@ class ChatApp:
     def _load_config(self):
         return load(
             endpoint=self._get_app_config_endpoint(),
-            selects=[SettingSelector(key_filter=f"{CHAT_APP_KEY}:*")],
+            selects=[SettingSelector(key_filter=f"{CHAT_APP_KEY}*")],
             credential=self._credential,
             keyvault_credential=self._credential,
             trim_prefixes=[CHAT_APP_KEY],
@@ -79,6 +79,9 @@ class ChatApp:
                 azure_endpoint=self.azure_openai_config.endpoint,
                 api_key=self.azure_openai_config.api_key,
                 api_version=self.azure_openai_config.api_version,
+                azure_deployment=self._appconfig.get(
+                    f"{AZURE_OPENAI_KEY}DeploymentName", ""
+                ),
             )
         else:
             return AzureOpenAI(
@@ -88,6 +91,9 @@ class ChatApp:
                     BEARER_SCOPE,
                 ),
                 api_version=self.azure_openai_config.api_version,
+                azure_deployment=self._appconfig.get(
+                    f"{AZURE_OPENAI_KEY}DeploymentName", ""
+                ),
             )
 
     def _extract_openai_config(self) -> AzureOpenAIConfiguration:
@@ -100,9 +106,6 @@ class ChatApp:
         return AzureOpenAIConfiguration(
             api_key=self._appconfig.get(f"{AZURE_OPENAI_KEY}ApiKey", ""),
             endpoint=self._appconfig.get(f"{AZURE_OPENAI_KEY}Endpoint", ""),
-            deployment_name=self._appconfig.get(
-                f"{AZURE_OPENAI_KEY}DeploymentName", ""
-            ),
             api_version=self._appconfig.get(
                 f"{AZURE_OPENAI_KEY}ApiVersion", "2023-05-15"
             ),
