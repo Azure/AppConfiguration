@@ -43,9 +43,7 @@ class ChatApp:
     def _get_app_config_endpoint(self):
         app_config_endpoint = os.environ.get(APP_CONFIG_ENDPOINT_KEY)
         if not app_config_endpoint:
-            raise ValueError(
-                f"The environment variable '{APP_CONFIG_ENDPOINT_KEY}' is not set or is empty."
-            )
+            raise ValueError(f"The environment variable '{APP_CONFIG_ENDPOINT_KEY}' is not set or is empty.")
         return app_config_endpoint
 
     def _load_config(self):
@@ -67,9 +65,7 @@ class ChatApp:
         self.azure_client = self._create_ai_client()
 
         # Configure chat completion with AI configuration
-        self.chat_completion_config = ChatCompletionConfiguration(
-            **self._appconfig[CHAT_COMPLETION_KEY]
-        )
+        self.chat_completion_config = ChatCompletionConfiguration(**self._appconfig[CHAT_COMPLETION_KEY])
         self._chat_messages = self.chat_completion_config.messages
 
     def _create_ai_client(self) -> AzureOpenAI:
@@ -79,21 +75,14 @@ class ChatApp:
                 azure_endpoint=self.azure_openai_config.endpoint,
                 api_key=self.azure_openai_config.api_key,
                 api_version=self.azure_openai_config.api_version,
-                azure_deployment=self._appconfig.get(
-                    f"{AZURE_OPENAI_KEY}DeploymentName", ""
-                ),
+                azure_deployment=self._appconfig.get(f"{AZURE_OPENAI_KEY}DeploymentName", ""),
             )
         else:
             return AzureOpenAI(
                 azure_endpoint=self.azure_openai_config.endpoint,
-                azure_ad_token_provider=get_bearer_token_provider(
-                    self._credential or DefaultAzureCredential(),
-                    BEARER_SCOPE,
-                ),
+                azure_ad_token_provider=get_bearer_token_provider(self._credential, BEARER_SCOPE),
                 api_version=self.azure_openai_config.api_version,
-                azure_deployment=self._appconfig.get(
-                    f"{AZURE_OPENAI_KEY}DeploymentName", ""
-                ),
+                azure_deployment=self._appconfig.get(f"{AZURE_OPENAI_KEY}DeploymentName", ""),
             )
 
     def _extract_openai_config(self) -> AzureOpenAIConfiguration:
@@ -106,9 +95,7 @@ class ChatApp:
         return AzureOpenAIConfiguration(
             api_key=self._appconfig.get(f"{AZURE_OPENAI_KEY}ApiKey", ""),
             endpoint=self._appconfig.get(f"{AZURE_OPENAI_KEY}Endpoint", ""),
-            api_version=self._appconfig.get(
-                f"{AZURE_OPENAI_KEY}ApiVersion", "2023-05-15"
-            ),
+            api_version=self._appconfig.get(f"{AZURE_OPENAI_KEY}ApiVersion", "2023-05-15"),
         )
 
     def ask(self):
