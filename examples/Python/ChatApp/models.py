@@ -32,8 +32,8 @@ class ChatCompletionConfiguration:
     Maps to configuration values with keys 'model', 'messages', 'max_tokens', 'temperature', and 'top_p'.
     """
 
+    max_tokens: int
+    temperature: float
+    top_p: float
     model: Optional[str] = None
     messages: Optional[List[Dict[str, str]]] = None
-    max_tokens: int = 1024
-    temperature: float = 0.7
-    top_p: float = 0.95
