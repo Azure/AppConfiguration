@@ -43,7 +43,7 @@ def main():
         credential=CREDENTIAL,
         keyvault_credential=CREDENTIAL,
         trim_prefixes=[CHAT_APP_KEY],
-        refresh_on=[WatchKey(key=f"{CHAT_APP_KEY}{CHAT_COMPLETION_KEY}")],
+        refresh_on=[WatchKey(key=f"{CHAT_APP_KEY}Sentinel")],
         on_refresh_success=configure_app,
     )
     configure_app()

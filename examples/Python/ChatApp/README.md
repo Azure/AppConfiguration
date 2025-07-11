@@ -36,6 +36,8 @@ This sample demonstrates using Azure App Configuration to configure Azure OpenAI
      - temperature - Temperature parameter (e.g., 0.7)
      - top_p - Top p parameter (e.g., 0.95)
      - messages - An array of messages with role and content for each message
+   ChatApp:Sentinel - A sentinel key to trigger configuration refreshes
+   ```
 
    Example JSON object for ChatApp:Model:
    ```json
