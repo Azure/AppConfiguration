@@ -145,7 +145,7 @@ func (app *ChatApp) callAzureOpenAI(userMessage string) (string, error) {
 	}
 
 	if len(completion.Choices) == 0 {
-		return "", fmt.Errorf("no choices in response")
+		return "", fmt.Errorf("chat completion returned zero choices")
 	}
 
 	return completion.Choices[0].Message.Content, nil
@@ -201,14 +201,15 @@ func main() {
 	var aiConfig AIConfig
 	if err := configProvider.Unmarshal(&aiConfig, &azureappconfiguration.ConstructionOptions{Separator: ":"}); err != nil {
 		log.Fatal("Error loading AI configuration:", err)
-		return
 	}
 
 	// Register a callback to refresh AI configuration on changes
 	configProvider.OnRefreshSuccess(func() {
-		configProvider.Unmarshal(&aiConfig, &azureappconfiguration.ConstructionOptions{Separator: ":"})
+		if err := configProvider.Unmarshal(&aiConfig, &azureappconfiguration.ConstructionOptions{Separator: ":"}); err != nil {
+			log.Printf("Error refreshing AI configuration: %v", err)
+		}
 	})
-	
+
 	app := &ChatApp{
 		configProvider: configProvider,
 		aiConfig:      aiConfig,
