@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## 1.0.0-beta.2 - July 18, 2025
+
+### Bug Fixes
+
+- Fixed a bug where unmarshaling `TargetingFilterParameters` used incorrect JSON tag, causing `RolloutPercentage` to always be 0 and preventing proper percentage-based rollouts.
+
 ## 1.0.0-beta.1 - July 01, 2025
 
 Initial release of Feature Management for Go, including support for the following capabilities. Note that, version `1.1.0-beta.1` or later of Go provider is required for loading feature flags from Azure App Configuration.
