@@ -54,11 +54,12 @@ The application supports the following authentication methods:
 
 ## Usage
 
+1. **Initialize a new Go module**: `go mod init chatapp-quickstart`
 1. **Install dependencies**: `go mod tidy`
-2. **Start the Application**: Run the application using `go run main.go`
-3. **Begin Chatting**: Type your messages when prompted with "You: "
-4. **Continue Conversation**: The AI will respond and maintain conversation context
-5. **Exit**: Press Enter without typing a message to exit gracefully
+1. **Start the Application**: Run the application using `go run main.go`
+1. **Begin Chatting**: Type your messages when prompted with "You: "
+1. **Continue Conversation**: The AI will respond and maintain conversation context
+1. **Exit**: Press Enter without typing a message to exit gracefully
 
 ### Example Session
 ```
@@ -69,7 +70,7 @@ AI: Hello! I'm doing well, thank you for asking. How can I help you today?
 You: What can you tell me about machine learning?
 AI: Machine learning is a subset of artificial intelligence that focuses on...
 
-You: exit
+You: [Press Enter to exit]
 Exiting chat. Goodbye!
 ```
 
