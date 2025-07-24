@@ -1,6 +1,18 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.3.0 - July 24th, 2025
+### Enhancements
+* Added health check integration for `Microsoft.Extensions.Diagnostic.HealthChecks`. You can call `AddAzureAppConfiguration` on `IHealthCheckBuilder` to register a health check for the Azure App Configuration provider. [#644](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/644)
+
+   ```cs
+   builder.Services
+      .AddHealthChecks()
+      .AddAzureAppConfiguration();
+   ```
+
+* Introduced a new environment variable `AZURE_APP_CONFIGURATION_FM_SCHEMA_COMPATIBILITY_DISABLED` to force processing and outputting feature flags using the [Microsoft schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureFlag.v2.0.0.schema.json). [#676](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/676)
+
 ## 8.2.0 - May 14th, 2025
 ### Enhancements
 * Updated the existing `Select` APIs with the new parameter `tagFilters` to support filtering key-values and feature flags by tags.
