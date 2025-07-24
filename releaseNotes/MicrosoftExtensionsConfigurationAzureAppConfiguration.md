@@ -11,7 +11,7 @@
       .AddAzureAppConfiguration();
    ```
 
-* Introduced a new environment variable `AZURE_APP_CONFIGURATION_FM_SCHEMA_COMPATIBILITY_DISABLED` to enable processing and outputting feature flags using the [Microsoft schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureFlag.v2.0.0.schema.json). [#676](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/676)
+* Introduced a new environment variable `AZURE_APP_CONFIGURATION_FM_SCHEMA_COMPATIBILITY_DISABLED` to force processing and outputting feature flags using the [Microsoft schema](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureFlag.v2.0.0.schema.json). [#676](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/676)
 
 ## 8.2.0 - May 14th, 2025
 ### Enhancements
