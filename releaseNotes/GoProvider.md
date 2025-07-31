@@ -2,6 +2,10 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.1.0 - August 01, 2025
+
+This is the first stable release that includes support for loading feature flags from Azure App Configuration.
+
 ## v1.1.0-beta.1 - July 01, 2025
 
 ### Enhancement
