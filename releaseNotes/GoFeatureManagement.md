@@ -4,7 +4,7 @@
 
 ## v1.0.0 - August 01, 2025
 
-This is the first stable release of Feature Management for Go, including support for the following capabilities. Note that, version `1.1.0` or later of Go provider is required for loading feature flags from Azure App Configuration.
+This is the first stable release of Feature Management for Go, including support for the following capabilities. Note that, version `1.1.0-beta.1` or later of Go provider is required for loading feature flags from Azure App Configuration.
 
 - Support for feature flag providers.
 - Built-in feature flag provider for Azure App Configuration by the module `featuremanagement/providers/azappconfig`.
@@ -19,7 +19,7 @@ This is the first stable release of Feature Management for Go, including support
 
 ## 1.0.0-beta.1 - July 01, 2025
 
-Initial release of Feature Management for Go, including support for the following capabilities. Note that, version `1.1.0` or later of Go provider is required for loading feature flags from Azure App Configuration.
+Initial release of Feature Management for Go, including support for the following capabilities. Note that, version `1.1.0-beta.1` or later of Go provider is required for loading feature flags from Azure App Configuration.
 
 - Support for feature flag providers.
 - Built-in feature flag provider for Azure App Configuration by the module `featuremanagement/providers/azappconfig`.
