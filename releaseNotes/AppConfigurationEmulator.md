@@ -13,7 +13,7 @@ The Azure App Configuration Emulator is a local development tool that provides a
 * Authentication Methods
   * Anonymous authentication
   * HMAC authentication
-* REST APIs
+* Resources
   * `/keys`
   * `/kv`
   * `/labels`
