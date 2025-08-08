@@ -2,6 +2,20 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.2.0 - August 7, 2025
+
+### Enhancements
+
+* Added tag filter selector which enables the configuration provider to load configuration settings based on tags. [#188](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/188)
+
+* Added a new property `secretRefreshInterval` under `AzureAppConfigurationOptions.keyVaultOptions`, which enables the configuration provider to periodically reload secrets and certificates from Key Vault. [#175](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/188)
+
+* Added support for parsing json values with comments. [#205](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/205)
+
+### Bug fix
+
+* Fixed a bug that the configuration provider startup will keep retrying on unfailoverable `RestError`. [#206](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/206)
+
 ## 2.1.0 - May 22, 2025
 
 ### Enhancements
