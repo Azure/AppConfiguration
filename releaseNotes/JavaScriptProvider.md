@@ -8,7 +8,7 @@
 
 * Added tag filter selector which enables the configuration provider to load configuration settings based on tags. [#188](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/188)
 
-* Added a new property `secretRefreshInterval` under `AzureAppConfigurationOptions.keyVaultOptions`, which enables the configuration provider to periodically reload secrets and certificates from Key Vault. [#175](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/188)
+* Added a new property `secretRefreshInterval` under `AzureAppConfigurationOptions.keyVaultOptions`, which enables the configuration provider to periodically reload secrets and certificates from Key Vault. [#175](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/175)
 
 * Added support for parsing json values with comments. [#205](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/205)
 
@@ -149,3 +149,4 @@ Added support for
 [package]: https://www.npmjs.com/package/@azure/app-configuration-provider
 [samples]: https://github.com/Azure/AppConfiguration-JavaScriptProvider/tree/main/examples
 [source_code]: https://github.com/Azure/AppConfiguration-JavaScriptProvider
+
