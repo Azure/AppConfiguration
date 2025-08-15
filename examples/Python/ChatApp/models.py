@@ -5,8 +5,6 @@
 # --------------------------------------------------------------------------
 """
 Model classes for Azure OpenAI Chat Application.
-This module provides data classes for representing chat messages and model configurations
-used in the Azure OpenAI-powered chat application.
 """
 from dataclasses import dataclass
 from typing import List, Optional, Dict
@@ -16,7 +14,6 @@ from typing import List, Optional, Dict
 class AzureOpenAIConfiguration:
     """
     Represents the configuration for Azure OpenAI service.
-    Maps to configuration values with keys 'api_key', 'endpoint', and 'deployment_name'.
     """
 
     api_key: str
@@ -29,7 +26,6 @@ class AzureOpenAIConfiguration:
 class ChatCompletionConfiguration:
     """
     Represents the configuration for an AI model including messages and parameters.
-    Maps to configuration values with keys 'model', 'messages', 'max_tokens', 'temperature', and 'top_p'.
     """
 
     max_tokens: int

@@ -25,7 +25,6 @@ BEARER_SCOPE = "https://cognitiveservices.azure.com/.default"
 # Initialize CREDENTIAL and config
 CREDENTIAL = DefaultAzureCredential()
 
-# Initialize chat state
 APPCONFIG = None
 CHAT_COMPLETION_CONFIG = None
 
@@ -48,17 +47,17 @@ def main():
     )
     configure_app()
 
-    print("Chat started! What's on your mind?")
-
     azure_openai_config = AzureOpenAIConfiguration(
         api_key=APPCONFIG.get(f"{AZURE_OPENAI_KEY}ApiKey", ""),
         endpoint=APPCONFIG.get(f"{AZURE_OPENAI_KEY}Endpoint", ""),
         deployment_name=APPCONFIG.get(f"{AZURE_OPENAI_KEY}DeploymentName", ""),
         api_version=APPCONFIG.get(f"{AZURE_OPENAI_KEY}ApiVersion", ""),
     )
-    azure_client = create_ai_client(azure_openai_config)
+    azure_client = create_azure_openai_client(azure_openai_config)
 
-    chat_messages = []
+    chat_conversation  = []
+
+    print("Chat started! What's on your mind?")
 
     while True:
         # Refresh the configuration from Azure App Configuration
@@ -73,22 +72,22 @@ def main():
             break
 
         # Add user message to chat conversation
-        chat_messages.append({"role": "user", "content": user_input})
+        chat_conversation.append({"role": "user", "content": user_input})
 
-        chat_conversation = CHAT_COMPLETION_CONFIG.messages
-        chat_conversation.extend(chat_messages)
+        chat_messages = list(CHAT_COMPLETION_CONFIG.messages)
+        chat_messages.extend(chat_conversation)
 
         # Get AI response and add it to chat conversation
         response = azure_client.chat.completions.create(
             model=azure_openai_config.deployment_name,
-            messages=chat_conversation,
+            messages=chat_messages,
             max_tokens=CHAT_COMPLETION_CONFIG.max_tokens,
             temperature=CHAT_COMPLETION_CONFIG.temperature,
             top_p=CHAT_COMPLETION_CONFIG.top_p,
         )
 
         ai_response = response.choices[0].message.content
-        chat_messages.append({"role": "assistant", "content": ai_response})
+        chat_conversation .append({"role": "assistant", "content": ai_response})
         print(f"AI: {ai_response}")
 
 
@@ -101,25 +100,25 @@ def configure_app():
     CHAT_COMPLETION_CONFIG = ChatCompletionConfiguration(**APPCONFIG[CHAT_COMPLETION_KEY])
 
 
-def create_ai_client(azure_open_ai_config: AzureOpenAIConfiguration) -> AzureOpenAI:
+def create_azure_openai_client(azure_openai_config: AzureOpenAIConfiguration) -> AzureOpenAI:
     """
     Create an Azure OpenAI client using the configuration from Azure App Configuration.
     """
-    if azure_open_ai_config.api_key:
+    if azure_openai_config.api_key:
         return AzureOpenAI(
-            azure_endpoint=azure_open_ai_config.endpoint,
-            api_key=azure_open_ai_config.api_key,
-            api_version=azure_open_ai_config.api_version,
-            azure_deployment=azure_open_ai_config.deployment_name,
+            azure_endpoint=azure_openai_config.endpoint,
+            api_key=azure_openai_config.api_key,
+            api_version=azure_openai_config.api_version,
+            azure_deployment=azure_openai_config.deployment_name,
         )
     else:
         return AzureOpenAI(
-            azure_endpoint=azure_open_ai_config.endpoint,
+            azure_endpoint=azure_openai_config.endpoint,
             azure_ad_token_provider=get_bearer_token_provider(
                 CREDENTIAL,
                 BEARER_SCOPE,
             ),
-            api_version=azure_open_ai_config.api_version,
+            api_version=azure_openai_config.api_version,
             azure_deployment=APPCONFIG.get(f"{AZURE_OPENAI_KEY}DeploymentName", ""),
         )
 
