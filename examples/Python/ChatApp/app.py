@@ -16,13 +16,9 @@ from openai import AzureOpenAI
 from models import AzureOpenAIConfiguration, ChatCompletionConfiguration
 
 APP_CONFIG_ENDPOINT_KEY = "AZURE_APPCONFIGURATION_ENDPOINT"
-CHAT_APP_KEY = "ChatApp:"
-AZURE_OPENAI_KEY = "AzureOpenAI:"
-CHAT_COMPLETION_KEY = "ChatCompletion"
-BEARER_SCOPE = "https://cognitiveservices.azure.com/.default"
 
 
-# Initialize CREDENTIAL and config
+# Initialize CREDENTIAL
 CREDENTIAL = DefaultAzureCredential()
 
 APPCONFIG = None
@@ -38,20 +34,20 @@ def main():
     # Load configuration
     APPCONFIG = load(
         endpoint=app_config_endpoint,
-        selects=[SettingSelector(key_filter=f"{CHAT_APP_KEY}*")],
+        selects=[SettingSelector(key_filter="ChatApp:*")],
         credential=CREDENTIAL,
         keyvault_credential=CREDENTIAL,
-        trim_prefixes=[CHAT_APP_KEY],
-        refresh_on=[WatchKey(key=f"{CHAT_APP_KEY}Sentinel")],
+        trim_prefixes=["ChatApp:"],
+        refresh_on=[WatchKey(key="ChatApp:Sentinel")],
         on_refresh_success=configure_app,
     )
     configure_app()
 
     azure_openai_config = AzureOpenAIConfiguration(
-        api_key=APPCONFIG.get(f"{AZURE_OPENAI_KEY}ApiKey", ""),
-        endpoint=APPCONFIG.get(f"{AZURE_OPENAI_KEY}Endpoint", ""),
-        deployment_name=APPCONFIG.get(f"{AZURE_OPENAI_KEY}DeploymentName", ""),
-        api_version=APPCONFIG.get(f"{AZURE_OPENAI_KEY}ApiVersion", ""),
+        api_key=APPCONFIG.get("AzureOpenAI:ApiKey", ""),
+        endpoint=APPCONFIG.get("AzureOpenAI:Endpoint", ""),
+        deployment_name=APPCONFIG.get("AzureOpenAI:DeploymentName", ""),
+        api_version=APPCONFIG.get("AzureOpenAI:ApiVersion", ""),
     )
     azure_client = create_azure_openai_client(azure_openai_config)
 
@@ -97,7 +93,7 @@ def configure_app():
     """
     global CHAT_COMPLETION_CONFIG
     # Configure chat completion with AI configuration
-    CHAT_COMPLETION_CONFIG = ChatCompletionConfiguration(**APPCONFIG[CHAT_COMPLETION_KEY])
+    CHAT_COMPLETION_CONFIG = ChatCompletionConfiguration(**APPCONFIG["ChatCompletion"])
 
 
 def create_azure_openai_client(azure_openai_config: AzureOpenAIConfiguration) -> AzureOpenAI:
@@ -116,10 +112,10 @@ def create_azure_openai_client(azure_openai_config: AzureOpenAIConfiguration) ->
             azure_endpoint=azure_openai_config.endpoint,
             azure_ad_token_provider=get_bearer_token_provider(
                 CREDENTIAL,
-                BEARER_SCOPE,
+                "https://cognitiveservices.azure.com/.default",
             ),
             api_version=azure_openai_config.api_version,
-            azure_deployment=APPCONFIG.get(f"{AZURE_OPENAI_KEY}DeploymentName", ""),
+            azure_deployment=azure_openai_config.deployment_name,
         )
 
 
