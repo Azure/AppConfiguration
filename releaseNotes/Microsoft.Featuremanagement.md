@@ -2,6 +2,14 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.2.1 - July 9, 2025 (Delisted)
+
+This release has been delisted. For more information, please go to [#550](https://github.com/microsoft/FeatureManagement-Dotnet/issues/550).
+
+### Enhancements
+
+* Added support for aggregating feature flags from multiple configuration providers. When the same feature flag is defined in multiple sources, definitions are merged according to configuration provider registration order, with the last feature flag definition taking precedence in case of conflicts. [#536](https://github.com/microsoft/FeatureManagement-Dotnet/pull/536)
+
 ## 4.1.0 - May 22, 2025
 
 ### Enhancements
