@@ -2,6 +2,15 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.2.0 - August 20, 2025
+
+### Enhancement
+
+* Added support for replica auto-discovery. For App Configuration stores with geo-replication enabled, the Go provider will now automatically discover replicas and attempt to connect to them when it fails to connect to user-provided endpoint. This capability allows workloads to leverage geo-replication for enhanced resiliency without redeployment. Replica discovery is enabled by default and can be disabled by setting `azureappconfiguration.Options.ReplicaDiscoveryEnabled` to false. [#39](https://github.com/Azure/AppConfiguration-GoProvider/pull/39)
+* Added support for load balancing mode, which enables your workloads to distribute requests to App Configuration across all available replicas. This enhancement improves the scalability of applications that typically experience high request volumes to App Configuration, ensuring they remain within quota limits. Load balancing mode is disabled by default and can be activated by setting `azureappconfiguration.Options.LoadBalancingEnabled` to true. [#42](https://github.com/Azure/AppConfiguration-GoProvider/pull/42)
+* Added support for parsing json values with comments. [#43](https://github.com/Azure/AppConfiguration-GoProvider/pull/43)
+* Upgraded dependent packages. [#44](https://github.com/Azure/AppConfiguration-GoProvider/pull/44)
+
 ## v1.1.0 - August 01, 2025
 
 This is the first stable release that includes support for loading feature flags from Azure App Configuration.
