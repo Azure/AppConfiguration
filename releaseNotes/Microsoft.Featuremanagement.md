@@ -4,7 +4,7 @@
 
 ## 4.2.1 - July 9, 2025 (Delisted)
 
-This release has been delisted. For more information, please go to [#550](https://github.com/microsoft/FeatureManagement-Dotnet/issues/550).
+This release has been delisted due to the enhancement below resulting in an unintended breaking change. For more information, please go to [#550](https://github.com/microsoft/FeatureManagement-Dotnet/issues/550).
 
 ### Enhancements
 
