@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added support for parsing json values with comments. [#125](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/125)
+* Added support for parsing JSON values with comments. [#125](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/125)
 * Upgraded dependent packages. [#126](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/126)
 
 ## 2.3.1 - June 25, 2025
