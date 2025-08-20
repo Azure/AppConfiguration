@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.1.0 - August 20, 2025
+
+### Enhancement
+
+* Added support for variant feature flags. A variant feature flag is an enhanced feature flag that supports multiple states or variations. While it can still be toggled on or off, it also allows for different configurations, ranging from simple primitives to complex JSON objects. Variant feature flags are particularly useful for feature rollouts, configuration rollouts, and feature experimentation (also known as A/B testing). [#16](https://github.com/microsoft/FeatureManagement-Go/pull/16)
+
 ## v1.0.0 - August 01, 2025
 
 This is the first stable release of Feature Management for Go, including support for the following capabilities. Note that, version `1.1.0-beta.1` or later of [`azureappconfiguration`](https://pkg.go.dev/github.com/Azure/AppConfiguration-GoProvider/azureappconfiguration) is required for loading feature flags from Azure App Configuration.
