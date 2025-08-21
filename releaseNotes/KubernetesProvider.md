@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 2.4.0 - August 20, 2025
+## 2.4.0 - August 21, 2025
 
 ### Enhancements
 
