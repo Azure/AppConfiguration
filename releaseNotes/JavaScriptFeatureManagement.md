@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.2.0 - Augest 21, 2025
+
+### Enhancements
+
+
+
 ## 2.1.0 - May 20, 2025
 
 ### Enhancements
