@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added a `Recurrence` option to the `TimeWindowFilter` to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See the [how to Time Window Filter document](https://learn.microsoft.com/azure/azure-app-configuration/howto-timewindow-filter) for more details.
+* Added a `Recurrence` option to the `TimeWindowFilter` to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See [Enable features on a schedule](https://learn.microsoft.com/azure/azure-app-configuration/howto-timewindow-filter) for more details.
 * Added `VariantAssignmentPercentage` and `DefaultWhenEnabled` properties to telemetry when telemetry is published to Azure Monitor. This allows you to track the percentage of users assigned to each variant and the default variant when the feature flag is enabled. `VariantAssignmentPercentage` is the the total percentage of users assigned to the variant, even across multiple allocations. `DefaultWhenEnabled` is the variant that is assigned when the feature flag is enabled and no other variant is assigned.
 * Added `TargetingSpanProcessor` that can be used to add the Targeting Id to Spans. Requires `azure-monitor-events-extension` to be installed.
 
