@@ -2,7 +2,13 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-## 4.2.1 - July 9, 2025
+## 4.3.0 - August 27, 2025
+
+* Updated `Microsoft.FeatureManagement` reference to `4.3.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
+
+## 4.2.1 - July 9, 2025 (Delisted)
+
+This release has been delisted due to the enhancement below resulting in an unintended breaking change. For more information, please go to [#550](https://github.com/microsoft/FeatureManagement-Dotnet/issues/550).
 
 * Updated `Microsoft.FeatureManagement` reference to `4.2.1`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
 
