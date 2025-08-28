@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added a `Recurrence` option to the `TimeWindowFilter` to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See the [how to Time Window Filter document](https://learn.microsoft.com/azure/azure-app-configuration/howto-timewindow-filter) for more details.
+* Added a `Recurrence` option to the `TimeWindowFilter` to support recurring time window. This enables scenarios where a feature flag is activated based on a recurrence pattern, such as every day after 5 PM or every Friday. See the [Enable features on a schedule](https://learn.microsoft.com/azure/azure-app-configuration/howto-timewindow-filter) for more details.
 
 ## 2.1.0 - May 20, 2025
 
