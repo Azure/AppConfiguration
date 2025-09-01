@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Introduced `ConfigurationFeatureDefinitionProviderOptions` which allows to enable the new configuration merging behavior for the built-in `ConfiguationFeatureDefinitionProvider`. When the same feature flag is defined in multiple sources, definitions are merged according to configuration provider registration order, with the last feature flag definition taking precedence in case of conflicts. [#552](https://github.com/microsoft/FeatureManagement-Dotnet/pull/536)
+* Introduced `ConfigurationFeatureDefinitionProviderOptions` which allows to enable the new configuration merging behavior for the built-in `ConfiguationFeatureDefinitionProvider`. When the same feature flag is defined in multiple sources, definitions are merged according to configuration provider registration order, with the last feature flag definition taking precedence in case of conflicts. [#552](https://github.com/microsoft/FeatureManagement-Dotnet/pull/552)
 
 ## 4.2.1 - July 9, 2025 (Delisted)
 
