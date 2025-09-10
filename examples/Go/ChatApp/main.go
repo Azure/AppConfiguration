@@ -16,9 +16,9 @@ import (
 )
 
 type ChatApp struct {
-	configProvider    *azureappconfiguration.AzureAppConfiguration
-	openAIClient openai.Client
-	aiConfig     AIConfig
+	configProvider *azureappconfiguration.AzureAppConfiguration
+	openAIClient   openai.Client
+	aiConfig       AIConfig
 }
 
 type AIConfig struct {
@@ -37,7 +37,7 @@ type ChatCompletion struct {
 type AzureOpenAI struct {
 	Endpoint   string
 	APIVersion string
-	APIKey    string
+	APIKey     string
 }
 
 type Message struct {
@@ -57,7 +57,7 @@ func loadAzureAppConfiguration(ctx context.Context) (*azureappconfiguration.Azur
 	}
 
 	authOptions := azureappconfiguration.AuthenticationOptions{
-		Endpoint:  endpoint,
+		Endpoint:   endpoint,
 		Credential: credential,
 	}
 
@@ -65,7 +65,7 @@ func loadAzureAppConfiguration(ctx context.Context) (*azureappconfiguration.Azur
 		Selectors: []azureappconfiguration.Selector{
 			// Load all keys that start with "ChatApp:" and have no label
 			{
-				KeyFilter:   "ChatApp:*",
+				KeyFilter: "ChatApp:*",
 			},
 		},
 		TrimKeyPrefixes: []string{"ChatApp:"},
@@ -113,25 +113,26 @@ func (app *ChatApp) createAzureOpenAIClient() error {
 	return nil
 }
 
-func (app *ChatApp) callAzureOpenAI(userMessage string) (string, error) {
-	messages := []openai.ChatCompletionMessageParamUnion{}
+func (app *ChatApp) callAzureOpenAI(chatConversation []openai.ChatCompletionMessageParamUnion) (string, error) {
+	var completionMessages []openai.ChatCompletionMessageParamUnion
+
 	for _, msg := range app.aiConfig.ChatCompletion.Messages {
 		switch msg.Role {
 		case "system":
-			messages = append(messages, openai.SystemMessage(msg.Content))
+			completionMessages = append(completionMessages, openai.SystemMessage(msg.Content))
 		case "user":
-			messages = append(messages, openai.UserMessage(msg.Content))
+			completionMessages = append(completionMessages, openai.UserMessage(msg.Content))
 		case "assistant":
-			messages = append(messages, openai.AssistantMessage(msg.Content))
+			completionMessages = append(completionMessages, openai.AssistantMessage(msg.Content))
 		}
 	}
 
-	// Add the user's input message
-	messages = append(messages, openai.UserMessage(userMessage))
+	// Add the chat conversation history
+	completionMessages = append(completionMessages, chatConversation...)
 
 	// Create chat completion parameters
 	params := openai.ChatCompletionNewParams{
-		Messages:    messages,
+		Messages:    completionMessages,
 		Model:       app.aiConfig.ChatCompletion.Model,
 		MaxTokens:   openai.Int(app.aiConfig.ChatCompletion.MaxTokens),
 		Temperature: openai.Float(app.aiConfig.ChatCompletion.Temperature),
@@ -152,10 +153,19 @@ func (app *ChatApp) callAzureOpenAI(userMessage string) (string, error) {
 }
 
 func (app *ChatApp) runInteractiveChat() {
-    fmt.Println("Chat started! What's on your mind?")
+	// Initialize chat conversation
+	var chatConversation []openai.ChatCompletionMessageParamUnion
+	fmt.Println("Chat started! What's on your mind?")
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
+		// Refresh the configuration from Azure App Configuration
+		ctx := context.Background()
+		if err := app.configProvider.Refresh(ctx); err != nil {
+			log.Printf("Error refreshing configuration: %v", err)
+		}
+
+		// Get user input
 		fmt.Print("You: ")
 		userInput, err := reader.ReadString('\n')
 		if err != nil {
@@ -169,22 +179,20 @@ func (app *ChatApp) runInteractiveChat() {
 			break
 		}
 
-		// Refresh configuration
-		ctx := context.Background()
-		if err := app.configProvider.Refresh(ctx); err != nil {
-			log.Printf("Error refreshing configuration: %v", err)
-		}
+		// Add user message to chat conversation
+		chatConversation = append(chatConversation, openai.UserMessage(userInput))
 
-		// Get AI response
-		fmt.Print("AI: ")
-		response, err := app.callAzureOpenAI(userInput)
+		// Get AI response and add it to chat conversation
+		response, err := app.callAzureOpenAI(chatConversation)
 		if err != nil {
 			log.Printf("Error calling OpenAI: %v", err)
 			fmt.Println("Sorry, I encountered an error. Please try again.")
 			continue
 		}
 
-		fmt.Println(response)
+		fmt.Printf("AI: %s\n", response)
+		chatConversation = append(chatConversation, openai.AssistantMessage(response))
+
 		fmt.Println()
 	}
 }
@@ -196,11 +204,11 @@ func main() {
 		log.Fatal("Error loading Azure App Configuration:", err)
 		return
 	}
-	
-	// Load AI configuration from Azure App Configuration
+
+	// Configure chat completion with AI configuration
 	var aiConfig AIConfig
 	if err := configProvider.Unmarshal(&aiConfig, &azureappconfiguration.ConstructionOptions{Separator: ":"}); err != nil {
-		log.Fatal("Error loading AI configuration:", err)
+		log.Fatal("Error unmarshaling AI configuration", err)
 	}
 
 	// Register a callback to refresh AI configuration on changes
@@ -212,7 +220,7 @@ func main() {
 
 	app := &ChatApp{
 		configProvider: configProvider,
-		aiConfig:      aiConfig,
+		aiConfig:       aiConfig,
 	}
 
 	// Initialize Azure OpenAI client
