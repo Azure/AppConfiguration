@@ -3,19 +3,9 @@
 
 ## 8.4.0 - September 19th, 2025
 ### Enhancements
-* Added support for parsing json values with comments. [#685](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/685)
+* Added support for accepting JSON values with comments. [#685](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/685)
 
-* Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically pulls all key-values and feature flags from the referenced snapshot into the configuration. This enables dynamically switching between snapshots at runtime. [#689](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/689)
-
-* Updated dependency package versions. [#695](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/695)
-   * `Azure.Data.AppConfiguration`: `1.6.0` -> `1.6.1`
-   * `Azure.Messaging.EventGrid`: `4.7.0` -> `5.0.0`
-   * `Azure.Security.KeyVault.Secrets`: `4.6.0` -> `4.8.0`
-   * `Microsoft.Extensions.Diagnostics.HealthChecks`: `6.0.36` -> `8.0.19`
-   * `Microsoft.Extensions.Azure`: `1.7.6` -> `1.12.0`
-   * `Microsoft.Extensions.DependencyInjection.Abstractions`: `6.0.0` -> `8.0.2`
-   * `Microsoft.Extensions.Logging`: `6.0.0` -> `8.0.1`
-   * `Microsoft.Extensions.Configuration`: `6.0.1` -> `8.0.0`
+* Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#689](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/689)
 
 ## 8.3.0 - July 24th, 2025
 ### Enhancements
