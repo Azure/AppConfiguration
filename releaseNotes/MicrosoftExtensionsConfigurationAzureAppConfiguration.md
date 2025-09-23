@@ -1,6 +1,12 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.4.0 - September 19th, 2025
+### Enhancements
+* Added support for accepting JSON values with comments. [#685](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/685)
+
+* Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#689](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/689)
+
 ## 8.3.0 - July 24th, 2025
 ### Enhancements
 * Added health check integration for `Microsoft.Extensions.Diagnostic.HealthChecks`. You can call `AddAzureAppConfiguration` on `IHealthCheckBuilder` to register a health check for the Azure App Configuration provider. [#644](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/644)

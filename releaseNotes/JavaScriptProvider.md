@@ -10,7 +10,7 @@
 
 * Added a new property `secretRefreshInterval` under `AzureAppConfigurationOptions.keyVaultOptions`, which enables the configuration provider to periodically reload secrets and certificates from Key Vault. [#175](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/175)
 
-* Added support for parsing json values with comments. [#205](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/205)
+* Added support for accepting JSON values with comments. [#205](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/205)
 
 ### Bug fix
 
