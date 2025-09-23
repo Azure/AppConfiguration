@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 
 	"github.com/Azure/AppConfiguration-GoProvider/azureappconfiguration"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
@@ -114,9 +113,10 @@ func loadAzureAppConfiguration(ctx context.Context) (*azureappconfiguration.Azur
 			},
 		},
 		TrimKeyPrefixes: []string{"ChatApp:"},
+		// Reload configuration if any selected key-values have changed.
+		// Use the default refresh interval of 30 seconds. It can be overridden via RefreshOptions.Interval
 		RefreshOptions: azureappconfiguration.KeyValueRefreshOptions{
 			Enabled:  true,
-			Interval: 1 * time.Hour,
 		},
 		KeyVaultOptions: azureappconfiguration.KeyVaultOptions{
 			Credential: tokenCredential,
