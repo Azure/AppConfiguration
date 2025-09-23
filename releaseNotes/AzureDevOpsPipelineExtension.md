@@ -1,5 +1,10 @@
 ## Azure App Configuration Extension release notes
 
+> **DEPRECATION NOTICE**  
+> This pipeline task is now available as a built-in task for Azure Pipelines under the new name, **Azure App Configuration Export**. This means you no longer need to install it from Marketplace. While you can continue using the Marketplace version, please note that it will no longer receive updates. Transitioning to the new built-in task requires minimal effort, as it supports all the features and functionalities of the Marketplace version. In most cases, it is as simple as updating the task name and version in your pipeline.
+>
+> Upgrade to [Azure App Configuration Export](https://learn.microsoft.com/azure/azure-app-configuration/azure-pipeline-export-task) today to access the latest features and improvements.
+
 The Azure App Configuration extension in Azure DevOps pipeline has been published to [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task&ssr=false#overview). The version of the Azure App Configuration task being used will print to the console when the task is executed: 
 
 ![sample](pictures/AzureDevOpsExtensionVersionSample.PNG)

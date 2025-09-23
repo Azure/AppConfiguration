@@ -1,4 +1,11 @@
 ## Azure App Configuration Push Extension release notes
+
+> **DEPRECATION NOTICE**  
+> This pipeline task is now available as a built-in task for Azure Pipelines under the new name, **Azure App Configuration Import**. This means you no longer need to install it from Marketplace. While you can continue using the Marketplace version, please note that it will no longer receive updates. Transitioning to the new built-in task requires minimal effort, as it supports all the features and functionalities of the Marketplace version. In most cases, it is as simple as updating the task name and version in your pipeline.
+
+>
+> Upgrade to [Azure App Configuration Import](https://learn.microsoft.com/azure/azure-app-configuration/azure-pipeline-import-task) today to access the latest features and improvements.
+
 Azure App Configuration Push extension for Azure DevOps pipeline can be installed from the [Azure DevOps marketplace](https://marketplace.visualstudio.com/items?itemName=AzureAppConfiguration.azure-app-configuration-task-push). The version information can be found in the console when the task is executed:
 ![sample](pictures/AzureDevOpsPushExtensionVersionSample.PNG)
 
