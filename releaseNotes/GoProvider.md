@@ -2,6 +2,14 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.3.0 - September 29, 2025
+
+### Enhancement
+
+* Added support for downloading snapshot's key-values from Azure App Configuration, which is useful to safely deploy configuration changes. [#49](https://github.com/Azure/AppConfiguration-GoProvider/pull/49)
+* Added time-based retry mechanism for the initial configuration load to handle transient failures. By default, the retry timeout is set to 100 seconds, which can be customized via the `Options.StartupOptions.Timeout` property. [#51](https://github.com/Azure/AppConfiguration-GoProvider/pull/51)
+* Upgraded Go version requirement to `1.24.0`. [#53](https://github.com/Azure/AppConfiguration-GoProvider/pull/53)
+
 ## v1.2.0 - August 20, 2025
 
 ### Enhancement
