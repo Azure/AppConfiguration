@@ -85,3 +85,4 @@ These examples demonstrate how to use the basic features of Azure App Configurat
 ### [Gin web app](./Go/WebApp/)
 
 These examples demonstrate how to use Azure App Configuration Go Provider and feature flags in web applications built with the Gin framework.
+
