@@ -78,22 +78,10 @@ This example shows how to use the Azure App Configuration Python Provider in you
 
 This example showcases a Go console application that retrieves chat responses from Azure OpenAI. It demonstrates how to configure chat completion using AI Configuration from Azure App Configuration, enabling rapid prompt iteration and frequent tuning of model parameters—without requiring application restarts, rebuilds, or redeployments.
 
-### [Console app](./Go/ConsoleApp/Example/)
+### [Console app](./Go/ConsoleApp/)
 
-This example demonstrates how to use Azure App Configuration Go Provider in a console application.
+These examples demonstrate how to use the basic features of Azure App Configuration Go Provider in console applications.
 
-### [Console app (dynamic configuration)](./Go/ConsoleApp/Refresh/)
+### [Gin web app](./Go/WebApp/)
 
-This example demonstrates how to enable dynamic configuration from App Configuration in a console application.
-
-### [Gin web app](./Go/WebApp/Example/)
-
-This example demonstrates how to use Azure App Configuration Go Provider in a web application built with the Gin framework.
-
-### [Gin web app (dynamic configuration)](./Go/WebApp/Refresh/)
-
-This example demonstrates how to enable dynamic configuration from App Configuration in a web application built with the Gin framework.
-
-### [Gin web app (feature management)](./Go/WebApp/FeatureFlag/)
-
-This is a Gin web application using a feature flag in Azure App Configuration to dynamically control the availability of a new web page without restarting or redeploying it.
+These examples demonstrate how to use Azure App Configuration Go Provider and feature flags in web applications built with the Gin framework.
