@@ -1,4 +1,4 @@
-# Azure App Configuration Console Refresh Example
+# Azure App Configuration Console App Example
 
 This example demonstrates how to use the refresh functionality of Azure App Configuration in a console/command-line application.
 

@@ -23,19 +23,15 @@ type Font struct {
 }
 
 func main() {
-	fmt.Println("Azure App Configuration - Console Refresh Example")
-	fmt.Println("----------------------------------------")
-
-	// Load configuration
-	fmt.Println("Loading configuration from Azure App Configuration...")
-	appCfgProvider, err := initializeAppConfiguration()
+	// Load configuration from Azure App Configuration
+	configProvider, err := loadAzureAppConfiguration()
 	if err != nil {
 		log.Fatalf("Error loading configuration: %s", err)
 	}
 
 	// Parse initial configuration into struct
 	var config Config
-	err = appCfgProvider.Unmarshal(&config, nil)
+	err = configProvider.Unmarshal(&config, nil)
 	if err != nil {
 		log.Fatalf("Error unmarshalling configuration: %s", err)
 	}
@@ -44,12 +40,12 @@ func main() {
 	displayConfig(config)
 
 	// Register refresh callback to update and display the configuration
-	appCfgProvider.OnRefreshSuccess(func() {
-		fmt.Println("\n🔄 Configuration changed! Updating values...")
+	configProvider.OnRefreshSuccess(func() {
+		fmt.Println("\n Configuration changed! Updating values...")
 		
 		// Re-unmarshal the configuration
 		var updatedConfig Config
-		err := appCfgProvider.Unmarshal(&updatedConfig, nil)
+		err := configProvider.Unmarshal(&updatedConfig, nil)
 		if err != nil {
 			log.Printf("Error unmarshalling updated configuration: %s", err)
 			return
@@ -83,7 +79,7 @@ func main() {
 				ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 				defer cancel()
 				
-				if err := appCfgProvider.Refresh(ctx); err != nil {
+				if err := configProvider.Refresh(ctx); err != nil {
 					log.Printf("Error refreshing configuration: %s", err)
 				}
 			}()
@@ -94,8 +90,8 @@ func main() {
 	}
 }
 
-// initializeAppConfiguration handles loading the configuration from Azure App Configuration
-func initializeAppConfiguration() (*azureappconfiguration.AzureAppConfiguration, error) {
+// loadAzureAppConfiguration loads the configuration from Azure App Configuration
+func loadAzureAppConfiguration() (*azureappconfiguration.AzureAppConfiguration, error) {
 	// Get connection string from environment variable
 	connectionString := os.Getenv("AZURE_APPCONFIG_CONNECTION_STRING")
 
