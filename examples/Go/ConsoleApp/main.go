@@ -22,48 +22,6 @@ type Font struct {
 	Size  int
 }
 
-// initializeAppConfiguration handles loading the configuration from Azure App Configuration
-func initializeAppConfiguration() (*azureappconfiguration.AzureAppConfiguration, error) {
-	// Get connection string from environment variable
-	connectionString := os.Getenv("AZURE_APPCONFIG_CONNECTION_STRING")
-
-	// Options setup
-	options := &azureappconfiguration.Options{
-		Selectors: []azureappconfiguration.Selector{
-			{
-				KeyFilter: "Config.*",
-			},
-		},
-		// Remove the prefix when mapping to struct fields
-		TrimKeyPrefixes: []string{"Config."},
-		// Enable refresh every 10 seconds
-		RefreshOptions: azureappconfiguration.KeyValueRefreshOptions{
-			Enabled:  true,
-			Interval: 10 * time.Second,
-		},
-	}
-
-	authOptions := azureappconfiguration.AuthenticationOptions{
-		ConnectionString: connectionString,
-	}
-
-	// Create configuration provider with timeout
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	return azureappconfiguration.Load(ctx, authOptions, options)
-}
-
-// displayConfig prints the current configuration values
-func displayConfig(config Config) {
-	fmt.Println("\nCurrent Configuration Values:")
-	fmt.Println("--------------------")
-	fmt.Printf("Font Color: %s\n", config.Font.Color)
-	fmt.Printf("Font Size: %d\n", config.Font.Size)
-	fmt.Printf("Message: %s\n", config.Message)
-	fmt.Println("--------------------")
-}
-
 func main() {
 	fmt.Println("Azure App Configuration - Console Refresh Example")
 	fmt.Println("----------------------------------------")
@@ -134,4 +92,46 @@ func main() {
 			return
 		}
 	}
+}
+
+// initializeAppConfiguration handles loading the configuration from Azure App Configuration
+func initializeAppConfiguration() (*azureappconfiguration.AzureAppConfiguration, error) {
+	// Get connection string from environment variable
+	connectionString := os.Getenv("AZURE_APPCONFIG_CONNECTION_STRING")
+
+	// Options setup
+	options := &azureappconfiguration.Options{
+		Selectors: []azureappconfiguration.Selector{
+			{
+				KeyFilter: "Config.*",
+			},
+		},
+		// Remove the prefix when mapping to struct fields
+		TrimKeyPrefixes: []string{"Config."},
+		// Enable refresh every 10 seconds
+		RefreshOptions: azureappconfiguration.KeyValueRefreshOptions{
+			Enabled:  true,
+			Interval: 10 * time.Second,
+		},
+	}
+
+	authOptions := azureappconfiguration.AuthenticationOptions{
+		ConnectionString: connectionString,
+	}
+
+	// Create configuration provider with timeout
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	return azureappconfiguration.Load(ctx, authOptions, options)
+}
+
+// displayConfig prints the current configuration values
+func displayConfig(config Config) {
+	fmt.Println("\nCurrent Configuration Values:")
+	fmt.Println("--------------------")
+	fmt.Printf("Font Color: %s\n", config.Font.Color)
+	fmt.Printf("Font Size: %d\n", config.Font.Size)
+	fmt.Printf("Message: %s\n", config.Message)
+	fmt.Println("--------------------")
 }

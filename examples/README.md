@@ -80,9 +80,9 @@ This example showcases a Go console application that retrieves chat responses fr
 
 ### [Console app](./Go/ConsoleApp/)
 
-These examples demonstrate how to use the basic features of Azure App Configuration Go Provider in console applications.
+This example demonstrates how to enable dynamic configuration from App Configuration in a Go console application.
 
 ### [Gin web app](./Go/WebApp/)
 
-These examples demonstrate how to use Azure App Configuration Go Provider and feature flags in web applications built with the Gin framework.
+This example demonstrates how to enable dynamic configuration and use feature flags from App Configuration in a web application built with the Gin framework.
 

@@ -18,6 +18,50 @@ type WebApp struct {
 	appConfig      *azureappconfiguration.AzureAppConfiguration
 }
 
+func main() {
+	ctx := context.Background()
+
+	// Load config from Azure App Configuration
+	appConfig, err := loadAzureAppConfiguration(ctx)
+	if err != nil {
+		log.Fatalf("Error loading Azure App Configuration: %v", err)
+	}
+
+	// Create feature flag provider
+	featureFlagProvider, err := azappconfig.NewFeatureFlagProvider(appConfig)
+	if err != nil {
+		log.Fatalf("Error creating feature flag provider: %v", err)
+	}
+
+	// Create feature manager
+	featureManager, err := featuremanagement.NewFeatureManager(featureFlagProvider, nil)
+	if err != nil {
+		log.Fatalf("Error creating feature manager: %v", err)
+	}
+
+	// Create web app
+	app := &WebApp{
+		featureManager: featureManager,
+		appConfig:      appConfig,
+	}
+
+	// Setup Gin with default middleware (Logger and Recovery)
+	r := gin.Default()
+
+	// Setup routes
+	app.setupRoutes(r)
+
+	// Start server
+	fmt.Println("Starting server on http://localhost:8080")
+	fmt.Println("Open http://localhost:8080 in your browser")
+	fmt.Println("Toggle the 'Beta' feature flag in Azure portal to see changes")
+	fmt.Println()
+
+	if err := r.Run(":8080"); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
+}
+
 func loadAzureAppConfiguration(ctx context.Context) (*azureappconfiguration.AzureAppConfiguration, error) {
 	connectionString := os.Getenv("AZURE_APPCONFIG_CONNECTION_STRING")
 	if connectionString == "" {
@@ -110,53 +154,4 @@ func (app *WebApp) betaHandler(c *gin.Context) {
 	c.HTML(http.StatusOK, "beta.html", gin.H{
 		"title": "Beta Page",
 	})
-}
-
-func main() {
-	ctx := context.Background()
-
-	// Print startup information
-	fmt.Println("=== Azure App Configuration Feature Flags Web Demo ===")
-	fmt.Println("Make sure to set the AZURE_APPCONFIG_CONNECTION_STRING environment variable.")
-	fmt.Println()
-
-	// Load Azure App Configuration
-	appConfig, err := loadAzureAppConfiguration(ctx)
-	if err != nil {
-		log.Fatalf("Error loading Azure App Configuration: %v", err)
-	}
-
-	// Create feature flag provider
-	featureFlagProvider, err := azappconfig.NewFeatureFlagProvider(appConfig)
-	if err != nil {
-		log.Fatalf("Error creating feature flag provider: %v", err)
-	}
-
-	// Create feature manager
-	featureManager, err := featuremanagement.NewFeatureManager(featureFlagProvider, nil)
-	if err != nil {
-		log.Fatalf("Error creating feature manager: %v", err)
-	}
-
-	// Create web app
-	app := &WebApp{
-		featureManager: featureManager,
-		appConfig:      appConfig,
-	}
-
-	// Setup Gin with default middleware (Logger and Recovery)
-	r := gin.Default()
-
-	// Setup routes
-	app.setupRoutes(r)
-
-	// Start server
-	fmt.Println("Starting server on http://localhost:8080")
-	fmt.Println("Open http://localhost:8080 in your browser")
-	fmt.Println("Toggle the 'Beta' feature flag in Azure portal to see changes")
-	fmt.Println()
-
-	if err := r.Run(":8080"); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
-	}
 }
