@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.1.1 - October 17, 2025
+
+### Enhancement
+
+* Upgraded Go version requirement to `1.24.0`. [#35](https://github.com/microsoft/FeatureManagement-Go/pull/35)
+
 ## v1.1.0 - August 20, 2025
 
 ### Enhancement
