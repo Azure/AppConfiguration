@@ -148,7 +148,7 @@
       "$id": "#/properties/user",
       "type": "string",
       "title": "User ID",
-      "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse",
+      "description": "A unique identifier representing your end-user, which can help AI providers to monitor and detect abuse",
       "maxLength": 256,
       "examples": [
         "user-123",
