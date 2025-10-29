@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/SpecialTypes/v1.0.0/KeyVaultReference.json",
+  "title": "Azure App Configuration Key Vault Reference Value",
+  "description": "A schema for the value part of Azure App Configuration Key Vault References that point to secrets stored in Azure Key Vault",
+  "type": "object",
+  "required": [
+    "uri"
+  ],
+  "properties": {
+    "uri": {
+      "$id": "#/properties/uri",
+      "type": "string",
+      "title": "Key Vault Secret URI",
+      "description": "The URI of the secret in Azure Key Vault. Must be a valid Key Vault secret identifier. The URI can optionally include a version identifier to reference a specific version of the secret.",
+      "pattern": "^https://[a-zA-Z0-9-]+\\.vault\\.[^/]+/secrets/[a-zA-Z0-9-]+(?:/[a-zA-Z0-9-]+)?$",
+      "examples": [
+        "https://myvault.vault.azure.net/secrets/mysecret",
+        "https://myvault.vault.azure.net/secrets/mysecret/1234567890abcdef1234567890abcdef"
+      ],
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "uri": "https://myvault.vault.azure.net/secrets/database-connection-string"
+    },
+    {
+      "uri": "https://myvault.vault.azure.net/secrets/api-key/1234567890abcdef1234567890abcdef"
+    }
+  ]
+}
