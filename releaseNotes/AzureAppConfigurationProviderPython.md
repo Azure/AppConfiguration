@@ -13,7 +13,7 @@
 
 ### Bug Fixes
 
-* Fixed a bug where refresh with feature flags loaded resulted in `on_refresh_success` triggering even if there was no change.
+* Fixed a bug where `on_refresh_success` triggering even if there was no change was detected in the watch key(s).
 * Fixed a bug where when a key was loaded from multiple selects it was processed multiple times instead of just once.
 
 ## 2.2.0 - August 08, 2025
