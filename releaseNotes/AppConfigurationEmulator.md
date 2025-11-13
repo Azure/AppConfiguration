@@ -2,7 +2,7 @@
 
 [Image][image] | [Source code][source_code] | [Samples][samples]
 
-## 1.0.0 - October 29. 2025
+## 1.0.0 - October 29, 2025
 
 Initial stable release of the Azure App Configuration emulator.
 
@@ -10,7 +10,7 @@ Initial stable release of the Azure App Configuration emulator.
 
 This release builds upon 1.0.0-preview and includes the following enhancements:
 
-* Supported the following API versions:
+* Added support for the following API versions:
   * `1.0`
   * `2023-10-01`
   * `2023-11-01`
@@ -19,7 +19,7 @@ This release builds upon 1.0.0-preview and includes the following enhancements:
 
 ### Bug fixes
 
-* Fixed a bug where missing sync-token headers caused the client SDK to crash with null pointer panic. [#46](https://github.com/Azure/AppConfiguration-Emulator/pull/46) ([#43](https://github.com/Azure/AppConfiguration-Emulator/issues/43))
+* Fixed a bug where missing sync-token headers caused client SDKs to crash with null pointer panic. [#46](https://github.com/Azure/AppConfiguration-Emulator/pull/46) ([#43](https://github.com/Azure/AppConfiguration-Emulator/issues/43))
 
 
 ## 1.0.0-preview - July 31, 2025
