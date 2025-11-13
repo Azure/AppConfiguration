@@ -7,7 +7,7 @@
 ### Features
 
 * Added support for Azure App Configuration Snapshots, `SettingSelector` now has a `snapshot_name` parameter
-* Added support for forced refresh of configurations when using Key Vault references. Adds `secret_refresh_interval` to the `AzureAppConfigurationProvider` `load` method. This allows the provider to refresh Key Vault secrets at a specified interval. Is set to 60 seconds by default, and can only be set if using Key Vault references.
+* Added support for forced refresh of configurations when using Key Vault references. Adds `secret_refresh_interval` to the `AzureAppConfigurationProvider` `load` method. This allows the provider to refresh Key Vault secrets at a specified interval. It is set to 60 seconds by default, and can only be set if using Key Vault references.
 * Added support for async library to allow both sync and async `on_refresh_success` callbacks.
 * Added support for Configuration Setting Mapping, new `configuration_mapper` parameter to the `load` method, allows for a callback to be added to modify configurations.
 
