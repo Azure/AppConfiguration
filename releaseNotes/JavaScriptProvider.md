@@ -2,6 +2,13 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.3.0-preview - November 12, 2025
+
+### Enhancements
+
+* Added a new function, `loadFromAzureFrontDoor`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client (browser) applications to take advantage of CDN benefits, such as scale, when fetching configuration. [#223](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/223)
+
+
 ## 2.2.0 - August 7, 2025
 
 ### Enhancements
