@@ -2,6 +2,25 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.3.0 - November 12, 2025
+
+### Features
+
+* Added support for Azure App Configuration Snapshots, `SettingSelector` now has a `snapshot_name` parameter
+* Added support for forced refresh of configurations when using Key Vault references. Adds `secret_refresh_interval` to the `AzureAppConfigurationProvider` `load` method. This allows the provider to refresh Key Vault secrets at a specified interval. Is set to 60 seconds by default, and can only be set if using Key Vault references.
+* Added support for async library to allow both sync and async `on_refresh_success` callbacks.
+* Added support for Configuration Setting Mapping, new `configuration_mapper` parameter to the `load` method, allows for a callback to be added to modify configurations.
+
+### Bug Fixes
+
+* Fixed a bug where refresh with feature flags loaded resulted in `on_refresh_success` triggering even if there was no change.
+* Fixed a bug where when a key was loaded from multiple selects it was processed multiple times instead of just once.
+
+## 2.2.0 - August 08, 2025
+
+* Added support for `tag_filters` in `SettingSelector` when loading configurations.
+* Added support for JSON comments in the `load` method, when a configuration setting has the json content type.
+
 ## 2.1.0 - April 29, 2025
 
 ### Features
@@ -29,7 +48,7 @@
 
 * Fixed an issue where snake case was used for telemetry metadata instead of pascal case.
 
-## 2.0.0b1 - Sepeter 12, 2024
+## 2.0.0b1 - September 12, 2024
 
 ### Features
 
