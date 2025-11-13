@@ -1,3 +1,3 @@
 azure-identity
-azure-appconfiguration-provider
+azure-appconfiguration-provider<3.0.0
 openai
