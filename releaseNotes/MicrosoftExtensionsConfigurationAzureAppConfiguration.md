@@ -1,11 +1,17 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.5.0-preview - November 14th, 2025
+### Enhancements
+* Added a new method `ConnectAzureFrontDoor` to `AzureAppConfigurationOptions`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client-side applications (like mobile/desktop apps) to securely load configuration from App Configuration service, while leveraging all the benefits of CDN. [#706](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/706)
+
 ## 8.4.0 - September 19th, 2025
 ### Enhancements
 * Added support for accepting JSON values with comments. [#685](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/685)
 
 * Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#689](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/689)
+
+* Added an overload of `AddAzureAppConfiguration` that accepts the endpoint and token credential. [#694](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/694)
 
 ## 8.3.0 - July 24th, 2025
 ### Enhancements
