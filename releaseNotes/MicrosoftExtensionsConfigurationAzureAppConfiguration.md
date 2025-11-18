@@ -3,7 +3,7 @@
 
 ## 8.5.0-preview - November 14th, 2025
 ### Enhancements
-* Added a new method `ConnectAzureFrontDoor` to `AzureAppConfigurationOptions`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client-side applications (like mobile/desktop apps) to securely load configuration from App Config service, while leveraging all the benefits of CDN. [#706](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/706)
+* Added a new method `ConnectAzureFrontDoor` to `AzureAppConfigurationOptions`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client-side applications (like mobile/desktop apps) to securely load configuration from App Configuration service, while leveraging all the benefits of CDN. [#706](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/706)
 
 ## 8.4.0 - September 19th, 2025
 ### Enhancements
