@@ -1,0 +1,270 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://azconfig.io/schemas/SpecialTypes/v1.0.0/AIChatConfiguration.json",
+  "title": "Azure App Configuration AI Chat Configuration Value",
+  "description": "A schema for the value part of Azure App Configuration AI Chat Configuration that defines settings and parameters for AI chat applications using Azure OpenAI or other chat completion services",
+  "type": "object",
+  "required": [
+    "model"
+  ],
+  "properties": {
+    "model": {
+      "$id": "#/properties/model",
+      "type": "string",
+      "title": "Model Name",
+      "description": "The name of the AI model to use for chat completion (e.g., 'gpt-4o', 'gpt-3.5-turbo')",
+      "examples": [
+        "gpt-4o",
+        "gpt-4",
+        "gpt-3.5-turbo",
+        "gpt-4-turbo"
+      ],
+      "minLength": 1
+    },
+    "messages": {
+      "$id": "#/properties/messages",
+      "type": "array",
+      "title": "Messages",
+      "description": "An array of messages that define the conversation context, including system prompts and initial conversation history",
+      "items": {
+        "$ref": "#/$defs/Message"
+      },
+      "default": []
+    },
+    "max_tokens": {
+      "$id": "#/properties/max_tokens",
+      "type": "integer",
+      "title": "Maximum Tokens",
+      "description": "The maximum number of tokens to generate in the chat completion response",
+      "minimum": 1,
+      "maximum": 32768,
+      "examples": [
+        1000,
+        2000,
+        4000
+      ]
+    },
+    "temperature": {
+      "$id": "#/properties/temperature",
+      "type": "number",
+      "title": "Temperature",
+      "description": "Controls randomness in the response. Higher values make output more random, lower values make it more focused and deterministic",
+      "minimum": 0,
+      "maximum": 2,
+      "examples": [
+        0.7,
+        0.9,
+        0.1
+      ]
+    },
+    "top_p": {
+      "$id": "#/properties/top_p",
+      "type": "number",
+      "title": "Top P",
+      "description": "Controls diversity via nucleus sampling. Consider only tokens with top_p probability mass",
+      "minimum": 0,
+      "maximum": 1,
+      "examples": [
+        0.95,
+        0.9,
+        1.0
+      ]
+    },
+    "frequency_penalty": {
+      "$id": "#/properties/frequency_penalty",
+      "type": "number",
+      "title": "Frequency Penalty",
+      "description": "Penalizes new tokens based on their existing frequency in the text so far, decreasing likelihood of repetition",
+      "minimum": -2,
+      "maximum": 2,
+      "default": 0
+    },
+    "presence_penalty": {
+      "$id": "#/properties/presence_penalty",
+      "type": "number",
+      "title": "Presence Penalty",
+      "description": "Penalizes new tokens based on whether they appear in the text so far, increasing likelihood of talking about new topics",
+      "minimum": -2,
+      "maximum": 2,
+      "default": 0
+    },
+    "stop": {
+      "$id": "#/properties/stop",
+      "title": "Stop Sequences",
+      "description": "Up to 4 sequences where the API will stop generating further tokens",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "response_format": {
+      "$id": "#/properties/response_format",
+      "type": "object",
+      "title": "Response Format",
+      "description": "An object specifying the format that the model must output",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Response Type",
+          "description": "The type of response format to use",
+          "enum": [
+            "text",
+            "json_object"
+          ],
+          "examples": [
+            "text",
+            "json_object"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "stream": {
+      "$id": "#/properties/stream",
+      "type": "boolean",
+      "title": "Stream",
+      "description": "If set to true, partial message deltas will be sent as data-only server-sent events",
+      "default": false,
+      "examples": [
+        true,
+        false
+      ]
+    },
+    "user": {
+      "$id": "#/properties/user",
+      "type": "string",
+      "title": "User ID",
+      "description": "A unique identifier representing your end-user, which can help AI providers to monitor and detect abuse",
+      "maxLength": 256,
+      "examples": [
+        "user-123",
+        "user-id",
+        "john.doe@example.com"
+      ]
+    },
+    "seed": {
+      "$id": "#/properties/seed",
+      "type": "integer",
+      "title": "Seed",
+      "description": "If specified, the system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result",
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807,
+      "examples": [
+        123,
+        456,
+        789
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Message": {
+      "type": "object",
+      "title": "Chat Message",
+      "description": "A single message in the chat conversation with role and content",
+      "required": [
+        "role"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "title": "Message Role",
+          "description": "The role of the message sender",
+          "enum": [
+            "system",
+            "user",
+            "assistant",
+            "function",
+            "tool"
+          ],
+          "examples": [
+            "system",
+            "user",
+            "assistant"
+          ]
+        },
+        "content": {
+          "title": "Message Content",
+          "description": "The content of the message",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "examples": [
+            "You are a helpful assistant.",
+            "Hello, how can I help you today?",
+            "I'm looking for information about machine learning."
+          ]
+        },
+        "name": {
+          "type": "string",
+          "title": "Message Name",
+          "description": "An optional name for the participant. Provides the model information to differentiate between participants of the same role",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "maxLength": 64
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": [
+    {
+      "model": "gpt-4o",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a helpful assistant."
+        },
+        {
+          "role": "user",
+          "content": "Test Message"
+        }
+      ],
+      "max_tokens": 800,
+      "temperature": 0.7,
+      "top_p": 0,
+      "stop": [
+        "stop"
+      ],
+      "frequency_penalty": 0,
+      "presence_penalty": 0,
+      "response_format": {
+        "type": "json_object"
+      },
+      "stream": true,
+      "user": "user-id",
+      "seed": 123
+    },
+    {
+      "model": "gpt-3.5-turbo",
+      "max_tokens": 2000,
+      "temperature": 0.9,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a creative writing assistant."
+        }
+      ],
+      "frequency_penalty": 0.1,
+      "presence_penalty": 0.1
+    }
+  ]
+}
