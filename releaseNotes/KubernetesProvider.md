@@ -2,6 +2,18 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.5.0 - Dec 1, 2025
+
+### Enhancements
+
+* Added support for filtering key-values by tags. [#130](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/130)
+* Upgraded dependent packages. [#135](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/135)
+* Upgraded go version to 1.24. [#128](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/128)
+
+### Bug Fixes
+
+* Fixed a bug where missing the `configuration` section led to nil pointer dereference during configMap refresh. [#132](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/132)
+
 ## 2.4.0 - August 21, 2025
 
 ### Enhancements
