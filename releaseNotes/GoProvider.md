@@ -2,6 +2,13 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.4.0 - December 4, 2025
+
+### Enhancement
+
+* Added tag filter selector which enables the Go provider to load configuration settings based on tags. [#56](https://github.com/Azure/AppConfiguration-GoProvider/pull/56)
+* Upgraded dependent packages. [#58](https://github.com/Azure/AppConfiguration-GoProvider/pull/58)
+
 ## v1.3.0 - September 29, 2025
 
 ### Enhancement
