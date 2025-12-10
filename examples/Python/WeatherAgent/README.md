@@ -25,32 +25,31 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
    pip install -r requirements.txt
    ```
 
-1. Configure your Azure App Configuration store with the agent YAML specification:
+1. Configure your Azure App Configuration store with the following key-value pairs:
 
+   | Key | Value |
+   |-----|-------|
+   | _WeatherAgent:Spec_ | See YAML below |
+   | _WeatherAgent:ProjectEndpoint_ | Your Foundry project endpoint |
+
+   **YAML specification for _WeatherAgent:Spec_:**
    ```yaml
-    kind: Prompt
-    name: WeatherAgent
-    description: Weather Agent
-    instructions: You are a helpful assistant.
-    model:
-        id: gpt-4.1
-        connection:
-            kind: remote
+   kind: Prompt
+   name: WeatherAgent
+   description: Weather Agent
+   instructions: You are a helpful assistant.
+   model:
+       id: gpt-4.1
+       connection:
+           kind: remote
    ```
-
-1. Configure your Azure App Configuration store with project endpoint:
-
-    ```console
-    Agent:ProjectEndpoint - Your Foundry project endpoint
-    ```
-
 1. Set the required environment variables:
 
    ```bash
    export AZURE_APPCONFIGURATION_ENDPOINT="https://your-appconfig.azconfig.io"
    ```
 
-## Running the Application
+## Run the Application
 
 Start the console application:
 
