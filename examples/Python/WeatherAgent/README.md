@@ -18,7 +18,26 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
 
 ## Setup
 
-1. Clone the repository
+1. Clone the repository and navigate to the `examples\Python\WeatherAgent` directory:
+   ```bash
+   git clone https://github.com/Azure/AppConfiguration.git
+   cd examples\Python\WeatherAgent
+   ```
+
+1. Next, create a new Python virtual environment where you can safely install the packages:
+
+   On macOS or Linux run the following command:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
+
+   On Windows run:
+   ```bash
+   python -m venv .venv
+   .venv\scripts\activate
+   ```
+
 1. Install the required packages:
 
    ```bash
@@ -29,8 +48,8 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
 
    | Key | Value |
    |-----|-------|
-   | _WeatherAgent:Spec_ | See YAML below |
-   | _WeatherAgent:ProjectEndpoint_ | Your Foundry project endpoint |
+   | WeatherAgent:Spec | _See YAML below_ |
+   | WeatherAgent:ProjectEndpoint | _Your Foundry project endpoint_ |
 
    **YAML specification for _WeatherAgent:Spec_:**
    ```yaml
@@ -39,14 +58,26 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
    description: Weather Agent
    instructions: You are a helpful assistant.
    model:
-       id: gpt-4.1
-       connection:
-           kind: remote
+      id: gpt-4.1
+      connection:
+         kind: remote
    ```
 1. Set the required environment variables:
 
+   If you use the Windows command prompt, run the following command and restart the command prompt to allow the change to take effect:
+
+   ```cmd
+   setx AZURE_APPCONFIGURATION_ENDPOINT "<endpoint-of-your-app-configuration-store>"
+   ```
+
+   If you use PowerShell, run the following command:
+   ```powershell
+   $Env:AZURE_APPCONFIGURATION_ENDPOINT="<endpoint-of-your-app-configuration-store>"
+   ```
+
+   If you use macOS or Linux run the following command:
    ```bash
-   export AZURE_APPCONFIGURATION_ENDPOINT="https://your-appconfig.azconfig.io"
+   export AZURE_APPCONFIGURATION_ENDPOINT='<endpoint-of-your-app-configuration-store>'
    ```
 
 ## Run the Application
