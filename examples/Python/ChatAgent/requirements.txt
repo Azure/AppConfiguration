@@ -1,0 +1,4 @@
+agent-framework-azure-ai
+azure-appconfiguration
+azure-appconfiguration-provider
+azure-identity

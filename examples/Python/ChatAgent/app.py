@@ -11,11 +11,11 @@ async def main():
 
     config = load(endpoint=endpoint, credential=credential)
 
-    yaml_str = config["WeatherAgent:Spec"]
+    yaml_str = config["ChatAgent:Spec"]
     
     async with (
         AsyncDefaultCredential() as credential,
-        AgentFactory(client_kwargs={"async_credential": credential, "project_endpoint": config["WeatherAgent:ProjectEndpoint"]}).create_agent_from_yaml(yaml_str) as agent,
+        AgentFactory(client_kwargs={"async_credential": credential, "project_endpoint": config["ChatAgent:ProjectEndpoint"]}).create_agent_from_yaml(yaml_str) as agent,
     ):
         while True:
             print("How can I help? (type 'quit' to exit)")
