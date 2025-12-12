@@ -2,6 +2,18 @@
 
 [Image][image] | [Source code][source_code] | [Samples][samples]
 
+## 1.0.2 - December 11, 2025
+
+### Bug fixes
+
+* Fixed a bug where the null label `%00` in URL queries was not recognized correctly. [#63](https://github.com/Azure/AppConfiguration-Emulator/pull/63)
+
+## 1.0.1 - December 4, 2025
+
+### Bug fixes
+
+* Upgraded the React version for the emulator UI. [#64](https://github.com/Azure/AppConfiguration-Emulator/pull/64)
+
 ## 1.0.0 - October 29, 2025
 
 Initial stable release of the Azure App Configuration emulator.
