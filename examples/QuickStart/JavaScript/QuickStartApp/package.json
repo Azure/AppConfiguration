@@ -1,5 +1,6 @@
 {
     "dependencies": {
-        "@azure/app-configuration-provider": "latest"
+        "@azure/app-configuration-provider": "latest",
+        "@azure/identity": "latest"
     }
 }

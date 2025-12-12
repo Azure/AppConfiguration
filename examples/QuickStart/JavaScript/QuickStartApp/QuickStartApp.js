@@ -1,11 +1,13 @@
 const { load } = require("@azure/app-configuration-provider");
-const connectionString = process.env.AZURE_APPCONFIG_CONNECTION_STRING;
+const { DefaultAzureCredential } = require("@azure/identity");
+
+const endpoint = process.env.AZURE_APPCONFIGURATION_ENDPOINT;
 
 async function run() {
     console.log("Sample 1: Load key-values with default selector");
 
-    // Connect to Azure App Configuration using a connection string and load all key-values with null label.
-    const settings = await load(connectionString);
+    // Connect to Azure App Configuration using EntraID authentication and load all key-values with null label.
+    const settings = await load(endpoint, new DefaultAzureCredential());
 
     console.log("---Consume configuration as a Map---");
     // Find the key "message" and print its value.
