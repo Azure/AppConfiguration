@@ -1,3 +1,4 @@
-agent-framework-azure-ai
-azure-appconfiguration-provider
-azure-identity
+agent-framework-azure-ai==1.0.0b251120
+agent-framework-declarative==1.0.0b251120
+azure-appconfiguration-provider==2.3.1
+azure-identity==1.26.0b1
