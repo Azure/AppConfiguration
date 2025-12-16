@@ -65,7 +65,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
         description: Search the web for live information.
    ```
 
-1. Set the required environment variables:
+1. Set the required environment variable:
 
    If you use the Windows command prompt, run the following command and restart the command prompt to allow the change to take effect:
 
