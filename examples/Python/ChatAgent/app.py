@@ -26,7 +26,7 @@ async def main():
         print("Agent response: ", response.text)
         input("Press enter to continue...")
             
-        print("Exiting... Goodbye...")
+    print("Exiting... Goodbye...")
 
 if __name__ == "__main__":
     asyncio.run(main())
