@@ -49,7 +49,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
    | Key | Value |
    |-----|-------|
    | ChatAgent:Spec | _See YAML below_ |
-   | CharAgent:ProjectEndpoint | _Your Foundry project endpoint_ |
+   | CharAgent:ProjectEndpoint | _Your Azure AI project endpoint_ |
 
    **YAML specification for _ChatAgent:Spec_**
    ```yaml
