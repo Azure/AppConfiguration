@@ -1,0 +1,5 @@
+agent-framework-azure-ai==1.0.0b251211
+agent-framework-declarative==1.0.0b251211
+agent-framework-core==1.0.0b251211
+azure-appconfiguration-provider==2.3.1
+azure-identity==1.26.0b1
