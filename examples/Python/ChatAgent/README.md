@@ -9,10 +9,12 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
 
 ## Prerequisites
 
-- Python 3.8 or later
+- Python 3.10 or later
 - An Azure subscription with access to:
   - Azure App Configuration service
-  - Microsoft Foundry project
+  - An Azure AI project with a deployed gpt-4.1 model and Grounding with Bing Search configured as a connected resource.
+- User has **App Configuration Reader** role assigned for the Azure App Configuration resource.
+- User has **Azure AI User** role assigned for the Azure AI project.
 
 ## Setup
 
@@ -31,7 +33,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
    ```
 
    On Windows run:
-   ```bash
+   ```cmd
    python -m venv .venv
    .venv\scripts\activate
    ```
@@ -49,7 +51,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
    | ChatAgent:Spec | _See YAML below_ |
    | CharAgent:ProjectEndpoint | _Your Foundry project endpoint_ |
 
-   **YAML specification for _ChatAgent:Spec_:**
+   **YAML specification for _ChatAgent:Spec_**
    ```yaml
     kind: Prompt
     name: ChatAgent
@@ -87,13 +89,13 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
 
 1. Start the console application:
 
-   ```bash
+   ```cmd
    python app.py
    ```
 
 2. Type the message "What is the weather in Seattle today?" when prompted with "How can I help?" and then press the Enter key
 
-   ```output
+   ```Output
    How can I help? (type 'quit' to exit)
    User: What is the weather today in Seattle ?     
    Agent response:  Today in Seattle, expect steady rain throughout the day with patchy fog, and a high temperature around 57°F (14°C). 

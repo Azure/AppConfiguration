@@ -10,9 +10,9 @@ async def main():
 
     config = load(endpoint=endpoint, credential=credential)
 
-    yaml_str = config["ChatAgent:Spec"]
+    agent_spec = config["ChatAgent:Spec"]
     
-    agent = AgentFactory(client_kwargs={"credential": credential, "project_endpoint": config["ChatAgent:ProjectEndpoint"]}).create_agent_from_yaml(yaml_str)
+    agent = AgentFactory(client_kwargs={"credential": credential, "project_endpoint": config["ChatAgent:ProjectEndpoint"]}).create_agent_from_yaml(agent_spec)
 
     while True:
         print("How can I help? (type 'quit' to exit)")
