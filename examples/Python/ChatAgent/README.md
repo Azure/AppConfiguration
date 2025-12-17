@@ -11,7 +11,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
 
 - Python 3.10 or later
 - An Azure subscription with:
-  - Azure App Configuration service
+  - An Azure App Configuration store
   - An Azure AI project with a deployed gpt-4.1 model and Grounding with Bing Search configured as a connected resource.
 - User has **App Configuration Reader** role assigned for the Azure App Configuration resource.
 - User has **Azure AI User** role assigned for the Azure AI project.
