@@ -15,8 +15,10 @@ The key-value filters used by your application must match exactly the filters co
 
 Here are some examples to help you set up the right filters. 
 
-- [Application uses key-values only](#application-uses-key-values-only)
-- [Application uses feature flags only](#application-uses-feature-flags-only)
+- [Application uses default key-values](#application-uses-default-key-values)
+- [Application uses key-values selector](#application-uses-key-values-selector)
+- [Application uses default feature flags](#application-uses-default-feature-flags)
+- [Application uses feature flags selector](#application-uses-feature-flags-selector)
 - [Application uses key-values and feature flags](#application-uses-key-values-and-feature-flags)
 - [Application uses multiple key-value selectors](#application-uses-multiple-key-value-selectors)
 - [Application uses key-values and snapshot selectors](#application-uses-key-values-and-snapshot-selectors)
@@ -24,10 +26,33 @@ Here are some examples to help you set up the right filters.
 - [Application loads key-values with reserved characters](#application-loads-key-values-with-reserved-characters)
 - [Application loads key-values with tag filters](#application-loads-key-values-with-tag-filters)
 
+### Application uses default key-values
 
-### Application uses key-values only 
+If your application has the following set up:
 
-If you application has the following set up:
+```cs
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.ConnectAzureFrontDoor(new Uri("{YOUR-AFD-ENDPOINT}"))
+            .ConfigureRefresh(refreshOptions =>
+            {
+                refreshOptions.RegisterAll()
+                    .SetRefreshInterval(TimeSpan.FromMinutes(1));
+            });
+});
+```
+
+Then your Azure Front Door filters should look like this:
+
+
+| **Filter Type**  | **Operator**  | **Value**   | **Operator**  | **Value**   |
+| ---------------- | ------------- | ----------- | ------------- | ----------- |
+| Key value        | Key All       | `*`         | Label Equal   | `(No label)`  |
+
+
+### Application uses key-values selector 
+
+If your application has the following set up with for loading specific key-values:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -47,16 +72,41 @@ Then your Azure Front Door filters should look like this:
 
 | **Filter Type**  | **Operator**  | **Value**   | **Operator**  | **Value**   |
 | ---------------- | ------------- | ----------- | ------------- | ----------- |
-| Key value        | Key Starts with | `App1:`     | Label Equal   | `(No label)`  |
+| Key value        | Key Starts with | `App1:`   | Label Equal   | `(No label)`|
 
 
 ![AFD Portal Filters](./images/sample1.png)
 
 -------
 
-### Application uses feature flags only
+### Application uses default feature flags
 
-If you application has the following set up for loading only feature flags:
+If your application has the following set up for loading default feature flags:
+
+```cs
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.ConnectAzureFrontDoor(new Uri("{YOUR-AFD-ENDPOINT}"))
+            .UseFeatureFlags(ffOptions =>
+            {
+                ffOptions.SetRefreshInterval(TimeSpan.FromMinutes(1));
+            });
+});
+```
+
+Then your Azure Front Door filters should look like this:
+
+
+| **Filter Type**  | **Operator**  | **Value**   | **Operator**  | **Value**   |
+| ---------------- | ------------- | ----------- | ------------- | ----------- |
+| Key value        | Key All       | `*`         | Label Equal   | `(No label)` |
+| Key value        | Key Starts with | `.appconfig.featureflag/` | Label Equal  | `(No label)`  |
+
+-------
+
+### Application uses feature flags selector
+
+If your application has the following set up for loading specific feature flags:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -82,7 +132,7 @@ Then your Azure Front Door filters should look like this:
 
 ### Application uses key-values and feature flags
 
-If you application has the following set up for loading key-values and feature flags:
+If your application has the following set up for loading key-values and feature flags:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -114,7 +164,7 @@ Then your Azure Front Door filters should look like this:
 
 ### Application uses multiple key-value selectors
 
-If you application has the following set up with multiple selectors:
+If your application has the following set up with multiple selectors:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -141,7 +191,7 @@ Then your Azure Front Door filters should look like this:
 
 ### Application uses key-values and snapshot selectors
 
-If you application has the following set up with key-values and snapshot:
+If your application has the following set up with key-values and snapshot:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -206,7 +256,7 @@ Then you need to add "snapshot1" to your Azure Front Door filters, in addition t
 
 ### Application loads key-values with reserved characters
 
-If you application has the following set up where your key filter contains App Config reserved characters (`, * \`):
+If your application has the following set up where your key filter contains [App Config reserved characters](https://aka.ms/azconfig/docs/keyvaluefiltering):
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -234,7 +284,7 @@ Then your Azure Front Door filters should look like this:
 
 ### Application loads key-values with tag filters
 
-If you application has the following set up with tag filters:
+If your application has the following set up with tag filters:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
