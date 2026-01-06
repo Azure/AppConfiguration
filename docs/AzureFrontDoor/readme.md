@@ -4,9 +4,9 @@ App Configuration gives developers a single, consistent place to define configur
 
 ## Documentation links
 
-- Conceptual overview of [Hyperscale Configuration](https://learn.microsoft.com/azure/azure-app-configuration/concept-hyperscale-client-config)
+- Conceptual overview of [Hyperscale Configuration](https://learn.microsoft.com/azure/azure-app-configuration/concept-hyperscale-client-configuration)
 - [Connect App Config to Azure Front Door](https://learn.microsoft.com/azure/azure-app-configuration/how-to-connect-azure-front-door)
-- [Connect applications to Azure Front Door](https://learn.microsoft.com/azure/azure-app-configuration/how-to-load-azure-front-door-configprovider)
+- [Connect applications to Azure Front Door](https://learn.microsoft.com/azure/azure-app-configuration/how-to-load-azure-front-door-configuration-provider)
 
 
 ## Request scoping filter samples
