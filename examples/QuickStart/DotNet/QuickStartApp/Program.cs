@@ -1,9 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Azure.Identity;
+
+Uri endpoint = new(Environment.GetEnvironmentVariable("AZURE_APPCONFIGURATION_ENDPOINT") ??
+    throw new InvalidOperationException("The environment variable 'AZURE_APPCONFIGURATION_ENDPOINT' is not set or is empty."));
 
 var builder = new ConfigurationBuilder();
 builder.AddAzureAppConfiguration(options =>
 {
-    options.Connect(Environment.GetEnvironmentVariable("AZURE_APPCONFIG_CONNECTION_STRING"))
+    options.Connect(endpoint, new DefaultAzureCredential())
         .Select("QuickStartApp*");
 });
 

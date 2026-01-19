@@ -2,12 +2,13 @@ from azure.appconfiguration.provider import (
     load,
     SettingSelector
 )
+from azure.identity import DefaultAzureCredential
 import os
 
-connection_string = os.environ.get("AZURE_APPCONFIG_CONNECTION_STRING")
+endpoint = os.environ.get("AZURE_APPCONFIGURATION_ENDPOINT")
 
-# Connect to Azure App Configuration using a connection string.
-config = load(connection_string=connection_string)
+# Connect to Azure App Configuration using Microsoft Entra ID authentication.
+config = load(endpoint=endpoint, credential=DefaultAzureCredential())
 
 # Find the key "message" and print its value.
 print(config["message"])
