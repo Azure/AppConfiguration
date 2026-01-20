@@ -71,3 +71,18 @@ This example shows how to use the Azure App Configuration Python Provider in you
 ### [python-flask-webapp-sample](./Python/python-flask-webapp-sample/)
 
 This example shows how to use the Azure App Configuration Python Provider in your python Flask app.
+
+## Go Samples
+
+### [AI Chat App](./Go/ChatApp/)
+
+This example showcases a Go console application that retrieves chat responses from Azure OpenAI. It demonstrates how to configure chat completion using AI Configuration from Azure App Configuration, enabling rapid prompt iteration and frequent tuning of model parameters—without requiring application restarts, rebuilds, or redeployments.
+
+### [Console app](./Go/ConsoleApp/)
+
+This example demonstrates how to enable dynamic configuration from App Configuration in a Go console application.
+
+### [Gin web app](./Go/WebApp/)
+
+This example demonstrates how to enable dynamic configuration and use feature flags from App Configuration in a web application built with the Gin framework.
+
