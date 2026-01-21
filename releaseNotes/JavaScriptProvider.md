@@ -4,23 +4,21 @@
 
 ## 2.4.0-preview - January 13, 2026
 
-### Enhancements
-
-* Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#232](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/232)
+* Added the `loadFromAzureFrontDoor` function based on 2.3.0.
 
 ## 2.3.0 - January 13, 2026
 
+* The preview-only `loadFromAzureFrontDoor` function introduced in 2.3.0-preview is not included in this stable release.
+
 ### Enhancements
 
 * Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#232](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/232)
-
-**Note:** Built on 2.2.0. For Azure Front Door support, use 2.4.0-preview or later.
 
 ## 2.3.0-preview - November 12, 2025
 
 ### Enhancements
 
-* Added a new function, `loadFromAzureFrontDoor`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client (browser) applications to take advantage of CDN benefits, such as scale, when fetching configuration. [#223](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/223)
+* Introduced a new function, `loadFromAzureFrontDoor`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client (browser) applications to take advantage of CDN benefits, such as scale, when fetching configuration. [#223](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/223)
 
 
 ## 2.2.0 - August 7, 2025
