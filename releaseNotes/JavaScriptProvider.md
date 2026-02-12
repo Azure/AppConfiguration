@@ -4,11 +4,7 @@
 
 ## 2.4.1-preview - February 4, 2026
 
-* Added the `loadFromAzureFrontDoor` function based on 2.3.0.
-
-### Enhancements
-
-* Added support for enforcing a minimum secret refresh interval (60 seconds) for Key Vault references during configuration refresh. When refresh is triggered, the provider will not re-fetch a secret if it was retrieved less than 60 seconds ago, avoiding excessive requests to Key Vault. [#264](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/264)
+* This release includes all preview functionality introduced in 2.4.0-preview and also adds the changes introduced in 2.3.1.
 
 ## 2.3.1 - January 29, 2026
 
