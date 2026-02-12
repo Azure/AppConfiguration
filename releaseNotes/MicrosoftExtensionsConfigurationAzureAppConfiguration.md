@@ -1,6 +1,10 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.5.0 - February 12th, 2026
+### Enhancements
+* Upgraded the package reference for `Azure.Data.AppConfiguration` to `1.8.0`. [#721](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/721)
+
 ## 8.5.0-preview - November 14th, 2025
 ### Enhancements
 * Added a new method `ConnectAzureFrontDoor` to `AzureAppConfigurationOptions`, which can be used to load configuration settings from Azure App Configuration via an Azure Front Door endpoint. This enables client-side applications (like mobile/desktop apps) to securely load configuration from App Configuration service, while leveraging all the benefits of CDN. [#706](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/706)
