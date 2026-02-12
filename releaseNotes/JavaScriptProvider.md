@@ -2,6 +2,10 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.4.1-preview - February 4, 2026
+
+* This release includes all preview functionality introduced in 2.4.0-preview and also adds the changes introduced in 2.3.1.
+
 ## 2.3.1 - January 29, 2026
 
 ### Enhancements
