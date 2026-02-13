@@ -2,11 +2,11 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
-## v1.4.1 - February 14, 2026
+## v1.5.0 - February 14, 2026
 
 ### Enhancement
 
-* Upgraded dependent packages. [#61](https://github.com/Azure/AppConfiguration-GoProvider/pull/61)
+* Upgraded `azappconfig` to `v2.1.0` ang other dependent packages. [#61](https://github.com/Azure/AppConfiguration-GoProvider/pull/61)
 
 ## v1.4.0 - December 4, 2025
 
