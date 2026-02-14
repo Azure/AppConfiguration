@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Updated the reference of `@azure/app-configuration` to `1.11.0`. [#276](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/276)
+* Updated the reference of `@azure/app-configuration` to `1.11.0` to take advantage of enhanced errors when Entra ID audience is misconfigured. [#276](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/276)
 
 ## 2.4.1-preview - February 4, 2026
 
