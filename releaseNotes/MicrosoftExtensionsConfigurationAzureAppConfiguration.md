@@ -3,7 +3,7 @@
 
 ## 8.5.0 - February 12th, 2026
 ### Enhancements
-* Upgraded the package reference for `Azure.Data.AppConfiguration` to `1.8.0`. [#721](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/721)
+* Upgraded the package reference for `Azure.Data.AppConfiguration` to `1.8.0`to take advantage of enhanced errors when Entra ID audience is misconfigured. [#721](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/721)
 
 ## 8.5.0-preview - November 14th, 2025
 ### Enhancements
