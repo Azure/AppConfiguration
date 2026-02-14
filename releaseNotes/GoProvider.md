@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.5.0 - February 14, 2026
+
+### Enhancement
+
+* Upgraded various dependencies. Notably `azappconfig` was updated to 2.1.0 to take advantage of enhanced errors when Entra ID audience is misconfigured. [#61](https://github.com/Azure/AppConfiguration-GoProvider/pull/61)
+
 ## v1.4.0 - December 4, 2025
 
 ### Enhancement
