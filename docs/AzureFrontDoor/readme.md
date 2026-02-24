@@ -52,7 +52,7 @@ Then your Azure Front Door filters should look like this:
 
 ### Application uses key-values selector 
 
-If your application has the following set up with for loading specific key-values:
+If your application has the following set up for loading specific key-values:
 
 ```cs
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -100,7 +100,7 @@ Then your Azure Front Door filters should look like this:
 | **Filter Type**  | **Operator**  | **Value**   | **Operator**  | **Value**   |
 | ---------------- | ------------- | ----------- | ------------- | ----------- |
 | Key value        | Key All       | `*`         | Label Equal   | `(No label)` |
-| Key value        | Key Starts with | `.appconfig.featureflag/` | Label Equal  | `(No label)`  |
+| Feature flag     | Key All       | `*`         | Label Equal  | `(No label)`  |
 
 -------
 
@@ -125,8 +125,8 @@ Then your Azure Front Door filters should look like this:
 
 | **Filter Type**  | **Operator**  | **Value**   | **Operator**  | **Value**   |
 | ---------------- | ------------- | ----------- | ------------- | ----------- |
-| Key value        | Key All       | `*`     | Label Equal   | `(No label)`  |
-| Key value        | Key Starts with | `.appconfig.featureflag/MyFeatures`  | Label Equal   | `(No label)`  |
+| Key value        | Key All       | `*`         | Label Equal   | `(No label)`  |
+| Feature flag     | Key Starts with | `MyFeatures`  | Label Equal   | `(No label)`  |
 
 -------
 
@@ -158,7 +158,7 @@ Then your Azure Front Door filters should look like this:
 | **Filter Type**  | **Operator**  | **Value**   | **Operator**  | **Value**   |
 | ---------------- | ------------- | ----------- | ------------- | ----------- |
 | Key value        | Key Starts with | `App1:`     | Label Equal   | `(No label)`  |
-| Key value        | Key Starts with | `.appconfig.featureflag/MyFeatures`  | Label Equal   | `(No label)`  |
+| Feature flag     | Key Starts with | `MyFeatures`  | Label Equal   | `(No label)`  |
 
 -------
 
