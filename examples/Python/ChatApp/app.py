@@ -4,19 +4,18 @@
 # license information.
 # --------------------------------------------------------------------------
 """
-Azure OpenAI Chat Application using Azure App Configuration.
+Azure AI Foundry Chat Application using Azure App Configuration.
 This script demonstrates how to create a chat application that uses Azure App Configuration
-to manage settings and Azure OpenAI to power chat interactions.
+to manage settings and Azure AI Foundry to power chat interactions.
 """
 
 import os
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from azure.identity import DefaultAzureCredential
 from azure.appconfiguration.provider import load, SettingSelector, WatchKey
-from openai import AzureOpenAI
-from models import AzureOpenAIConfiguration, ChatCompletionConfiguration
+from azure.ai.inference import ChatCompletionsClient
+from models import AzureAIFoundryConfiguration, ChatCompletionConfiguration
 
 APP_CONFIG_ENDPOINT_KEY = "AZURE_APPCONFIGURATION_ENDPOINT"
-
 
 # Initialize CREDENTIAL
 CREDENTIAL = DefaultAzureCredential()
@@ -43,15 +42,12 @@ def main():
     )
     configure_app()
 
-    azure_openai_config = AzureOpenAIConfiguration(
-        api_key=APPCONFIG.get("AzureOpenAI:ApiKey", ""),
-        endpoint=APPCONFIG.get("AzureOpenAI:Endpoint", ""),
-        deployment_name=APPCONFIG.get("AzureOpenAI:DeploymentName", ""),
-        api_version=APPCONFIG.get("AzureOpenAI:ApiVersion", ""),
+    azure_foundry_config = AzureAIFoundryConfiguration(
+        endpoint=APPCONFIG.get("AzureAIFoundry:Endpoint", "")
     )
-    azure_client = create_azure_openai_client(azure_openai_config)
+    chat_client = create_chat_client(azure_foundry_config)
 
-    chat_conversation  = []
+    chat_conversation = []
 
     print("Chat started! What's on your mind?")
 
@@ -74,16 +70,14 @@ def main():
         chat_messages.extend(chat_conversation)
 
         # Get AI response and add it to chat conversation
-        response = azure_client.chat.completions.create(
-            model=azure_openai_config.deployment_name,
+        response = chat_client.complete(
+            model=CHAT_COMPLETION_CONFIG.model,
             messages=chat_messages,
-            max_tokens=CHAT_COMPLETION_CONFIG.max_tokens,
-            temperature=CHAT_COMPLETION_CONFIG.temperature,
-            top_p=CHAT_COMPLETION_CONFIG.top_p,
+            max_tokens=CHAT_COMPLETION_CONFIG.max_completion_tokens,
         )
 
         ai_response = response.choices[0].message.content
-        chat_conversation .append({"role": "assistant", "content": ai_response})
+        chat_conversation.append({"role": "assistant", "content": ai_response})
         print(f"AI: {ai_response}")
 
 
@@ -96,27 +90,15 @@ def configure_app():
     CHAT_COMPLETION_CONFIG = ChatCompletionConfiguration(**APPCONFIG["ChatCompletion"])
 
 
-def create_azure_openai_client(azure_openai_config: AzureOpenAIConfiguration) -> AzureOpenAI:
+def create_chat_client(config: AzureAIFoundryConfiguration) -> ChatCompletionsClient:
     """
-    Create an Azure OpenAI client using the configuration from Azure App Configuration.
+    Create a ChatCompletionsClient using the configuration from Azure App Configuration.
     """
-    if azure_openai_config.api_key:
-        return AzureOpenAI(
-            azure_endpoint=azure_openai_config.endpoint,
-            api_key=azure_openai_config.api_key,
-            api_version=azure_openai_config.api_version,
-            azure_deployment=azure_openai_config.deployment_name,
-        )
-    else:
-        return AzureOpenAI(
-            azure_endpoint=azure_openai_config.endpoint,
-            azure_ad_token_provider=get_bearer_token_provider(
-                CREDENTIAL,
-                "https://cognitiveservices.azure.com/.default",
-            ),
-            api_version=azure_openai_config.api_version,
-            azure_deployment=azure_openai_config.deployment_name,
-        )
+    return ChatCompletionsClient(
+        endpoint=config.endpoint,
+        credential=CREDENTIAL,
+        credential_scopes=["https://cognitiveservices.azure.com/.default"],
+    )
 
 
 if __name__ == "__main__":
