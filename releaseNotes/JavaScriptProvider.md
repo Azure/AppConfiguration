@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.5.0-preview - February 26, 2026
+
+### Enhancements
+
+* Optimized refresh behavior for `loadFromAzureFrontDoor` by using `HEAD` requests to check for changes. [#275](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/275)
+
 ## 2.4.0 - February 12, 2026
 
 ### Enhancements
