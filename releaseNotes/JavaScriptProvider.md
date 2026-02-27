@@ -4,8 +4,6 @@
 
 ## 2.5.0-preview - February 26, 2026
 
-This release also adds the changes introduced in 2.4.0.
-
 ### Enhancements
 
 * Optimized refresh behavior for `loadFromAzureFrontDoor` by using `HEAD` requests to check for changes. [#275](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/275)
