@@ -35,7 +35,6 @@ def main():
         endpoint=app_config_endpoint,
         selects=[SettingSelector(key_filter="ChatApp:*")],
         credential=CREDENTIAL,
-        keyvault_credential=CREDENTIAL,
         trim_prefixes=["ChatApp:"],
         refresh_on=[WatchKey(key="ChatApp:Sentinel")],
         on_refresh_success=configure_app,
@@ -66,6 +65,8 @@ def main():
         # Add user message to chat conversation
         chat_conversation.append({"role": "user", "content": user_input})
 
+        if not CHAT_COMPLETION_CONFIG.messages:
+            CHAT_COMPLETION_CONFIG.messages = []
         chat_messages = list(CHAT_COMPLETION_CONFIG.messages)
         chat_messages.extend(chat_conversation)
 
@@ -73,7 +74,6 @@ def main():
         response = chat_client.complete(
             model=CHAT_COMPLETION_CONFIG.model,
             messages=chat_messages,
-            max_tokens=CHAT_COMPLETION_CONFIG.max_completion_tokens,
         )
 
         ai_response = response.choices[0].message.content
