@@ -1,5 +1,5 @@
 ---
-description: Triage new issues by labeling them by type and priority, identifying duplicates, asking clarifying questions, and assigning to the right team members.
+description: Triage new issues by labeling them by type, identifying duplicates, and asking clarifying questions when the description is unclear.
 on:
   issues:
     types: [opened]
@@ -19,9 +19,6 @@ safe-outputs:
       - duplicate
       - needs-more-info
       - good-first-issue
-      - priority-high
-      - priority-medium
-      - priority-low
     max: 5
   add-comment:
     max: 1
@@ -64,14 +61,7 @@ Determine the issue type and add the appropriate label(s):
 
 Every non-duplicate issue must get at least one type label.
 
-## Step 4: Assign Priority
-
-Add exactly one priority label based on impact and severity:
-- **priority-high**: Security vulnerabilities, data loss, service outages, issues blocking many users, or regressions in core functionality.
-- **priority-medium**: Significant functionality issues or important feature requests with moderate impact.
-- **priority-low**: Minor bugs, cosmetic issues, nice-to-have features, or low-impact requests.
-
-## Step 5: Evaluate Clarity
+## Step 4: Evaluate Clarity
 
 If the issue description is unclear, missing critical information, or lacks enough context to understand the problem:
 1. Add the **needs-more-info** label.
@@ -91,17 +81,6 @@ For **questions**, ask for:
 - The specific behavior or configuration they are trying to achieve
 
 Do NOT add `needs-more-info` if the issue is already clear and complete.
-
-## Step 6: Assign to Team Members
-
-Assign the issue to an appropriate team member using these criteria:
-- Use the GitHub API to search recent issues and PRs to identify active contributors and maintainers.
-- For **bug** or **priority-high** issues, look for a maintainer who has recently closed similar bug reports or reviewed related PRs.
-- For **feature-request** or **enhancement** issues, look for a contributor who has recently worked on related features.
-- For **question** or **documentation** issues, assign to whoever most recently engaged with similar topics.
-- If no suitable assignee can be identified from the repository history, leave the issue unassigned.
-
-Do not invent usernames. Only assign to GitHub users who appear as active contributors in the repository's issue and PR history.
 
 ## Guidelines
 
