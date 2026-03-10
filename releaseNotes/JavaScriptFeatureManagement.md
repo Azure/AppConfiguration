@@ -2,7 +2,17 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
-## 2.2.0 - Augest 21, 2025
+## 2.3.0 - March 10, 2026
+
+### Enhancements
+
+* Upgraded various dependencies. [#150](https://github.com/microsoft/FeatureManagement-JavaScript/pull/150)
+
+### Bug fixes
+
+* Exported `IFeatureFilterEvaluationContext` so custom `IFeatureFilter` implementations can use proper type information for the `evaluateAsync` context parameter. [#135](https://github.com/microsoft/FeatureManagement-JavaScript/pull/135)
+
+## 2.2.0 - August 21, 2025
 
 ### Enhancements
 

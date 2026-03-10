@@ -2,7 +2,13 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
-## 2.2.0 - Augest 21, 2025
+## 2.3.0 - March 10, 2026
+
+### Enhancements
+
+* Updated `@microsoft/feature-management` dependency to `2.3.0`.
+
+## 2.2.0 - August 21, 2025
 
 ### Enhancements
 
