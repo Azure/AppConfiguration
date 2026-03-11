@@ -10,7 +10,7 @@
 
 ### Bug fixes
 
-* Exported `IFeatureFilterEvaluationContext` so custom `IFeatureFilter` implementations can use proper type information for the `evaluateAsync` context parameter. [#135](https://github.com/microsoft/FeatureManagement-JavaScript/pull/135)
+* Exported `IFeatureFilterEvaluationContext` so that custom `IFeatureFilter` implementations can use proper type information for the `evaluateAsync` context parameter. [#135](https://github.com/microsoft/FeatureManagement-JavaScript/pull/135)
 
 ## 2.2.0 - August 21, 2025
 
