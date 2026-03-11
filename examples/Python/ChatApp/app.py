@@ -73,8 +73,9 @@ def main():
 
         # Get AI response and add it to chat conversation
         response = openai_client.chat.completions.create(
-            model="gpt-5",
+            model=CHAT_COMPLETION_CONFIG.model,
             messages=chat_messages,
+            max_completion_tokens=CHAT_COMPLETION_CONFIG.max_completion_tokens,
         )
 
         ai_response = response.choices[0].message.content
