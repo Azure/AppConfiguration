@@ -12,7 +12,7 @@ to manage settings and Azure AI Foundry to power chat interactions.
 import os
 from azure.identity import DefaultAzureCredential
 from azure.appconfiguration.provider import load, SettingSelector, WatchKey
-from azure.ai.inference import ChatCompletionsClient
+from azure.ai.projects import AIProjectClient
 from models import AzureAIFoundryConfiguration, ChatCompletionConfiguration
 
 APP_CONFIG_ENDPOINT_KEY = "AZURE_APPCONFIGURATION_ENDPOINT"
@@ -44,7 +44,8 @@ def main():
     azure_foundry_config = AzureAIFoundryConfiguration(
         endpoint=APPCONFIG.get("AzureAIFoundry:Endpoint", "")
     )
-    chat_client = create_chat_client(azure_foundry_config)
+    project_client = create_project_client(azure_foundry_config)
+    openai_client = project_client.get_openai_client()
 
     chat_conversation = []
 
@@ -71,8 +72,8 @@ def main():
         chat_messages.extend(chat_conversation)
 
         # Get AI response and add it to chat conversation
-        response = chat_client.complete(
-            model=CHAT_COMPLETION_CONFIG.model,
+        response = openai_client.chat.completions.create(
+            model="gpt-5",
             messages=chat_messages,
         )
 
@@ -90,14 +91,13 @@ def configure_app():
     CHAT_COMPLETION_CONFIG = ChatCompletionConfiguration(**APPCONFIG["ChatCompletion"])
 
 
-def create_chat_client(config: AzureAIFoundryConfiguration) -> ChatCompletionsClient:
+def create_project_client(config: AzureAIFoundryConfiguration) -> AIProjectClient:
     """
-    Create a ChatCompletionsClient using the configuration from Azure App Configuration.
+    Create an AIProjectClient using the configuration from Azure App Configuration.
     """
-    return ChatCompletionsClient(
+    return AIProjectClient(
         endpoint=config.endpoint,
         credential=CREDENTIAL,
-        credential_scopes=["https://cognitiveservices.azure.com/.default"],
     )
 
 
