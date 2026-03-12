@@ -1,9 +1,16 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.6.0-preview - February 26th, 2026
+### Enhancements
+* Optimized refresh behavior for `ConnectAzureFrontDoor` by using `HEAD` requests to check for changes. [#717](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/717)
+
 ## 8.5.0 - February 12th, 2026
 ### Enhancements
 * Upgraded the package reference for `Azure.Data.AppConfiguration` to `1.8.0`to take advantage of enhanced errors when Entra ID audience is misconfigured. [#721](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/721)
+
+### Bug Fixes
+* Fixed a bug where the Azure App Configuration health check did not honor the registered `failureStatus` when the provider failed to load or refresh. [#714](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/714)
 
 ## 8.5.0-preview - November 14th, 2025
 ### Enhancements
