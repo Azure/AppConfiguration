@@ -2,6 +2,19 @@
 
 [Source code][source_code] | [Package (Pypi)][package] | [Samples][samples]
 
+## 2.4.0 - February 17, 2026
+
+### Features
+
+* Added support for startup retry. If the initial load fails, the provider will retry until the startup timeout is reached. By default the retry period is 100s, and can be configured via the `startup_timeout` kwarg on the `load` method.
+* Added support for adding `audience` to the kwargs for `load`, allowing it to specify the audience for the request.
+* Added support for snapshot references. Configuration settings that reference a snapshot are automatically resolved and expanded during `load`.
+
+### Bug Fixes
+
+* Fixed a bug where `feature_flag_selects` could be passed in as `None` which resulted in an exception on load. Doing this now results in loading the default feature flags.
+* Fixed a bug where `feature_flag_selects` couldn't load snapshots.
+
 ## 2.3.0 - November 12, 2025
 
 ### Features
