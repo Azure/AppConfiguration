@@ -14,6 +14,16 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 6.0.0 - September 22, 2025
+
+This is the first stable release of the 6.0.0 major version, which includes all changes introduced in 6.0.0-beta.1.
+
+### Breaking Changes
+
+* Replaced `bootstrap.properties` and `bootstrap.yml` configuration with the standard Spring configuration system using `application.properties` and `application.yml`. Applications must now set `spring.config.import=azureAppConfiguration` to load Azure App Configuration.
+* Changed the default authentication method from `ManagedIdentityCredential` to `DefaultAzureCredential`. Applications that previously relied on `ManagedIdentityCredential` should verify their authentication configuration is compatible with `DefaultAzureCredential`.
+* Removed the `fail-fast` property. Replicas should be used to ensure high availability.
+
 ## 6.0.0-beta.1 - June 04, 2025
 
 ### Enhancements
