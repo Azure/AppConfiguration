@@ -12,7 +12,7 @@
 
 ### Breaking Changes
 
-* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts.
+* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
 
 ### Enhancements
 
@@ -24,7 +24,7 @@
 
 ### Breaking Changes
 
-* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts.
+* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
 
 ### Enhancements
 
