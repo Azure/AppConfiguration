@@ -10,8 +10,6 @@
 
 ## 6.0.0 - September 22, 2025
 
-This is the first stable release of the 6.0.0 major version, which includes all changes introduced in 6.0.0-beta.1.
-
 ### Breaking Changes
 
 * Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts.

@@ -16,8 +16,6 @@
 
 ## 6.0.0 - September 22, 2025
 
-This is the first stable release of the 6.0.0 major version, which includes all changes introduced in 6.0.0-beta.1.
-
 ### Breaking Changes
 
 * Replaced `bootstrap.properties` and `bootstrap.yml` configuration with the standard Spring configuration system using `application.properties` and `application.yml`. Applications must now set `spring.config.import=azureAppConfiguration` to load Azure App Configuration.

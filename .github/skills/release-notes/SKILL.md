@@ -117,7 +117,9 @@ Do not include changes that are not meaningful to customers:
 ### Preview / Beta Releases
 - Include preview and beta versions in the same file, interleaved chronologically.
 - Use the full version string: `## 8.6.0-preview - February 26, 2026`
-- If a preview release contains the same changes as a prior preview plus a new stable release, note that: "This release includes all preview functionality introduced in X and also adds the changes introduced in Y."
+- Preview/beta releases are **cumulative** — each one includes all changes from previous previews in that series. List all changes in every preview entry; duplicates across preview entries are expected.
+- The first stable release also re-lists all changes that were introduced across its preview/beta cycle. Do not omit items just because they appeared in a prior preview.
+
 
 ### Delisted Releases
 - Mark delisted versions in the heading: `## 4.2.1 - July 9, 2025 (Delisted)`
