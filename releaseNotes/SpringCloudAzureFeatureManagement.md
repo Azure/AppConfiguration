@@ -8,18 +8,6 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
-## 6.0.0 - September 22, 2025
-
-### Breaking Changes
-
-* Changed the method for calculating the `TargetingFilter` to match the results for the other Feature Management libraries. This will result in different results for percentage rollouts. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
-
-### Enhancements
-
-* Added support for Feature Variants. A new method has been added to `FeatureManager` that allows you to retrieve the `Variant` of a feature flag. See the [Variants documentation](https://learn.microsoft.com/azure/azure-app-configuration/howto-variant-feature-flags). [#38293](https://github.com/Azure/azure-sdk-for-java/pull/38293)
-* Added support for providing local context to feature filters. All `FeatureManager` methods now have an overload that accepts a feature context which is an `Object`. This context is passed to the feature filters and can be used to provide additional information to the filters. [#29691](https://github.com/Azure/azure-sdk-for-java/issues/29691)
-* Added built-in Feature Filters that are now created by default if no filters are provided. [#38293](https://github.com/Azure/azure-sdk-for-java/pull/38293)
-
 ## 6.0.0-beta.1 - June 04, 2025
 
 ### Breaking Changes

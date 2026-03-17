@@ -14,14 +14,6 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
-## 6.0.0 - September 22, 2025
-
-### Breaking Changes
-
-* Replaced `bootstrap.properties` and `bootstrap.yml` configuration with the standard Spring configuration system using `application.properties` and `application.yml`. Applications must now set `spring.config.import=azureAppConfiguration` to load Azure App Configuration. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
-* Changed the default authentication method from `ManagedIdentityCredential` to `DefaultAzureCredential`. Applications that previously relied on `ManagedIdentityCredential` should verify their authentication configuration is compatible with `DefaultAzureCredential`. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
-* Removed the `fail-fast` property. Replicas should be used to ensure high availability. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
-
 ## 6.0.0-beta.1 - June 04, 2025
 
 ### Enhancements
