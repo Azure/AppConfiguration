@@ -25,8 +25,8 @@ This is **not** a library repo — it is a reference and documentation repositor
 ### Python
 - **Black** formatter: line-length=120, target Python 3.8+
 - **Pylint**: max-line-length=120
-- **MyPy**: type checking enabled
-- Run formatting/linting via tox tasks defined in the workspace
+- **MyPy**: type checking is recommended; use where configured in individual examples
+- Run formatting and linting directly via these tools (or any per-example tooling); no shared tox tasks are defined at the repo root
 
 ### All Languages
 - Each example must be self-contained with its own README, dependencies, and setup instructions

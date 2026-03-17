@@ -128,7 +128,7 @@ Do not include changes that are not meaningful to customers:
 
 ## Product Reference
 
-Use this table to determine the correct release notes file, GitHub repo (for issue/PR links), and package registry for each product. This information is also available in the [main README](../../README.md).
+Use this table to determine the correct release notes file, GitHub repo (for issue/PR links), and package registry for each product. This information is also available in the [main README](../../../README.md).
 
 ### Configuration Providers
 
