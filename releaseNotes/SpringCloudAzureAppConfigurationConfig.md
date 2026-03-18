@@ -14,14 +14,54 @@
 
 [Source code][source_code_web] | [Package (Maven)][package_web]
 
+## 7.1.0 - March 11, 2026
+
+### Enhancements
+
+* Added support for filtering configuration settings and feature flags by tags. Tags can be configured via `spring.cloud.azure.appconfiguration.stores[0].selects[0].tags-filter` for key-value settings and `spring.cloud.azure.appconfiguration.stores[0].feature-flags.selects[0].tags-filter` for feature flags. The value is a list of `tag=value` pairs (e.g., `["env=prod", "team=backend"]`) combined with AND logic. [#47985](https://github.com/Azure/azure-sdk-for-java/pull/47985)
+
+### Bug Fixes
+
+* Fixed an issue where feature flag refresh did not work when load balancing was enabled with a single configuration store. Feature flag refresh now uses the same load-balanced client selection as configuration refresh. [#48121](https://github.com/Azure/azure-sdk-for-java/pull/48121)
+* Fixed an issue where configuration property hints and autocomplete were not available for `label-filter` in YAML configuration files (`application.yml`). [#47985](https://github.com/Azure/azure-sdk-for-java/pull/47985)
+
+## 7.0.0 - February 03, 2026
+
+This release is part of Spring Cloud Azure 7.x, which adds support for Spring Boot 4.0.x and Spring Cloud 2025.1.x. See the [Spring Versions Mapping](https://github.com/Azure/azure-sdk-for-java/wiki/Spring-Versions-Mapping) for compatibility details.
+
+### Bug Fixes
+
+* Fixed a bug where connection string validation occurred even when `spring.cloud.azure.appconfiguration.enabled` is `false`. [#47587](https://github.com/Azure/azure-sdk-for-java/issues/47587)
+
+## 6.1.0 - December 16, 2025
+
+### Enhancements
+
+* Added load balancing support to distribute requests across multiple available App Configuration endpoints. Load balancing can be enabled per store using `spring.cloud.azure.appconfiguration.stores[0].load-balance-enabled`. [#46616](https://github.com/Azure/azure-sdk-for-java/pull/46616)
+
+### Bug Fixes
+
+* Fixed a bug where `spring.cloud.azure.appconfiguration.enabled=false` was ignored in the new major version. [#47029](https://github.com/Azure/azure-sdk-for-java/pull/47029)
+* Fixed a bug where clients were not backed off when an unexpected exception occurred during startup. [#47225](https://github.com/Azure/azure-sdk-for-java/pull/47225)
+* Fixed a bug where a failed active client was not removed from the active clients list, causing issues when all clients failed. [#47225](https://github.com/Azure/azure-sdk-for-java/pull/47225)
+* Fixed a bug where an `UnsupportedOperationException` was thrown when using two or more Spring profiles without providing a label, due to immutable profile lists. [#47225](https://github.com/Azure/azure-sdk-for-java/pull/47225)
+
+## 6.0.0 - September 22, 2025
+
+### Breaking Changes
+
+* Replaced `bootstrap.properties` and `bootstrap.yml` configuration with the standard Spring configuration system using `application.properties` and `application.yml`. Applications must now set `spring.config.import=azureAppConfiguration` to load Azure App Configuration. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
+* Changed the default authentication method from `ManagedIdentityCredential` to `DefaultAzureCredential`. Applications that previously relied on `ManagedIdentityCredential` should verify their authentication configuration is compatible with `DefaultAzureCredential`. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
+* Removed the `fail-fast` property. Replicas should be used to ensure high availability. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
+
 ## 6.0.0-beta.1 - June 04, 2025
 
 ### Enhancements
 
-* Added support for new Spring configuration system. Now uses `application.properties` and `application.yml` files instead of `bootstrap.properties` and `bootstrap.yml`.
+* Added support for new Spring configuration system. Now uses `application.properties` and `application.yml` files instead of `bootstrap.properties` and `bootstrap.yml`. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
   * Now requires `spring.config.import=azureAppConfiguration` to be set to load Azure App Configuration.
-* Added `DefaultAzureCredential` as the default authentication method instead of `ManagedIdentityCredential`.
-* Removed `fail-fast` property. Replicas should be used to ensure high availability.
+* Added `DefaultAzureCredential` as the default authentication method instead of `ManagedIdentityCredential`. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
+* Removed `fail-fast` property. Replicas should be used to ensure high availability. [#45222](https://github.com/Azure/azure-sdk-for-java/pull/45222)
 
 ## 5.16.0 - September 09, 2024
 
