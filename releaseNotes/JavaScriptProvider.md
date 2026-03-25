@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
-## 2.5.0 - March 25, 2026
+## 2.4.1 - March 25, 2026
 
 ### Bug Fixes
 
