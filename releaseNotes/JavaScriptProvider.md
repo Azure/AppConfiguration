@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.4.1 - March 25, 2026
+
+### Bug Fixes
+
+* Fixed a bug where calling `constructConfigurationObject` after a configuration refresh would fail with an `InvalidOperationError` indicating ambiguity when constructing a configuration object. The issue occurred because parsed JSON values were assigned by reference instead of by deep copy, causing subsequent calls to `constructConfigurationObject` to encounter modified data from a previous call. [#286](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/286)
+
 ## 2.5.0-preview - February 26, 2026
 
 ### Enhancements
