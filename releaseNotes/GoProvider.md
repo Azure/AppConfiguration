@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## v1.6.0 - March 27, 2026
+
+### Enhancement
+
+* Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#57](https://github.com/Azure/AppConfiguration-GoProvider/pull/57)
+
 ## v1.5.0 - February 14, 2026
 
 ### Enhancement
