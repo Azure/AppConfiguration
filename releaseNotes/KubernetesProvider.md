@@ -2,6 +2,15 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.6.0 - March 27, 2026
+
+### Enhancements
+
+* Added support for snapshot references. If a configuration setting's value is a snapshot reference, loading it automatically loads all key-values from the referenced snapshot. This enables dynamically switching between snapshots at runtime. [#166](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/166)
+* Added support for specifying the Entra ID audience for authentication with Azure App Configuration. [#164](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/164)
+* Upgraded dependent packages. [#165](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/165)
+* Upgraded Go version to 1.25. [#165](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/165)
+
 ## 2.5.3 - Mar 4, 2026
 
 ### Enhancements
