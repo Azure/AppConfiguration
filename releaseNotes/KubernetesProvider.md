@@ -2,7 +2,7 @@
 
 [Image][image] | [Sample][sample]
 
-## 2.6.0 - March 27, 2026
+## 2.6.0 - March 31, 2026
 
 ### Enhancements
 
