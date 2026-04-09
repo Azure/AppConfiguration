@@ -20,7 +20,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
 1. Clone the repository and navigate to the `examples\DotNetCore\ChatAgent` directory:
    ```bash
    git clone https://github.com/Azure/AppConfiguration.git
-   cd examples\DotNetCore\ChatAgent\ChatAgent
+   cd examples\DotNetCore\ChatAgent
    ```
 
 1. Install the required packages:
