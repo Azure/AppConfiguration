@@ -35,7 +35,7 @@ This sample demonstrates using Azure App Configuration to load agent YAML specif
    |-----|-------|
    | ChatAgent:Spec | _See YAML below_ |
    | ChatAgent:ProjectEndpoint | _Your Azure AI project endpoint_ |
-   | ChatAgent:DeploymentName| gpt-5|
+   | ChatAgent:DeploymentName| gpt-5 |
 
    **YAML specification for _ChatAgent:Spec_**
    ```yaml
