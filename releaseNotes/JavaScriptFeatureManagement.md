@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.3.1 - April 15, 2026
+
+### Bug Fixes
+
+* Fixed a bug where `isEnabled` returned `false` when an unregistered feature filter was encountered while using `RequirementType` `Any`, even if other registered filters in the list could enable the feature. [#158](https://github.com/microsoft/FeatureManagement-JavaScript/pull/158)
+
 ## 2.3.0 - March 10, 2026
 
 ### Enhancements
