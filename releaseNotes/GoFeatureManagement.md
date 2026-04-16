@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
-## v1.1.2 - April 15, 2026
+## v1.1.2 - April 16, 2026
 
 ### Bug Fixes
 
