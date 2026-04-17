@@ -6,11 +6,11 @@
 
 ### Enhancements
 
-## 4.3.0 - August 27, 2025
-
 * Exposed the `SystemClock` property for `TimeWindowFilter` to enable the use of a custom `TimeProvider`. [#558](https://github.com/microsoft/FeatureManagement-Dotnet/issues/558)
 
 * Added new overloads for `FilterCollectionExtensions.AddForFeature` to support specifying multiple feature flags, requirement types, and negation. [#359](https://github.com/microsoft/FeatureManagement-Dotnet/pull/359)
+
+## 4.3.0 - August 27, 2025
 
 ### Enhancements
 
