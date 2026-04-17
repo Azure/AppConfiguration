@@ -2,6 +2,17 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.5.0 - April 16, 2026
+
+### Enhancements
+
+* Added support for custom feature definition providers to pass strongly typed filter settings directly by using `ParameterObject`, reducing configuration-conversion overhead for non-configuration-backed sources. [#589](https://github.com/microsoft/FeatureManagement-Dotnet/pull/589)
+* Improved filter parameter caching behavior for `ConfigurationWrapper`-based feature definitions to reduce repeated parameter binding work during feature evaluation. [#367](https://github.com/microsoft/FeatureManagement-Dotnet/issues/367)
+
+### Bug Fixes
+
+* Fixed a bug where evaluating features with `RequirementType.All` and `IgnoreMissingFeatureFilters` could throw instead of treating missing filters as disabled. [#586](https://github.com/microsoft/FeatureManagement-Dotnet/issues/586)
+
 ## 4.4.0 - December 18, 2025
 
 ### Enhancements
