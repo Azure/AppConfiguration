@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added support for custom feature definition providers to pass strongly typed filter settings directly by using `ParameterObject`, reducing configuration-conversion overhead for non-configuration-backed sources. [#589](https://github.com/microsoft/FeatureManagement-Dotnet/pull/589)
+* Added support for custom feature definition providers to pass filter settings directly by using `ParametersObject`, reducing configuration-conversion overhead for non-configuration-backed sources. [#589](https://github.com/microsoft/FeatureManagement-Dotnet/pull/589)
 * Improved filter parameter caching behavior for `ConfigurationWrapper`-based feature definitions to reduce repeated parameter binding work during feature evaluation. [#367](https://github.com/microsoft/FeatureManagement-Dotnet/issues/367)
 
 ### Bug Fixes
