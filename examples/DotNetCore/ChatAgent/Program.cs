@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
 TokenCredential credential = new AzureCliCredential();
-IConfigurationRefresher refresher = null;
 
 // Load configuration from Azure App Configuration
 IConfiguration configuration = new ConfigurationBuilder()
@@ -17,11 +16,6 @@ IConfiguration configuration = new ConfigurationBuilder()
             throw new InvalidOperationException("The environment variable 'AZURE_APPCONFIGURATION_ENDPOINT' is not set or is empty"));
         options.Connect(endpoint, credential)
             .Select("ChatAgent:*")
-            .ConfigureRefresh(refreshOptions =>
-            {
-                refreshOptions.RegisterAll();
-            });
-        refresher = options.GetRefresher();
     }).Build();
 
 var endpoint = configuration["ChatAgent:ProjectEndpoint"];
