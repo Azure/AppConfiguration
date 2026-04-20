@@ -6,7 +6,7 @@
 
 ### Bug Fixes
 
-* Fixed a bug where `GetFeatureNames` caused a panic due to an index out of bounds error when the feature flags array was empty. [#39](https://github.com/microsoft/FeatureManagement-Go/issues/39)
+* Fixed a bug where `GetFeatureNames` caused a panic due to index assignment on a zero-length slice. [#39](https://github.com/microsoft/FeatureManagement-Go/issues/39)
 
 * Fixed a bug where a feature flag with `RequirementType` set to `Any` was incorrectly evaluated as disabled when an unregistered filter was encountered, even if other registered filters in the list would have enabled the feature. [#41](https://github.com/microsoft/FeatureManagement-Go/pull/41)
 
