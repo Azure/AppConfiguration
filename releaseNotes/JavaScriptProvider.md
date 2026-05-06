@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.4.2 - May 7, 2026
+
+### Bug Fixes
+
+* Fixed an issue where the package could not be resolved as ESM in Node.js due to a missing `"type": "module"` field in the `package.json`. [#280](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/280)
+
 ## 2.4.1 - March 25, 2026
 
 ### Bug Fixes
