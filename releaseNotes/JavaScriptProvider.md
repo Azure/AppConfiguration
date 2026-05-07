@@ -6,7 +6,7 @@
 
 ### Bug Fixes
 
-* Fixed an issue where the package could not be resolved as ESM in Node.js due to a missing `"type": "module"` field in `package.json`. [#280](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/280)
+* Fixed an issue where the package could not be resolved as ESM in Node.js due to a missing `"type": "module"` field in `package.json`. [#280](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/280)
 
 ## 2.4.1 - March 25, 2026
 
