@@ -2,6 +2,16 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.6.3 - June 16, 2026
+
+### Enhancements
+
+* Upgraded dependent packages. [#183](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/183)
+
+### Bug Fixes
+
+* Fixed a bug where key-values loaded from a snapshot reference always took precedence over other selectors, ignoring selector order. Snapshot references now participate in the selector chain, so a later selector can override values resolved from a referenced snapshot. [#180](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/180)
+
 ## 2.6.0 - March 31, 2026
 
 ### Enhancements
