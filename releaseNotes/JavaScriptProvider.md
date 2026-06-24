@@ -7,7 +7,6 @@
 ### Enhancements
 
 * The `secretResolver` callback in `keyVaultOptions` can now return a value of any type instead of only a string. This lets you resolve a Key Vault reference to a structured value, for example by parsing a secret whose content type is `application/json` into an object so it behaves the same as a JSON value stored directly in App Configuration. [#78](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/78)
-* Optimized refresh behavior for `loadFromAzureFrontDoor` by using `HEAD` requests to check for changes. [#275](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/275)
 
 ## 2.4.2 - May 7, 2026
 
