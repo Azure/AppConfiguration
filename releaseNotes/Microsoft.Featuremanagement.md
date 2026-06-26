@@ -8,14 +8,6 @@
 
 * Added support for resolving variant service implementations through keyed dependency injection. This enables lazy, on-demand instantiation for scenarios where each implementation has its own dependencies and configuration. [#564](https://github.com/microsoft/FeatureManagement-Dotnet/issues/564)
 
-    ``` C#
-    builder.Services.AddKeyedSingleton<ICalculator, DefaultCalculator>("DefaultCalculator");
-    builder.Services.AddKeyedSingleton<ICalculator, RemoteCalculator>("RemoteCalculator");
-
-    builder.Services.AddFeatureManagement()
-        .WithVariantService<ICalculator>("Calculator");
-    ```
-
 ## 4.5.0 - April 23, 2026
 
 ### Enhancements
