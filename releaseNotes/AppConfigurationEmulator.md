@@ -2,6 +2,12 @@
 
 [Image][image] | [Source code][source_code] | [Samples][samples]
 
+## 1.1.0 - June 26, 2026
+
+### Enhancements
+
+* Added multi-architecture container image support. The emulator image now includes both `linux/amd64` and `linux/arm64` variants, enabling it to run natively on ARM-based machines such as Apple silicon and Windows on ARM. [#74](https://github.com/Azure/AppConfiguration-Emulator/issues/74)
+
 ## 1.0.2 - December 11, 2025
 
 ### Bug fixes
