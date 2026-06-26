@@ -6,7 +6,7 @@
 
 ### Enhancements
 
-* Added support for resolving variant service implementations through keyed dependency injection. When you register implementations as keyed services using the variant name as the key, the variant service provider resolves only the implementation matching the assigned variant, so the other implementations are no longer instantiated up front. This enables lazy, on-demand instantiation for scenarios where each implementation has its own dependencies and configuration. Existing non-keyed registrations continue to work unchanged. [#564](https://github.com/microsoft/FeatureManagement-Dotnet/issues/564)
+* Added support for resolving variant service implementations through keyed dependency injection. This enables lazy, on-demand instantiation for scenarios where each implementation has its own dependencies and configuration. [#564](https://github.com/microsoft/FeatureManagement-Dotnet/issues/564)
 
     ``` C#
     builder.Services.AddKeyedSingleton<ICalculator, DefaultCalculator>("DefaultCalculator");
