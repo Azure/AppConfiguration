@@ -2,7 +2,7 @@
 
 [Image][image] | [Source code][source_code] | [Samples][samples]
 
-## 1.1.0 - June 26, 2026
+## 1.1.0 - June 30, 2026
 
 ### Enhancements
 
