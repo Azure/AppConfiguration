@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.5.1 - June 30, 2026
+
+### Bug Fixes
+
+* Fixed a bug where dynamic refresh could miss feature flag updates and leave local values stale when the service returned a successful change response with the HTTP status represented as a string. [#333](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/333)
+
 ## 2.5.0 - June 24, 2026
 
 ### Enhancements
@@ -208,4 +214,3 @@ Added support for
 [package]: https://www.npmjs.com/package/@azure/app-configuration-provider
 [samples]: https://github.com/Azure/AppConfiguration-JavaScriptProvider/tree/main/examples
 [source_code]: https://github.com/Azure/AppConfiguration-JavaScriptProvider
-
