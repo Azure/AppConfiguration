@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
-## 4.6.0 - June 26, 2026
+## 4.6.0 - July 1, 2026
 
 * Updated `Microsoft.FeatureManagement` reference to `4.6.0`. See the [release notes](./Microsoft.Featuremanagement.md) for more information on the changes.
 
