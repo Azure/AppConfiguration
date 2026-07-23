@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.6.0 - July 23, 2026
+
+### Enhancements
+
+* Optimized Key Vault reference resolution by deduplicating requests when multiple configuration settings reference the same secret, reducing Key Vault traffic and throttling risk. [#325](https://github.com/Azure/AppConfiguration-JavaScriptProvider/issues/325)
+
 ## 2.5.1 - June 30, 2026
 
 ### Bug Fixes
