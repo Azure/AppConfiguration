@@ -4,6 +4,9 @@
 ## 8.6.0 - July 24th, 2026
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.6.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
+## 8.6.0-preview - February 26th, 2026
+* Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.6.0-preview`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
+
 ## 8.5.0 - February 12th, 2026
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.5.0`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 
