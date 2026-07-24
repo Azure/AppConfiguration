@@ -1,6 +1,12 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.6.0 - July 24th, 2026
+### Enhancements
+* Added support for resolving Azure Key Vault references in parallel by setting the new `ParallelSecretResolutionEnabled` property under `AzureAppConfigurationKeyVaultOptions` to true. [#736](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/736)
+
+* Upgraded `Azure.Data.AppConfiguration` to `1.11.0` to enable automatic Microsoft Entra ID audience detection. [#745](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/745)
+
 ## 8.6.0-preview - February 26th, 2026
 ### Enhancements
 * Optimized refresh behavior for `ConnectAzureFrontDoor` by using `HEAD` requests to check for changes. [#717](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/717)
