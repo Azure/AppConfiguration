@@ -2,7 +2,7 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
-## 2.6.0 - July 23, 2026
+## 2.6.0 - July 28, 2026
 
 ### Enhancements
 
