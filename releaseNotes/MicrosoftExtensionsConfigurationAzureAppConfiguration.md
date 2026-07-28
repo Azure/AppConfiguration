@@ -1,7 +1,7 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
-## 8.6.0 - July 24th, 2026
+## 8.6.0 - July 29th, 2026
 ### Enhancements
 * Added support for resolving Azure Key Vault references in parallel by setting the new `ParallelSecretResolutionEnabled` property under `AzureAppConfigurationKeyVaultOptions` to true. [#736](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/736)
 
