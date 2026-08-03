@@ -2,6 +2,12 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.6.5 - July 17, 2026
+
+### Bug Fixes
+
+* Fixed a bug where the provider could overwrite an existing ConfigMap or Secret it did not own if the resource had an owner reference with the same name as the `AzureAppConfigurationProvider` resource. Ownership checks now validate the API version, kind, name, and UID. [#188](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/188)
+
 ## 2.6.4 - July 1, 2026
 
 ### Enhancements
