@@ -1,6 +1,10 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.7.0-preview - August 26, 2026
+### Enhancements
+* Added support for loading and refreshing enhanced feature flags from Azure App Configuration's dedicated feature flag endpoint. Feature flags continue to be supported alongside enhanced feature flags; when both have the same name, the enhanced feature flag takes precedence. [#738](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/738)
+
 ## 8.6.0 - July 29th, 2026
 ### Enhancements
 * Added support for resolving Azure Key Vault references in parallel by setting the new `ParallelSecretResolutionEnabled` property under `AzureAppConfigurationKeyVaultOptions` to true. [#736](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/736)
