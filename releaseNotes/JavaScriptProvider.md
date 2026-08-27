@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.7.0-preview - August 27, 2026
+
+### Enhancements
+
+* Added support for loading and refreshing enhanced feature flags from Azure App Configuration's dedicated feature flag endpoint. Feature flags continue to be supported alongside enhanced feature flags; when both have the same name, the enhanced feature flag takes precedence. [#341](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/341)
+
 ## 2.6.0 - July 28, 2026
 
 ### Enhancements
