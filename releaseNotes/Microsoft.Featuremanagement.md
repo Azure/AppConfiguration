@@ -2,6 +2,17 @@
 
 [Source code][source_code] | [Package (NuGet)][package] | [Samples][samples] | [Product documentation][docs]
 
+## 4.7.0 - August 27, 2026
+
+### Enhancements
+
+* Added `IContextualVariantServiceProvider<TService>` so applications can supply context when resolving variant services. The new `WithVariantService<TService, TEnabled, TDisabled>` overload also enables fallback to an implementation selected by the feature's enabled or disabled status when no service is registered for the assigned variant. [#611](https://github.com/microsoft/FeatureManagement-Dotnet/pull/611)
+* Added support for .NET 10 as a target framework. [#616](https://github.com/microsoft/FeatureManagement-Dotnet/pull/616)
+
+### Bug Fixes
+
+* Fixed a bug where passing a null context to a context-aware `IsEnabledAsync` overload resulted in a `NullReferenceException`. These overloads now throw an `ArgumentNullException` for the null context. [#612](https://github.com/microsoft/FeatureManagement-Dotnet/pull/612)
+
 ## 4.6.0 - July 1, 2026
 
 ### Enhancements
