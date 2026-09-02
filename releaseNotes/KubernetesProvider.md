@@ -2,6 +2,12 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.7.0-preview - September 2, 2026
+
+### Enhancements
+
+* Added support for loading and refreshing enhanced feature flags from Azure App Configuration's dedicated feature flag endpoint. Feature flags continue to be supported alongside enhanced feature flags; when both have the same name, the enhanced feature flag takes precedence. [190#](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/190)
+
 ## 2.6.5 - July 17, 2026
 
 ### Bug Fixes

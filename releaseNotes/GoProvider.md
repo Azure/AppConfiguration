@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
+## 1.7.0-beta.1 - September 1, 2026
+
+### Enhancements
+
+* Added support for loading and refreshing enhanced feature flags from Azure App Configuration's dedicated feature flag endpoint. Feature flags continue to be supported alongside enhanced feature flags; when both have the same name, the enhanced feature flag takes precedence. [73#](https://github.com/Azure/AppConfiguration-GoProvider/pull/73)
+
 ## v1.6.0 - March 27, 2026
 
 ### Enhancement
