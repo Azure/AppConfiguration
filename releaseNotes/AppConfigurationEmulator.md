@@ -2,6 +2,18 @@
 
 [Image][image] | [Source code][source_code] | [Samples][samples]
 
+## 1.2.0 - August 12, 2026
+
+### Enhancements
+
+* Added support for configuration snapshot APIs. [#60](https://github.com/Azure/AppConfiguration-Emulator/pull/60)
+* Added support for the `2026-04-01` API version and the `description` field for key-values and snapshots. [#96](https://github.com/Azure/AppConfiguration-Emulator/pull/96) [#97](https://github.com/Azure/AppConfiguration-Emulator/pull/97)
+* Added an anonymous `/health` endpoint for monitoring emulator availability. [#107](https://github.com/Azure/AppConfiguration-Emulator/pull/107)
+
+### Bug fixes
+
+* Fixed a bug where key-values with `*` or `,` in their keys or labels could not be retrieved by exact-match requests. [#99](https://github.com/Azure/AppConfiguration-Emulator/pull/99)
+
 ## 1.1.0 - June 30, 2026
 
 ### Enhancements
