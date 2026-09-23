@@ -55,7 +55,7 @@ jobs:
       title: ${{ steps.sanitized.outputs.title }}
     steps:
       - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@466b8ad27fcfaaa861da3f16ba7c01272df25f46 # v0.87.3
+        uses: github/gh-aw/actions/setup@ff62cdbec36230acbae869ddb28806e8eca01ea1 # v0.87.10
         with:
           destination: /opt/gh-aw/actions
       - name: Generate agentic run info
@@ -270,7 +270,7 @@ jobs:
       output_types: ${{ steps.collect_output.outputs.output_types }}
     steps:
       - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@466b8ad27fcfaaa861da3f16ba7c01272df25f46 # v0.87.3
+        uses: github/gh-aw/actions/setup@ff62cdbec36230acbae869ddb28806e8eca01ea1 # v0.87.10
         with:
           destination: /opt/gh-aw/actions
       - name: Checkout repository
@@ -1097,7 +1097,7 @@ jobs:
       total_count: ${{ steps.missing_tool.outputs.total_count }}
     steps:
       - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@466b8ad27fcfaaa861da3f16ba7c01272df25f46 # v0.87.3
+        uses: github/gh-aw/actions/setup@ff62cdbec36230acbae869ddb28806e8eca01ea1 # v0.87.10
         with:
           destination: /opt/gh-aw/actions
       - name: Download agent output artifact
@@ -1185,7 +1185,7 @@ jobs:
       matched_command: ''
     steps:
       - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@466b8ad27fcfaaa861da3f16ba7c01272df25f46 # v0.87.3
+        uses: github/gh-aw/actions/setup@ff62cdbec36230acbae869ddb28806e8eca01ea1 # v0.87.10
         with:
           destination: /opt/gh-aw/actions
       - name: Check team membership for workflow
@@ -1227,7 +1227,7 @@ jobs:
       process_safe_outputs_temporary_id_map: ${{ steps.process_safe_outputs.outputs.temporary_id_map }}
     steps:
       - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@466b8ad27fcfaaa861da3f16ba7c01272df25f46 # v0.87.3
+        uses: github/gh-aw/actions/setup@ff62cdbec36230acbae869ddb28806e8eca01ea1 # v0.87.10
         with:
           destination: /opt/gh-aw/actions
       - name: Download agent output artifact
