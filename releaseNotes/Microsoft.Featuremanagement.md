@@ -6,11 +6,11 @@
 
 ### Enhancements
 
-* Added OpenTelemetry integration through the new `Microsoft.FeatureManagement.Telemetry.OpenTelemetry` package, allowing applications to export feature evaluation events and correlate them with user telemetry. See the [OpenTelemetry release notes](./Microsoft.Featuremanagement.Telemetry.OpenTelemetry.md) for setup details. [microsoft/FeatureManagement-Dotnet#617](https://github.com/microsoft/FeatureManagement-Dotnet/pull/617)
+* Added OpenTelemetry integration through the new `Microsoft.FeatureManagement.Telemetry.OpenTelemetry` package, allowing applications to export feature evaluation events and correlate them with user telemetry. See the [OpenTelemetry release notes](./Microsoft.Featuremanagement.Telemetry.OpenTelemetry.md) for setup details. [#617](https://github.com/microsoft/FeatureManagement-Dotnet/pull/617)
 
 ### Bug Fixes
 
-* Fixed a bug where a Microsoft-schema feature flag from an earlier configuration source could override the same flag's .NET-schema definition from a later source, causing its state and feature filters to be ignored. With `CustomConfigurationMergingEnabled` enabled, the last configuration source defining the flag now takes precedence across both schemas. [microsoft/FeatureManagement-Dotnet#621](https://github.com/microsoft/FeatureManagement-Dotnet/issues/621)
+* Fixed a bug where a Microsoft-schema feature flag from an earlier configuration source could override the same flag's .NET-schema definition from a later source, causing its state and feature filters to be ignored. With `CustomConfigurationMergingEnabled` enabled, the last configuration source defining the flag now takes precedence across both schemas. [#621](https://github.com/microsoft/FeatureManagement-Dotnet/issues/621)
 
 ## 4.7.0 - August 27, 2026
 
