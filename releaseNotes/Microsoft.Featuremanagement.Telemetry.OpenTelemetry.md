@@ -4,8 +4,6 @@
 
 ## 4.8.0 - September 24, 2026
 
-### Enhancements
-
 * Introduced the `Microsoft.FeatureManagement.Telemetry.OpenTelemetry` package to publish feature flag evaluation events to OpenTelemetry-compatible backends and enrich spans and logs with `TargetingId` for correlation with user telemetry. Call `AddFeatureManagementProcessors()` on the OpenTelemetry builder before configuring exporters, such as `UseAzureMonitor()`, and enable telemetry on the feature flags to publish their evaluations. [#617](https://github.com/microsoft/FeatureManagement-Dotnet/pull/617)
 
     ```csharp
