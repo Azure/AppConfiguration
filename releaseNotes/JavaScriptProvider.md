@@ -2,6 +2,12 @@
 
 [Source code][source_code] | [Package (npm)][package] | [Samples][samples]
 
+## 2.7.0-preview.1 - October 17, 2026
+
+### Bug Fixes
+
+* Fixed a bug where loading configuration during application startup could fail with `TypeError: response._response?.headers?.get is not a function`. Updated the `@azure/app-configuration` dependency to restore response header compatibility. [#366](https://github.com/Azure/AppConfiguration-JavaScriptProvider/pull/366) [#40352](https://github.com/Azure/azure-sdk-for-js/pull/40352)
+
 ## 2.7.0-preview - August 27, 2026
 
 ### Enhancements
