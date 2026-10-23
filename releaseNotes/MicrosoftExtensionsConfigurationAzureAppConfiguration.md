@@ -1,6 +1,10 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.6.1 - October 23, 2026
+### Bug Fixes
+* Fixed a bug where refresh checks with `RegisterAll` ignored tag filters configured through `Select`, causing repeated configuration reloads even when the selected key-values had not changed. [#758](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/758)
+
 ## 8.7.0-preview - August 26, 2026
 ### Enhancements
 * Added support for loading and refreshing enhanced feature flags from Azure App Configuration's dedicated feature flag endpoint. Feature flags continue to be supported alongside enhanced feature flags; when both have the same name, the enhanced feature flag takes precedence. [#738](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/738)
