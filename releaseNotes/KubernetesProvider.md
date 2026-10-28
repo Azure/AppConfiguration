@@ -2,11 +2,29 @@
 
 [Image][image] | [Sample][sample]
 
+## 2.6.8 - October 23, 2026
+
+### Enhancements
+
+* Upgraded dependent packages. [#205](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/205)
+
 ## 2.7.0-preview - September 2, 2026
 
 ### Enhancements
 
 * Added support for loading and refreshing enhanced feature flags from Azure App Configuration's dedicated feature flag endpoint. Feature flags continue to be supported alongside enhanced feature flags; when both have the same name, the enhanced feature flag takes precedence. [#190](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/190)
+
+## 2.6.7 - August 29, 2026
+
+### Bug Fixes
+
+* Fixed a regression in version 2.6.6 where the validating admission policy could reject previously working deployments. The policy was reverted to restore the previous behavior. [#193](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/193), [#194](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/194)
+
+## 2.6.6 - August 25, 2026
+
+### Breaking Changes
+
+* Added a validating admission policy on Kubernetes 1.30 or later to prevent unauthorized use of service accounts referenced by `AzureAppConfigurationProvider` resources for workload identity authentication. The policy was enabled by default and could reject previously working deployments; upgrade to version 2.6.7 or set `serviceAccountAuthorization.enabled=false` to restore the previous behavior. [#191](https://github.com/Azure/AppConfiguration-KubernetesProvider/pull/191), [#193](https://github.com/Azure/AppConfiguration-KubernetesProvider/issues/193)
 
 ## 2.6.5 - July 17, 2026
 
