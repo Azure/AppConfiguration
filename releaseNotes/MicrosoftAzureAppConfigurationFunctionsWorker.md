@@ -1,6 +1,9 @@
 # Microsoft.Azure.AppConfiguration.Functions.Worker
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.6.2 - Unreleased
+* Planned update of the `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.6.2`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes. [#769](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/769)
+
 ## 8.6.1 - October 23, 2026
 * Updated `Microsoft.Extensions.Configuration.AzureAppConfiguration` reference to `8.6.1`. See the [release notes](./MicrosoftExtensionsConfigurationAzureAppConfiguration.md) for more information on the changes.
 

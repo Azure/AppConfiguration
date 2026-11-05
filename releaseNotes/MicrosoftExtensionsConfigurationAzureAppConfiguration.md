@@ -1,6 +1,10 @@
 # Microsoft.Extensions.Configuration.AzureAppConfiguration
 [Source code][source_code] | [Package (NuGet)][package]
 
+## 8.6.2 - Unreleased
+### Other Changes
+* Planned update to NuGet license metadata to declare `MIT` with `PackageLicenseExpression` instead of `PackageLicenseUrl`, enabling license compliance tools to identify the package license. [#761](https://github.com/Azure/AppConfiguration-DotnetProvider/pull/761)
+
 ## 8.6.1 - October 23, 2026
 ### Bug Fixes
 * Fixed a bug where refresh checks with `RegisterAll` ignored tag filters configured through `Select`, causing repeated configuration reloads even when the selected key-values had not changed. [#758](https://github.com/Azure/AppConfiguration-DotnetProvider/issues/758)
