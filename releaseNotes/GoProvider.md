@@ -2,13 +2,13 @@
 
 [Source code][source_code] | [Package][package] | [Samples][samples]
 
-## 1.7.0 - November 6, 2026
+## v1.7.0 - November 6, 2026
 
 ### Enhancements
 
 * Upgraded `azappconfig` to `2.3.0` to enable automatic Microsoft Entra ID audience detection. [#79](https://github.com/Azure/AppConfiguration-GoProvider/pull/79)
 
-## 1.7.0-beta.1 - September 1, 2026
+## v1.7.0-beta.1 - September 1, 2026
 
 ### Enhancements
 
