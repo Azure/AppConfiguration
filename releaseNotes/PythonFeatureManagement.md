@@ -2,6 +2,17 @@
 
 [Source code][source_code] | [Samples][samples]
 
+## 2.3.0 - November 10, 2026
+
+### Enhancements
+
+* Updated the `AzureMonitor` extra to require `opentelemetry-sdk~=1.44.0`. [#75](https://github.com/microsoft/FeatureManagement-Python/pull/75)
+
+### Bug Fixes
+
+* Fixed `TargetingContext.groups`, ensuring each context has its own independent default list. [#81](https://github.com/microsoft/FeatureManagement-Python/pull/81)
+* Corrected the type hints for sync and async `FeatureManager.is_enabled` and `FeatureManager.get_variant` to accept calls without a user identifier and calls with a positional `TargetingContext`, including custom keyword arguments. [#78](https://github.com/microsoft/FeatureManagement-Python/pull/78)
+
 ## 2.1.0 - April 25, 2025
 
 ### Enhancements
