@@ -4,13 +4,17 @@
 
 ## 2.3.0 - November 10, 2026
 
+### Breaking Changes
+
+* Changed the default `TargetingContext.groups` from an empty list to an empty tuple to prevent groups from being shared between contexts. Applications that modify the default groups collection in place must instead construct a context with the desired groups. [#77](https://github.com/microsoft/FeatureManagement-Python/pull/77)
+
 ### Enhancements
 
-* Updated the `AzureMonitor` extra to require `opentelemetry-sdk~=1.44.0`.
+* Updated the `AzureMonitor` extra to require `opentelemetry-sdk~=1.44.0`. [#75](https://github.com/microsoft/FeatureManagement-Python/pull/75)
 
 ### Bug Fixes
 
-* Corrected the type hints for sync and async `FeatureManager.is_enabled` and `FeatureManager.get_variant` to accept calls without a user identifier and calls with a positional `TargetingContext`, including custom keyword arguments.
+* Corrected the type hints for sync and async `FeatureManager.is_enabled` and `FeatureManager.get_variant` to accept calls without a user identifier and calls with a positional `TargetingContext`, including custom keyword arguments. [#78](https://github.com/microsoft/FeatureManagement-Python/pull/78)
 
 ## 2.1.0 - April 25, 2025
 
