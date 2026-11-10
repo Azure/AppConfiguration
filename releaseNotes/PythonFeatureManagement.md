@@ -10,6 +10,7 @@
 
 ### Bug Fixes
 
+* Restored mutable default `TargetingContext.groups` lists so groups can be added after construction, while ensuring each context has its own independent default list.
 * Corrected the type hints for sync and async `FeatureManager.is_enabled` and `FeatureManager.get_variant` to accept calls without a user identifier and calls with a positional `TargetingContext`, including custom keyword arguments.
 
 ## 2.1.0 - April 25, 2025
