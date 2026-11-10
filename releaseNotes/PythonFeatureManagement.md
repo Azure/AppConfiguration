@@ -10,7 +10,7 @@
 
 ### Bug Fixes
 
-* Restored mutable default `TargetingContext.groups` lists so groups can be added after construction, while ensuring each context has its own independent default list. [#81](https://github.com/microsoft/FeatureManagement-Python/pull/81)
+* Fixed `TargetingContext.groups`, ensuring each context has its own independent default list. [#81](https://github.com/microsoft/FeatureManagement-Python/pull/81)
 * Corrected the type hints for sync and async `FeatureManager.is_enabled` and `FeatureManager.get_variant` to accept calls without a user identifier and calls with a positional `TargetingContext`, including custom keyword arguments. [#78](https://github.com/microsoft/FeatureManagement-Python/pull/78)
 
 ## 2.1.0 - April 25, 2025
